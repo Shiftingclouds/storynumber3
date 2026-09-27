@@ -42,7 +42,7 @@ const chapters = [
     purpose: "Christmas above the print shop; the crossing at the Candle Fair; the Marches as a society." },
   { id: "CH14", title: "Passage Denied", from: "2026-12-29", to: "2027-01-01", day: "29",
     purpose: "A crossing dispute closes the way home over the New Year; a complete local story; a return arrangement." },
-  { id: "CH15", title: "Stillwater", from: "2027-01-02", to: "2027-01-02", day: "30",
+  { id: "CH15", title: "Stillwater", from: "2027-01-02", to: "2027-01-03", day: "30",
     purpose: "The holding site exists; no safe extraction yet. Clive seen or learned of. A credible exit." },
   { id: "CH16", title: "The Third Return", from: "2027-01-04", to: "2027-01-09", day: "32",
     purpose: "Back in Calder: Felix changed; patients connected to donors." },

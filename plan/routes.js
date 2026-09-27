@@ -41,7 +41,7 @@ const routes = [
     earned: "He lets a private uncertainty stay visible, and I come back to the conversation.",
     guard: "No male ex, no established circle: he has noticed men privately and postponed deciding what it means.",
     beats: [
-      { flag: "b_ellis_meet", stage: 2, at: ["CH05.RESTORE.01", "CH06.TOKEN.01", "CH07.UNI.01"], needs: "", what: "The workroom: he performs competence beautifully." },
+      { flag: "b_ellis_meet", stage: 2, at: ["CH05.RESTORE.01", "CH06.TOKEN.01"], needs: "", what: "The workroom: he performs competence beautifully." },
       { flag: "b_ellis_offstage", stage: 3, at: ["CH05.RESTORE.02", "CH07.UNI.03", "CH09.SCREEN.02"], needs: "st_ellis >= 2", what: "Upstairs, off stage: irritable, funny, ordinary." },
       { flag: "b_ellis_danger", stage: 4, at: ["CH09.SCREEN.04", "CH11.EXHIBIT.04", "CH16.FELIX.02"], needs: "st_ellis >= 3", what: "He needs time to understand the work and I hold the line while he does." },
       { flag: "b_ellis_badday", stage: 5, at: ["CH11.EXHIBIT.05", "CH16.FELIX.03", "CH17.ELLIS.02"], needs: "b_ellis_danger and (hurt_ellis < 2)", what: "After Basil takes credit (or after Felix), he lets me see him uncertain, and I stay. I choose what I want back." }
@@ -67,7 +67,7 @@ const routes = [
     earned: "A direct, awkward conversation that allows either a relationship or a valued friendship.",
     guard: "Not a waiting boyfriend or an automatic safe route. His course offer stays desirable. My unexplained absences cost something.",
     beats: [
-      { flag: "b_nolan_kept", stage: 3, at: ["CH05.NIGHT.01", "CH06.WEEKS.01"], needs: "", what: "I keep a plan I made with him." },
+      { flag: "b_nolan_kept", stage: 3, at: ["CH05.NIGHT.01", "CH06.WEEKS.01", "CH07.NOLAN.01"], needs: "", what: "I keep a plan I made with him." },
       { flag: "b_nolan_birthday", stage: 4, at: ["CH07.NOLAN.03"], needs: "hurt_nolan < 2", what: "His birthday: the balcony at 2 a.m., a gesture that isn't habit any more." },
       { flag: "b_nolan_work", stage: 4, at: ["CH09.TUNNELS.02", "CH12.HOME.01", "CH14.QUIET.01"], needs: "st_nolan >= 3", what: "Working beside him in the thing he's best at." },
       { flag: "b_nolan_talk", stage: 5, at: ["CH16.HOME.02", "CH17.NOLAN.02"], needs: "(b_nolan_birthday or b_nolan_work) and (hurt_nolan < 2)", what: "The direct, awkward conversation. Either answer is honoured. I choose what I want back." }

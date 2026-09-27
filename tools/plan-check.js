@@ -229,7 +229,7 @@ for (let run = 0; run < RUNS; run++) {
     last = t;
     apply(st, s.set);
     if (s.end) { stops[s.id] = (stops[s.id] || 0) + 1; break; }
-    const avail = (s.choices || []).filter((c) => test(st, c.when));
+    const avail = (s.choices || []).filter((c) => test(st, c.when) && !(c.once && st.__used && st.__used[`${s.id}#${c.id}`]));
     // skill checks: which options were gated by a skill, and could this run take them?
     for (const c of s.choices || []) {
       if (!c.when) continue;
@@ -245,6 +245,7 @@ for (let run = 0; run < RUNS; run++) {
       if (!avail.length) { walkErrors.set(`${s.id}: every option is unavailable`, (walkErrors.get(`${s.id}: every option is unavailable`) || 0) + 1); break; }
       const c = avail[Math.floor(r() * avail.length)];
       choiceHits.set(`${s.id}#${c.id}`, (choiceHits.get(`${s.id}#${c.id}`) || 0) + 1);
+      if (c.once) { st.__used = st.__used || {}; st.__used[`${s.id}#${c.id}`] = true; }
       apply(st, c.set);
       next = c.to || s.next;
     } else next = s.next;
@@ -268,7 +269,7 @@ function walkFocused(lead, seed) {
     visits.set(s.id, (visits.get(s.id) || 0) + 1);
     apply(st, s.set);
     if (s.end) break;
-    const avail = (s.choices || []).filter((c) => test(st, c.when));
+    const avail = (s.choices || []).filter((c) => test(st, c.when) && !(c.once && st.__used && st.__used[`${s.id}#${c.id}`]));
     let next;
     if ((s.choices || []).length) {
       if (!avail.length) break;
@@ -278,6 +279,7 @@ function walkFocused(lead, seed) {
       pool.sort((a, b) => ((b.set || {})["st_" + L] === 6 ? 2 : 0) + ((b.set || {})["st_" + L] === 5 ? 1 : 0) - (((a.set || {})["st_" + L] === 6 ? 2 : 0) + ((a.set || {})["st_" + L] === 5 ? 1 : 0)));
       const c = r() < 0.7 ? pool[0] : pool[Math.floor(r() * pool.length)];
       choiceHits.set(`${s.id}#${c.id}`, (choiceHits.get(`${s.id}#${c.id}`) || 0) + 1);
+      if (c.once) { st.__used = st.__used || {}; st.__used[`${s.id}#${c.id}`] = true; }
       apply(st, c.set);
       next = c.to || s.next;
     } else next = s.next;
@@ -301,7 +303,44 @@ for (const L of LEADS) {
 
 for (const s of scenes) if (!visits.has(s.id)) warn(`${s.id}: never reached in ${RUNS} walks (condition never true?)`);
 for (const s of scenes) for (const c of s.choices || []) if (!choiceHits.has(`${s.id}#${c.id}`)) warn(`${s.id}#${c.id}: option never available/taken in ${RUNS} walks`);
-for (const [k, cs] of checkStats) if (cs.pass === 0) err(`skill check never passable: ${k}`);
+// skill-focused walks: prefer options that raise one skill; record the best value at the start of each chapter,
+// and whether each skill check is passable for a player who builds that skill.
+const skillBest = {};
+const skillCheckPass = new Map();
+for (const sk of SKILLS) {
+  skillBest[sk] = {};
+  for (let i = 0; i < 300; i++) {
+    const r = rng(777 + i * 13 + sk.length * 101);
+    const st = freshState();
+    let s = start, steps = 0, lastCh = "";
+    while (s && steps++ < 2000) {
+      if (s.when && !test(st, s.when)) { s = byId.get(s.next) || null; continue; }
+      const ch = chapterOf(s.id);
+      if (ch !== lastCh) { lastCh = ch; skillBest[sk][ch] = Math.max(skillBest[sk][ch] || 0, st[sk]); }
+      apply(st, s.set);
+      if (s.end) break;
+      for (const c of s.choices || []) {
+        if (!c.when) continue;
+        if (!EXPR.identifiers(c.when).includes(sk)) continue;
+        const k = `${s.id}#${c.id} (${c.when})`;
+        if (test(st, c.when)) skillCheckPass.set(k, true); else if (!skillCheckPass.has(k)) skillCheckPass.set(k, false);
+      }
+      const avail = (s.choices || []).filter((c) => test(st, c.when) && !(c.once && st.__used && st.__used[`${s.id}#${c.id}`]));
+      let next;
+      if ((s.choices || []).length) {
+        if (!avail.length) break;
+        const gain = (c) => { const v = (c.set || {})[sk]; return typeof v === "string" && /^\+\d+$/.test(v) ? Number(v) : 0; };
+        const best = avail.slice().sort((a, b) => gain(b) - gain(a));
+        const c = gain(best[0]) > 0 && r() < 0.85 ? best[0] : avail[Math.floor(r() * avail.length)];
+        if (c.once) { st.__used = st.__used || {}; st.__used[`${s.id}#${c.id}`] = true; }
+        apply(st, c.set);
+        next = c.to || s.next;
+      } else next = s.next;
+      s = byId.get(next) || null;
+    }
+  }
+}
+for (const [k, cs] of checkStats) if (cs.pass === 0 && !skillCheckPass.get(k)) err(`skill check never passable, even for a player building that skill: ${k}`);
 
 // ---------------------------------------------------------------- report
 for (const [m] of walkErrors) err("walk: " + m);
@@ -311,5 +350,7 @@ console.log(`\n${files.length} chapter file(s), ${scenes.length} scenes, ${scene
 console.log("Walks ended at: " + Object.entries(stops).map(([k, v]) => `${k} ×${v}`).join(", "));
 if (VERBOSE) for (const [k, cs] of checkStats) console.log(`  check ${Math.round((cs.pass / cs.seen) * 100)}%  ${k}`);
 console.log("Routes, when pursued:\n  " + routeReport.join("\n  "));
+console.log("Best skill at chapter start, when built on purpose:");
+for (const sk of SKILLS) console.log("  " + sk.padEnd(7) + Object.entries(skillBest[sk]).map(([c, v]) => c.slice(2) + ":" + v).join(" "));
 console.log(`${errors.length} errors, ${warnings.length} warnings.`);
 process.exit(errors.length ? 1 : 0);

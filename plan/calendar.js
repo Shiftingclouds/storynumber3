@@ -50,7 +50,7 @@ const chapters = [
     purpose: "Deep winter. A major trust/disclosure question; one romance or friendship moves forward." },
   { id: "CH18", title: "A Method We Can Defend", from: "2027-02-01", to: "2027-02-27", day: "35",
     purpose: "February: test full, interim, single-pair and extraction plans; gather materials and willing people." },
-  { id: "CH19", title: "The Offer", from: "2027-03-06", to: "2027-03-06", day: "36",
+  { id: "CH19", title: "The Offer", from: "2027-03-03", to: "2027-03-06", day: "36",
     purpose: "Armand's proposal at Sorrell House; the anniversary deadline becomes known; accountability decided." },
   { id: "CH20", title: "Where I Stand", from: "2027-03-13", to: "2027-03-13", day: "37 (afternoon)",
     purpose: "Choose the plan and my role: patient site, donor site, or coordination." },

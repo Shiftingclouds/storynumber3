@@ -26,6 +26,8 @@ const { vars, LEADS } = require(path.join(ROOT, "plan/state.js"));
 const { cast } = require(path.join(ROOT, "plan/cast.js"));
 const { places } = require(path.join(ROOT, "plan/places.js"));
 const calendar = require(path.join(ROOT, "plan/calendar.js"));
+let endingsPlan = null;
+try { endingsPlan = require(path.join(ROOT, "plan/endings.js")); } catch (e) { /* not written yet */ }
 let routes = null;
 try { routes = require(path.join(ROOT, "plan/routes.js")); } catch (e) { /* not written yet */ }
 
@@ -90,6 +92,7 @@ for (const s of scenes) {
   for (const c of s.cast || []) if (!castById.has(c)) err(`${w}: unknown cast id ${c}`);
   if (!s.purpose) err(`${w}: no purpose`);
   if (s.when) checkExpr(s.when, w);
+  if (s.assert) checkExpr(s.assert, w + " (assert)");
   for (const [k, v] of Object.entries(s.set || {})) checkVar(k, w + " (entry)", v);
   const ch = calendar.chapters.find((c) => c.id === chapterOf(s.id));
   if (ch && s.date && (s.date < ch.from || s.date > ch.to)) err(`${w}: date ${s.date} is outside ${ch.id} (${ch.from} → ${ch.to})`);
@@ -202,6 +205,25 @@ function test(st, src) {
   if (!src) return true;
   return !!EXPR.compile(src)((n) => (n in st ? st[n] : (() => { throw new Error("unknown " + n); })()));
 }
+const passageHits = new Map();
+function checkEpilogue(st) {
+  if (!endingsPlan) return;
+  const bySlot = {};
+  for (const p of endingsPlan.passages) {
+    let ok;
+    try { ok = test(st, p.when); } catch (e) { err(`epilogue passage ${p.id}: bad condition ${p.when}: ${e.message}`); continue; }
+    if (ok) { (bySlot[p.slot] = bySlot[p.slot] || []).push(p.id); passageHits.set(p.id, (passageHits.get(p.id) || 0) + 1); }
+  }
+  for (const slot of ["anchor", "rel", "final", "p_quentin", "p_silas", "p_felix", "p_eamon", "p_hugo", "p_clive"]) {
+    const n = (bySlot[slot] || []).length;
+    if (n !== 1) walkErrors.set(`epilogue: ${n} passages for slot '${slot}' (${(bySlot[slot] || []).join(", ") || "none"}) with ending ${st.ending}, final_rel ${st.final_rel}/${st.final_shape}`, 1);
+  }
+  const cons = (bySlot.conseq || []).length;
+  if (cons < 2) walkErrors.set(`epilogue: only ${cons} supporting consequences developed (need 2–3)`, 1);
+  // culprit tuple must match the ending
+  const t = endingsPlan.tuples[st.ending];
+  if (t) for (const [k, v] of [["damian_fate", t.damian], ["armand_fate", t.armand], ["august_fate", t.august]]) if (st[k] !== v) walkErrors.set(`epilogue: ${k} is ${st[k]} but ending ${st.ending} fixes it as ${v}`, 1);
+}
 const visits = new Map();
 const endTally = {};
 const relTally = {};
@@ -226,6 +248,7 @@ for (let run = 0; run < RUNS; run++) {
       continue;
     }
     visits.set(s.id, (visits.get(s.id) || 0) + 1);
+    if (s.assert && !test(st, s.assert)) walkErrors.set(`${s.id}: assertion failed on arrival: ${s.assert} (missing: ${EXPR.identifiers(s.assert).filter((n) => !st[n]).join(", ")})`, 1);
     for (const who of s.needsAlive || []) if (st["alive_" + who] === false) walkErrors.set(`${s.id}: needs ${who} alive, but he died on this path`, 1);
     // patients in the cast after CH21 must be alive on this path
     if (s.date >= "2027-03-14") for (const [cid, who] of [["C07", "quentin"], ["C51", "silas"], ["C52", "felix"]]) if ((s.cast || []).includes(cid) && st["alive_" + who] === false && !s.allowDead) walkErrors.set(`${s.id}: ${who} is in the scene but died on this path`, 1);
@@ -233,7 +256,7 @@ for (let run = 0; run < RUNS; run++) {
     if (t < last) walkErrors.set(`${s.id}: reached at ${t} after ${last}`, 1);
     last = t;
     apply(st, s.set);
-    if (s.end) { stops[s.id] = (stops[s.id] || 0) + 1; endTally[st.ending || "(none)"] = (endTally[st.ending || "(none)"] || 0) + 1; relTally[(st.final_rel || "-") + "/" + (st.final_shape || "-")] = (relTally[(st.final_rel || "-") + "/" + (st.final_shape || "-")] || 0) + 1; break; }
+    if (s.end) { checkEpilogue(st); stops[s.id] = (stops[s.id] || 0) + 1; endTally[st.ending || "(none)"] = (endTally[st.ending || "(none)"] || 0) + 1; relTally[(st.final_rel || "-") + "/" + (st.final_shape || "-")] = (relTally[(st.final_rel || "-") + "/" + (st.final_shape || "-")] || 0) + 1; break; }
     const avail = (s.choices || []).filter((c) => test(st, c.when) && !(c.once && st.__used && st.__used[`${s.id}#${c.id}`]));
     // skill checks: which options were gated by a skill, and could this run take them?
     for (const c of s.choices || []) {
@@ -273,7 +296,7 @@ function walkFocused(lead, seed) {
     if (s.when && !test(st, s.when)) { s = byId.get(s.next) || null; continue; }
     visits.set(s.id, (visits.get(s.id) || 0) + 1);
     apply(st, s.set);
-    if (s.end) break;
+    if (s.end) { checkEpilogue(st); break; }
     const avail = (s.choices || []).filter((c) => test(st, c.when) && !(c.once && st.__used && st.__used[`${s.id}#${c.id}`]));
     let next;
     if ((s.choices || []).length) {
@@ -352,6 +375,8 @@ for (const s of scenes) for (const c of s.choices || []) {
   if (c.when && skillCheckPass.get(`${s.id}#${c.id} (${c.when})`)) continue; // a reward for building a skill; proven reachable
   warn(`${s.id}#${c.id}: option never available/taken in ${RUNS} walks`);
 }
+
+if (endingsPlan && byId.has("CH24.FINAL.01")) for (const p of endingsPlan.passages) if (!passageHits.has(p.id)) warn(`epilogue passage ${p.id} never applies (${p.when})`);
 
 // ---------------------------------------------------------------- report
 for (const [m] of walkErrors) err("walk: " + m);

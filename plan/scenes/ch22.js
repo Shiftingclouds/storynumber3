@@ -52,7 +52,7 @@ const scenes = [
 for (const [k, t] of Object.entries(T)) {
   const K = k.replace("_", "");
   const set = { alive_quentin: t.survive[0], alive_silas: t.survive[1], alive_felix: t.survive[2], donors_freed: true,
-    damian_fate: t.damian, armand_fate: t.armand, august_fate: t.august };
+    damian_fate: t.damian, armand_fate: t.armand, august_fate: t.august, e18: true, e18_src: "assembled" };
   scenes.push(
     { id: `CH22.${K}.01`, date: "2027-03-14", time: "14:00", place: k === "B" || k === "C" ? "P20" : k === "D" ? "P37" : k === "E" ? "P56" : "P01",
       cast: ["MC"], kind: "branch", when: `ending = "${k}"`, set, purpose: text[k][0], next: `CH22.${K}.02` },

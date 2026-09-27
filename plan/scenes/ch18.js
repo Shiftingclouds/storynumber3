@@ -25,9 +25,9 @@ module.exports = [
     purpose: "Material one: the old program's linking frame, the brass thing in case nine at the Whitcomb.",
     choices: [
       { id: "a", when: "e10", text: "Caspar and I show Basil the provenance is false; he returns the frame to the Okafors rather than be embarrassed.", type: "investigative", set: { materials: "+1", mat_frame: true, fr_caspar: "+1" } },
-      { id: "b", when: "(fr_florian >= 2) or (orrell_known = \"florian\")", text: "Florian claims it as Mercy House property from the divided records.", type: "investigative", set: { materials: "+1", mat_frame: true, fr_florian: "+1" } },
-      { id: "c", when: "(not(e10)) and (fr_florian < 2) and not(orrell_known = \"florian\")", text: "Walk into Rell & Company and ask August Rell what he wants for it.", type: "investigative", set: { materials: "+1", mat_frame: true, enemy_aware: "+1", owe_august: true },
-        notes: "He sells it, and takes note of who bought it. The ring learns the coalition exists." }
+      { id: "b", when: "(fr_florian >= 2) or (orrell_known = \"florian\")", text: "Florian claims it as Mercy House property from the divided records.", type: "investigative", set: { materials: "+1", mat_frame: true, fr_florian: "+1", e10: true, e10_src: "florian" } },
+      { id: "c", when: "(not(e10)) and (fr_florian < 2) and not(orrell_known = \"florian\")", text: "Walk into Rell & Company and ask August Rell what he wants for it.", type: "investigative", set: { materials: "+1", mat_frame: true, enemy_aware: "+1", owe_august: true, e10: true, e10_src: "chukwudi" },
+        notes: "He sells it, and takes note of who bought it. The ring learns the coalition exists. Chukwudi takes one look at it on the workbench: the wards are recent warden work, the provenance a lie (E10)." }
     ],
     next: "CH18.STONES.01"
   },
@@ -46,7 +46,8 @@ module.exports = [
     id: "CH18.THREAD.01", date: "2027-02-06", time: "10:00", place: "P20", cast: ["MC", "C37", "C40"], kind: "common",
     purpose: "Material three: ward thread, spun and charged, enough for six links. It's slow craft.",
     choices: [
-      { id: "a", when: "fr_caspar >= 2", text: "Caspar spins it with Chukwudi for three nights straight, for cost.", type: "investigative", set: { materials: "+1", mat_thread: true } },
+      { id: "a", when: "fr_caspar >= 2", text: "Caspar spins it with Chukwudi for three nights straight, for cost, and on the third night tells me what he saw in August Rell's workroom.", type: "investigative", set: { materials: "+1", mat_thread: true, e15: true, e15_src: "caspar" },
+        notes: "Letters from August to Armand promising 'an extension beyond the old limit': a lie August knows is a lie (E15)." },
       { id: "b", when: "fr_chukwudi >= 2", text: "Chukwudi spends the shop's own stock, and writes it in the error book as 'a gift'.", type: "investigative", set: { materials: "+1", mat_thread: true, fr_chukwudi: "+1" } },
       { id: "c", text: "Buy it from Rell & Company.", type: "investigative", set: { materials: "+1", mat_thread: true, enemy_aware: "+1", owe_august: true } }
     ],

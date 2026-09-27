@@ -5,7 +5,7 @@
 const LEADS = ["adrian", "micah", "ellis", "dominic", "nolan", "ansel", "quentin", "reuben"];
 const NAMES = { adrian: "Adrian", micah: "Micah", ellis: "Ellis", dominic: "Dominic", nolan: "Nolan", ansel: "Ansel", quentin: "Quentin", reuben: "Reuben" };
 // who might be leaving Calder: an agreed future at a distance is only honest if someone is actually going somewhere
-const AWAY = { nolan: "nolan_leaving", ellis: "ellis_leaving", ansel: "true", adrian: "adrian_transfer", micah: "false", dominic: "false", quentin: "false", reuben: "false" };
+const AWAY = { nolan: "nolan_leaving", ellis: "ellis_leaving", ansel: "true", adrian: "adrian_transfer", micah: "micah_away", dominic: "dominic_away", quentin: "quentin_away", reuben: "reuben_away" };
 
 module.exports = [
   {
@@ -63,12 +63,48 @@ module.exports = [
       { id: "a", text: "\"Take it. You earned it. I'll learn the crossings.\"", type: "relational", set: { adrian_transfer: true, s07: "resolved:posting" } },
       { id: "b", text: "\"Stay. There's work here too.\" And mean the work.", type: "relational", set: { s07: "resolved:stays" } }
     ],
-    next: "CH23.SHOWCASE.01"
+    next: "CH23.MICAH.01"
   },
   {
     id: "CH23.SHOWCASE.01", date: "2027-04-24", time: "19:30", place: "P46", cast: ["MC", "C15", "C53"], kind: "common",
     purpose: "Benoît's spring showcase at the Southmere Recreation Centre: folding chairs, proud parents, the program saved for another year. If Dominic decided to sing, he sings, and Graham Bell in the third row watches his son without understanding everything and cries anyway. Everyone I love who is alive is in this room, or at the back, or outside because it's still light.",
     set: { s05: "resolved" },
+    next: "CH23.DOMINIC.01"
+  },
+  {
+    id: "CH23.MICAH.01", date: "2027-04-24", time: "18:20", place: "P07", cast: ["MC", "C02", "C25"], kind: "conditional", when: "st_micah >= 3",
+    purpose: "Micah's apprenticeship firm wants him for a year on a hydro project up north: good money, a qualification, the first thing that's ever been only his. Ernesto, astonishingly, says he should go. Micah asks me before he answers anyone.",
+    choices: [
+      { id: "a", text: "\"Go. Eastbank will still be here. So will I.\"", type: "relational", set: { micah_away: true, s04: "resolved:north" } },
+      { id: "b", text: "\"Your call. Not your dad's, not mine.\"", type: "relational", set: { s04: "resolved:decides" } }
+    ],
+    next: "CH23.SHOWCASE.01"
+  },
+  {
+    id: "CH23.DOMINIC.01", date: "2027-04-24", time: "21:40", place: "P46", cast: ["MC", "C04", "C15"], kind: "conditional", when: "st_dominic >= 3",
+    purpose: "After the showcase, a woman from a night-arts residency in another city asks Dominic to come for six months: a studio, a band, audiences who start at ten. He finds me by the fire exit to ask what I think, and then catches himself, and asks what I want.",
+    choices: [
+      { id: "a", text: "\"Go and play. I'll come to the ten o'clock shows.\"", type: "relational", set: { dominic_away: true } },
+      { id: "b", text: "\"Whatever you choose, choose it for you.\"", type: "relational", set: {} }
+    ],
+    next: "CH23.QUENTIN.01"
+  },
+  {
+    id: "CH23.QUENTIN.01", date: "2027-04-24", time: "22:00", place: "P46", cast: ["MC", "C07"], kind: "conditional", when: "alive_quentin and (st_quentin >= 3)", needsAlive: ["quentin"],
+    purpose: "Quentin, cold-handed and alive, has a place at the emergency-service academy in the capital from September, the thing he wanted before any of this. He tells me flatly, the way he says important things, and waits to see what I'll do with it.",
+    choices: [
+      { id: "a", text: "\"Go. You earned it twice.\"", type: "relational", set: { quentin_away: true } },
+      { id: "b", text: "\"Tell me what you want first.\"", type: "relational", set: {} }
+    ],
+    next: "CH23.REUBEN.01"
+  },
+  {
+    id: "CH23.REUBEN.01", date: "2027-04-24", time: "22:15", place: "P46", cast: ["MC", "C08"], kind: "conditional", when: "st_reuben >= 3",
+    purpose: "Reuben's response service worked well enough that another city wants him for a year to build theirs. He's never been asked to lead anything. He asks me whether it's selfish to want it.",
+    choices: [
+      { id: "a", text: "\"It's the least selfish thing I've ever heard. Go.\"", type: "relational", set: { reuben_away: true } },
+      { id: "b", text: "\"It's allowed to be selfish. Decide what you want.\"", type: "relational", set: {} }
+    ],
     next: "CH23.REL.01"
   },
   {
@@ -77,15 +113,18 @@ module.exports = [
     choices: LEADS.map((l, i) => ({ id: "abcdefgh"[i],
       when: `(st_${l} >= 4) and not(closed_${l})` + (l === "quentin" ? " and alive_quentin" : ""),
       text: `${NAMES[l]}.`, type: "structural", set: { final_rel: l } }))
-      .concat([{ id: "i", text: "Nobody. Not like that, and not yet. I'm allowed that too.", type: "structural", set: { final_rel: "single", final_shape: "" } }]),
+      .concat([
+        { id: "q", when: "not(alive_quentin) and (st_quentin >= 5)", text: "Quentin. Still. It doesn't stop being him because he's gone.", type: "structural", set: { final_rel: "quentin", final_shape: "grief" } },
+        { id: "i", text: "Nobody. Not like that, and not yet. I'm allowed that too.", type: "structural", set: { final_rel: "single", final_shape: "" } }
+      ]),
     next: "CH23.REL.02"
   },
   {
-    id: "CH23.REL.02", date: "2027-04-24", time: "22:45", place: "P06", cast: ["MC"], kind: "conditional", when: "final_rel != \"single\"",
+    id: "CH23.REL.02", date: "2027-04-24", time: "22:45", place: "P06", cast: ["MC"], kind: "conditional", when: "(final_rel != \"single\") and (final_shape != \"grief\")",
     purpose: "Whatever we are, we say it out loud, the two of us, and we both get a say.",
     choices: [].concat(
       LEADS.map((l, i) => ({ id: "t" + i, when: `(final_rel = "${l}") and (st_${l} >= 4)`, text: `Together. Privately, and properly, and ours. (${NAMES[l]})`, type: "relational", set: { final_shape: "together", ["st_" + l]: 6 } })),
-      LEADS.filter((l) => AWAY[l] !== "false").map((l) => ({ id: "d" + LEADS.indexOf(l), when: `(final_rel = "${l}") and (st_${l} >= 5) and (${AWAY[l]})`, text: `Together at a distance, on purpose: trains, letters, the weekends we choose. (${NAMES[l]})`, type: "relational", set: { final_shape: "distance" } })),
+      LEADS.filter((l) => AWAY[l] !== "false").map((l) => ({ id: "d" + LEADS.indexOf(l), when: `(final_rel = "${l}") and (st_${l} >= 5) and (${AWAY[l]})`, text: `Together, with distance or changed lives, on purpose: trains, letters, the weekends we choose. (${NAMES[l]})`, type: "relational", set: { final_shape: "distance" } })),
       LEADS.map((l, i) => ({ id: "p" + i, when: `(final_rel = "${l}") and (st_${l} >= 5)`, text: `It mattered, and it's over, and we both know why. (${NAMES[l]})`, type: "relational", set: { final_shape: "parted" } })),
       [{ id: "f", text: "Friends. The real kind. It's not a consolation.", type: "relational", set: { final_shape: "friends" } }]
     ),

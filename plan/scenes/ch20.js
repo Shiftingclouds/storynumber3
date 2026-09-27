@@ -9,6 +9,7 @@
 module.exports = [
   {
     id: "CH20.BRIEF.01", date: "2027-03-13", time: "14:00", place: "P20", cast: ["MC", "C37", "C03", "C08", "C01", "C06", "C05", "C02"], kind: "common",
+    assert: "e05 and e06 and e07 and e14 and know_damian and know_deadline and patients_matched",
     purpose: "The briefing, at whichever table we chose in February. Everything we have, laid out in the order it will happen. Two things can go wrong that we can see coming: if the ring is watching the crossing (they know my face) and the keepers aren't with us, the donor team loses its timing; and if Armand left Sorrell House still hoping, Damian may move early. Which plan do we run?",
     choices: [
       { id: "a", when: "plan_full and (materials >= 3) and (volunteers >= 6) and consent_q and consent_s and consent_f", text: "The distributed bridge: everyone carries a little; all six come home, if it holds.", type: "structural", set: { plan_chosen: "full" } },

@@ -62,7 +62,9 @@ module.exports = [
     choices: [
       { id: "a", text: "Put my hand on the bricks and let it all the way up.", type: "investigative", set: { reached: "+1", strain: "+1", knack: "+3", echo_lane: true },
         notes: "Echo: cold hands, white lilies, a man's calm voice counting down from ten, the smell of a clean van. Partial and misleading on its own (lilies = funeral; he'll think of flowers first). Points toward P30 (Rusk) once E02/E04 exist." },
-      { id: "b", text: "Don't. Go home. Pretend I'm normal for one afternoon.", type: "expressive" }
+      { id: "b", text: "Don't. Go home. Pretend I'm normal for one afternoon.", type: "expressive" },
+      { id: "c", when: "not(e01)", text: "Ask around the all-ages crowd's group chats: someone always films from the fire escape.", type: "investigative", set: { e01: true, e01_src: "bystander", people: "+2" },
+        notes: "A fifteen-year-old filmed eleven seconds of the lane for a joke and deleted it; her friend still has it. The sequence, not the face." }
     ],
     next: "CH02.HOME.02"
   },

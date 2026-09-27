@@ -16,8 +16,9 @@ module.exports = [
     id: "CH19.HOUSE.01", date: "2027-03-06", time: "19:00", place: "P37", cast: ["MC", "C44"], kind: "common",
     purpose: "Sorrell House: beautiful, diminished, a house where one door upstairs is always shut. Armand receives me alone. He knows about the donors now; August told him when he could no longer avoid it, and he has kept paying anyway. His offer: let Damian make one attempt, on the fourteenth, the tenth anniversary, for Octavian. Afterwards he will fund everything, free everyone, confess to anyone I choose. The knack takes his grief like a hand on my throat.",
     choices: [
-      { id: "a", when: "e07", text: "Show him the old report: forty-eight hours, or nothing. It was never possible. August knew.", type: "investigative", set: { e15: true, e15_src: "report", armand_broken: true } },
-      { id: "b", when: "e07 and (people >= 45)", text: "Tell him about Quarry Lake: what I felt at the cliff, and why no method brings back a boy after three days.", type: "relational", set: { e15: true, e15_src: "report", armand_broken: true, armand_trust: true } },
+      { id: "a", when: "e07", text: "Show him the old report: forty-eight hours, or nothing. It was never possible. August knew.", type: "investigative", set: { e15: true, e15_src: "report", armand_broken: true, e16: true, e16_src: "armand" },
+        notes: "When it breaks, he goes to his desk and gives me Damian's 'progress reports' to the patron: planned deaths, prolonged dependence (E16)." },
+      { id: "b", when: "e07 and (people >= 45)", text: "Tell him about Quarry Lake: what I felt at the cliff, and why no method brings back a boy after three days.", type: "relational", set: { e15: true, e15_src: "report", armand_broken: true, armand_trust: true, e16: true, e16_src: "armand" } },
       { id: "c", text: "Tell him no, and that I'm sorry for his son.", type: "relational", set: { armand_hard: true } }
     ],
     next: "CH19.ANSWER.01"

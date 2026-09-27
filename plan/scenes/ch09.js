@@ -16,7 +16,7 @@ module.exports = [
   {
     id: "CH09.TUNNELS.01", date: "2026-10-29", time: "23:00", place: "P27", cast: ["MC", "C12", "C28", "C01", "C05", "C02"], kind: "branch", when: "ch09_case = \"tunnels\"",
     purpose: "The depot canteen at eleven. Something in the service tunnels under Northline calls night workers by name, in voices they know, and draws them away from the lit areas. A cleaner was found with a broken ankle at a dead end. An apprentice track worker has been missing since Tuesday. Owen has the rota, Pavel has the site, Adrian has Mercy House's authority, Nolan has brought a recorder because Owen said 'it sounds like the tannoy', and Micah knows the depot wiring like his own kitchen.",
-    set: { fr_owen: "+1", fr_pavel: "+1", s10: "fore" },
+    set: { fr_owen: "+1", fr_pavel: "+1", s10: "fore", nolan_knows: true },
     choices: [
       { id: "a", text: "Ask Owen for the exact words each worker heard.", type: "investigative", set: { people: "+2", mimic_words: true } },
       { id: "b", text: "Ask Pavel for the oldest map of the tunnels he has.", type: "investigative", set: { craft: "+2", old_map: true } }

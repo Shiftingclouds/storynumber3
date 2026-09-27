@@ -34,7 +34,7 @@ const chapters = [
     purpose: "A complete supernatural adventure over Halloween: the Northline predator or the inherited screen." },
   { id: "CH10", title: "The Closed Program", from: "2026-11-07", to: "2026-11-08", day: "19",
     purpose: "The earlier rescue work, its donor harm, the hard 48-hour limit, and the sensitive who monitored the links." },
-  { id: "CH11", title: "The Exhibition", from: "2026-11-19", to: "2026-11-19", day: "23",
+  { id: "CH11", title: "The Exhibition", from: "2026-11-19", to: "2026-11-20", day: "23",
     purpose: "Social circles collide at the Whitcomb; Felix, Clive and the patron established; the photographed connection." },
   { id: "CH12", title: "Before We Leave", from: "2026-11-24", to: "2026-12-20", day: "25",
     purpose: "Full-moon gathering, Regent emergency, or work/family and the Lantern Rooms haunting; then December, and the Marches journey prepared." },

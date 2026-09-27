@@ -1,0 +1,154 @@
+// Calder: the state model (bible §11 "A manageable authored state model", adapted by docs/00-decisions.md).
+// Every variable a scene may read or set is declared here. tools/plan-check.js rejects anything undeclared,
+// and rejects string values outside `values`.
+// Groups: story, skills, gift, knowledge, evidence, relationships, commitments (arcs), rescue, resolution, presentation.
+"use strict";
+
+const LEADS = ["adrian", "micah", "ellis", "dominic", "nolan", "ansel", "quentin", "reuben"];
+const LEAD_IDS = { adrian: "C01", micah: "C02", ellis: "C03", dominic: "C04", nolan: "C05", ansel: "C06", quentin: "C07", reuben: "C08" };
+// Supporting people whose friendship is tracked (hearts in the journal; no romance).
+const FRIENDS = ["martin", "will", "gideon", "florian", "malcolm", "chukwudi", "otis", "silas", "felix", "desmond", "peter", "owen", "pavel",
+  "ernesto", "leandro", "wesley", "lucien", "rafi", "milo", "benoit", "graham", "victor", "darius", "emmett", "kenji", "nabil", "ilyas",
+  "gareth", "russell", "sylvester", "harlan", "lucan", "percival", "severin", "eamon", "hugo", "clive", "isaac", "caspar", "jonah"];
+
+const vars = {};
+function def(name, type, dflt, desc, values) { vars[name] = { type, default: dflt, desc, values }; }
+
+// ---------------------------------------------------------------- story
+def("name", "string", "Theo", "Player's first name");
+def("steam", "bool", true, "Intimate scenes on the page (setting)");
+def("date", "string", "2026-08-29", "Story date, ISO; set by *date and never decreases");
+def("ch", "number", 1, "Current chapter number");
+
+// ---------------------------------------------------------------- skills (visible; open methods, never essential clues)
+def("nerve", "number", 20, "Holding steady under fear");
+def("craft", "number", 30, "Hands, rigging, tools, electrics (event crew)");
+def("people", "number", 20, "Reading and talking to people");
+def("knack", "number", 10, "Control of the gift");
+
+// ---------------------------------------------------------------- the gift
+def("strain", "number", 0, "Gift strain this chapter (0–3); 3 costs something (migraine, nosebleed, a lost hour)");
+def("reached", "number", 0, "Times he has deliberately reached with the gift");
+def("gift_named", "bool", false, "He knows the word 'sensitive' and that others existed (CH10)");
+def("trained", "string", "none", "Who taught him control", ["none", "malcolm", "florian", "self", "refused"]);
+for (const l of LEADS) def("gift_" + l, "bool", false, "Told " + l + " about the knack");
+def("gift_martin", "bool", false, "Told Martin about the knack");
+def("gift_mercy", "bool", false, "Mercy House knows he is sensitive");
+def("gift_damian", "bool", false, "Damian has learned a sensitive is involved (only through an authored route)");
+
+// ---------------------------------------------------------------- knowledge (what the narrator may say)
+def("know_super", "bool", false, "Knows the supernatural exists (CH04)");
+def("know_wardens", "bool", false, "Knows about the wardens");
+def("know_vampires", "bool", false, "Knows about vampires");
+def("know_wolves", "bool", false, "Knows about werewolves");
+def("know_spell", "bool", false, "Knows about spell-workers");
+def("know_marches", "bool", false, "Knows about the Marches");
+def("know_micah_wolf", "bool", false, "Knows Micah is a werewolf");
+def("know_dominic_vamp", "bool", false, "Knows Dominic is a vampire");
+def("know_damian", "bool", false, "Knows the physician's identity");
+def("know_deadline", "bool", false, "Knows about the 14 March attempt");
+def("know_donors", "number", 0, "How many donors he knows by name (0–3)");
+def("know_clive_taken", "bool", false, "Knows Clive has been taken");
+
+// ---------------------------------------------------------------- evidence (bible §8.5). eNN = known; eNN_src = how; eNN_c = corroborated
+for (let i = 1; i <= 18; i++) {
+  const e = "e" + String(i).padStart(2, "0");
+  def(e, "bool", false, "Evidence " + e.toUpperCase() + " known");
+  def(e + "_src", "string", "", "Source of " + e.toUpperCase());
+  def(e + "_c", "bool", false, e.toUpperCase() + " corroborated by a second route");
+}
+def("told_gareth", "bool", false, "Evidence shared with Gareth");
+def("told_mercy", "bool", false, "Evidence shared with Mercy House");
+def("told_regent", "bool", false, "Evidence shared with the Regent");
+def("told_eastbank", "bool", false, "Evidence shared with the Eastbank association");
+
+// ---------------------------------------------------------------- relationships
+// st_: 0 unmet, 1 met, 2 friendly, 3 friend, 4 close, 5 recognised (both know something is there), 6 together
+// hurt_: 0 none, 1 strained, 2 broken. closed_: route closed by either man, honoured forever.
+// out_: he has told this man he's gay. bNN flags are route beats (see plan/routes.js).
+for (const l of LEADS) {
+  def("st_" + l, "number", 0, l + ": relationship stage 0–6");
+  def("hurt_" + l, "number", 0, l + ": unresolved hurt 0–2");
+  def("closed_" + l, "bool", false, l + ": romance closed (friendship remains)");
+  def("out_" + l, "bool", false, "Told " + l + " he's gay");
+}
+for (const f of FRIENDS) def("fr_" + f, "number", 0, f + ": friendship 0–3");
+
+// ---------------------------------------------------------------- commitments and branches
+def("look_done", "bool", false, "Portrait chosen");
+def("ch01_saw", "string", "", "How he met the murder", ["cover", "approach", "help"]);
+def("hurt_mc", "number", 0, "His own injuries (0–2)");
+def("echo_lane", "bool", false, "Read the echo in the rear lane (lilies, a calm voice counting, a clean van)");
+def("letters_mum", "number", 0, "Letters written back to Mum");
+def("eamon_heard", "bool", false, "Has heard Eamon Kerr's name");
+def("clinic_lead", "bool", false, "Knows Quentin was told he was treated at a 'private clinic' that sent a car");
+def("button_shown", "bool", false, "Showed the wardens the brass cuff button");
+def("misread_gideon", "bool", false, "The knack misread Gideon's fear as guilt");
+def("suspect_gideon", "bool", false, "I suspect Gideon (wrongly)");
+def("theory", "string", "", "My first theory at the diner", ["outside", "unknown"]);
+def("course_lead", "bool", false, "Quentin's token came from an August first-aid course at Southmere (P46)");
+def("error_book", "bool", false, "Seen the Okafors' honest error book");
+def("managed_dominic", "bool", false, "I have been managing Dominic's vampirism for him (arranging, protecting, deciding)");
+def("cuff_button", "bool", false, "The brass cuff button torn from the killer's sleeve (old Mercy House issue; a red herring with an innocent explanation)");
+def("enemy_aware", "number", 0, "How much the ring knows about him (0 none, 1 a witness exists, 2 they know his name, 3 they are watching)");
+def("ch02_report", "string", "", "The account I give", ["police", "venue", "nolan", "none"]);
+def("ch03_way", "string", "", "How I approached Quentin", ["alone", "together", "wait"]);
+def("ch04_first", "string", "", "Which circle first", ["mercy", "regent"]);
+def("ch05_route", "string", "", "First test", ["hospital", "restore"]);
+def("ch06_way", "string", "", "Eamon's route", ["lawful", "witness"]);
+def("ch07_evening", "string", "", "The promised evening", ["nolan", "serrano", "uni"]);
+def("ch07_late", "bool", false, "Made it to Nolan's party late");
+def("ch08_way", "string", "", "Silas", ["bakery", "hospital"]);
+def("ch09_case", "string", "", "The adventure", ["tunnels", "screen"]);
+def("ch10_way", "string", "", "The closed program", ["records", "orchard"]);
+def("orrell_known", "string", "", "What I did about Orrell's concealment", ["confront", "hold", "florian", "none"]);
+def("ch11_talk", "string", "", "The conversation I chose", ["armand", "felix", "basil"]);
+def("ch12_branch", "string", "", "Before we leave", ["gathering", "regent", "home"]);
+def("companion", "string", "none", "Who crosses into the Marches with Ansel and me", ["none", "adrian", "micah", "nolan", "reuben"]);
+def("ch13_lodging", "string", "", "Bracken Court", ["official", "travelers"]);
+def("ch14_way", "string", "", "Passage denied", ["court", "estate", "boundary"]);
+def("ch15_way", "string", "", "Stillwater", ["observe", "witness"]);
+def("ch17_ask", "string", "", "Whom I asked, in deep winter", ["adrian", "micah", "ellis", "dominic", "nolan", "ansel", "quentin", "reuben", "family"]);
+def("ch19_answer", "string", "", "The offer", ["refuse", "negotiate", "monitor"]);
+def("role", "string", "", "My place on the night", ["patient", "donor", "coord"]);
+
+// supporting arcs S01–S16: introduced, foreground, background, then a named resolution
+const ARCS = ["s01", "s02", "s03", "s04", "s05", "s06", "s07", "s08", "s09", "s10", "s11", "s12", "s13", "s14", "s15", "s16"];
+for (const a of ARCS) def(a, "string", "", "Supporting arc " + a.toUpperCase() + " state (see plan/arcs.js)");
+
+// ---------------------------------------------------------------- rescue readiness (bible §11)
+def("plan_full", "bool", false, "Distributed bridge demonstrated");
+def("plan_interim", "bool", false, "Interim bridge validated");
+def("plan_pair", "bool", false, "Single-pair emergency bridge demonstrated");
+def("materials", "number", 0, "Required materials secured (0–3: anchor stones, ward thread, the old program's frame)");
+def("volunteers", "number", 0, "Informed adult volunteers committed (0–9)");
+def("consent_q", "bool", false, "Quentin's informed choice recorded");
+def("consent_s", "bool", false, "Silas's informed choice recorded");
+def("consent_f", "bool", false, "Felix's informed choice recorded");
+def("ally_mercy", "bool", false, "Mercy House cooperating");
+def("ally_eastbank", "bool", false, "Eastbank association cooperating");
+def("ally_regent", "bool", false, "Regent residents' trust cooperating");
+def("ally_circle", "bool", false, "Restoration and ward-workers' circle cooperating");
+def("ally_keepers", "bool", false, "Crossing keepers cooperating (Harlan)");
+def("ally_court", "bool", false, "Bracken Court authorities cooperating");
+def("acc_pump", "bool", false, "Access to Pump Nine");
+def("acc_still", "bool", false, "Access to Stillwater");
+def("acc_cross", "bool", false, "A crossing we control on the night");
+def("harlan_confessed", "bool", false, "Harlan exposed his own conduct to help");
+
+// ---------------------------------------------------------------- resolution (bible §9.4)
+def("ending", "string", "", "Plot ending", ["A", "B", "C", "D", "E", "F_Q", "F_S", "F_F"]);
+def("alive_quentin", "bool", true, "Quentin alive");
+def("alive_silas", "bool", true, "Silas alive");
+def("alive_felix", "bool", true, "Felix alive");
+def("donors_freed", "bool", false, "Eamon, Hugo and Clive freed");
+def("damian_fate", "string", "", "Damian", ["arrested", "custody", "fled", "dead"]);
+def("armand_fate", "string", "", "Armand", ["exposed", "settled", "withdrawn"]);
+def("august_fate", "string", "", "August", ["charged", "ruined", "bargained"]);
+def("orrell_fate", "string", "", "Orrell", ["resigned", "reformed", "kept"]);
+def("disclosure", "string", "", "How much the wider city is told", ["none", "communities", "public"]);
+def("final_rel", "string", "", "The relationship the story ends with", ["adrian", "micah", "ellis", "dominic", "nolan", "ansel", "quentin", "reuben", "single"]);
+def("final_shape", "string", "", "Its shape", ["together", "distance", "parted", "friends"]);
+def("mc_future", "string", "", "What I do next", ["crew", "response", "warden", "study", "shop", "undecided"]);
+
+module.exports = { vars, LEADS, LEAD_IDS, FRIENDS, ARCS };

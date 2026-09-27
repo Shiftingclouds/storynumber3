@@ -1,0 +1,181 @@
+// Calder: the cast. Ages at the opening (29 Aug). Appearance lines are art-direction proposals (bible §15.5 for C01–C08).
+// kind: human | warden | wolf | vampire | spell | marches
+// tier: lead (romance route) | frequent | supporting | minor
+// knows: what they know of the supernatural at the opening: none | some | all
+// status: dated changes that the continuity checker enforces (dead / returned / held / away / freed).
+// limits: availability rules the checker and writers respect.
+"use strict";
+
+const cast = [
+  // ------------------------------------------------------------------ the protagonist
+  { id: "MC", name: "Theo Marsh (first name chosen)", age: 19, kind: "human", tier: "lead", knows: "none",
+    home: "P02", work: ["P13", "P02"],
+    appearance: "Chosen by the player: skin tone, hair colour and style, facial hair, eyes. Never shown in snapshots.",
+    notes: "Sensitive: weather, echoes, threads; blind to how anyone feels about him. Mother Joanne (Martin's sister) at a remote northern clinic; writes in batches." },
+
+  // ------------------------------------------------------------------ romance routes
+  { id: "C01", name: "Adrian Keene", age: 20, kind: "warden", tier: "lead", knows: "all", home: "P01", family: "P38", work: ["P01"], romance: true,
+    appearance: "Compact rectangular face, firm rounded jaw, straight brows (left a touch higher), sturdy neck. Short close brown curls, medium olive skin. High-collared practical jacket with replaced elastic cuffs.",
+    ties: ["C17", "C21", "C20", "C18"] },
+  { id: "C02", name: "Micah Serrano", age: 21, kind: "wolf", tier: "lead", knows: "all", home: "P07", work: ["P07", "P27", "P08"], romance: true,
+    appearance: "Broad cheekbones and nose, fuller lower face, thick neck, wide shoulders. Dark wavy hair, untidy at the front; warm tan skin; wide mouth with an uneven smile. Work jacket with a pencil in the pocket.",
+    limits: ["compelled change on full-moon nights"], ties: ["C25", "C26", "C27", "C28", "C05"] },
+  { id: "C03", name: "Ellis Okafor", age: 20, kind: "spell", tier: "lead", knows: "all", home: "P20", work: ["P19", "P20", "P22"], romance: true,
+    appearance: "Long fine-boned face, distinct cheek planes, narrow neck, expressive brows. Dense dark coils kept off the face; deep brown skin; defined mouth. Careful, cheap, well-kept clothes; a much-mended bag.",
+    ties: ["C37", "C38", "C40", "C52", "C41"] },
+  { id: "C04", name: "Dominic Bell", age: 22, turned: "2025-08-22 (at 21)", kind: "vampire", tier: "lead", knows: "all", home: "P14", work: ["P29", "P34"], romance: true,
+    appearance: "Square-oval face, soft cheeks, substantial nose, solid build. Thick dark hair falling forward; warm natural complexion kept after turning; old knitwear.",
+    limits: ["no direct sunlight: available from sunset", "needs to feed; arrangements through the Regent"], ties: ["C53", "C15", "C35", "C33", "C31"] },
+  { id: "C05", name: "Nolan Voss", age: 19, birthday: "10-02", kind: "human", tier: "lead", knows: "none", home: "P28", work: ["P13"], romance: true,
+    appearance: "Long oval face, softer cheeks, slightly prominent ears, loose posture, long legs and a softer middle. Sandy hair with an uneven fringe, light freckled skin. Plain work shirt; always turning something over in his hands.",
+    ties: ["C11", "C54", "C02", "C35"] },
+  { id: "C06", name: "Ansel Marr", age: 21, kind: "marches", tier: "lead", knows: "all", home: "P55", work: ["P15", "P25", "P57"], romance: true,
+    appearance: "Tapered face, clear cheekbones, longer nose, measured posture. Smooth dark hair with a controlled side part, cool light skin. A formal collar even for chips.",
+    ties: ["C45", "C47", "C46", "C49", "C48"] },
+  { id: "C07", name: "Quentin Shaw", age: 22, kind: "human", tier: "lead", knows: "some", home: "P28", work: ["P26"], romance: true,
+    appearance: "Broad, shorter face; strong brows; compact solid build, strong forearms. Close dark curls, deep warm-brown skin, a direct gaze and a mobile mouth.",
+    status: [{ date: "2026-08-30", state: "dead", note: "00:40, Switchyard rear lane" }, { date: "2026-08-30", state: "returned", note: "linked to Eamon" }],
+    limits: ["from Feb: tires, runs cold (donor weakening)", "survival decided at CH21"], ties: ["C32", "C11", "C08", "C49"] },
+  { id: "C08", name: "Reuben Pike", age: 23, kind: "warden", tier: "lead", knows: "all", home: "P01", work: ["P01", "P23", "P51"], romance: true,
+    appearance: "Broad long face, heavier lower jaw, big neck and shoulders. Short wavy chestnut hair he cuts himself, light-brown skin, low-set brows, mild tiredness under the eyes.",
+    ties: ["C24", "C33", "C13", "C42", "C56"] },
+
+  // ------------------------------------------------------------------ home and neighbourhood
+  { id: "C09", name: "Will Avery", age: 17, birthday: "02-27", kind: "human", tier: "frequent", knows: "none", home: "P02", work: ["P10", "P44"], minor: true,
+    appearance: "Tall for his age, all elbows; light brown skin from his mother's side (she lives in the south with her new family), cropped black hair, a school team hoodie." },
+  { id: "C10", name: "Martin Avery", age: 44, kind: "human", tier: "frequent", knows: "none", home: "P02", work: ["P02", "P32", "P48"],
+    appearance: "Heavyset, soft-spoken face, reading glasses pushed up into thinning sandy-grey hair, ink on his fingers, fair skin reddened by the press room heat." },
+  { id: "C11", name: "Peter Laird", age: 20, kind: "human", tier: "frequent", knows: "none", home: "P28", work: ["P26"],
+    appearance: "Neat, narrow face, gelled brown hair, pale skin, a lanyard he treats like a badge of office." },
+  { id: "C12", name: "Owen Price", age: 26, kind: "human", tier: "supporting", knows: "none", home: "P28", work: ["P27", "P18"],
+    appearance: "Long patient face, black skin, short twists, a driver's fleece with the union pin on it." },
+  { id: "C13", name: "Nabil Haddad", age: 21, kind: "human", tier: "frequent", knows: "some", home: "P21", work: ["P23"],
+    appearance: "Round face, olive skin, thick black brows, neat short beard following the jaw, glasses; hospital reception lanyard." },
+  { id: "C14", name: "Russell Dacre", age: 58, kind: "human", tier: "supporting", knows: "none", home: "P41", work: ["P41"],
+    appearance: "Weathered long face, white stubble kept short, fair skin, a flat cap and a tool belt; moves carefully on a bad knee." },
+  { id: "C15", name: "Benoît Marchand", age: 31, kind: "human", tier: "frequent", knows: "none", home: "P34", work: ["P34", "P46"],
+    appearance: "Lively narrow face, dark hair swept back, light olive skin, a scarf worn indoors, pencil behind the ear." },
+  { id: "C16", name: "Gareth Moss", age: 33, kind: "human", tier: "supporting", knows: "none", home: "P43", work: ["P40"],
+    appearance: "Square pale face, ginger hair cut short, rain jacket, a notebook he actually uses." },
+
+  // ------------------------------------------------------------------ Mercy House
+  { id: "C17", name: "Victor Keene", age: 27, kind: "warden", tier: "frequent", knows: "all", home: "P01", family: "P38",
+    appearance: "Adrian's face grown longer and more tired; same brown curls, olive skin; a brace on the left forearm; charming when he's performing.",
+    limits: ["injured: not cleared for field work"] },
+  { id: "C18", name: "Patrick Orrell", age: 54, kind: "warden", tier: "frequent", knows: "all", home: "P01", work: ["P01", "P35"],
+    appearance: "Grey crew cut, heavy brow, pale lined skin, a commander's stillness; reading glasses he never uses in public." },
+  { id: "C19", name: "Simeon Rusk", age: 46, kind: "human", tier: "supporting", knows: "all", home: "P30", work: ["P30", "P42"],
+    appearance: "Gentle round face, balding, dark-brown skin, immaculate black suit, a funeral director's quiet hands." },
+  { id: "C20", name: "Darius Chen", age: 24, kind: "warden", tier: "frequent", knows: "all", home: "P01",
+    appearance: "Angular face, East Asian features, black hair shaved at the sides, a scar through one brow from training, restless." },
+  { id: "C21", name: "Emmett Hsu", age: 19, kind: "warden", tier: "supporting", knows: "all", home: "P01", work: ["P22"],
+    appearance: "Slight, soft round face, East Asian features, black hair in his eyes, a museum-security polo under a warden jacket." },
+  { id: "C22", name: "Florian Adebayo", age: 39, kind: "warden", tier: "supporting", knows: "all", home: "P01", work: ["P01", "P03"],
+    appearance: "Long elegant face, dark-brown skin, shaved head, round wire glasses, cardigan with archive gloves in the pocket." },
+  { id: "C23", name: "Kenji Sato", age: 47, kind: "warden", tier: "supporting", knows: "all", home: "P01", work: ["P01"],
+    appearance: "Broad weathered face, greying black hair tied back, East Asian features, burn-scarred forearms, a workshop apron." },
+  { id: "C24", name: "Malcolm Tait", age: 52, kind: "warden", tier: "frequent", knows: "all", home: "P51", work: ["P51", "P46"],
+    appearance: "Rugged face, grey beard kept close to the jaw, ruddy fair skin, wool jumper with holes at the elbows; a dog at his heel." },
+
+  // ------------------------------------------------------------------ Eastbank
+  { id: "C25", name: "Ernesto Serrano", age: 49, kind: "wolf", tier: "frequent", knows: "all", home: "P07", work: ["P07", "P12", "P35"],
+    appearance: "Big square face like Micah's, grey at the temples, tan skin, thick moustache, builder's hands.",
+    limits: ["compelled change on full-moon nights"] },
+  { id: "C26", name: "Leandro Serrano", age: 25, kind: "wolf", tier: "supporting", knows: "all", home: "P07", work: ["P08"],
+    appearance: "Micah's build gone leaner, dark hair cut close, tan skin, a boxer's flattened nose.",
+    limits: ["compelled change on full-moon nights"] },
+  { id: "C27", name: "Tomas Rivas", age: 22, kind: "wolf", tier: "supporting", knows: "all", home: "P11", work: ["P08", "P44"],
+    appearance: "Wiry, sharp face, light-brown skin, dark hair in a short ponytail, taped knuckles.",
+    limits: ["compelled change on full-moon nights", "hides a shoulder injury"] },
+  { id: "C28", name: "Pavel Kolar", age: 42, kind: "human", tier: "supporting", knows: "all", home: "P11", work: ["P27", "P17"],
+    appearance: "Long face, fair skin, brown beard trimmed short along the jaw, mechanic's overalls, few words." },
+  { id: "C29", name: "Wesley Dent", age: 19, kind: "wolf", turned: "2026-07-03", tier: "supporting", knows: "some", home: "P11", work: ["P05", "P08"],
+    appearance: "Thin, guarded face, pale skin, shaved head growing out, a hoodie too light for the weather.",
+    limits: ["newly turned: full-moon nights supervised or dangerous"] },
+  { id: "C30", name: "Otis Lyle", age: 61, kind: "human", tier: "frequent", knows: "some", home: "P09", work: ["P09"],
+    appearance: "Round face, pale skin with flour in the creases, white hair, big forearms, apron always on." },
+
+  // ------------------------------------------------------------------ the Regent
+  { id: "C31", name: "Lucien Arnaud", age: 83, turned: "at 36", kind: "vampire", tier: "frequent", knows: "all", home: "P14", work: ["P14", "P35"],
+    appearance: "Looks thirty-six: fine bones, dark eyes, light olive skin, silver-threaded dark hair he has chosen to keep, a 1970s cardigan.",
+    limits: ["no direct sunlight"] },
+  { id: "C32", name: "Gideon Shaw", age: 29, turned: "2024-06-10 (at 27)", kind: "vampire", tier: "frequent", knows: "all", home: "P14",
+    appearance: "Quentin's face made harder: same brows, deep warm-brown skin, close-cropped hair, a long coat; says things like instructions.",
+    limits: ["no direct sunlight"] },
+  { id: "C33", name: "Rafi Bensaïd", age: 24, turned: "at 22", kind: "vampire", tier: "frequent", knows: "all", home: "P14", work: ["P23", "P18"],
+    appearance: "Quick, mobile face, light-brown skin, curly black hair, nurse's scrubs under a parka.",
+    limits: ["no direct sunlight: night shifts only"] },
+  { id: "C34", name: "Sylvester Page", age: 48, kind: "human", tier: "supporting", knows: "some", home: "P36", work: ["P36", "P40"],
+    appearance: "Tall, thin, dry face, dark-brown skin, grey goatee, reading glasses on a cord, a good tired suit." },
+  { id: "C35", name: "Milo Finch", age: 20, kind: "human", tier: "supporting", knows: "some", home: "P14", work: ["P14", "P45"],
+    appearance: "Small, bright face, pale freckled skin, mop of red-brown hair, a camera always on a strap." },
+  { id: "C36", name: "Abel Mercer", age: 57, turned: "2026-02-14 (at 56)", kind: "vampire", tier: "supporting", knows: "all", home: "P14", work: ["P37", "P39"],
+    appearance: "Heavy handsome face going soft, fair skin gone pale, silver hair expensively cut, cashmere.",
+    limits: ["no direct sunlight"] },
+
+  // ------------------------------------------------------------------ University Hill and craft
+  { id: "C37", name: "Chukwudi Okafor", age: 50, kind: "spell", tier: "frequent", knows: "all", home: "P20", work: ["P20"],
+    appearance: "Ellis's long face gone broad and grave, deep brown skin, short grey beard shaped to the jaw, magnifier on a chain." },
+  { id: "C38", name: "Isaac Okafor", age: 16, kind: "human", tier: "supporting", knows: "some", home: "P20", work: ["P10"], minor: true,
+    appearance: "Round face, deep brown skin, short hair, safety goggles pushed up on his forehead." },
+  { id: "C39", name: "August Rell", age: 64, kind: "spell", tier: "supporting", knows: "all", home: "P31", work: ["P31", "P17"],
+    appearance: "Soft attentive face, pale skin, white hair worn long and combed back, rings, a velvet waistcoat." },
+  { id: "C40", name: "Caspar Neri", age: 23, kind: "spell", tier: "supporting", knows: "all", home: "P21", work: ["P13", "P20", "P31", "P34"],
+    appearance: "Animated face, olive skin, dark curly hair under a beanie, gaffer tape on his jeans." },
+  { id: "C41", name: "Basil Duret", age: 45, kind: "human", tier: "supporting", knows: "some", home: "P19", work: ["P19", "P22", "P03"],
+    appearance: "Handsome going to seed, fair skin, floppy grey-blond hair, corduroy jacket, a lecturer's voice." },
+  { id: "C42", name: "Ilyas Qureshi", age: 28, kind: "human", tier: "supporting", knows: "none", home: "P21", work: ["P23"],
+    appearance: "Thin intense face, brown skin, short black beard neatly edged, lab coat, pen clicked when thinking." },
+  { id: "C43", name: "Jonah Peake", age: 34, kind: "spell", tier: "supporting", knows: "all", home: "P30", work: ["P30", "P42", "P04"],
+    appearance: "Gaunt kind face, pale skin, long dark hair tied back, black suit for funerals, a violin case." },
+  { id: "C44", name: "Armand Sorrell", age: 56, kind: "human", tier: "frequent", knows: "some", home: "P37", work: ["P39", "P37"],
+    appearance: "Fine-featured, grey-eyed, fair skin, silver hair, bespoke coat; listens with his whole face." },
+
+  // ------------------------------------------------------------------ the Marches
+  { id: "C45", name: "Severin Marr", age: 48, kind: "marches", tier: "frequent", knows: "all", home: "P55", work: ["P58", "P35"],
+    appearance: "Ansel's face made severe: long nose, cool pale skin, dark hair silvering, a high formal collar and rings of office." },
+  { id: "C46", name: "Harlan Greaves", age: 35, kind: "human", tier: "supporting", knows: "all", home: "P33", work: ["P15", "P54"],
+    appearance: "Sociable lined face, tanned fair skin, sandy stubble, a keeper's heavy key ring." },
+  { id: "C47", name: "Lucan Verre", age: 26, kind: "marches", tier: "supporting", knows: "all", home: "P57", work: ["P58"],
+    appearance: "Laughing face, freckled light-brown skin, auburn hair worn long, an estate manager's worn good boots." },
+  { id: "C48", name: "Percival Tern", age: 73, kind: "marches", tier: "supporting", knows: "all", home: "P60", work: ["P60", "P51"],
+    appearance: "Deeply lined brown face, white beard, a ranger's cloak, walks with a staff he doesn't need." },
+  { id: "C49", name: "Eamon Kerr", age: 24, kind: "human", tier: "supporting", knows: "all", home: "P28", work: ["P25", "P54"],
+    appearance: "Lean face, fair skin, black hair, courier's windburn; later hollow-cheeked.",
+    status: [{ date: "2026-08-28", state: "held", note: "Stillwater, donor to Quentin" }] },
+  { id: "C50", name: "Oswin Deller", age: 42, kind: "marches", tier: "supporting", knows: "all", home: "P56", work: ["P56", "P17", "P33"],
+    appearance: "Heavy, pleasant face, ruddy skin, thinning brown hair oiled flat, a merchant's heavy coat." },
+
+  // ------------------------------------------------------------------ returned, donors, and the ring
+  { id: "C51", name: "Silas Fenwick", age: 23, kind: "human", tier: "frequent", knows: "some", home: "P09", work: ["P09"],
+    appearance: "Soft-featured, pale skin, light brown hair under a baker's cap, watchful eyes.",
+    status: [{ date: "2026-10-13", state: "dead" }, { date: "2026-10-14", state: "returned", note: "linked to Hugo" }] },
+  { id: "C52", name: "Felix Brecht", age: 21, kind: "human", tier: "frequent", knows: "none", home: "P21", work: ["P19"],
+    appearance: "Sharp, expressive face, fair skin, bleached hair with dark roots, a camera rig and fingerless gloves.",
+    status: [{ date: "2027-01-02", state: "dead" }, { date: "2027-01-03", state: "returned", note: "linked to Clive" }] },
+  { id: "C53", name: "Graham Bell", age: 46, kind: "human", tier: "supporting", knows: "none", home: "P10", work: ["P10", "P34", "P46"],
+    appearance: "Dominic's nose and build, fair ruddy skin, thinning dark hair, a caretaker's blue coat and a big key ring." },
+  { id: "C54", name: "Desmond Aster", age: 33, kind: "human", tier: "frequent", knows: "none", home: "P13", work: ["P13"],
+    appearance: "Charming mobile face, black skin, short locs, band T-shirt under a blazer." },
+  { id: "C55", name: "Soren Venn", age: 41, kind: "human", tier: "supporting", knows: "some", home: "P37", work: ["P40", "P39"],
+    appearance: "Smooth pale face, precise blond hair, rimless glasses, a developer's quarter-zip." },
+  { id: "C56", name: "Damian Holt", age: 38, kind: "warden", tier: "frequent", knows: "all", home: "P16", work: ["P16", "P41"],
+    appearance: "Pleasant, attentive face, light-brown skin, dark hair greying early, clean-shaven, a good plain coat. Nothing about him says murderer.",
+    limits: ["off-screen until identified; his movements follow the calendar, never the player"] },
+  { id: "C57", name: "Hugo Naranjo", age: 28, kind: "human", tier: "supporting", knows: "none", home: "P43", work: ["P27", "P18"],
+    appearance: "Broad friendly face, tan skin, black hair, a depot hi-vis vest; later hollow.",
+    status: [{ date: "2026-10-12", state: "held", note: "Stillwater, donor to Silas" }] },
+  { id: "C58", name: "Clive Merritt", age: 30, kind: "human", tier: "supporting", knows: "none", home: "P34", work: ["P19", "P34", "P46"],
+    appearance: "Big, cheerful face, dark-brown skin, clay on his hands, a flat cap; later drawn.",
+    status: [{ date: "2027-01-01", state: "held", note: "Stillwater, donor to Felix" }] }
+];
+
+// Mentioned, never onstage.
+const historical = [
+  { id: "H01", name: "Octavian Sorrell", note: "Armand's son; died 14 March, ten years before the rescue, at Quarry Lake." },
+  { id: "H02", name: "Ruth Carrow", note: "The old program's sensitive; warned the link was straining; left Calder after 2019. Her file is in the Mercy House archive." },
+  { id: "H03", name: "Joanne Marsh", note: "Theo's mother, Martin's sister; nurse at a remote northern clinic. Present only in her letters." },
+  { id: "H04", name: "Kit Maddox", note: "The warden volunteer injured as a donor in 2019." }
+];
+
+module.exports = { cast, historical };

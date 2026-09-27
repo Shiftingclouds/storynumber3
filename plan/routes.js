@@ -107,9 +107,9 @@ const routes = [
     guard: "I'm never his dependent patient in a romantic scene; a caregiving encounter doesn't signify desire.",
     beats: [
       { flag: "b_reuben_explain", stage: 3, at: ["CH05.HOSPITAL.01", "CH08.HOSPITAL.01"], needs: "", what: "I explain what I see; he believes me, carefully." },
-      { flag: "b_reuben_damian", stage: 4, at: ["CH10.ORCHARD.02", "CH16.MERCY.03"], needs: "st_reuben >= 3", what: "He talks about the instructor who took him seriously and disappeared." },
-      { flag: "b_reuben_needs", stage: 4, at: ["CH12.HOME.02", "CH14.QUIET.01", "CH18.SERVICE.01"], needs: "st_reuben >= 3", what: "He needs something (sleep, help, someone to carry the other end) and lets me." },
-      { flag: "b_reuben_stay", stage: 5, at: ["CH18.SERVICE.02", "CH17.REUBEN.02"], needs: "b_reuben_needs and (hurt_reuben < 2)", what: "The reason to stay has passed and he stays. I choose what I want back." }
+      { flag: "b_reuben_damian", stage: 4, at: ["CH10.ORCHARD.02", "CH16.IDENT.01"], needs: "st_reuben >= 3", what: "He talks about the instructor who took him seriously and disappeared." },
+      { flag: "b_reuben_needs", stage: 4, at: ["CH12.HOME.02", "CH14.QUIET.01", "CH16.REUBEN.01", "CH18.SERVICE.01"], needs: "st_reuben >= 3", what: "He needs something (sleep, help, someone to carry the other end) and lets me." },
+      { flag: "b_reuben_stay", stage: 5, at: ["CH17.REUBEN.02", "CH18.SERVICE.02"], needs: "b_reuben_needs and (hurt_reuben < 2)", what: "The reason to stay has passed and he stays. I choose what I want back." }
     ]
   }
 ];

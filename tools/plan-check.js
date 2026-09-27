@@ -253,6 +253,52 @@ for (let run = 0; run < RUNS; run++) {
     s = t2;
   }
 }
+// focused walks: play like someone pursuing one man (prefer options that touch his name), to prove each route completes
+function walkFocused(lead, seed) {
+  const r = rng(seed);
+  const st = freshState();
+  let s = start, steps = 0;
+  const L = lead.toLowerCase();
+  const touches = (c) => {
+    const keys = Object.keys(c.set || {}).join(" ") + " " + Object.values(c.set || {}).join(" ") + " " + (c.to || "");
+    return keys.toLowerCase().includes(L) ? 1 : 0;
+  };
+  while (s && steps++ < 2000) {
+    if (s.when && !test(st, s.when)) { s = byId.get(s.next) || null; continue; }
+    visits.set(s.id, (visits.get(s.id) || 0) + 1);
+    apply(st, s.set);
+    if (s.end) break;
+    const avail = (s.choices || []).filter((c) => test(st, c.when));
+    let next;
+    if ((s.choices || []).length) {
+      if (!avail.length) break;
+      const pref = avail.filter(touches);
+      const pool = pref.length && r() < 0.9 ? pref : avail;
+      // among preferred, favour the one that raises the stage most
+      pool.sort((a, b) => ((b.set || {})["st_" + L] === 6 ? 2 : 0) + ((b.set || {})["st_" + L] === 5 ? 1 : 0) - (((a.set || {})["st_" + L] === 6 ? 2 : 0) + ((a.set || {})["st_" + L] === 5 ? 1 : 0)));
+      const c = r() < 0.7 ? pool[0] : pool[Math.floor(r() * pool.length)];
+      choiceHits.set(`${s.id}#${c.id}`, (choiceHits.get(`${s.id}#${c.id}`) || 0) + 1);
+      apply(st, c.set);
+      next = c.to || s.next;
+    } else next = s.next;
+    s = byId.get(next) || null;
+  }
+  return st;
+}
+const routeReport = [];
+for (const L of LEADS) {
+  let r5 = 0, r6 = 0, maxSt = 0;
+  const N = 400;
+  for (let i = 0; i < N; i++) {
+    const st = walkFocused(L, 90000 + i * 31 + L.length);
+    if (st["st_" + L] >= 5) r5++;
+    if (st["st_" + L] >= 6) r6++;
+    maxSt = Math.max(maxSt, st["st_" + L]);
+  }
+  routeReport.push(`${L.padEnd(8)} max stage ${maxSt}; recognised in ${Math.round(r5 / N * 100)}%, together in ${Math.round(r6 / N * 100)}% of focused walks`);
+  if (writtenChapters.has("CH17") && r5 === 0) err(`route ${L}: never reaches recognition (stage 5) even when pursued`);
+}
+
 for (const s of scenes) if (!visits.has(s.id)) warn(`${s.id}: never reached in ${RUNS} walks (condition never true?)`);
 for (const s of scenes) for (const c of s.choices || []) if (!choiceHits.has(`${s.id}#${c.id}`)) warn(`${s.id}#${c.id}: option never available/taken in ${RUNS} walks`);
 for (const [k, cs] of checkStats) if (cs.pass === 0) err(`skill check never passable: ${k}`);
@@ -264,5 +310,6 @@ for (const w of warnings) console.log("warning " + w);
 console.log(`\n${files.length} chapter file(s), ${scenes.length} scenes, ${scenes.reduce((n, s) => n + (s.choices || []).length, 0)} choices. ${RUNS} walks.`);
 console.log("Walks ended at: " + Object.entries(stops).map(([k, v]) => `${k} ×${v}`).join(", "));
 if (VERBOSE) for (const [k, cs] of checkStats) console.log(`  check ${Math.round((cs.pass / cs.seen) * 100)}%  ${k}`);
+console.log("Routes, when pursued:\n  " + routeReport.join("\n  "));
 console.log(`${errors.length} errors, ${warnings.length} warnings.`);
 process.exit(errors.length ? 1 : 0);

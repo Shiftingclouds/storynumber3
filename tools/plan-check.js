@@ -203,6 +203,8 @@ function test(st, src) {
   return !!EXPR.compile(src)((n) => (n in st ? st[n] : (() => { throw new Error("unknown " + n); })()));
 }
 const visits = new Map();
+const endTally = {};
+const relTally = {};
 const choiceHits = new Map();
 const stops = {};
 const walkErrors = new Map();
@@ -224,11 +226,14 @@ for (let run = 0; run < RUNS; run++) {
       continue;
     }
     visits.set(s.id, (visits.get(s.id) || 0) + 1);
+    for (const who of s.needsAlive || []) if (st["alive_" + who] === false) walkErrors.set(`${s.id}: needs ${who} alive, but he died on this path`, 1);
+    // patients in the cast after CH21 must be alive on this path
+    if (s.date >= "2027-03-14") for (const [cid, who] of [["C07", "quentin"], ["C51", "silas"], ["C52", "felix"]]) if ((s.cast || []).includes(cid) && st["alive_" + who] === false && !s.allowDead) walkErrors.set(`${s.id}: ${who} is in the scene but died on this path`, 1);
     const t = stamp(s);
     if (t < last) walkErrors.set(`${s.id}: reached at ${t} after ${last}`, 1);
     last = t;
     apply(st, s.set);
-    if (s.end) { stops[s.id] = (stops[s.id] || 0) + 1; break; }
+    if (s.end) { stops[s.id] = (stops[s.id] || 0) + 1; endTally[st.ending || "(none)"] = (endTally[st.ending || "(none)"] || 0) + 1; relTally[(st.final_rel || "-") + "/" + (st.final_shape || "-")] = (relTally[(st.final_rel || "-") + "/" + (st.final_shape || "-")] || 0) + 1; break; }
     const avail = (s.choices || []).filter((c) => test(st, c.when) && !(c.once && st.__used && st.__used[`${s.id}#${c.id}`]));
     // skill checks: which options were gated by a skill, and could this run take them?
     for (const c of s.choices || []) {
@@ -302,7 +307,7 @@ for (const L of LEADS) {
 }
 
 for (const s of scenes) if (!visits.has(s.id)) warn(`${s.id}: never reached in ${RUNS} walks (condition never true?)`);
-for (const s of scenes) for (const c of s.choices || []) if (!choiceHits.has(`${s.id}#${c.id}`)) warn(`${s.id}#${c.id}: option never available/taken in ${RUNS} walks`);
+
 // skill-focused walks: prefer options that raise one skill; record the best value at the start of each chapter,
 // and whether each skill check is passable for a player who builds that skill.
 const skillBest = {};
@@ -342,6 +347,12 @@ for (const sk of SKILLS) {
 }
 for (const [k, cs] of checkStats) if (cs.pass === 0 && !skillCheckPass.get(k)) err(`skill check never passable, even for a player building that skill: ${k}`);
 
+for (const s of scenes) for (const c of s.choices || []) {
+  if (choiceHits.has(`${s.id}#${c.id}`)) continue;
+  if (c.when && skillCheckPass.get(`${s.id}#${c.id} (${c.when})`)) continue; // a reward for building a skill; proven reachable
+  warn(`${s.id}#${c.id}: option never available/taken in ${RUNS} walks`);
+}
+
 // ---------------------------------------------------------------- report
 for (const [m] of walkErrors) err("walk: " + m);
 for (const e of errors) console.log("ERROR   " + e);
@@ -349,6 +360,7 @@ for (const w of warnings) console.log("warning " + w);
 console.log(`\n${files.length} chapter file(s), ${scenes.length} scenes, ${scenes.reduce((n, s) => n + (s.choices || []).length, 0)} choices. ${RUNS} walks.`);
 console.log("Walks ended at: " + Object.entries(stops).map(([k, v]) => `${k} ×${v}`).join(", "));
 if (VERBOSE) for (const [k, cs] of checkStats) console.log(`  check ${Math.round((cs.pass / cs.seen) * 100)}%  ${k}`);
+if (Object.keys(endTally).length) console.log("Endings (random walks): " + Object.entries(endTally).sort().map(([k, v]) => `${k} ${v}`).join(" · "));
 console.log("Routes, when pursued:\n  " + routeReport.join("\n  "));
 console.log("Best skill at chapter start, when built on purpose:");
 for (const sk of SKILLS) console.log("  " + sk.padEnd(7) + Object.entries(skillBest[sk]).map(([c, v]) => c.slice(2) + ":" + v).join(" "));

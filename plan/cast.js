@@ -142,7 +142,7 @@ const cast = [
     appearance: "Deeply lined brown face, white beard, a ranger's cloak, walks with a staff he doesn't need." },
   { id: "C49", name: "Eamon Kerr", age: 24, kind: "human", tier: "supporting", knows: "all", home: "P33", work: ["P25", "P54"],
     appearance: "Lean face, fair skin, black hair, courier's windburn; later hollow-cheeked.",
-    status: [{ date: "2026-08-28", state: "held", note: "Stillwater, donor to Quentin" }] },
+    status: [{ date: "2026-08-28", state: "held", note: "Stillwater, donor to Quentin" }, { date: "2027-03-14", state: "freed", note: "every ending frees the donors" }] },
   { id: "C50", name: "Oswin Deller", age: 42, kind: "marches", tier: "supporting", knows: "all", home: "P56", work: ["P56", "P17", "P33"],
     appearance: "Heavy, pleasant face, ruddy skin, thinning brown hair oiled flat, a merchant's heavy coat." },
 
@@ -164,10 +164,10 @@ const cast = [
     limits: ["off-screen until identified; his movements follow the calendar, never the player"] },
   { id: "C57", name: "Hugo Naranjo", age: 28, kind: "human", tier: "supporting", knows: "none", home: "P43", work: ["P27", "P18"],
     appearance: "Broad friendly face, tan skin, black hair, a depot hi-vis vest; later hollow.",
-    status: [{ date: "2026-10-12", state: "held", note: "Stillwater, donor to Silas" }] },
+    status: [{ date: "2026-10-12", state: "held", note: "Stillwater, donor to Silas" }, { date: "2027-03-14", state: "freed" }] },
   { id: "C58", name: "Clive Merritt", age: 30, kind: "human", tier: "supporting", knows: "none", home: "P34", work: ["P19", "P34", "P46"],
     appearance: "Big, cheerful face, dark-brown skin, clay on his hands, a flat cap; later drawn.",
-    status: [{ date: "2027-01-01", state: "held", note: "Stillwater, donor to Felix" }] }
+    status: [{ date: "2027-01-01", state: "held", note: "Stillwater, donor to Felix" }, { date: "2027-03-14", state: "freed" }] }
 ];
 
 // Mentioned, never onstage.

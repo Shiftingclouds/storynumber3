@@ -44,8 +44,23 @@ let reachedVars = null;
 const origGoto = NB.Runtime.prototype.gotoScene;
 NB.Runtime.prototype.gotoScene = function (name, label) {
   if (UNTILS.includes(name) && !reachedVars) reachedVars = JSON.parse(JSON.stringify(this.state.vars));
+  // stopping at a chapter that isn't written yet is a finish, not an error
+  if (UNTILS.includes(name) && !story.scenes[name]) throw Object.assign(new Error("reached " + name), { until: true });
   return origGoto.call(this, name, label);
 };
+// Continuity: a tagged speaker must already have been met, or be met on the same page.
+const metIssues = new Map();
+function checkMet(p, before, rt) {
+  if (!p || !p.blocks) return p;
+  const meets = new Set(p.blocks.filter((b) => b.k === "meet").map((b) => b.id));
+  for (const b of p.blocks) {
+    if (b.k !== "p" || !b.who || b.who === "mc" || before[b.who] || meets.has(b.who)) continue;
+    const k = `${rt.state.scene}: @${b.who} speaks before we've met: "${NB.text.toPlain(b.html).slice(0, 70)}"`;
+    metIssues.set(k, (metIssues.get(k) || 0) + 1);
+  }
+  return p;
+}
+function step(rt, fn) { const before = Object.assign({}, rt.state && rt.state.met); return checkMet(fn(), before, rt); }
 const origRender = NB.Runtime.prototype.render;
 NB.Runtime.prototype.render = function (src, lineIndex) {
   const key = this.state.scene + ":" + lineIndex;
@@ -174,7 +189,7 @@ for (let run = 0; run < RUNS; run++) {
   reachedVars = null;
   let page;
   try {
-    page = rt.newGame({ seed, ng });
+    page = step(rt, () => rt.newGame({ seed, ng }));
     if (rng() < 0.2) rt.state.vars.steam = false; // some players fade to black
     let pages = 1;
     while (page.kind !== "ending") {
@@ -192,15 +207,15 @@ for (let run = 0; run < RUNS; run++) {
         const key = page.choices[i].reuseKey;
         optionCount.set(key, (optionCount.get(key) || 0) + 1);
         trail.push(key);
-        page = rt.choose(i);
+        page = step(rt, () => rt.choose(i));
       } else if (page.kind === "page_break") {
-        page = rt.next();
+        page = step(rt, () => rt.next());
       } else if (page.kind === "input") {
-        page = rt.submit(NAMES[Math.floor(rng() * NAMES.length)]);
+        page = step(rt, () => rt.submit(NAMES[Math.floor(rng() * NAMES.length)]));
       } else if (page.kind === "look") {
         const look = {};
         for (const k of cfg.lookKeys) look[k] = Math.floor(rng() * 6);
-        page = rt.submitLook(look);
+        page = step(rt, () => rt.submitLook(look));
       }
     }
     totalPages += pages;
@@ -219,6 +234,11 @@ for (let run = 0; run < RUNS; run++) {
     for (const t of TALLY) { const key = String(v[t]); (tallies[t] = tallies[t] || {})[key] = (tallies[t][key] || 0) + 1; }
     for (const a of Object.keys(rt.state.achievements)) achievements[a] = (achievements[a] || 0) + 1;
   } catch (e) {
+    if (e.until) {
+      for (const [k, v] of Object.entries(words)) { wordsByScene[k] = (wordsByScene[k] || 0) + v; totalWords += v; }
+      finished++;
+      continue;
+    }
     errors.push({ run, seed, msg: e.message || String(e), trail: trail.slice(-6) });
     if (VERBOSE) console.log(`run ${run} (seed ${seed}): ${e.message}`);
   }
@@ -242,11 +262,16 @@ if (!UNTIL) {
   console.log("\nAchievements:");
   for (const k of Object.keys(cfg.achievements)) console.log(`  ${(achievements[k] || 0).toString().padStart(6)}  ${k}`);
 }
+if (metIssues.size) {
+  console.log(`\nSPEAKS BEFORE MET (${metIssues.size}):`);
+  for (const [k, n] of metIssues) console.log(`  x${n}  ${k}`);
+} else console.log("\nEvery tagged speaker had been met.");
 const optKeys = [...optionCount.keys()];
 const never = optKeys.filter((k) => !optionCount.get(k));
 console.log(`\nOptions chosen at least once: ${optKeys.length - never.length} / ${optKeys.length}`);
 if (never.length) { console.log("Never chosen (first 60):"); never.slice(0, 60).forEach((k) => console.log("  " + optionText.get(k))); }
-const relevant = UNTIL ? allTextLines.filter((k) => cfg.sceneList.indexOf(k.split(":")[0]) < Math.min(...UNTILS.map((u) => cfg.sceneList.indexOf(u)))) : allTextLines;
+const untilIdx = (u) => (cfg.sceneList.indexOf(u) < 0 ? cfg.sceneList.length : cfg.sceneList.indexOf(u));
+const relevant = UNTIL ? allTextLines.filter((k) => cfg.sceneList.indexOf(k.split(":")[0]) < Math.min(...UNTILS.map(untilIdx))) : allTextLines;
 const shown = relevant.filter((k) => textLines.get(k));
 console.log(`\nText lines shown at least once: ${shown.length} / ${relevant.length} (${Math.round((100 * shown.length) / Math.max(1, relevant.length))}%)`);
 if (opt("unshown", false)) {

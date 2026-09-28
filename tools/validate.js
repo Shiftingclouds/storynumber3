@@ -293,6 +293,20 @@ function main() {
     const met = new Set();
     const MOODS = new Set(NB.portraits.moods);
     let tagged = 0, untaggedQuotes = 0;
+    // A *set (or any command that doesn't break a paragraph) between a tagged line and plain narration joins them into
+    // one paragraph, so the narration shows the speaker's portrait. Needs a blank line.
+    const FLUSH = new Set(["art", "chapter", "date", "divider", "effect", "ending", "heading", "input_text", "letter", "look", "meet", "meter", "pips", "place", "portrait", "snapshot", "text", "journal", "page_break", "label", "goto", "goto_scene", "finish", "choice", "fake_choice", "if", "elseif", "else", "sid", "comment"]);
+    for (const [name, sc] of Object.entries(story.scenes)) {
+      let lastTagged = null, crossed = false;
+      for (const L of sc.lines) {
+        if (L.kind === "text") {
+          const tagged = /^@[a-z]+/.test(L.raw.trim());
+          if (!tagged && lastTagged && crossed) errors.push(`${name}:${L.n}: narration joins the tagged line at ${name}:${lastTagged.n} across a command, so it would show his portrait (add a blank line)`);
+          lastTagged = tagged ? L : null; crossed = false;
+        } else if (L.kind === "cmd" && !FLUSH.has(L.cmd)) { if (lastTagged) crossed = true; }
+        else { lastTagged = null; crossed = false; }
+      }
+    }
     for (const [name, sc] of Object.entries(story.scenes)) {
       let cur = null, lastDate = "", present = null;
       for (const L of sc.lines) {

@@ -27,12 +27,12 @@ It doesn't tell me what anyone's thinking. It doesn't tell me if they're lying. 
 I should say my name. Everyone here uses it.
 *input_text name My first name is:
 *commit_stats
+*meet martin
 @martin:amused "{name}!" Martin's voice comes up the stairwell, over the press. "Are you in there, or have you gone down the plughole?"
 
 "Coming!"
 
 *page_break
-*meet martin
 *portrait martin neutral
 My uncle Martin is forty-four and soft-spoken, heavyset, with ink permanently in the whorls of his fingers and his reading glasses pushed up into his thinning hair, so that he spends half his life looking for them. The print shop is his. So is the building, and so, for three years now, is the job of having me in it.
 

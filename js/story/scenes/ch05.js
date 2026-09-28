@@ -10,6 +10,8 @@ NB.scene("ch05", String.raw`
 Friday morning, and two offers from the diner are sitting in my phone like two doors.
 
 The first is from Reuben, sent at three in the morning, which I'm learning is when wardens do their correspondence: [i]Can get Q into the lab at the General tonight after Rafi's shift starts. Quiet. Proper tests. Measurements. If he agrees.[/i]
+*if ch04_first = "mercy"
+  I don't know who Rafi is. I'm learning not to ask wardens things by text at three in the morning.
 
 The second is from Dominic, sent at five, just before sunrise, and much longer: [i]Or. There's a restorer on the Hill, Chukwudi Okafor. Works with old things, protective things, things like that charm. Lucien trusts him, which Lucien doesn't do. His son works with him and is unbearably good at it. They'd see Q this afternoon. I can't come, obviously. Daylight. Sorry. I hate that I can't.[/i]
 
@@ -47,7 +49,13 @@ Calder General at nine on a Friday night: the long blue corridors buzzing under 
 
 @nabil:amused "The procedure voice. You do it when there isn't a procedure." But he's already buzzing us through. "Nabil," he says to me, as I pass, as though I'd asked. "If anyone asks, you were never here and I was on my break."
 
-Rafi's waiting in the corridor outside the lab in his scrubs, bouncing on his heels. Quentin's already there, on a plastic chair, in his work hoodie, with his arms folded.
+*if ch04_first = "regent"
+  Rafi's waiting in the corridor outside the lab in his scrubs, bouncing on his heels. Quentin's already there, on a plastic chair, in his work hoodie, with his arms folded.
+*else
+  *meet rafi
+  @rafi:amused A nurse is waiting in the corridor outside the lab, bouncing on his heels: a quick, mobile face, curly black hair, scrubs under a parka even indoors. "Rafi," he says, and shakes my hand, and his is cool, cooler than the corridor. "Night shift. The Regent, days off. Don't look so worried, I've eaten." He grins at Reuben's face. "That was a joke. He hates that joke."
+
+  Quentin's already there, on a plastic chair, in his work hoodie, with his arms folded.
 *meet ilyas
 And in the lab, with the lights on and every machine humming, there's a thin, intense man in his late twenties in a white coat, with a neat black beard and a pen he clicks while he thinks.
 

@@ -13,7 +13,7 @@ const ROOT = path.resolve(__dirname, "..");
 const sandbox = { console, Math, JSON };
 sandbox.globalThis = sandbox;
 vm.createContext(sandbox);
-for (const f of ["js/art/pixel.js", "js/art/sculpt.js", "js/art/faces.js", "js/art/places.js"]) {
+for (const f of ["js/art/pixel.js", "js/art/sculpt.js", "js/art/faces.js", "js/art/places.js", "js/art/kit.js", "js/art/views.js"]) {
   const p = path.join(ROOT, f);
   if (fs.existsSync(p)) vm.runInContext(fs.readFileSync(p, "utf8"), sandbox, { filename: f });
 }
@@ -51,8 +51,12 @@ if (cmd === "turn") {
   const tiles = exs.map((e) => onBg(NB.faces.draw(id, e), NB.faces.specs[id].bg));
   save(path.join(ROOT, "docs/art/wip", `${id}-${exs.join("-")}.png`), tiles.length > 1 ? sheet(tiles, tiles.length, 2) : tiles[0], exs.length > 2 ? 2 : 3);
 } else if (cmd === "place") {
-  const c = NB.places.draw(id || "switchyard_lane");
-  save(path.join(ROOT, "docs/art/wip", `place-${id || "switchyard_lane"}.png`), c, 3);
+  const ids = (id || "switchyard_lane").split(",");
+  const tiles = ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/places", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
+  save(path.join(ROOT, "docs/art/wip", `place-${ids.length > 1 ? "sheet" : ids[0]}.png`), tiles.length > 1 ? sheet(tiles, 2, 3) : tiles[0], ids.length > 1 ? 2 : 3);
+} else if (cmd === "places") {
+  const tiles = NB.places.ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/places", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
+  save(path.join(ROOT, "docs/art", "places.png"), sheet(tiles, 3, 3), 1);
 } else if (cmd === "pilot") {
   const pilot = [["c01", "adrian"], ["c02", "micah"], ["c03", "ellis"]];
   const tiles = [];

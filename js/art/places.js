@@ -73,25 +73,91 @@
     // face-local coordinates: for boxes, uv on the hit face
     return { t: tmin, p: p, n: n, uv: rectUV(nax, p), obj: b, face: nax * 2 + (nsg > 0 ? 1 : 0) };
   }
+  function hitSph(b, o, d) {
+    var ox = o[0] - b.c[0], oy = o[1] - b.c[1], oz = o[2] - b.c[2];
+    var B = ox * d[0] + oy * d[1] + oz * d[2], C = ox * ox + oy * oy + oz * oz - b.r * b.r, D = B * B - C;
+    if (D < 0) return null;
+    var t = -B - Math.sqrt(D);
+    if (t <= 1e-4) return null;
+    var p = [o[0] + d[0] * t, o[1] + d[1] * t, o[2] + d[2] * t];
+    return { t: t, p: p, n: [(p[0] - b.c[0]) / b.r, (p[1] - b.c[1]) / b.r, (p[2] - b.c[2]) / b.r], uv: [p[0], p[1]], obj: b };
+  }
+  function hitCyl(b, o, d) {
+    // vertical cylinder: centre (c[0], c[2]), radius r, y from y0 to y1, capped
+    var ox = o[0] - b.c[0], oz = o[2] - b.c[2];
+    var A = d[0] * d[0] + d[2] * d[2], B = ox * d[0] + oz * d[2], C = ox * ox + oz * oz - b.r * b.r;
+    var best = null;
+    if (A > 1e-9) {
+      var D = B * B - A * C;
+      if (D >= 0) {
+        var t = (-B - Math.sqrt(D)) / A;
+        if (t > 1e-4) {
+          var y = o[1] + d[1] * t;
+          if (y >= b.y0 && y <= b.y1) { var p = [o[0] + d[0] * t, y, o[2] + d[2] * t]; best = { t: t, p: p, n: [(p[0] - b.c[0]) / b.r, 0, (p[2] - b.c[2]) / b.r], uv: [Math.atan2(p[0] - b.c[0], p[2] - b.c[2]) * b.r, y], obj: b }; }
+        }
+      }
+    }
+    if (Math.abs(d[1]) > 1e-9) {
+      [b.y1, b.y0].forEach(function (cy, k) {
+        var t2 = (cy - o[1]) / d[1];
+        if (t2 <= 1e-4 || (best && t2 >= best.t)) return;
+        var px = o[0] + d[0] * t2 - b.c[0], pz = o[2] + d[2] * t2 - b.c[2];
+        if (px * px + pz * pz <= b.r * b.r) best = { t: t2, p: [o[0] + d[0] * t2, cy, o[2] + d[2] * t2], n: [0, k === 0 ? 1 : -1, 0], uv: [px, pz], obj: b, cap: true };
+      });
+    }
+    return best;
+  }
+  /** A flat convex polygon at any angle: pts [[x,y,z]...] in order. uv are world coordinates on the two widest axes. */
+  function prepPoly(b) {
+    var p = b.pts, a = p[0], e1 = [p[1][0] - a[0], p[1][1] - a[1], p[1][2] - a[2]], e2 = [p[2][0] - a[0], p[2][1] - a[1], p[2][2] - a[2]];
+    var n = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
+    var l = Math.sqrt(n[0] * n[0] + n[1] * n[1] + n[2] * n[2]); n = [n[0] / l, n[1] / l, n[2] / l];
+    var ax = Math.abs(n[0]) > Math.abs(n[1]) ? (Math.abs(n[0]) > Math.abs(n[2]) ? 0 : 2) : (Math.abs(n[1]) > Math.abs(n[2]) ? 1 : 2);
+    var i0 = ax === 0 ? 1 : 0, i1 = ax === 2 ? 1 : 2;
+    b._n = n; b._i = [i0, i1]; b._d = n[0] * a[0] + n[1] * a[1] + n[2] * a[2];
+    b._p2 = p.map(function (q) { return [q[i0], q[i1]]; });
+    var s = 0; for (var k = 0; k < b._p2.length; k++) { var A = b._p2[k], B = b._p2[(k + 1) % b._p2.length]; s += A[0] * B[1] - B[0] * A[1]; }
+    b._sg = s > 0 ? 1 : -1;
+  }
+  function hitPoly(b, o, d) {
+    if (!b._n) prepPoly(b);
+    var n = b._n, dn = n[0] * d[0] + n[1] * d[1] + n[2] * d[2];
+    if (Math.abs(dn) < 1e-9) return null;
+    var t = (b._d - (n[0] * o[0] + n[1] * o[1] + n[2] * o[2])) / dn;
+    if (t <= 1e-4) return null;
+    var p = [o[0] + d[0] * t, o[1] + d[1] * t, o[2] + d[2] * t];
+    var u = p[b._i[0]], v = p[b._i[1]], P2 = b._p2;
+    for (var k = 0; k < P2.length; k++) {
+      var A = P2[k], B = P2[(k + 1) % P2.length];
+      if (((B[0] - A[0]) * (v - A[1]) - (B[1] - A[1]) * (u - A[0])) * b._sg < 0) return null;
+    }
+    var nn = dn > 0 ? [-n[0], -n[1], -n[2]] : n;
+    return { t: t, p: p, n: nn, uv: [u, v], obj: b };
+  }
+  function hitObj(ob, o, d) { return ob.box ? hitBox(ob, o, d) : ob.sph ? hitSph(ob, o, d) : ob.cyl ? hitCyl(ob, o, d) : ob.poly ? hitPoly(ob, o, d) : hitRect(ob, o, d); }
   function trace(scene, o, d, skip) {
     var best = null;
     for (var i = 0; i < scene.objs.length; i++) {
       var ob = scene.objs[i];
       if (ob === skip) continue;
-      var h = ob.box ? hitBox(ob, o, d) : hitRect(ob, o, d);
+      var h = hitObj(ob, o, d);
       if (h && (!best || h.t < best.t)) best = h;
     }
     return best;
   }
-  function occluded(scene, p, lp, self) {
-    var d = [lp[0] - p[0], lp[1] - p[1], lp[2] - p[2]];
-    var dist = Math.sqrt(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
-    d = [d[0] / dist, d[1] / dist, d[2] / dist];
+  function occluded(scene, p, lp, self, dir) {
+    var d, dist;
+    if (dir) { d = dir; dist = 1e6; }
+    else {
+      d = [lp[0] - p[0], lp[1] - p[1], lp[2] - p[2]];
+      dist = Math.sqrt(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
+      d = [d[0] / dist, d[1] / dist, d[2] / dist];
+    }
     var o = [p[0] + d[0] * 0.01, p[1] + d[1] * 0.01, p[2] + d[2] * 0.01];
     for (var i = 0; i < scene.objs.length; i++) {
       var ob = scene.objs[i];
       if (ob.noShadow || ob === self) continue;
-      var h = ob.box ? hitBox(ob, o, d) : hitRect(ob, o, d);
+      var h = hitObj(ob, o, d);
       if (h && h.t < dist - 0.02) return true;
     }
     return false;
@@ -100,6 +166,12 @@
   function shade(scene, h, d, depth) {
     var m = h.obj.mat;
     var s = m(h, scene);
+    if (!s) {
+      // see-through (chain-link, lattice): carry on behind it
+      var o2 = [h.p[0] + d[0] * 0.01, h.p[1] + d[1] * 0.01, h.p[2] + d[2] * 0.01];
+      var h2 = trace(scene, o2, d, h.obj);
+      return h2 ? shade(scene, h2, d, depth) : scene.sky(d);
+    }
     var col = s.emit ? scale(s.albedo, 0) : [0, 0, 0];
     var amb = scene.ambient;
     // sky light from above, weaker on vertical faces, plus a floor of ambient
@@ -107,6 +179,13 @@
     col = add(col, mulc(s.albedo, add(scale(amb, 0.55 + 0.45 * up), scene.bounce, 1)), 1);
     for (var i = 0; i < scene.lights.length; i++) {
       var L = scene.lights[i];
+      if (L.dir) {
+        var nd = h.n[0] * L.dir[0] + h.n[1] * L.dir[1] + h.n[2] * L.dir[2];
+        if (nd <= 0) continue;
+        if (!L.noShadow && occluded(scene, h.p, null, h.obj, L.dir)) continue;
+        col = add(col, mulc(s.albedo, L.c), nd * L.i);
+        continue;
+      }
       var lv = [L.p[0] - h.p[0], L.p[1] - h.p[1], L.p[2] - h.p[2]];
       var dist2 = lv[0] * lv[0] + lv[1] * lv[1] + lv[2] * lv[2], dist = Math.sqrt(dist2);
       var ndl = (h.n[0] * lv[0] + h.n[1] * lv[1] + h.n[2] * lv[2]) / dist;
@@ -124,7 +203,7 @@
     // wet ground: mirror the scene above, darkened
     if (s.wet && depth < 1) {
       var rd = [d[0], -d[1], d[2]];
-      var o = [h.p[0], 0.001, h.p[2]];
+      var o = [h.p[0], h.p[1] + 0.001, h.p[2]];
       var rh = trace(scene, o, rd, h.obj);
       var rc = rh ? shade(scene, rh, rd, depth + 1) : scene.sky(rd);
       col = lerp(col, rc, s.wet);
@@ -451,7 +530,9 @@
 
   var VIEWS = { switchyard_lane: switchyardLane };
   NB.places = {
-    draw: function (id) { return render(VIEWS[id]()); },
-    ids: Object.keys(VIEWS)
+    draw: function (id, opt) { return render(VIEWS[id](opt || {})); },
+    add: function (id, fn) { VIEWS[id] = fn; },
+    get ids() { return Object.keys(VIEWS); },
+    kit: { render: render, rgb: rgb, add: add, mulc: mulc, scale: scale, lerp: lerp, hash: hash, vnoise: vnoise, FONT: FONT, stencil: stencil, trace: trace, norm: S3.norm }
   };
 })(typeof window !== "undefined" ? window : globalThis);

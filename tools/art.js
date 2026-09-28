@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+// Renders Calder's pixel art to PNG: native-size masters in art/, and enlarged review sheets in docs/art/.
+//   node tools/art.js pilot            the three-face pilot (neutral + one expression each) and the lane
+//   node tools/art.js turn <id>        construction views of one head (front, three-quarter, profile)
+//   node tools/art.js face <id> [ex]   one portrait, native and ×4
+"use strict";
+const fs = require("fs");
+const path = require("path");
+const vm = require("vm");
+const { encode } = require("./png");
+
+const ROOT = path.resolve(__dirname, "..");
+const sandbox = { console, Math, JSON };
+sandbox.globalThis = sandbox;
+vm.createContext(sandbox);
+for (const f of ["js/art/pixel.js", "js/art/sculpt.js", "js/art/faces.js", "js/art/places.js"]) {
+  const p = path.join(ROOT, f);
+  if (fs.existsSync(p)) vm.runInContext(fs.readFileSync(p, "utf8"), sandbox, { filename: f });
+}
+const NB = sandbox.NB;
+const P = NB.pixel;
+
+function save(file, c, scale) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, encode(c.w, c.h, c.data, scale || 1));
+  console.log("wrote " + path.relative(ROOT, file) + (scale > 1 ? ` (×${scale})` : ""));
+}
+function sheet(tiles, cols, pad, bg) {
+  const tw = Math.max(...tiles.map((t) => t.w)), th = Math.max(...tiles.map((t) => t.h));
+  const rows = Math.ceil(tiles.length / cols);
+  const c = P.canvas(cols * (tw + pad) + pad, rows * (th + pad) + pad);
+  c.fill(bg || "#2b2833");
+  tiles.forEach((t, i) => c.blit(t, pad + (i % cols) * (tw + pad), pad + Math.floor(i / cols) * (th + pad)));
+  return c;
+}
+function onBg(c, bg) {
+  const o = P.canvas(c.w, c.h);
+  o.fill(Array.isArray(bg) ? bg[0] : bg || "#3a3644");
+  o.blit(c, 0, 0);
+  return o;
+}
+
+const [cmd, id, ex] = process.argv.slice(2);
+const t0 = Date.now();
+if (cmd === "turn") {
+  const spec = NB.faces.specs[id || "test"];
+  const tiles = [0, -24, -90].map((yaw) => onBg(NB.faces.draw(spec, "neutral", { pose: { yaw, bodyYaw: yaw * 0.4 } })));
+  save(path.join(ROOT, "docs/art/wip", `turn-${id || "test"}.png`), sheet(tiles, 3, 4), 3);
+} else if (cmd === "face") {
+  const exs = (ex || "neutral").split(",");
+  const tiles = exs.map((e) => onBg(NB.faces.draw(id, e), NB.faces.specs[id].bg));
+  save(path.join(ROOT, "docs/art/wip", `${id}-${exs.join("-")}.png`), tiles.length > 1 ? sheet(tiles, tiles.length, 2) : tiles[0], exs.length > 2 ? 2 : 3);
+} else if (cmd === "place") {
+  const c = NB.places.draw(id || "switchyard_lane");
+  save(path.join(ROOT, "docs/art/wip", `place-${id || "switchyard_lane"}.png`), c, 3);
+} else if (cmd === "pilot") {
+  const pilot = [["c01", "adrian"], ["c02", "micah"], ["c03", "ellis"]];
+  const tiles = [];
+  for (const [cid, name] of pilot) {
+    const spec = NB.faces.specs[cid];
+    for (const e of ["neutral", spec.pilotExpression]) {
+      const c = NB.faces.draw(cid, e);
+      save(path.join(ROOT, "art/portraits", `${cid}-${name}-${e}.png`), c, 1);
+      tiles.push(onBg(c, spec.bg));
+    }
+  }
+  save(path.join(ROOT, "docs/art", "pilot-portraits.png"), sheet(tiles, 6, 4), 3);
+  if (NB.places) {
+    const lane = NB.places.draw("switchyard_lane");
+    save(path.join(ROOT, "art/places", "switchyard-lane.png"), lane, 1);
+    save(path.join(ROOT, "docs/art", "pilot-lane.png"), lane, 3);
+  }
+}
+console.log(`${Date.now() - t0} ms`);

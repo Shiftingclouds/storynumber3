@@ -148,7 +148,7 @@
     eyebrow: "Calder · the end of summer",
     subtitle: "The Unquiet City",
     motto: "Everyone in this city is holding a thread. I'm the one who can feel them.",
-    sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05"],
+    sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06"],
     startVars: PL.startVars,
     clamp: PL.clamp,
     opposed: {},

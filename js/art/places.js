@@ -213,8 +213,8 @@
       }
       return c;
     }
-    var venueBrick = rgb("#6a3f36"), venueMortar = rgb("#3b2a2a"), blackPaint = rgb("#26232a");
-    var oldBrick = rgb("#6b5f5a"), oldMortar = rgb("#3e3838");
+    var venueBrick = rgb("#a8403a"), venueMortar = rgb("#4a1e2a"), blackPaint = rgb("#2a2240");
+    var oldBrick = rgb("#3e8a8c"), oldMortar = rgb("#1e4450");
     var posters = [
       { u: [3.2, 4.05], v: [1.0, 2.3], bg: rgb("#b8324a"), ink: rgb("#f0e6cc"), txt: "LIVE", band: rgb("#1c1a20") },
       { u: [9.2, 10.1], v: [1.1, 2.2], bg: rgb("#2f6fa8"), ink: rgb("#f0e6cc"), txt: "NOVA", band: rgb("#e8d8b0") },
@@ -250,7 +250,7 @@
         if (k >= 0 && v > wy && v < wy + 1.8 && u > wu && u < wu + 1.3) {
           var lit = hash(k, fl) > 0.72;
           if (u < wu + 0.08 || u > wu + 1.22 || v < wy + 0.08 || Math.abs(v - (wy + 1.05)) < 0.05) return { albedo: rgb("#2a2628") };
-          return lit ? { albedo: rgb("#000000"), emit: rgb("#e8b25a") } : { albedo: rgb("#1c2030") };
+          return lit ? { albedo: rgb("#000000"), emit: rgb("#ffcc66") } : { albedo: rgb("#1e2a52") };
         }
       }
       return { albedo: brick(u, v, oldBrick, oldMortar, fp, 0.6) };
@@ -262,31 +262,31 @@
       if (Math.abs(x) < 0.32) {
         var sz = 0.2, rr = Math.floor(z / sz), cc = Math.floor((x + (rr % 2) * 0.1) / sz);
         var n = hash(cc + 50, rr);
-        var base = scale(rgb("#4a4a55"), 0.8 + 0.3 * n);
+        var base = scale(rgb("#3a3458"), 0.8 + 0.3 * n);
         if (sz / fp > 3 && (z / sz - rr < 0.12 || (x + (rr % 2) * 0.1) / sz - cc < 0.12)) base = rgb("#24242c");
         return { albedo: base, wet: puddle ? 0.55 : 0.18 };
       }
       var grit = 0.9 + 0.2 * vnoise(x * 4, z * 4);
-      return { albedo: scale(rgb("#34343f"), grit), wet: puddle ? 0.6 : 0.08 };
+      return { albedo: scale(rgb("#221e3a"), grit), wet: puddle ? 0.75 : 0.22 };
     } });
     // the street across the end, and the buildings on its far side
     objs.push({ ax: 1, at: 0, u: [-30, 30], v: [END, 56], noShadow: true, mat: function (h) {
       var kerb = h.uv[1] > 53.5;
-      return { albedo: kerb ? rgb("#5a5a62") : rgb("#30303a"), wet: 0.3 };
+      return { albedo: kerb ? rgb("#5a5078") : rgb("#262040"), wet: 0.5 };
     } });
     objs.push({ ax: 2, at: 56, u: [-30, 30], v: [0, 11], mat: function (h) {
       var x = h.uv[0], y = h.uv[1];
       if (y < 3.2 && x > -4 && x < 2.5) {
         // a closed shop shutter, and its sign
-        if (y > 2.6) return x > -3.6 && x < 2.1 && y > 2.7 && y < 3.1 ? { albedo: rgb("#000000"), emit: rgb("#b8324a") } : { albedo: rgb("#2a2830") };
+        if (y > 2.6) return x > -3.6 && x < 2.1 && y > 2.7 && y < 3.1 ? { albedo: rgb("#000000"), emit: rgb("#ff4fa0") } : { albedo: rgb("#2a2240") };
         return { albedo: (Math.floor(y / 0.12) % 2) ? rgb("#6a6a72") : rgb("#55555e") };
       }
       if (y > 4.2) {
         var k = Math.floor((x + 30) / 3.1), wy = Math.floor((y - 4.2) / 3.2);
         var fx = (x + 30) / 3.1 - k, fy = (y - 4.2) / 3.2 - wy;
-        if (fx > 0.25 && fx < 0.72 && fy > 0.2 && fy < 0.75) return hash(k, wy + 9) > 0.55 ? { albedo: rgb("#000000"), emit: rgb("#f0c060") } : { albedo: rgb("#1a1c2a") };
+        if (fx > 0.25 && fx < 0.72 && fy > 0.2 && fy < 0.75) return hash(k, wy + 9) > 0.55 ? { albedo: rgb("#000000"), emit: (hash(k, wy) > 0.8 ? rgb("#3ce8e8") : rgb("#ffcc66")) } : { albedo: rgb("#2a2262") };
       }
-      return { albedo: rgb("#4a3a3a") };
+      return { albedo: rgb("#7a3a6a") };
     } });
     // inside the loading door: floor, back wall, flight cases in the light
     objs.push({ ax: 1, at: 0, u: [-10, LW], v: [4.8, 8.8], noShadow: true, mat: function () { return { albedo: rgb("#4a4038") }; } });
@@ -307,7 +307,7 @@
       var ax = h.face >> 1, U = ax === 0 ? 2 : 0, V = ax === 1 ? 2 : 1;
       if (near(u, b.min[U], b.max[U]) && near(v, b.min[V], b.max[V])) return { albedo: rgb("#9a9ea8") };
       if (near(u, b.min[U], b.max[U]) || near(v, b.min[V], b.max[V])) return { albedo: rgb("#4a4c56") };
-      return { albedo: rgb("#3a3a44") };
+      return { albedo: rgb("#2a2240") };
     };
     box([-8.2, 0, 5.2], [-7.2, 1.1, 6.0], caseMat);
     box([-8.2, 1.1, 5.25], [-7.3, 1.8, 5.95], caseMat);
@@ -322,7 +322,7 @@
     box([-3.12, 0, 8.6], [-2.95, 2.85, 8.75], frameMat);
     box([-3.25, 2.7, 4.85], [-2.9, 3.2, 8.75], function (h) { return { albedo: (Math.floor(h.p[1] / 0.07) % 2) ? rgb("#7a7e88") : rgb("#5a5e68") }; });
     // caged lamp over the door
-    box([-3.0, 4.5, 6.55], [-2.72, 4.85, 6.95], function (h) { return h.n[0] > 0.5 || h.n[1] < -0.5 ? { albedo: rgb("#000000"), emit: rgb("#f4f0d8") } : { albedo: rgb("#2a2a30") }; }, { noShadow: true });
+    box([-3.0, 4.5, 6.55], [-2.72, 4.85, 6.95], function (h) { return h.n[0] > 0.5 || h.n[1] < -0.5 ? { albedo: rgb("#000000"), emit: rgb("#9af4f0") } : { albedo: rgb("#2a2a30") }; }, { noShadow: true });
     // the blade sign: SWITCHYARD down its face, on a bracket over the lane
     box([-2.95, 2.6, 9.9], [-2.2, 7.1, 10.1], function (h) {
       if (h.n[2] > -0.5) return { albedo: rgb("#2a2830") };
@@ -338,8 +338,8 @@
     box([2.55, 2.1, 3.2], [3.0, 2.8, 4.3], function (h) { return { albedo: h.n[0] < -0.5 && (Math.floor(h.p[1] / 0.08) % 2) ? rgb("#4a4e58") : rgb("#8a8e98") }; });
     // bins and a skip
     var bin = function (col) { return function (h) { var lid = h.p[1] > 1.02; return { albedo: lid ? scale(rgb(col), 0.8) : rgb(col) }; }; };
-    box([2.2, 0, 5.3], [2.95, 1.1, 6.05], bin("#2d5a3a"));
-    box([2.2, 0, 6.2], [2.95, 1.1, 6.95], bin("#4a4e58"));
+    box([2.2, 0, 5.3], [2.95, 1.1, 6.05], bin("#2fcf7a"));
+    box([2.2, 0, 6.2], [2.95, 1.1, 6.95], bin("#2a4ab8"));
     box([1.6, 0, 18], [2.95, 1.3, 21.2], function (h) { var v = h.p[1]; return { albedo: v > 1.18 ? rgb("#8a6a24") : (h.n[0] < -0.5 && Math.floor(h.p[2] / 0.8) % 2 && v < 1.1 && v > 0.2) ? rgb("#b8922e") : rgb("#d0aa3e") }; });
     // fire escape platforms on the right wall
     var iron = function () { return { albedo: rgb("#2a2a30") }; };
@@ -349,37 +349,46 @@
       w: 320, h: 180,
       cam: { p: [0.2, 1.62, -2], f: 190, cx: 172, cy: 98, yaw: 0.06, pitch: 0.05 },
       objs: objs,
-      ambient: rgb("#26304a"), bounce: rgb("#0c0a12"),
-      fog: { c: rgb("#3a2e48"), d: 150, max: 0.35 },
+      ambient: rgb("#5a48a8"), bounce: rgb("#201238"),
+      fog: { c: rgb("#8a4a9a"), d: 120, max: 0.4 },
       dither: 0.035,
       lights: [
-        { p: [-3.5, 2.2, 6.8], c: rgb("#ffb866"), i: 1.8, r: 3.0 },                 // through the loading door
-        { p: [-2.6, 4.55, 6.75], c: rgb("#e8f0d8"), i: 2.4, r: 2.8 },                // caged lamp
+        { p: [-3.5, 2.2, 6.8], c: rgb("#ffa050"), i: 2.4, r: 3.2 },                 // through the loading door
+        { p: [-2.6, 4.55, 6.75], c: rgb("#6af0e8"), i: 2.6, r: 3.0 },                // caged lamp, cold teal
+        { p: [0, 3.2, 55], c: rgb("#ff4fa0"), i: 4, r: 4 },                           // the shop sign across the street
         { p: [1.8, 5.4, 45], c: rgb("#ff9a3a"), i: 5, r: 2.6 },                       // sodium lamp on Arden Street
         { p: [-6.5, 2.4, 6.8], c: rgb("#ffcc88"), i: 0.7, r: 2.0 }                    // inside, over the cases
       ],
       moon: { d: [-0.04, 0.46, 1], r: 0.045 },
       sky: function (d) {
         var t = Math.max(0, Math.min(1, d[1] * 1.6));
-        var col = t < 0.25 ? lerp(rgb("#7a5068"), rgb("#3e3560"), t / 0.25) : lerp(rgb("#3e3560"), rgb("#141830"), Math.min(1, (t - 0.25) / 0.6));
+        var col = t < 0.12 ? lerp(rgb("#f48c78"), rgb("#d05a86"), t / 0.12) : t < 0.3 ? lerp(rgb("#d05a86"), rgb("#6a3fa0"), (t - 0.12) / 0.18) : lerp(rgb("#6a3fa0"), rgb("#16133a"), Math.min(1, (t - 0.3) / 0.55));
         var md = S3.norm(scene.moon.d), c = d[0] * md[0] + d[1] * md[1] + d[2] * md[2];
         if (c > Math.cos(scene.moon.r)) {
           var edge = (1 - c) / (1 - Math.cos(scene.moon.r));
           return edge > 0.55 && d[0] - md[0] > 0.004 ? rgb("#cfc6ae") : rgb("#f4ecd2");
         }
-        if (c > Math.cos(scene.moon.r * 2.4)) col = lerp(col, rgb("#6a6488"), 0.35);
+        if (c > Math.cos(scene.moon.r * 2.6)) col = lerp(col, rgb("#b08ad0"), 0.35);
         var sx = Math.floor(d[0] * 900), sy2 = Math.floor(d[1] * 900);
         if (d[1] > 0.3 && hash(sx, sy2) > 0.9975) col = rgb("#c8c8e0");
         return col;
       },
       palette: [
-        "#0c0e1a", "#141830", "#1c2140", "#262c50", "#332f58", "#443a66", "#5e4670", "#7a5068", "#9a6070",
-        "#1c1a20", "#26232a", "#322d34", "#403840", "#4e4448", "#62585a", "#7a6e6c", "#948680",
-        "#2e1c1e", "#422628", "#56302e", "#6c3e36", "#84503e", "#9c6448",
-        "#24242c", "#30303a", "#3e3e4a", "#4e4e5c", "#62626e", "#7a7e88", "#9a9ea6", "#c4c6ca",
-        "#3a2618", "#5a3a22", "#7e5228", "#a86e30", "#d0913a", "#eab45a", "#f7d68a", "#fff0c4",
-        "#9a4a22", "#c86a2a", "#1f3326", "#2d4a34", "#3e6344", "#6a5220", "#a0802e", "#d0aa3e",
-        "#8a2238", "#b8324a", "#1e4a78", "#2f6fa8", "#e8d8b0", "#f4ecd2", "#cfc6ae", "#f0ece0"
+        // night blues and violets
+        "#0e0c24", "#16133a", "#1f1a4e", "#2a2262", "#382a78", "#4a348c", "#5e3f9e", "#7a4cae",
+        // city glow: magenta to coral
+        "#8e3c8a", "#b04a8a", "#d05a86", "#e8707e", "#f48c78", "#fab07a",
+        // venue brick reds
+        "#2e1422", "#461a26", "#62222a", "#7e2c2e", "#9a3a32", "#b44e3a", "#c86a48",
+        // painted teal building
+        "#12222e", "#18323e", "#1e4450", "#285a64", "#347278", "#468c8a", "#62a8a0",
+        // asphalt and stone, cool
+        "#141424", "#1e1e32", "#2a2a42", "#383852", "#4a4a66", "#626282", "#8080a0", "#a8a8c4",
+        // warm light
+        "#5a2a1e", "#8a3e22", "#b85a28", "#e07a30", "#f49a3c", "#fbbf52", "#ffdc7c", "#fff2b8", "#fffbe6",
+        // neon and accents
+        "#ff4fa0", "#ff86c2", "#3ce8e8", "#9af4f0", "#1a9e8e", "#2fcf7a", "#1f6a44", "#2a4ab8", "#4a7af0",
+        "#e8d8b0", "#f4ecd2", "#cfc6ae", "#e8c040", "#b08a24"
       ],
       overlay: function (ctx) {
         // fire-escape stairs and rails, iron drawn thin
@@ -424,7 +433,7 @@
           ctx.set(lampTop.x, lampTop.y + 1, rgb("#fff0c4")); ctx.set(lampTop.x - 1, lampTop.y + 1, rgb("#f7d68a"));
         }
         var lamp = ctx.project([-2.7, 4.67, 6.75]);
-        if (lamp) glow(ctx, lamp.x, lamp.y, 11, rgb("#e8f0d8"), 0.35);
+        if (lamp) glow(ctx, lamp.x, lamp.y, 12, rgb("#6af0e8"), 0.4);
         var door = ctx.project([-3.1, 1.3, 6.8]);
         if (door) glow(ctx, door.x, door.y, 10, rgb("#ffb866"), 0.05);
       }

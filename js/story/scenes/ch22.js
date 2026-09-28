@@ -27,7 +27,7 @@ My phone won't stop. It buzzes across the table like something alive.
 *else
   [i]Simeon's coming at ten. Don't come in until you've eaten something. I mean it. R[/i]
 
-  [i]Eamon's awake. He asked for you. He asked for his letter. Ansel[/i]
+  {@ending = "E"|And a note, pushed under the shop door at eight by one of the keepers' runners, because phones don't cross, in Ansel's careful hand: [i]Eamon's awake. He's asking for you. A.[/i]|[i]Eamon's awake. He asked for you. He asked for his letter. Ansel[/i]}
 
   I eat the eggs. I don't taste them. Martin watches me eat every mouthful, and then takes the plate.
 

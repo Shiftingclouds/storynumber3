@@ -239,7 +239,8 @@ Serrano Yard, the workshop, the stove out for the summer.
 
 @micah:tense Micah's apprenticeship firm wants him for a year on a hydro project up north: good money, a qualification, a dam in a valley with no signal, the first thing that's ever been only his.
 
-@ernesto:neutral And Ernesto, astonishingly, says he should go. He says it at the long table, in front of everyone, carving: "Here is what we'll do. You'll go." And then he puts the knife down and goes out to the yard for a while and doesn't come back until the potatoes are cold.
+*meet ernesto
+@ernesto:neutral And Ernesto Serrano, Micah's father, a big square-faced man with grey at his temples and a thick moustache, who runs the Yard and the family and most of Eastbank, astonishingly, says he should go. He says it at the long table, in front of everyone, carving: "Here is what we'll do. You'll go." And then he puts the knife down and goes out to the yard for a while and doesn't come back until the potatoes are cold.
 
 @micah:small Micah asks me before he answers anyone. We're sitting on the workbench. He's got a pencil in his hand and he's drawing a dam on a piece of offcut. "I've never done anything that wasn't for them," he says. "What do I do?"
 

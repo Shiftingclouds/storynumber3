@@ -189,7 +189,7 @@ Home. The shop, the new press, Martin's light on upstairs.
     *comment REL_DOMINIC_TOGETHER
     *present dominic
     *snapshot epilogue-dominic
-    @dominic:warm Dominic comes round at seven, the sun an hour gone, {@dominic_away|back from the residency with a band and an album and a tan he says is a joke,|from the Regent,} with his collar up and cold hands. Privately, and properly, and ours. Every decision about us, he makes with me, not for me and not because of me. He says it's the hardest thing he's ever learned, harder than the dark.
+    @dominic:warm Dominic comes round at seven, the sun well down, {@dominic_away|back from the residency with a band and an album and a tan he says is a joke,|from the Regent,} with his collar up and cold hands. Privately, and properly, and ours. Every decision about us, he makes with me, not for me and not because of me. He says it's the hardest thing he's ever learned, harder than the dark.
 
     @dominic:shy He sings in the kitchen while Martin washes up. Martin pretends not to listen. Martin always listens.
   *elseif final_shape = "distance"
@@ -300,70 +300,82 @@ Home. The shop, the new press, Martin's light on upstairs.
 *place P02
 *set conseq_n 0
 Later, when the house is quiet, I think about everyone else. The whole city, the way the knack gives it to me. A year of other people's lives, going on.
-*if (s01 != "") and (conseq_n < 3)
+*comment first, the afternoon I chose in April; then the arcs I actually shaped, up to three; then, if it's fewer than two, home
+*if s01 = "resolved:kept"
   *comment CONSEQ_S01
-  The print shop's still here. {@s01 = "resolved:kept"|The new press has paid for itself twice over; Martin says so to every customer, whether they ask or not.|Martin kept it open, somehow, through the worst year it's had, on shorter hours and stubbornness.} Avery & Son, Printers. There's a sign in the window that says [i]STILL HERE[/i] in a very nice serif.{@mc_future = "shop"| My name's on the rota, on paper.|}
+  The print shop's still here. The new press has paid for itself twice over; Martin says so to every customer, whether they ask or not. Avery & Son, Printers. There's a sign in the window that says [i]STILL HERE[/i] in a very nice serif.{@mc_future = "shop"| My name's on the rota, on paper.|}
   *set conseq_n +1
-*if (s13 != "") and (conseq_n < 3)
-  *comment CONSEQ_S13
-  Will's at the academy. {@s13 = "resolved"|The scout at the trial wrote a lot of things down.|He got in on his second try, in the autumn, and nobody was surprised except him.} He's seventeen, going on eighteen, and all elbows still, and he runs every morning in the hat Martin knitted him, and Isaac Okafor's his best friend, and they're both unbearable about it.
-  *set conseq_n +1
-*if (s06 != "") and (conseq_n < 3)
-  *comment CONSEQ_S06
-  Switchyard's in the tram shed at Foundry Reach now. The acoustics are a gift from God, Desmond says, every night, to every band. The pigeons are still a problem. There's a plaque by the loading bay that says [i]The Last Set, 2026[/i], and nothing else, and the crew know what it means.{@mc_future = "crew"| I'm on the loading bay four nights a week, in my ear defenders.|}
-  *set conseq_n +1
-*if (s09 != "") and (conseq_n < 3)
-  *comment CONSEQ_S09
-  {@s09 = "resolved:probation"|The response service is off probation. A medic on call at night for the city's other people, with a rota, and a budget, and a van with no lily on it.|The response service got its hearing, in the end, and a van.} {@reuben_away|Reuben's building another one, somewhere else.|Reuben still writes [i]probation[/i] on things and crosses it out.}{@mc_future = "response"| I'm on nights with them, three a week, seeing the links fail before the monitors do.|}
-  *set conseq_n +1
-*if (s07 != "") and (conseq_n < 3)
-  *comment CONSEQ_S07
-  Mercy House's review board has two members who aren't wardens, and one of them is Florian, who retired from the archive and immediately became more frightening. {@adrian_transfer|Adrian runs the joint warden station in Bracken Court, his own unit, earned.|Adrian's on the training floor, teaching trainees to say which is known and which is inferred.}{@mc_future = "warden"| I train there, on Tuesdays and Thursdays, as their first sensitive in eight years, on my own terms, written down.|}
-  *set conseq_n +1
-*if (s16 != "") and (conseq_n < 3)
-  *comment CONSEQ_S16
-  The Regent's {@s16 = "resolved:shared"|still a home, with shared rules and no bought exceptions, and Lucien on the stage once a month with a gavel he still doesn't use|still arguing about fees, in the same room, which Lucien says is what a home is}. Milo's documentary about it premieres in the autumn. Everyone in it is in a dressing gown.
-  *set conseq_n +1
-*if (s14 != "") and (conseq_n < 3)
-  *comment CONSEQ_S14
-  The crossing succession held. The footbridge ledger has every line filled now, day and night, in Harlan's round hand{@harlan_hostile| or somebody else's; Harlan left the keeping in the summer, and nobody asked where he went|}. Nobody sells Northwood any more.
-  *set conseq_n +1
-*if (s15 != "") and (conseq_n < 3)
-  *comment CONSEQ_S15
-  Lyle's Bakery still opens at six. {@alive_silas|Silas runs the ovens. Otis sits by the door.|Otis runs the ovens, slower than he used to, and keeps a chair.} The long table at the back is where everyone ends up, eventually, after everything.
-  *set conseq_n +1
-*if (s08 != "") and (conseq_n < 3)
+*if s08 = "resolved:own"
   *comment CONSEQ_S08
   Wesley's still in his room on Lock Street, above the launderette, with the lease in his own name. The plant's alive. He went to the gathering at North Ridge in October and ran with the pack for the joy of it, and didn't run anywhere else.
   *set conseq_n +1
-*if (s11 != "") and (conseq_n < 3)
+*if s06 = "resolved:moved"
+  *comment CONSEQ_S06
+  Switchyard's in the tram shed at Foundry Reach now. The acoustics are a gift from God, Desmond says, every night, to every band. The pigeons are still a problem. There's a plaque by the loading bay that says [i]The Last Set, 2026[/i], and nothing else, and the crew know what it means.{@mc_future = "crew"| I'm on the loading bay four nights a week, in my ear defenders.|}
+  *set conseq_n +1
+*if (s13 = "resolved") and (conseq_n < 3)
+  *comment CONSEQ_S13
+  Will's at the academy. The scout at the trial wrote a lot of things down. He's seventeen, going on eighteen, all elbows still, and he runs every morning in the hat Martin knitted him, and Isaac Okafor's his best friend, and they're both unbearable about it.
+  *set conseq_n +1
+*if (s09 = "resolved:probation") and (conseq_n < 3)
+  *comment CONSEQ_S09
+  The response service is off probation. A medic on call at night for the city's other people, with a rota, and a budget, and a van with no lily on it. {@reuben_away|Reuben's building another one, somewhere else.|Reuben still writes [i]probation[/i] on things and crosses it out.}{@mc_future = "response"| I'm on nights with them, three a week, seeing the links fail before the monitors do.|}
+  *set conseq_n +1
+*if ((s14 = "resolved:court") or (s14 = "resolved:boundary") or (s14 = "resolved:estate")) and (conseq_n < 3)
+  *comment CONSEQ_S14
+  The crossing succession held. The footbridge ledger has every line filled now, day and night, in Harlan's round hand{@harlan_hostile| or somebody else's; Harlan left the keeping in the summer, and nobody asked where he went|}. Nobody sells Northwood any more.
+  *set conseq_n +1
+*if russell_logging and (s11 != "") and (conseq_n < 3)
   *comment CONSEQ_S11
   Winton Court's tenants won. Russell's got a new boiler and a bad-knee allowance and a residents' committee that meets in flat thirty-one, which has been painted, and has a kettle, and no couch with a paper sheet on it.
   *set conseq_n +1
-*if (s12 != "") and (conseq_n < 3)
+*if ((s07 = "resolved:posting") or (s07 = "resolved:stays")) and not(final_rel = "adrian") and (conseq_n < 3)
+  *comment CONSEQ_S07
+  Mercy House's review board has two members who aren't wardens, and one of them is Florian, who retired from the archive and immediately became more frightening. {@adrian_transfer|Adrian runs the joint warden station in Bracken Court, his own unit, earned.|Adrian's on the training floor, teaching trainees to say which is known and which is inferred.}{@mc_future = "warden"| I train there, on Tuesdays and Thursdays, as their first sensitive in eight years, on my own terms, written down.|}
+  *set conseq_n +1
+*if (s16 = "resolved:shared") and (conseq_n < 3)
+  *comment CONSEQ_S16
+  The Regent's still a home, with shared rules and no bought exceptions, and Lucien on the stage once a month with a gavel he still doesn't use. Milo's documentary about it premieres in the autumn. Everyone in it is in a dressing gown.
+  *set conseq_n +1
+*if ((s15 = "resolved:otis") or ((s15 = "resolved:silas") and vol_otis)) and (conseq_n < 3)
+  *comment CONSEQ_S15
+  Lyle's Bakery still opens at six. {@alive_silas|Silas runs the ovens. Otis sits by the door, and carried a stranger's weight for a night last March, and would do it again, and tells nobody.|Otis runs the ovens, slower than he used to, and keeps a chair.} The long table at the back is where everyone ends up, eventually, after everything.
+  *set conseq_n +1
+*if (s12 != "") and (fr_milo >= 1) and (conseq_n < 3)
   *comment CONSEQ_S12
   {@alive_felix|Felix's film is finished. Milo's documentary is nearly.|Milo finished his documentary, and dedicated it to Felix, at the start.} Between them they've filmed half the city's other people, with their permission, in their own words, and none of it's ever going to be on the news, and all of it's true.
   *set conseq_n +1
-*if (s02 != "") and (conseq_n < 3)
-  *comment CONSEQ_S02
-  Nolan's {@nolan_leaving|at Wexmoor, on the technical course, best in his year|still at the desk at Switchyard, and he turned Wexmoor down in the end, for reasons he says are his}.
-  *set conseq_n +1
-*if (s03 != "") and (conseq_n < 3)
-  *comment CONSEQ_S03
-  Ellis is {@ellis_leaving|on his placement, in another city, restoring someone else's ceilings, and home the first weekend of every month|at the workroom, and Chukwudi's handed him the gilding}. The error book has a new line in his handwriting: [i]Mistakes I have now made. Several. Worth it.[/i]
-  *set conseq_n +1
-*if (s04 != "") and (conseq_n < 3)
-  *comment CONSEQ_S04
-  Micah's {@micah_away|up north on the dam, qualified, and coming home for full moons|running his own jobs out of the Yard}. Ernesto says, at the long table, that here is what we'll do, and then, every time now, asks Micah what he thinks.
-  *set conseq_n +1
-*if (s05 != "") and (conseq_n < 3)
-  *comment CONSEQ_S05
-  Dominic sings. {@dominic_away|On the residency, to rooms that start at ten.|At the Lantern Rooms on Thursdays, to a full house.} His dad's in the third row every time.
-  *set conseq_n +1
-*if (s10 != "") and (conseq_n < 3)
+*if (s10 != "") and (fr_owen >= 2) and (conseq_n < 3)
   *comment CONSEQ_S10
   The night rota at the depot has two drivers on every late bus now, after the ballot. Owen says nobody's been called by name from under the city since. He says it like he's knocking on wood.
   *set conseq_n +1
+*if (s02 != "") and (st_nolan >= 3) and not(final_rel = "nolan") and (conseq_n < 3)
+  *comment CONSEQ_S02
+  Nolan's {@nolan_leaving|at Wexmoor, on the technical course, best in his year, and sends me recordings of every room he rigs|still at the desk at Switchyard, and he turned Wexmoor down in the end, for reasons he says are his}.
+  *set conseq_n +1
+*if (s03 != "") and (st_ellis >= 3) and not(final_rel = "ellis") and (conseq_n < 3)
+  *comment CONSEQ_S03
+  Ellis is {@ellis_leaving|on his placement, in another city, restoring someone else's ceilings, and home the first weekend of every month|at the workroom, and Chukwudi's handed him the gilding}. The error book has a new line in his handwriting: [i]Mistakes I have now made. Several. Worth it.[/i]
+  *set conseq_n +1
+*if (s04 != "") and (st_micah >= 3) and not(final_rel = "micah") and (conseq_n < 3)
+  *comment CONSEQ_S04
+  Micah's {@micah_away|up north on the dam, qualified, and coming home for full moons|running his own jobs out of the Yard}. Ernesto says, at the long table, that here is what we'll do, and then, every time now, asks Micah what he thinks.
+  *set conseq_n +1
+*if (s05 != "") and (st_dominic >= 3) and not(final_rel = "dominic") and (conseq_n < 3)
+  *comment CONSEQ_S05
+  Dominic sings. {@dominic_away|On the residency, to rooms that start at ten.|At the Lantern Rooms on Thursdays, to a full house.} His dad's in the third row every time.
+  *set conseq_n +1
+*comment home, if the year's been quieter than that
+*if (conseq_n < 2) and (s06 != "") and not(s06 = "resolved:moved")
+  *comment CONSEQ_S06 (home)
+  Switchyard lost its old building and kept its name. It's in the tram shed at Foundry Reach now, with the pigeons, and a plaque by the loading bay that says [i]The Last Set, 2026[/i], and nothing else. The crew know what it means.{@mc_future = "crew"| So do I. I'm on the loading bay four nights a week.|}
+  *set conseq_n +1
+*if (conseq_n < 2) and (s01 != "") and not(s01 = "resolved:kept")
+  *comment CONSEQ_S01 (home)
+  The print shop's still here, on shorter hours and stubbornness and a new press Martin bought with the old one. Avery & Son, Printers. There's a sign in the window that says [i]STILL HERE[/i].{@mc_future = "shop"| My name's on the rota, on paper.|}
+  *set conseq_n +1
+*comment the city, if nothing else was developed (plan-check guarantees at least two, so this is a safety net)
+{@conseq_n < 2|And the city goes on, the way it does: the buses, the bakery, the river. Everyone I carried a little of, and everyone who carried a little of me, having an ordinary Monday.|}
 *comment ---------------------------------------------------------------- CH24.FINAL.01
 *sid CH24.FINAL.01
 *date 2028-03-13 22:00

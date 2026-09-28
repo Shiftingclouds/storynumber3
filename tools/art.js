@@ -63,6 +63,28 @@ if (cmd === "turn") {
 } else if (cmd === "places") {
   const tiles = NB.places.ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/places", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
   save(path.join(ROOT, "docs/art", "places.png"), sheet(tiles, 3, 3), 1);
+} else if (cmd === "icon") {
+  // the app icon: a moon over the Iron Footbridge's truss, and the river under it. 32 × 32, drawn by hand.
+  function icon(n) {
+    const k = n / 32, c = P.canvas(n, n);
+    c.vgrad(0, 0, n, Math.round(20 * k), ["#0e0c24", "#1f1a4e", "#5e3f9e", "#b04a8a"]);
+    c.vgrad(0, Math.round(20 * k), n, n - Math.round(20 * k), ["#2a2262", "#1e2a62", "#0e0c24"]);
+    c.ellipse(Math.round(22 * k), Math.round(8 * k), Math.round(4 * k), Math.round(4 * k), "#f4ecd2");
+    // the deck, the truss above it, two brick piers
+    c.rect(0, Math.round(18 * k), n, Math.max(1, Math.round(2 * k)), "#3a2a6a");
+    c.hline(0, n - 1, Math.round(13 * k), "#3ce8e8");
+    for (let x = 0; x < 32; x += 4) { c.line(Math.round(x * k), Math.round(18 * k), Math.round((x + 4) * k), Math.round(13 * k), "#3ce8e8"); c.vline(Math.round(x * k), Math.round(13 * k), Math.round(18 * k), "#2a8a9a"); }
+    [[4, 9], [24, 29]].forEach(([a, b]) => c.rect(Math.round(a * k), Math.round(20 * k), Math.round((b - a) * k), Math.round(12 * k), "#a8403a"));
+    // lamps on the deck, and their reflections
+    [12, 16, 20].forEach((x) => { c.set(Math.round(x * k), Math.round(17 * k), "#ffcf80"); for (let y = 23; y < 31; y += 2) c.set(Math.round(x * k), Math.round(y * k), "#ffcf80"); });
+    // the green seam of the door in the pier
+    c.vline(Math.round(26 * k), Math.round(23 * k), Math.round(27 * k), "#7af07a");
+    return c;
+  }
+  const small = icon(32), big = icon(128);
+  save(path.join(ROOT, "favicon.png"), small, 1);
+  save(path.join(ROOT, "art", "icon-128.png"), big, 1);
+  save(path.join(ROOT, "docs/art/wip", "icon.png"), small, 8);
 } else if (cmd === "pilot") {
   const pilot = [["c01", "adrian"], ["c02", "micah"], ["c03", "ellis"]];
   const tiles = [];

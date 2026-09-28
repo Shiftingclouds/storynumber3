@@ -16,7 +16,7 @@ module.exports = [
     next: "CH24.REL.01"
   },
   {
-    id: "CH24.REL.01", date: "2028-03-13", time: "19:00", place: "P02", cast: ["MC"], kind: "common",
+    id: "CH24.REL.01", date: "2028-03-13", time: "19:00", place: "P02", cast: ["MC"], maybe: ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08"], kind: "common",
     purpose: "The relationship passage: one of forty authored scenes, eight men by together, distance, parted and friends, plus a single life. Quentin's only if he lived, and a grief passage if he didn't.",
     next: "CH24.CONSEQ.01"
   },

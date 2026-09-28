@@ -42,6 +42,18 @@ const text = {
         "Damian arrested. Armand exposed. Two funerals; Gideon at one, Otis at the other."]
 };
 
+// who may be seen in each ending's scenes, beyond the planned cast
+const MAYBE = {
+  "A.01": ["C08", "C07", "C51", "C52", "C49", "C57", "C58", "C18", "C22"], "A.02": ["C08"], "A.03": ["C18", "C01"],
+  "B.01": ["C37", "C03", "C25"], "B.02": ["C08"], "B.03": ["C16", "C03"],
+  "C.01": ["C37", "C03", "C08"], "C.02": [], "C.03": ["C18", "C01"],
+  "D.01": ["C44"], "D.02": [], "D.03": ["C44"],
+  "E.01": ["C49", "C57", "C58", "C06"], "E.02": ["C19", "C43"], "E.03": ["C18", "C01"],
+  "FQ.01": ["C07", "C08"], "FQ.02": ["C07", "C19"], "FQ.03": ["C18"],
+  "FS.01": ["C51", "C08", "C30"], "FS.02": ["C51", "C30", "C19"], "FS.03": ["C18"],
+  "FF.01": ["C52", "C03", "C08"], "FF.02": ["C52", "C19"], "FF.03": ["C18"]
+};
+
 const scenes = [
   {
     id: "CH22.OPEN.01", date: "2027-03-14", time: "09:00", place: "P02", cast: ["MC", "C10"], kind: "common",
@@ -55,10 +67,10 @@ for (const [k, t] of Object.entries(T)) {
     damian_fate: t.damian, armand_fate: t.armand, august_fate: t.august, e18: true, e18_src: "assembled" };
   scenes.push(
     { id: `CH22.${K}.01`, date: "2027-03-14", time: "14:00", place: k === "B" || k === "C" ? "P20" : k === "D" ? "P37" : k === "E" ? "P56" : "P01",
-      cast: ["MC"], kind: "branch", when: `ending = "${k}"`, set, purpose: text[k][0], next: `CH22.${K}.02` },
+      cast: ["MC"], maybe: MAYBE[K + ".01"], kind: "branch", when: `ending = "${k}"`, set, purpose: text[k][0], next: `CH22.${K}.02` },
     { id: `CH22.${K}.02`, date: "2027-03-17", time: "15:00", place: k === "E" || k.startsWith("F") ? "P30" : "P23",
-      cast: ["MC", "C49", "C57", "C58"], kind: "branch", when: `ending = "${k}"`, purpose: text[k][1], next: `CH22.${K}.03` },
-    { id: `CH22.${K}.03`, date: "2027-03-20", time: "11:00", place: k === "D" ? "P37" : "P01", cast: ["MC"], kind: "branch", when: `ending = "${k}"`,
+      cast: ["MC", "C49", "C57", "C58"], maybe: MAYBE[K + ".02"], kind: "branch", when: `ending = "${k}"`, purpose: text[k][1], next: `CH22.${K}.03` },
+    { id: `CH22.${K}.03`, date: "2027-03-20", time: "11:00", place: k === "D" ? "P37" : "P01", cast: ["MC"], maybe: MAYBE[K + ".03"], kind: "branch", when: `ending = "${k}"`,
       purpose: text[k][2],
       choices: t.disclosure.map((d, i) => ({ id: "abc"[i], text: {
         none: "Tell nobody outside the people who were there. The patients' privacy first.",

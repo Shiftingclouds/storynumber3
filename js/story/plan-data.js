@@ -348,6 +348,7 @@
   "plan_pair": false,
   "materials": 0,
   "volunteers": 0,
+  "conseq_n": 0,
   "vol_mercy": false,
   "vol_home": false,
   "vol_marches": false,

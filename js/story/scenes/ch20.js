@@ -32,6 +32,7 @@ Everyone's here. Chukwudi at the head of the bench, in his apron. Ellis beside h
 [i]The signal.[/i] Whatever we do at Pump Nine and whatever we do at Stillwater has to happen at the same moment. Not before. Cut a link out of time and a man dies at the other end.
 
 @chukwudi:attentive "Everything we have," says Chukwudi, "is on that board. Everything we don't have is in our heads. Let's be honest about both."
+*snapshot bridge
 
 We go through it. What's known, and what's hoped, the way Florian taught us. The rope between Quentin and Eamon; between Silas and Hugo; between Felix and Clive. Every one of them matched, every one of them measured. Damian's name, and his hand, and his date. The limit, forty-eight hours, written twice. The three men in warehouse seven, alive.
 

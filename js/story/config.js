@@ -103,8 +103,25 @@
     "together-ansel": { title: "Ansel", bg: "neutral_table" },
     "together-quentin": { title: "Quentin", bg: "double_shift" },
     "together-reuben": { title: "Reuben", bg: "mercy_house" },
-    bridge: { title: "The bridge we built", bg: "mercy_house" },
-    parting: { title: "Northline", bg: "northline_station" }
+    bridge: { title: "The bridge we built", bg: "okafor_restoration" },
+    "role-pump": { title: "Pump Nine, the night of the thirteenth", bg: "pump_nine" },
+    "role-docks": { title: "Stillwater, the night of the thirteenth", bg: "stillwater_docks" },
+    "role-crossing": { title: "The crossing chamber", bg: "iron_footbridge" },
+    "aftermath-all": { title: "Everyone", bg: "calder_general" },
+    "aftermath-donors": { title: "Eamon, Hugo, Clive", bg: "stillwater_docks" },
+    "aftermath-quentin": { title: "What we could save", bg: "rusk_funeral" },
+    "aftermath-silas": { title: "What we could save", bg: "rusk_funeral" },
+    "aftermath-felix": { title: "What we could save", bg: "rusk_funeral" },
+    parting: { title: "Northline", bg: "northline_station" },
+    "epilogue-adrian": { title: "Adrian, a year on", bg: "print_shop" },
+    "epilogue-micah": { title: "Micah, a year on", bg: "print_shop" },
+    "epilogue-ellis": { title: "Ellis, a year on", bg: "print_shop" },
+    "epilogue-dominic": { title: "Dominic, a year on", bg: "print_shop" },
+    "epilogue-nolan": { title: "Nolan, a year on", bg: "print_shop" },
+    "epilogue-ansel": { title: "Ansel, a year on", bg: "print_shop" },
+    "epilogue-quentin": { title: "Quentin, a year on", bg: "print_shop" },
+    "epilogue-reuben": { title: "Reuben, a year on", bg: "print_shop" },
+    "epilogue-single": { title: "The city, a year on", bg: "iron_footbridge" }
   };
 
   /* ---------------- chapter art ---------------- */
@@ -180,7 +197,7 @@
     eyebrow: "Calder · the end of summer",
     subtitle: "The Unquiet City",
     motto: "Everyone in this city is holding a thread. I'm the one who can feel them.",
-    sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch10", "ch11", "ch12", "ch13", "ch14", "ch15", "ch16", "ch17", "ch18", "ch19", "ch20", "ch21"],
+    sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch10", "ch11", "ch12", "ch13", "ch14", "ch15", "ch16", "ch17", "ch18", "ch19", "ch20", "ch21", "ch22", "ch23", "ch24"],
     startVars: PL.startVars,
     clamp: PL.clamp,
     adjustSet: adjustSet,

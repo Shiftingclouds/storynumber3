@@ -244,6 +244,7 @@ def("plan_interim", "bool", false, "Interim bridge validated");
 def("plan_pair", "bool", false, "Single-pair emergency bridge demonstrated");
 def("materials", "number", 0, "Required materials secured (0–3: anchor stones, ward thread, the old program's frame)");
 def("volunteers", "number", 0, "Informed adult volunteers committed (0–9)");
+def("conseq_n", "number", 0, "Epilogue: supporting consequences shown so far (CH24)");
 def("vol_mercy", "bool", false, "Wardens from Mercy House volunteered (Emmett and a trainee)");
 def("vol_home", "bool", false, "Latch Lane volunteered (Martin and Owen; Peter runs the rota)");
 def("vol_marches", "bool", false, "A miller's son from the Verre household volunteered");

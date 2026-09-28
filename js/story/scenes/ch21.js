@@ -62,6 +62,7 @@ The machinery hall is enormous. Iron columns, painted green once, going up into 
 @dominic:guarded Dominic takes the doors, because it's dark, and because he can see in it, and because he moves faster than anyone. He stands by the big double doors at the end of the hall with his collar up and his hands in his pockets, watching the dark as if it's a room he knows.
 
 And the ropes, to my eye, run out through the walls. Three of them, stretched thin as fishing line, out of three young men on three couches, through the brick, towards the river, towards the crossing, towards three beds in a warehouse in another country.
+*snapshot role-pump
 
 Somebody has to watch them.
 
@@ -197,6 +198,7 @@ Stillwater, half past midnight.
 The docks in the dark, the cranes, the black water. Warehouse seven, with its three bright locks. And at its water door, a covered boat, long and low, nosing at the jetty, ready to take them east, down the river, to whatever way across the ring keeps for itself.
 
 Through the high window, from the boat shed roof: the three beds, being readied for moving. Eamon, Hugo and Clive, grey and sedated, strapped for transport. Four men, and a boat.
+*snapshot role-docks
 
 And the release has to happen on the relay's signal. Not before. Cut a link out of time and a man dies at the other end.
 
@@ -249,6 +251,7 @@ Nolan's turned it into a control room. Relays taped to the brickwork in a row, e
 @nolan:tense And Nolan, on a stool, with headphones round his neck and the jack plug going over and over in his fingers.
 
 Two worlds, one clock. And I'm the clock.
+*snapshot role-crossing
 
 *choice
   *if st_nolan >= 3

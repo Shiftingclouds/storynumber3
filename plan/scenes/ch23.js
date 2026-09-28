@@ -20,7 +20,7 @@ module.exports = [
     next: "CH23.PATIENTS.01"
   },
   {
-    id: "CH23.PATIENTS.01", date: "2027-04-24", time: "11:30", place: "P09", cast: ["MC", "C30"], kind: "common",
+    id: "CH23.PATIENTS.01", date: "2027-04-24", time: "11:30", place: "P09", cast: ["MC", "C30"], maybe: ["C49", "C51"], kind: "common",
     purpose: "Lyle's Bakery, the long table. Where everyone is, six weeks on. If they lived, the patients are weaning off their bridges a notch a week, cold-handed and bad-tempered and alive. If they died, Otis keeps a chair. Eamon, Hugo and Clive are home, thin, angry at lost time and wages and being treated as a necessary cost, and entitled to every bit of it. Hugo got the depot job; they held it for him. Clive's students painted his studio door.",
     choices: [
       { id: "a", when: "alive_silas", text: "Help Silas with the morning bake. Otis is letting him run the ovens now.", type: "relational", set: { s15: "resolved:silas" } },
@@ -30,7 +30,7 @@ module.exports = [
     next: "CH23.ARCS.01"
   },
   {
-    id: "CH23.ARCS.01", date: "2027-04-24", time: "14:00", place: "P32", cast: ["MC"], kind: "common",
+    id: "CH23.ARCS.01", date: "2027-04-24", time: "14:00", place: "P32", cast: ["MC"], maybe: ["C10", "C29", "C05"], kind: "common",
     purpose: "Crescent Market, where half the city passes on a Saturday. News arrives the way it does, in pieces: Switchyard lost the lease and is moving to Foundry Reach's old tram shed, or kept it; the Regent's vote held; Mercy House has a new review board; the tenants at Winton Court won their consultation; the crossing succession was settled at the assembly. Each of these is somebody's whole life.",
     choices: [
       { id: "a", text: "Help Martin load the new press. He sold the old one and kept the shop.", type: "relational", set: { s01: "resolved:kept" } },
@@ -66,7 +66,8 @@ module.exports = [
     next: "CH23.MICAH.01"
   },
   {
-    id: "CH23.SHOWCASE.01", date: "2027-04-24", time: "19:30", place: "P46", cast: ["MC", "C15", "C53"], kind: "common",
+    id: "CH23.SHOWCASE.01", date: "2027-04-24", time: "19:30", place: "P46", cast: ["MC", "C15", "C53"], maybe: ["C04"], allowDay: true, kind: "common",
+    // Dominic comes in after sunset: the script moves the clock on (*date 20:40) before he appears
     purpose: "Benoît's spring showcase at the Southmere Recreation Centre: folding chairs, proud parents, the program saved for another year. If Dominic decided to sing, he sings, and Graham Bell in the third row watches his son without understanding everything and cries anyway. Everyone I love who is alive is in this room, or at the back, or outside because it's still light.",
     set: { s05: "resolved" },
     next: "CH23.DOMINIC.01"
@@ -120,7 +121,7 @@ module.exports = [
     next: "CH23.REL.02"
   },
   {
-    id: "CH23.REL.02", date: "2027-04-24", time: "22:45", place: "P06", cast: ["MC"], kind: "conditional", when: "(final_rel != \"single\") and (final_shape != \"grief\")",
+    id: "CH23.REL.02", date: "2027-04-24", time: "22:45", place: "P06", cast: ["MC"], maybe: ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08"], kind: "conditional", when: "(final_rel != \"single\") and (final_shape != \"grief\")",
     purpose: "Whatever we are, we say it out loud, the two of us, and we both get a say.",
     choices: [].concat(
       LEADS.map((l, i) => ({ id: "t" + i, when: `(final_rel = "${l}") and (st_${l} >= 4)`, text: `Together. Privately, and properly, and ours. (${NAMES[l]})`, type: "relational", set: { final_shape: "together", ["st_" + l]: 6 } })),

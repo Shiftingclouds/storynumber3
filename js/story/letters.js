@@ -20,6 +20,14 @@
         "<p>Please come alone. A car can be sent, if you would prefer. I suspect you will not.</p>",
       sign: "A.S."
     },
+    mum_04: {
+      kind: "letter",
+      head: "A letter on paper this time, in Mum's handwriting, left on my pillow · Saturday morning",
+      html: "<p>I don't need to know all of it. I need to know you're all right.</p>" +
+        "<p>Martin says you are. Martin also says you've been sleeping fourteen hours at a stretch and eating like a wolf and that there's a board on your bedroom wall with red string on it, which he says he hasn't looked at, which means he has.</p>" +
+        "<p>I'd like to hear it from you. Not today, if today's not the day. But from you.</p>",
+      sign: "Mum x<br><small>(I'm jet-lagged and I'm furious with everyone for not telling me things, and I love you, and the kettle's on.)</small>"
+    },
     mum_03: {
       kind: "email",
       head: "From: Joanne Marsh · Subject: I'm so sorry, read this sitting down · received with four others, Saturday 8:14am",

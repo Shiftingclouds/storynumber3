@@ -318,5 +318,5 @@ There's an email to write, too. Mum's seven are sitting there in my inbox, answe
 
 *journal [b]Chapter 2.[/b] {@ch02_report = "police"|I made a statement at Municipal Hall.|{@ch02_report = "venue"|I told Desmond, at the venue.|I told Nolan, on the Riverside Steps.}} {@echo_lane|In the lane I reached with the knack and caught an echo: cold hands, lilies, a calm voice counting down.|}
 *page_break
-*ending A
+*goto_scene ch03
 `);

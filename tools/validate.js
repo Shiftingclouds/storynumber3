@@ -297,6 +297,7 @@ function main() {
         if (L.kind !== "cmd") continue;
         const a = (L.args || "").trim();
         if (L.cmd === "meet") met.add(a);
+        if (L.cmd === "label") lastDate = "";
         if (L.cmd === "sid") {
           cur = plan.get(a);
           if (!cur) { errors.push(`${name}:${L.n}: *sid ${a} is not a planned scene`); continue; }

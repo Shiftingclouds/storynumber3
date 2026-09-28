@@ -103,7 +103,7 @@ module.exports = [
     next: "CH09.SCREEN.05"
   },
   {
-    id: "CH09.SCREEN.05", date: "2026-10-31", time: "11:00", place: "P20", cast: ["MC", "C37", "C03"], kind: "branch", when: "ch09_case = \"screen\"",
+    id: "CH09.SCREEN.05", date: "2026-10-31", time: "11:00", place: "P20", cast: ["MC", "C37", "C03", "C38"], kind: "branch", when: "ch09_case = \"screen\"",
     purpose: "Morning. Isaac has his shadow back and is annoyed he slept through the end. The family gets their screen, and the story of a great-great-grandmother who wasn't cruel after all. Chukwudi writes the night in the error book, including what nearly went wrong. Then, drying his hands, he says the three-part method they used last night is old: 'Mercy House tried something like it once, for people instead of objects. Seven years ago. They closed it.'",
     set: { screen_done: true, fr_chukwudi: "+1", program_hint: true },
     next: "CH09.HALLOWEEN.01"

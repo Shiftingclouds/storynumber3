@@ -345,11 +345,15 @@
 
   /** A spoken line: the speaker's portrait in the line's expression beside the paragraph. A run of lines from the same
    * speaker in the same expression shows the portrait once; a change of expression shows it again. */
+  /* A spoken line: the speaker's face beside it, in the expression the line was tagged with. The same face and
+   * expression straight after itself shows nothing new; back again after a line or two of mine, it shows small, so
+   * a conversation reads as a conversation. A new expression always gets the full portrait. */
   function spokenLine(html, who, mood, state) {
     var same = state.who === who && state.mood === mood;
-    state.who = who; state.mood = mood;
-    var row = el("div", { class: "nb-line" + (same ? " cont" : ""), "data-who": who, "data-mood": mood });
-    row.appendChild(same ? el("div", { class: "nb-line-face empty" }) : el("div", { class: "nb-line-face" }, [
+    var cont = same && !state.gap, again = same && state.gap > 0;
+    state.who = who; state.mood = mood; state.gap = 0;
+    var row = el("div", { class: "nb-line" + (cont ? " cont" : again ? " again" : ""), "data-who": who, "data-mood": mood });
+    row.appendChild(cont ? el("div", { class: "nb-line-face empty" }) : el("div", { class: "nb-line-face" + (again ? " mini" : "") }, [
       pixImg(NB.portraits.url(who, mood, variantOf(who)), NB.portraits.W, NB.portraits.H, "nb-portrait line", personName(who) + " (" + mood + ")"),
       el("span", { class: "nb-line-name", text: personShort(who) })
     ]));
@@ -359,12 +363,13 @@
 
   function renderBlocks(container, blocks, retold) {
     var usedRetold = false;
-    var speaking = { who: null, mood: null };
+    var speaking = { who: null, mood: null, gap: 0 };
     var pendingPortrait = null;
     var texts = null;
     function flushTexts() { if (texts) { container.appendChild(phone(texts)); texts = null; } }
     blocks.forEach(function (b) {
       if (b.k !== "text") flushTexts();
+      if (b.k !== "p" && b.k !== "text" && b.k !== "portrait" && b.k !== "effect") { speaking.who = null; speaking.mood = null; speaking.gap = 0; }
       if (b.k === "chapter") container.appendChild(chapterCard(b));
       else if (b.k === "meet") container.appendChild(meetCard(b));
       else if (b.k === "portrait") pendingPortrait = b;
@@ -394,7 +399,7 @@
           ]));
           pendingPortrait = null;
         } else {
-          speaking.who = null; speaking.mood = null;
+          if (++speaking.gap > 3) { speaking.who = null; speaking.mood = null; }
           container.appendChild(el("p", { html: b.html }));
         }
       } else if (b.k === "h") { if (!retold) container.appendChild(el("h3", { html: b.html })); }

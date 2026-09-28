@@ -3,6 +3,13 @@
   "use strict";
   var NB = root.NB || (root.NB = {});
   NB.LETTERS = {
+    ellis_card: {
+      kind: "card",
+      head: "A postcard: an ink drawing of the arts buildings on University Hill · through the letterbox, Wednesday",
+      html: "<p>Open studios, Friday, from seven. Plastic wine, loud opinions, a lecturer who will tell you what the city means.</p>" +
+        "<p>You might like it. You might hate it. Either would be interesting to watch.</p>",
+      sign: "E.O.<br><small>(The drawing is mine. The perspective on the portico is wrong on purpose. Mostly.)</small>"
+    },
     mum_02: {
       kind: "email",
       head: "From: Joanne Marsh · Subject: polar bear (not a joke) · received with five others, Monday 7:02am",

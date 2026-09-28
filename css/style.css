@@ -438,6 +438,8 @@ a { color: var(--accent); }
 .nb-line-face .nb-portrait.line { width: 128px; height: 160px; }
 .nb-line-face.empty { min-height: 1px; }
 .nb-line.cont { margin-top: -.3em; }
+.nb-line-face.mini .nb-portrait.line { width: 48px; height: 60px; }
+.nb-line-face.mini .nb-line-name { font-size: .6rem; }
 .nb-line-name { font-family: var(--font-pixel); font-size: .68rem; letter-spacing: .06em; color: var(--accent); text-transform: uppercase; }
 @media (max-width: 560px) {
   .nb-line { grid-template-columns: 64px 1fr; gap: .7rem; }

@@ -84,6 +84,9 @@
   var snapshots = {
     lane: { title: "The rear lane", bg: "switchyard_lane" },
     cafe: { title: "Double Shift", bg: "double_shift" },
+    "evening-nolan": { title: "Nolan's twentieth", bg: "northline_station" },
+    "evening-micah": { title: "The Serrano table", bg: "serrano_yard" },
+    "evening-ellis": { title: "Open studios", bg: "university" },
     exhibition: { title: "The winter opening", bg: "university" },
     crossing: { title: "Bracken Court", bg: "bracken_court" },
     docks: { title: "Stillwater", bg: "stillwater_docks" },
@@ -164,7 +167,7 @@
     eyebrow: "Calder · the end of summer",
     subtitle: "The Unquiet City",
     motto: "Everyone in this city is holding a thread. I'm the one who can feel them.",
-    sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06"],
+    sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07"],
     startVars: PL.startVars,
     clamp: PL.clamp,
     adjustSet: adjustSet,

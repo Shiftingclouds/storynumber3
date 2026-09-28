@@ -35,7 +35,7 @@ module.exports = [
     next: "CH07.NOLAN.02"
   },
   {
-    id: "CH07.NOLAN.02", date: "2026-10-02", time: "23:00", place: "P28", cast: ["MC", "C05", "C04", "C35"], kind: "branch", when: "ch07_evening = \"nolan\"",
+    id: "CH07.NOLAN.02", date: "2026-10-02", time: "23:00", place: "P28", cast: ["MC", "C05", "C04", "C35", "C12", "C11", "C57"], kind: "branch", when: "ch07_evening = \"nolan\"",
     purpose: "Dominic arrives late, after sunset of course, because Milo asked him to. Someone hands him a guitar. He hasn't played for anyone in a year. The room goes quiet in the good way.",
     choices: [
       { id: "a", when: "st_dominic >= 2", text: "Sing the harmony. Badly. Make it easy for him to keep going.", type: "relational", set: { b_dominic_music: true, st_dominic: 3, s05: "intro" } },

@@ -1,0 +1,46 @@
+{
+  "name": "calder",
+  "productName": "Calder",
+  "version": "1.0.0",
+  "description": "Calder: The Unquiet City, an interactive novel",
+  "author": "shiftingclouds",
+  "main": "main.js",
+  "scripts": {
+    "sync": "node ../tools/build.js && node -e \"require('fs').copyFileSync('../dist/calder.html','app/calder.html')\"",
+    "start": "npm run sync && electron .",
+    "dist:win": "npm run sync && electron-builder --win portable --x64"
+  },
+  "build": {
+    "appId": "com.shiftingclouds.calder",
+    "productName": "Calder",
+    "files": [
+      "main.js",
+      "app/**",
+      "build/icon.png"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "portable",
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "Calder.exe"
+    },
+    "afterPack": "./afterPack.js",
+    "compression": "maximum",
+    "electronLanguages": [
+      "en-GB",
+      "en-US"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3",
+    "pe-library": "^2.0.1",
+    "resedit": "^3.1.0"
+  },
+  "repository": "github:Shiftingclouds/storynumber3"
+}

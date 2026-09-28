@@ -10,6 +10,10 @@ Open `index.html` in a browser, or build a single self-contained file:
 node tools/build.js        # dist/calder.html (double-click to play, works offline)
 ```
 
+## Windows app
+
+`downloads/Calder.exe` is a portable build: download it and double-click, no install. It's unsigned, so Windows SmartScreen warns the first time: click **More info → Run anyway**. Saves are kept by the app itself, separately from the browser version. To rebuild it, see `desktop/README.md`.
+
 ## Check
 
 ```bash

@@ -214,7 +214,7 @@ He sits down on the bus-stop bench as if his legs have gone. After a moment, I s
 
 "Who was he? The nice man?"
 
-"Don't know. Didn't give a name. They sent a car to bring me home." He takes his keys out of his hoodie pocket and turns them over and holds them out to me, the little tin charm in his palm. It's scorched down one side, black and bubbled, like it's been held in a flame. "My brother gave me this. Years ago. Said keep it on you. I thought it was a joke."
+"Don't know. Didn't give a name. They sent a car to bring me home." He takes his keys out of his hoodie pocket and turns them over and holds them out to me, the little tin charm in his palm. It's scorched down one side, black and bubbled, like it's been held in a flame. "I've only had it a few weeks. I thought it was tat. A freebie." He turns it with his thumb. "Funny sort of freebie."
 
 "Can I take a photo of it?"
 

@@ -669,6 +669,160 @@
   "quentin",
   "reuben"
  ],
+ "beats": {
+  "adrian": [
+   {
+    "flag": "b_adrian_disagree",
+    "stage": 2
+   },
+   {
+    "flag": "b_adrian_procedure",
+    "stage": 3
+   },
+   {
+    "flag": "b_adrian_offduty",
+    "stage": 4
+   },
+   {
+    "flag": "b_adrian_report",
+    "stage": 4
+   },
+   {
+    "flag": "b_adrian_want",
+    "stage": 5
+   }
+  ],
+  "micah": [
+   {
+    "flag": "b_micah_distro",
+    "stage": 1
+   },
+   {
+    "flag": "b_micah_seat",
+    "stage": 2
+   },
+   {
+    "flag": "b_micah_wolf",
+    "stage": 3
+   },
+   {
+    "flag": "b_micah_boundary",
+    "stage": 4
+   },
+   {
+    "flag": "b_micah_want",
+    "stage": 5
+   }
+  ],
+  "ellis": [
+   {
+    "flag": "b_ellis_meet",
+    "stage": 2
+   },
+   {
+    "flag": "b_ellis_offstage",
+    "stage": 3
+   },
+   {
+    "flag": "b_ellis_danger",
+    "stage": 4
+   },
+   {
+    "flag": "b_ellis_badday",
+    "stage": 5
+   }
+  ],
+  "dominic": [
+   {
+    "flag": "b_dominic_normal",
+    "stage": 2
+   },
+   {
+    "flag": "b_dominic_music",
+    "stage": 3
+   },
+   {
+    "flag": "b_dominic_dawn",
+    "stage": 4
+   },
+   {
+    "flag": "b_dominic_ask",
+    "stage": 5
+   }
+  ],
+  "nolan": [
+   {
+    "flag": "b_nolan_kept",
+    "stage": 3
+   },
+   {
+    "flag": "b_nolan_birthday",
+    "stage": 4
+   },
+   {
+    "flag": "b_nolan_work",
+    "stage": 4
+   },
+   {
+    "flag": "b_nolan_talk",
+    "stage": 5
+   }
+  ],
+  "ansel": [
+   {
+    "flag": "b_ansel_help",
+    "stage": 2
+   },
+   {
+    "flag": "b_ansel_pretext",
+    "stage": 3
+   },
+   {
+    "flag": "b_ansel_confidence",
+    "stage": 4
+   },
+   {
+    "flag": "b_ansel_nopretext",
+    "stage": 5
+   }
+  ],
+  "quentin": [
+   {
+    "flag": "b_quentin_consent",
+    "stage": 3
+   },
+   {
+    "flag": "b_quentin_acts",
+    "stage": 4
+   },
+   {
+    "flag": "b_quentin_nothing",
+    "stage": 4
+   },
+   {
+    "flag": "b_quentin_initiates",
+    "stage": 5
+   }
+  ],
+  "reuben": [
+   {
+    "flag": "b_reuben_explain",
+    "stage": 3
+   },
+   {
+    "flag": "b_reuben_damian",
+    "stage": 4
+   },
+   {
+    "flag": "b_reuben_needs",
+    "stage": 4
+   },
+   {
+    "flag": "b_reuben_stay",
+    "stage": 5
+   }
+  ]
+ },
  "people": {
   "mc": {
    "cid": "MC",

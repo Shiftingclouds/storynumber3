@@ -38,11 +38,13 @@ for (const [k, d] of Object.entries(vars)) {
 // route beats (plan/routes.js) are flags too
 const { routes } = P("routes.js");
 for (const r of routes) for (const b of r.beats) if (!(b.flag in startVars)) startVars[b.flag] = false;
+// ...and they set the ceiling a relationship stage can climb to by small steps (see config.js adjustSet)
+const beats = Object.fromEntries(routes.map((r) => [r.lead, r.beats.map((b) => ({ flag: b.flag, stage: b.stage }))]));
 
 const views = fs.readdirSync(path.join(ROOT, "art/places")).filter((f) => f.endsWith(".png")).map((f) => f.replace(/\.png$/, "").replace(/-/g, "_"));
 
 const data = {
-  startVars, clamp, leads: LEADS, people,
+  startVars, clamp, leads: LEADS, beats, people,
   places: Object.fromEntries(places.map((p) => [p.id, { name: p.name, district: districts[p.district] }])),
   views,
   evidence: Object.fromEntries(evidence.map((e) => [e.id, { title: e.name, text: e.establishes, essential: e.essential }])),

@@ -193,10 +193,26 @@ function clampFor(k) {
   if (k === "enemy_aware") return [0, 3];
   return null;
 }
+// Stage rule (mirrors js/story/config.js adjustSet): a +N step can't lift st_<lead> past the highest stage his earned
+// beats allow (never less than 2, never more than 5); a direct set only ever raises.
+const beatsOf = {};
+if (routes) for (const r of routes.routes) beatsOf[r.lead] = r.beats;
+function stageCeiling(lead, st) {
+  let c = 2;
+  for (const b of beatsOf[lead] || []) if (st[b.flag] && b.stage > c) c = b.stage;
+  return Math.min(c, 5);
+}
 function apply(st, set) {
   for (const [k, v] of Object.entries(set || {})) {
-    if (typeof v === "string" && /^[+-]\d+$/.test(v) && (!vars[k] || vars[k].type === "number")) st[k] = (Number(st[k]) || 0) + Number(v);
+    const cur = Number(st[k]) || 0;
+    const lead = (/^st_(\w+)$/.exec(k) || [])[1];
+    const rel = typeof v === "string" && /^[+-]\d+$/.test(v) && (!vars[k] || vars[k].type === "number");
+    if (rel) st[k] = cur + Number(v);
     else st[k] = v;
+    if (lead && beatsOf[lead] && typeof st[k] === "number") {
+      if (!rel) st[k] = Math.max(cur, st[k]);
+      else if (st[k] > cur) st[k] = Math.max(cur, Math.min(st[k], stageCeiling(lead, st)));
+    }
     const cl = clampFor(k);
     if (cl) st[k] = Math.max(cl[0], Math.min(cl[1], st[k]));
   }
@@ -288,9 +304,14 @@ function walkFocused(lead, seed) {
   const st = freshState();
   let s = start, steps = 0;
   const L = lead.toLowerCase();
+  const cid = routes ? (routes.routes.find((r) => r.lead === L) || {}).id : null;
   const touches = (c) => {
     const keys = Object.keys(c.set || {}).join(" ") + " " + Object.values(c.set || {}).join(" ") + " " + (c.to || "");
-    return keys.toLowerCase().includes(L) ? 1 : 0;
+    if (keys.toLowerCase().includes(L)) return 1;
+    if (c.when && new RegExp("\\b(st|final_rel|" + L + ")\\b.*" + L).test(c.when)) return 1;
+    // a structural choice that leads to a scene he's in counts too
+    const t = c.to && byId.get(c.to);
+    return t && cid && (t.cast || []).includes(cid) ? 1 : 0;
   };
   while (s && steps++ < 2000) {
     if (s.when && !test(st, s.when)) { s = byId.get(s.next) || null; continue; }

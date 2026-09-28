@@ -744,6 +744,7 @@
     } else {
       val = this.evalExpr(expr);
     }
+    if (this.config.adjustSet) val = this.config.adjustSet(name, this.get(name), val, /^%?[+\-]/.test(expr), this.state.vars);
     this.put(name, val);
   };
 

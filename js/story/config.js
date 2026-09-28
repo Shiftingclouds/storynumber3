@@ -62,6 +62,22 @@
 
   var STAGES = ["Not met", "Met", "Friendly", "Friends", "Close", "Something more", "Together"];
 
+  /* Stages climb by beats (plan/routes.js). A small step (+1) can't lift a man past the highest stage his route
+   * beats have earned so far (never less than Friendly), so warmth on one path can't skip the story another path
+   * needs. A beat's direct set (*set st_x 4) only ever raises. Something more and Together are only ever set directly. */
+  function stageCeiling(lead, v) {
+    var c = 2;
+    (PL.beats[lead] || []).forEach(function (b) { if (v[b.flag] && b.stage > c) c = b.stage; });
+    return Math.min(c, 5);
+  }
+  function adjustSet(name, cur, val, relative, v) {
+    var m = /^st_(\w+)$/.exec(name);
+    if (!m || !PL.beats[m[1]] || typeof val !== "number" || typeof cur !== "number") return val;
+    if (!relative) return Math.max(cur, val);
+    if (val <= cur) return val;
+    return Math.max(cur, Math.min(val, stageCeiling(m[1], v)));
+  }
+
   /* ---------------- letters & snapshots (filled in as chapters are written) ---------------- */
 
   var letters = NB.LETTERS || {};
@@ -151,6 +167,8 @@
     sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06"],
     startVars: PL.startVars,
     clamp: PL.clamp,
+    adjustSet: adjustSet,
+    stageCeiling: stageCeiling,
     opposed: {},
     statNames: statNames,
     hints: {},

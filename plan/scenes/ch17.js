@@ -43,7 +43,8 @@ function route(lead, id, cast, place, dates, text) {
     { id: `CH17.${L}.02`, date: dates[0], time: dates[2], place, cast: ["MC", id], kind: "route", when: ask,
       purpose: text.answer,
       choices: [
-        { id: "a", when: `(st_${lead} >= 5) and (hurt_${lead} < 2)`, text: text.together, type: "relational", set: { ["st_" + lead]: 6, ["out_" + lead]: true } },
+        // (a) only for men who could already have reached recognition before CH17; for the others it comes here, in (b)
+        ...(text.lateRecognition ? [] : [{ id: "a", when: `(st_${lead} >= 5) and (hurt_${lead} < 2)`, text: text.together, type: "relational", set: { ["st_" + lead]: 6, ["out_" + lead]: true } }]),
         { id: "b", when: `(st_${lead} = 4) and (${text.recog}) and (hurt_${lead} < 2)`, text: text.recognise, type: "relational", set: Object.assign({ ["st_" + lead]: 5, ["out_" + lead]: true }, text.recogSet) },
         { id: "c", text: text.friends, type: "relational", set: { ["friends_" + "ch17"]: true } }
       ],
@@ -103,14 +104,14 @@ const routes = [].concat(
     together: "He doesn't need one.", recog: "b_ansel_confidence", recognise: "Tell him he never needed a reason to come to my door.", recogSet: { b_ansel_nopretext: true },
     friends: "Tell him he's the best friend I've made this year, and watch him be moved and formal about it.",
     after: "Morning. He goes back through the crossing with his own intentions, for once, and a paper bag of Calder pastries he claims to despise." }),
-  route("quentin", "C07", [], "P43", ["2027-01-24", "18:00", "22:30", "2027-01-25", "09:30"], {
+  route("quentin", "C07", [], "P43", ["2027-01-24", "18:00", "22:30", "2027-01-25", "09:30"], { lateRecognition: true,
     ask: "Quentin's room in Willow Court. I don't ask for anything. I ask what he wants done with his own life in all this, and I mean it, and I wait.",
     tellBoth: "Tell him everything about me first, so it's even.", tellGift: "Tell him what I see in him, the rope, all of it.", askOnly: "Just ask, and wait.",
     answer: "He tells me what he wants from the rescue: to be free of Eamon's life, whatever it costs him, and to decide the rest himself. And then, because nothing needs investigating, he decides something else.",
     together: "Let him decide, and say yes.", recog: "b_quentin_acts and b_quentin_nothing", recognise: "He reaches first. I meet him.", recogSet: { b_quentin_initiates: true },
     friends: "Tell him I'm his friend, whatever happens in March. He holds me to it.",
     after: "Morning. He's grey and cold and he laughs at something, and I'd do anything to keep hearing that." }),
-  route("reuben", "C08", [], "P01", ["2027-01-24", "21:00", "23:59", "2027-01-25", "07:30"], {
+  route("reuben", "C08", [], "P01", ["2027-01-24", "21:00", "23:59", "2027-01-25", "07:30"], { lateRecognition: true,
     ask: "Mercy House infirmary after lights out. I ask Reuben to lead the medical side of a rescue against the man who taught him everything. And then I ask him to let someone take care of him while he does it.",
     tellBoth: "Tell him everything, and that I'm asking as more than a colleague.", tellGift: "Tell him what the knack says about the links. He'll need it.", askOnly: "Just ask.",
     answer: "He says yes to the rescue before I've finished. The second question takes him much longer, and when he answers it, it isn't as a medic.",

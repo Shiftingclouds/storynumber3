@@ -345,7 +345,7 @@
 
   /* ---------------- views ---------------- */
 
-  var VIEWS = ["title", "story", "stats", "journal", "saves", "settings", "gallery", "map", "about", "menu"];
+  var VIEWS = ["title", "story", "stats", "journal", "saves", "settings", "gallery", "map", "about", "menu", "sandbox"];
 
   function show(name) {
     var previousView = ui.view;
@@ -357,7 +357,7 @@
     if ($("nb-focus-exit")) $("nb-focus-exit").hidden = !ui.settings.focusMode || name !== "story";
     VIEWS.forEach(function (v) { $("nb-view-" + v).hidden = v !== name; });
     var game = inGame();
-    $("nb-bar-game").hidden = name === "title";
+    $("nb-bar-game").hidden = name === "title" || name === "sandbox";
     ["stats", "journal", "saves", "menu"].forEach(function (b) {
       var btn = $("nb-btn-" + b);
       btn.setAttribute("aria-pressed", name === b ? "true" : "false");
@@ -373,6 +373,7 @@
     if (name === "map") renderMap();
     if (name === "menu") renderMenu();
     if (name === "about") renderAbout();
+    if (name === "sandbox") renderSandbox();
     updateHUD();
     applyMood();
     if (root.scrollTo) root.scrollTo(0, name === "story" ? (ui.scrollPositions.story || 0) : 0);
@@ -988,6 +989,7 @@
     menu.appendChild(el("button", { class: "nb-btn" + (live ? "" : " primary"), text: "Begin",
       onclick: function () { if (live) confirmBox.hidden = false; else newGame(false); } }));
     menu.appendChild(confirmBox);
+    menu.appendChild(el("button", { class: "nb-btn sandbox", text: "Sandbox ✦", title: "The same city, no written choices: type what you do", onclick: function () { show("sandbox"); } }));
     if (ui.meta.finished > 0) {
       menu.appendChild(el("button", { class: "nb-btn ngplus", text: "New Game+ ✦", title: "Begin again, remembering", onclick: function () { newGame(true); } }));
     }
@@ -1631,24 +1633,7 @@
         });
         panel.appendChild(setting("Voice", null, voices));
       }
-      var backendOpts = [];
-      if (ui.backends.claude) backendOpts.push(["claude", "Claude in this app"]);
-      if (!ui.inArtifact) backendOpts.push(["api", "My Anthropic API key"]);
-      var backend = s.backend;
-      if (!ui.backends.claude && backend === "claude") backend = "api";
-      if (ui.inArtifact && backend === "api") backend = "claude";
-      if (backendOpts.length) panel.appendChild(setting("Connection", null, seg("Connection", backendOpts, backend, function (x) { set("backend", x); })));
-      if (backend === "claude" && ui.backends.claude) {
-        panel.appendChild(setting("Pace", "Quick answers in a second or two; Rich thinks first.", seg("Pace", [["quick", "Quick"], ["default", "Rich"]], s.tier, function (x) { set("tier", x); })));
-      } else if (!ui.inArtifact) {
-        var key = el("input", { type: "password", id: "nb-apikey", placeholder: "sk-ant-…", autocomplete: "off", value: S.read("apikey", "") });
-        key.addEventListener("change", function () { var val = key.value.trim(); if (val) S.write("apikey", val); else S.remove("apikey"); toast("Saved", val ? "API key stored in this browser only." : "API key removed."); });
-        panel.appendChild(setting("API key", "Stored only in this browser.", key));
-        var models = el("select", { id: "nb-model", onchange: function (e) { set("model", e.target.value); } });
-        NB.narrator.models.forEach(function (m) { models.appendChild(el("option", { value: m.id, selected: m.id === s.model, text: m.label })); });
-        panel.appendChild(setting("Model", null, models));
-        panel.appendChild(el("div", { class: "nb-note-box", text: "Requests go straight from this browser to Anthropic, billed to your key. If Claude can't be reached, the written text is used." }));
-      }
+      connectionControls(panel, s, set);
     }
 
     panel.appendChild(el("h3", { text: "Your records" }));
@@ -1665,6 +1650,200 @@
     panel.appendChild(el("div", { class: "nb-actions left" }, [el("button", { class: "nb-btn", text: "Erase all records…", onclick: function () { confirmWipe.hidden = false; } })]));
     panel.appendChild(confirmWipe);
     v.appendChild(panel);
+  }
+
+  /* ---------------- Claude connection (shared by Settings and Sandbox) ---------------- */
+
+  function connectionBackend() {
+    var backend = ui.settings.backend;
+    if (!ui.backends.claude && backend === "claude") backend = "api";
+    if (ui.inArtifact && backend === "api") backend = "claude";
+    return backend;
+  }
+  function claudeSettings() {
+    return { backend: connectionBackend(), tier: ui.settings.tier, model: ui.settings.model, apiKey: S.read("apikey", "") };
+  }
+  function claudeReady() {
+    var b = connectionBackend();
+    return b === "claude" ? !!ui.backends.claude : !!S.read("apikey", "");
+  }
+  function connectionControls(panel, s, set) {
+    var backendOpts = [];
+    if (ui.backends.claude) backendOpts.push(["claude", "Claude in this app"]);
+    if (!ui.inArtifact) backendOpts.push(["api", "My Anthropic API key"]);
+    var backend = s.backend;
+    if (!ui.backends.claude && backend === "claude") backend = "api";
+    if (ui.inArtifact && backend === "api") backend = "claude";
+    if (backendOpts.length) panel.appendChild(setting("Connection", null, seg("Connection", backendOpts, backend, function (x) { set("backend", x); })));
+    if (backend === "claude" && ui.backends.claude) {
+      panel.appendChild(setting("Pace", "Quick answers in a second or two; Rich thinks first.", seg("Pace", [["quick", "Quick"], ["default", "Rich"]], s.tier, function (x) { set("tier", x); })));
+    } else if (!ui.inArtifact) {
+      var key = el("input", { type: "password", id: "nb-apikey", placeholder: "sk-ant-…", autocomplete: "off", value: S.read("apikey", "") });
+      key.addEventListener("change", function () { var val = key.value.trim(); if (val) S.write("apikey", val); else S.remove("apikey"); toast("Saved", val ? "API key stored in this browser only." : "API key removed."); });
+      panel.appendChild(setting("API key", "Stored only in this browser.", key));
+      var models = el("select", { id: "nb-model", onchange: function (e) { set("model", e.target.value); } });
+      NB.narrator.models.forEach(function (m) { models.appendChild(el("option", { value: m.id, selected: m.id === s.model, text: m.label })); });
+      panel.appendChild(setting("Model", null, models));
+      panel.appendChild(el("div", { class: "nb-note-box", text: "Requests go straight from this browser to Anthropic, billed to your key. If Claude can't be reached, the written text is used." }));
+    }
+  }
+
+  /* ---------------- Sandbox mode ---------------- */
+
+  function sandboxSave(st) { ui.sb.state = st; S.write("sandbox", st); }
+  function sandboxLoad() { var st = S.read("sandbox", null); return st && st.v === 1 ? st : null; }
+
+  function renderSandbox() {
+    var v = $("nb-view-sandbox");
+    clear(v);
+    ui.sb = ui.sb || {};
+    if (ui.sb.playing && ui.sb.state) return renderSandboxPlay(v);
+    var saved = sandboxLoad();
+    var auto = S.read("auto", null);
+    var story = auto && auto.state && auto.state.vars;
+    var panel = el("div", { class: "nb-panel nb-sb-intro" });
+    panel.appendChild(backButton());
+    panel.appendChild(el("p", { class: "eyebrow", text: "The fourth way to play" }));
+    panel.appendChild(el("h2", { text: "Sandbox" }));
+    panel.appendChild(el("p", { class: "lede", text: "The same city, the same people, the same night in the lane, and no written choices. Type what you do or say, and Claude plays the world: everyone in it has their own plans, and the story's events keep trying to happen unless you change them. Go anywhere. Talk to anyone. Portraits and places appear as you meet them." }));
+    var set = function (k, val) { ui.settings[k] = val; saveSettings(); applySettings(); renderSandbox(); };
+    panel.appendChild(el("h3", { text: "Connect Claude" }));
+    connectionControls(panel, ui.settings, set);
+    var ready = claudeReady();
+    if (!ready) panel.appendChild(el("div", { class: "nb-note-box", text: connectionBackend() === "claude" ? "Claude in this app isn't available here. Add an API key instead." : "Sandbox needs Claude: add your Anthropic API key above. It stays in this browser. Sandbox needs an internet connection." }));
+    panel.appendChild(el("h3", { text: "Begin" }));
+    var name = el("input", { type: "text", id: "nb-sb-name", maxlength: "24", value: (story && story.name) || "Theo", "aria-label": "Your first name" });
+    panel.appendChild(setting("Your first name", "Used when you start from the first night.", name));
+    var actions = el("div", { class: "nb-actions left nb-sb-starts" });
+    if (saved) actions.appendChild(el("button", { class: "nb-btn primary", text: "Continue my sandbox", disabled: !ready, onclick: function () { ui.sb.state = saved; ui.sb.playing = true; renderSandbox(); } }));
+    actions.appendChild(el("button", { class: "nb-btn" + (saved ? "" : " primary"), text: "From the first night", disabled: !ready, onclick: function () {
+      startSandbox(NB.sandbox.newState({ name: name.value.trim() || "Theo", look_skin: story ? story.look_skin || 0 : 0 }));
+    } }));
+    if (story) actions.appendChild(el("button", { class: "nb-btn", text: "From where my story is", disabled: !ready, onclick: function () { startSandbox(sandboxFromStory(auto.state)); } }));
+    panel.appendChild(actions);
+    if (saved) panel.appendChild(el("p", { class: "nb-sb-small", text: "Starting again replaces the sandbox you have (" + saved.turns.length / 2 + " turns). Your story saves are separate and never touched." }));
+    panel.appendChild(el("div", { class: "nb-note-box", text: "Each turn is one request to Claude. With your own key it's billed to you: roughly a few cents a turn with Opus, less with Sonnet or Haiku." }));
+    v.appendChild(panel);
+  }
+
+  function sandboxFromStory(state) {
+    var vars = state.vars || {}, met = {}, bonds = {};
+    Object.keys(state.met || {}).forEach(function (id) { if (state.met[id] && NB.sandbox.personById(id)) met[id] = true; });
+    Object.keys(vars).forEach(function (k) {
+      var m = /^(st|fr)_(\w+)$/.exec(k);
+      if (m && vars[k] && NB.sandbox.personById(m[2])) bonds[m[2]] = vars[k];
+    });
+    var notes = (state.journal || []).slice(-12).map(function (h) { return NB.text.toPlain(h).slice(0, 240); });
+    return NB.sandbox.newState({ name: vars.name || "Theo", look_skin: vars.look_skin || 0,
+      date: state.date ? state.date + " " + (state.time || "20:00") : undefined,
+      place: state.place || null, met: met, bonds: bonds, notes: notes, start: "story" });
+  }
+
+  function startSandbox(st) {
+    ui.sb.state = st; ui.sb.playing = true; ui.sb.log = [];
+    renderSandbox();
+    sandboxTurn(NB.sandbox.opening(st), true);
+  }
+
+  function renderSandboxPlay(v) {
+    var st = ui.sb.state;
+    var log = el("article", { class: "nb-story nb-sb-log", id: "nb-sb-log", tabindex: "-1", "aria-label": "Sandbox story", "aria-live": "polite" });
+    var pending = el("div", { class: "nb-sb-pending", id: "nb-sb-pending", hidden: true });
+    var ta = el("textarea", { id: "nb-sb-input", rows: "3", maxlength: "1200", placeholder: "What do you do? (\"I go over to the sound desk and ask Nolan what's wrong\")", "aria-label": "What you do or say" });
+    var send = el("button", { class: "nb-btn primary", type: "submit", id: "nb-sb-send" }, [el("span", { text: "Go" }), mark("arrow")]);
+    var form = el("form", { class: "nb-sb-form", id: "nb-sb-form" }, [ta, el("div", { class: "nb-sb-row" }, [
+      el("span", { class: "nb-sb-hint", text: "Enter to go · Shift+Enter for a new line" }),
+      el("button", { class: "nb-btn", type: "button", text: "Undo last turn", onclick: sandboxUndo, disabled: st.turns.length < 4 }),
+      el("button", { class: "nb-btn", type: "button", text: "Leave", onclick: function () { ui.sb.playing = false; show("title"); } }),
+      send
+    ])]);
+    form.addEventListener("submit", function (e) { e.preventDefault(); var t = ta.value.trim(); if (!t || ui.sb.busy) return; ta.value = ""; sandboxTurn(t); });
+    ta.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
+    var side = el("aside", { class: "nb-reading-rail nb-sb-rail", "aria-label": "Sandbox" }, sandboxRail(st));
+    v.appendChild(el("div", { class: "nb-reading-layout" }, [side, el("div", { class: "nb-reading-body" }, [log, pending, form])]));
+    renderSandboxLog(log, NB.sandbox.replay(st));
+    requestAnimationFrame(function () { root.scrollTo(0, doc.documentElement.scrollHeight); if (!ui.sb.busy) ta.focus({ preventScroll: true }); });
+  }
+
+  function sandboxRail(st) {
+    var pl = NB.sandbox.placeById(st.place);
+    var met = Object.keys(st.met);
+    return [
+      el("div", { class: "nb-rail-eyebrow", text: "Sandbox" }),
+      el("h2", { class: "nb-rail-title", text: pl ? pl.name : "Calder" }),
+      el("div", { class: "nb-rail-date", text: st.date ? cfg().fmtDate(st.date.slice(0, 10)) + " · " + st.date.slice(11) : "" }),
+      met.length ? el("div", { class: "nb-sb-met" }, met.slice(-10).map(function (id) { return el("span", { class: "nb-sb-person", title: personName(id) }, [face(id, "neutral", 36)]); })) : null,
+      st.notes.length ? el("details", { class: "nb-sb-notes" }, [el("summary", { text: "Notes (" + st.notes.length + ")" }), el("ul", {}, st.notes.slice(-12).reverse().map(function (n) { return el("li", { text: n }); }))]) : null
+    ];
+  }
+
+  function renderSandboxLog(log, blocks) {
+    var chunk = [];
+    function flush() { if (chunk.length) { renderBlocks(log, chunk); chunk = []; } }
+    blocks.forEach(function (b) {
+      if (b.k === "you") { flush(); log.appendChild(el("p", { class: "nb-sb-you" }, [el("span", { class: "nb-sb-you-label", text: "You" }), el("span", { text: b.text })])); }
+      else chunk.push(b);
+    });
+    flush();
+  }
+
+  function sandboxTurn(action, opening) {
+    var st = ui.sb.state;
+    var log = $("nb-sb-log"), pending = $("nb-sb-pending"), send = $("nb-sb-send");
+    if (!log) return;
+    ui.sb.busy = true;
+    if (send) send.disabled = true;
+    if (!opening) log.appendChild(el("p", { class: "nb-sb-you" }, [el("span", { class: "nb-sb-you-label", text: "You" }), el("span", { text: action })]));
+    pending.hidden = false; clear(pending);
+    var live = el("div", { class: "nb-sb-live" });
+    var stop = el("button", { class: "nb-btn", type: "button", text: "Stop" });
+    pending.appendChild(el("div", { class: "nb-sb-thinking", text: "The city answers…" }));
+    pending.appendChild(live);
+    pending.appendChild(stop);
+    pending.scrollIntoView({ block: "end", behavior: quietMotion() ? "auto" : "smooth" });
+    var ctl = root.AbortController ? new AbortController() : null;
+    stop.addEventListener("click", function () { if (ctl) ctl.abort(); });
+    NB.sandbox.turn(st, action, claudeSettings(), function (text) {
+      clear(live);
+      NB.sandbox.preview(text).forEach(function (p) { live.appendChild(el("p", { text: p })); });
+    }, ctl ? ctl.signal : undefined).then(function (r) {
+      ui.sb.busy = false;
+      pending.hidden = true; clear(pending);
+      sandboxSave(r.state);
+      var mark0 = log.lastElementChild;
+      renderBlocks(log, r.blocks);
+      r.events.forEach(function (e) {
+        if (e.kind === "note") toast("Noted", e.text, null, "clue");
+        if (e.kind === "bond" && e.delta > 0) toast(personName(e.id), "That mattered.", e.id);
+      });
+      var view = r.blocks.filter(function (b) { return b.k === "view"; }).pop();
+      if (view) setBackdrop(view.id);
+      var rail = doc.querySelector(".nb-sb-rail");
+      if (rail) { clear(rail); sandboxRail(r.state).forEach(function (n) { if (n) rail.appendChild(n); }); }
+      var firstNew = mark0 ? mark0.nextElementSibling : log.firstElementChild;
+      var frame = firstNew && firstNew.querySelector && (firstNew.matches(".nb-art") ? firstNew.querySelector("img") : null);
+      if (send) send.disabled = false;
+      var undo = doc.querySelector(".nb-sb-form .nb-btn:not(.primary)");
+      if (undo) undo.disabled = r.state.turns.length < 4;
+      if (frame && ui.settings.arrivals && !quietMotion()) arrive(frame);
+      else if (firstNew && firstNew.scrollIntoView) firstNew.scrollIntoView({ block: "start", behavior: quietMotion() ? "auto" : "smooth" });
+      var ta = $("nb-sb-input"); if (ta) ta.focus({ preventScroll: true });
+    }, function (err) {
+      ui.sb.busy = false;
+      if (send) send.disabled = false;
+      clear(pending);
+      pending.appendChild(el("div", { class: "nb-note-box", text: err && err.code === "cancelled" ? "Stopped. Nothing happened; try again or do something else." : (err && err.message) || "Claude couldn't be reached." }));
+      if (!opening) { var you = log.lastElementChild; if (you && you.classList.contains("nb-sb-you")) log.removeChild(you); var ta = $("nb-sb-input"); if (ta) ta.value = action; }
+      else pending.appendChild(el("button", { class: "nb-btn primary", type: "button", text: "Try again", onclick: function () { sandboxTurn(action, true); } }));
+    });
+  }
+
+  function sandboxUndo() {
+    var st = ui.sb.state;
+    if (!st || ui.sb.busy || st.turns.length < 4) return;
+    sandboxSave(NB.sandbox.undo(st));
+    renderSandbox();
+    toast("Undone", "Your last turn never happened.");
   }
 
   /* ---------------- menu & about ---------------- */

@@ -19,6 +19,7 @@ node tools/build.js        # dist/calder.html (double-click to play, works offli
 ```bash
 node tools/gen-config.js   # plan/ -> js/story/plan-data.js
 node tools/gen-assets.js   # art/ -> js/art/asset-files.js
+node tools/gen-sandbox.js  # plan/ + docs/01-story.md -> js/story/sandbox-world.js (what Sandbox tells Claude)
 node tools/validate.js     # the script: syntax, speakers present and tagged, plan cross-checks
 node tools/lint-prose.js   # voice and style
 node tools/plan-check.js   # the plan: continuity, routes, endings, epilogue slots
@@ -36,3 +37,4 @@ node tools/playtest.js --runs 3000 --unshown   # bots play to the end; reports e
 - `art/drawn/`: Claude's original procedural views (`node tools/art.js place <id>`), kept for reference; they no longer feed the game
 - `index.html`, `css/style.css`, `js/engine/ui.js`: the reading UI (ChatGPT's redesign, merged). Settings has colour palettes (Neon, Golden hour, Moonlight, Ember, River), the blurred scene backdrop, and full-screen arrivals (a new place fills the screen, then settles into the page)
 - Every portrait expression and every environment appears somewhere in the story; a plan scene can list secondary places with `also: [...]` when one branch steps somewhere else
+- `js/engine/sandbox.js`: Sandbox mode. The player types actions; Claude plays the world from the story bible, cast and places, writing in the game's own markup (`@who:mood`, `*place`, `*meet`, `*note`, `*bond`) so portraits and places appear live. Saved separately from the story.

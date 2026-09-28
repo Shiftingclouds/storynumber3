@@ -248,6 +248,7 @@
       "<p><b>The knack.</b> I feel what people feel: as weather, as echoes in places and things, as threads between people. It never tells me what anyone feels about me.</p>",
       "<p><b>The Journal</b> holds everyone I've met, with hearts for how close we've become, the evidence I've gathered, letters, and snapshots.</p>",
       "<p><b>Intimate scenes</b> are on the page by default. Settings can fade them to black.</p>",
+      "<p><b>Four ways to play.</b> Settings → Narration: <i>Classic</i> (the text as written), <i>Varied</i> (fresh hand-written phrasings each time), or <i>Living</i> (Claude retells each page in a voice you pick). Or choose <b>Sandbox</b> on the title screen: no written choices at all. You type what you do, and Claude plays the city, its people and the events already in motion. Living and Sandbox need Claude (in the Claude app, or your own API key) and an internet connection.</p>",
       "<p>There are eight endings. After your first, the Story Map and New Game+ open up.</p>"
     ].join("")
   };

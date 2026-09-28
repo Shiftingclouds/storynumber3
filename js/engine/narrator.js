@@ -96,10 +96,18 @@
 
   /** One completion through whichever backend is selected. Streams text through onText if given. */
   function complete(system, user, settings, onText, signal, maxTokens) {
+    return converse(system, [{ role: "user", content: user }], settings, onText, signal, maxTokens);
+  }
+
+  /** A conversation (alternating user/assistant messages, ending with the user) through the selected backend. */
+  function converse(system, messages, settings, onText, signal, maxTokens) {
     if (settings.backend === "claude") {
+      var flat = messages.length === 1 ? messages[0].content : messages.map(function (m) {
+        return (m.role === "user" ? "PLAYER:\n" : "YOU WROTE:\n") + m.content;
+      }).join("\n\n") + "\n\nContinue: write only your next reply.";
       return getSample().then(function (sample) {
         if (!sample) throw { code: "unavailable", message: "Claude in the app is not available here." };
-        return sample(system + "\n\n" + user, {
+        return sample(system + "\n\n" + flat, {
           onText: onText ? function (u) { onText(u.text); } : undefined,
           signal: signal,
           modelTier: settings.tier === "default" ? "default" : "quick",
@@ -115,7 +123,10 @@
         model: model,
         max_tokens: maxTokens || 16000,
         system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
-        messages: [{ role: "user", content: user }]
+        messages: messages.map(function (m, i) {
+          // cache the conversation so far too: each turn re-reads it
+          return i === messages.length - 2 ? { role: m.role, content: [{ type: "text", text: m.content, cache_control: { type: "ephemeral" } }] } : { role: m.role, content: m.content };
+        })
       };
       if (model === "claude-opus-5" || model === "claude-sonnet-5") params.output_config = { effort: "low" };
       var stream;
@@ -200,6 +211,7 @@
     voices: VOICES,
     availability: availability,
     retell: retell,
+    converse: converse,
     speak: speak,
     ask: ask,
     toParagraphs: toParagraphs,

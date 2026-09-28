@@ -1,0 +1,2312 @@
+{
+  "project": "Calder: The Unquiet City",
+  "required_portrait_count": 128,
+  "delivered_master_count": 128,
+  "status": "Portrait master collection; native game export and in-app checks still required.",
+  "portraits": [
+    {
+      "character_id": "C01",
+      "name": "Adrian Keene",
+      "expression": "neutral",
+      "file": "portraits/c01-adrian-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1018398,
+      "bytes": 1088006,
+      "sha256": "fb49b587b99cf1b5628318a1b0287b2ee537c9ccb93f85160250448e71007d1c",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C01",
+      "name": "Adrian Keene",
+      "expression": "attentive",
+      "file": "portraits/c01-adrian-attentive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1021496,
+      "bytes": 1090687,
+      "sha256": "26babbaada16cfac7ac05a2f676761f516187a806c934ef713ac12492ca5655f",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C01",
+      "name": "Adrian Keene",
+      "expression": "amused",
+      "file": "portraits/c01-adrian-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1021339,
+      "bytes": 1143265,
+      "sha256": "ad26d239ffb142971b65b8cd869c251806d302ac69bca676af219041028e8407",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C01",
+      "name": "Adrian Keene",
+      "expression": "tense",
+      "file": "portraits/c01-adrian-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1020727,
+      "bytes": 1099701,
+      "sha256": "4bbb3a89771c1b53910ed594bbec132a33152664d55aebfe406f1873c961e438",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C01",
+      "name": "Adrian Keene",
+      "expression": "hurt",
+      "file": "portraits/c01-adrian-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1021964,
+      "bytes": 1115256,
+      "sha256": "c3e4beac14757a7c320593551790c8e3f96fa461b46292149f2602b64d28e15b",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C01",
+      "name": "Adrian Keene",
+      "expression": "warm",
+      "file": "portraits/c01-adrian-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1024653,
+      "bytes": 1126936,
+      "sha256": "0d175f131f1fcb122c2b51121167c69a2bf0456b5d76853cf46a131bb192071d",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C02",
+      "name": "Micah Serrano",
+      "expression": "neutral",
+      "file": "portraits/c02-micah-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1057605,
+      "bytes": 1298361,
+      "sha256": "ed0ac36da8d63bd85a8e6665361ee3d9c53e0cc5aa6ae10cd8b24f830693966c",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C02",
+      "name": "Micah Serrano",
+      "expression": "attentive",
+      "file": "portraits/c02-micah-attentive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1061836,
+      "bytes": 1294102,
+      "sha256": "8940d34b934fb20e8474ef2cf36ba321d3fdf38917e45df2c8df662bfdd523f2",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C02",
+      "name": "Micah Serrano",
+      "expression": "amused",
+      "file": "portraits/c02-micah-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1064641,
+      "bytes": 1307136,
+      "sha256": "7d874ac58bdbdaf07babf8577c9653957593b25b4240b8de16031f14f2a68bff",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C02",
+      "name": "Micah Serrano",
+      "expression": "tense",
+      "file": "portraits/c02-micah-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1063698,
+      "bytes": 1297003,
+      "sha256": "4a9df3508c468a6d2723080e0b924a5b49d696aac55500c1f91f30fffa3be967",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C02",
+      "name": "Micah Serrano",
+      "expression": "hurt",
+      "file": "portraits/c02-micah-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1063989,
+      "bytes": 1315438,
+      "sha256": "5fd9258d8eef62f0e53ff52896701a684fa01070b32c252a72ef2efc57b77866",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C02",
+      "name": "Micah Serrano",
+      "expression": "warm",
+      "file": "portraits/c02-micah-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1063167,
+      "bytes": 1304584,
+      "sha256": "9d7dede6638700c6a34284a7b33e11ff7eb75702d687debabe6f30295f99ff85",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C03",
+      "name": "Ellis Okafor",
+      "expression": "neutral",
+      "file": "portraits/c03-ellis-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 990605,
+      "bytes": 1221980,
+      "sha256": "93e098334caf6b7ec3bb5ed2bd52c54940223eca285ec1a1af0e40f5bd03abf3",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C03",
+      "name": "Ellis Okafor",
+      "expression": "attentive",
+      "file": "portraits/c03-ellis-attentive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 995259,
+      "bytes": 1202533,
+      "sha256": "d518ebbbf0c2f47cf11257dabb3887ca5799b48352e0b25d12394c3c4c2b9e33",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C03",
+      "name": "Ellis Okafor",
+      "expression": "amused",
+      "file": "portraits/c03-ellis-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 998027,
+      "bytes": 1234423,
+      "sha256": "22a589877d4cf486ef169511307a18e18af4f1b46ed7aec278458fdd9b9cedb7",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C03",
+      "name": "Ellis Okafor",
+      "expression": "tense",
+      "file": "portraits/c03-ellis-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 996096,
+      "bytes": 1237514,
+      "sha256": "7d247e4ce17d6278abc192a268a90ce5b802ce2b5614e3ccc1120f8135a4f0eb",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C03",
+      "name": "Ellis Okafor",
+      "expression": "hurt",
+      "file": "portraits/c03-ellis-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 995261,
+      "bytes": 1207365,
+      "sha256": "714eb3a3611690c73c9caabdde6daf5afafa12b404a6ca9bdb25339699cd9338",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C03",
+      "name": "Ellis Okafor",
+      "expression": "warm",
+      "file": "portraits/c03-ellis-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 996800,
+      "bytes": 1242449,
+      "sha256": "5d5fb186ea1707f33cb57bd46c7ecd59b18d5cf60fae50ce97afca811741b265",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C04",
+      "name": "Dominic Bell",
+      "expression": "neutral",
+      "file": "portraits/c04-dominic-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1070597,
+      "bytes": 1435611,
+      "sha256": "aeb8858a864aaa7f2eafab701a89114c115cc48b92c8e5fe55f1a0d5a6e95b5a",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C04",
+      "name": "Dominic Bell",
+      "expression": "attentive",
+      "file": "portraits/c04-dominic-attentive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1078626,
+      "bytes": 1400715,
+      "sha256": "a9b522d442adb1cb472707d0aacdeb07fc416c89630538624f0cb3f6ec74086d",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C04",
+      "name": "Dominic Bell",
+      "expression": "amused",
+      "file": "portraits/c04-dominic-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1078291,
+      "bytes": 1384959,
+      "sha256": "5bba1af26c40e4439f5339abfa74b0d7577bda025698dc2fabe87aa60ff71505",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C04",
+      "name": "Dominic Bell",
+      "expression": "tense",
+      "file": "portraits/c04-dominic-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1075696,
+      "bytes": 1379965,
+      "sha256": "05312d1cb2ee181974093007a4ecd9265ba0fcc715d8350b286e63a03c27fa70",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C04",
+      "name": "Dominic Bell",
+      "expression": "hurt",
+      "file": "portraits/c04-dominic-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1090111,
+      "bytes": 1406046,
+      "sha256": "282fefec6d06c38929778a18623dd472da90b14b18c1fd8aaa99efd32511cdf8",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C04",
+      "name": "Dominic Bell",
+      "expression": "warm",
+      "file": "portraits/c04-dominic-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1079262,
+      "bytes": 1366836,
+      "sha256": "b695e8bee44436b96876b6d9025f6dd6883740d3478a7f72f04124eed4b4d465",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C05",
+      "name": "Nolan Voss",
+      "expression": "neutral",
+      "file": "portraits/c05-nolan-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1038068,
+      "bytes": 1388150,
+      "sha256": "cc9a6575b2995166596e5243f6544314fdf2d159f976884db325d1af3a6b57e2",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C05",
+      "name": "Nolan Voss",
+      "expression": "attentive",
+      "file": "portraits/c05-nolan-attentive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1048692,
+      "bytes": 1383395,
+      "sha256": "ca82f6c85333c2c3be06f84db006166dab63ab46825b32f2142f944be1b55679",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C05",
+      "name": "Nolan Voss",
+      "expression": "amused",
+      "file": "portraits/c05-nolan-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1046081,
+      "bytes": 1359877,
+      "sha256": "7320b742746eb69f8ec45afcd15857379265a5f450e0696cda18ce25627abcf9",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C05",
+      "name": "Nolan Voss",
+      "expression": "tense",
+      "file": "portraits/c05-nolan-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1047620,
+      "bytes": 1369501,
+      "sha256": "ba9b2b77e5ab1f74e0d7cf99e0424f371508347772040784dbec241fa2c7846c",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C05",
+      "name": "Nolan Voss",
+      "expression": "hurt",
+      "file": "portraits/c05-nolan-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1044705,
+      "bytes": 1366960,
+      "sha256": "1794633afac4d4eebc1b09c46e2a0483c9a1006610140a00ddc002eadd0b42de",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C05",
+      "name": "Nolan Voss",
+      "expression": "warm",
+      "file": "portraits/c05-nolan-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1043952,
+      "bytes": 1354874,
+      "sha256": "7b329613cf65817a9306ff503eca144ac0c763f4f4e6134a138f0ac307c92170",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C06",
+      "name": "Ansel Marr",
+      "expression": "neutral",
+      "file": "portraits/c06-ansel-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 988837,
+      "bytes": 1126955,
+      "sha256": "131917b4473e4b2d472f3c5e86fcf83cece0ea9ab0864af2e42bd009a16e1e38",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C06",
+      "name": "Ansel Marr",
+      "expression": "attentive",
+      "file": "portraits/c06-ansel-attentive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 989239,
+      "bytes": 1196142,
+      "sha256": "95805ce8bc0b21d5f8e6c5ec2b05d8126ed72881ad03fe69bc86927a75c5df0e",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C06",
+      "name": "Ansel Marr",
+      "expression": "amused",
+      "file": "portraits/c06-ansel-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 989410,
+      "bytes": 1209460,
+      "sha256": "772a008603d2610a172052f33cd46b4d58178f67a4903eeb49d3887c08524daf",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C06",
+      "name": "Ansel Marr",
+      "expression": "tense",
+      "file": "portraits/c06-ansel-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 994828,
+      "bytes": 1160241,
+      "sha256": "38c2dc8100de7b1ebb6812afb29cb19e55150522a67d3b2c3843da10245a2550",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C06",
+      "name": "Ansel Marr",
+      "expression": "hurt",
+      "file": "portraits/c06-ansel-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 992216,
+      "bytes": 1169617,
+      "sha256": "aa37ee60ee1be6f973e29c25ae1a84207037c1079970cb7fba93073ffd46edac",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C06",
+      "name": "Ansel Marr",
+      "expression": "warm",
+      "file": "portraits/c06-ansel-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 997794,
+      "bytes": 1194328,
+      "sha256": "5ad1f946e49861f5893d42dcc2d89e187e3c038630593555c82084a40cc75e1f",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C07",
+      "name": "Quentin Shaw",
+      "expression": "neutral",
+      "file": "portraits/c07-quentin-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1022575,
+      "bytes": 1117417,
+      "sha256": "c359c4d0bdbb6c25b4c4105a53dcc3ef7feee94443e616725099e01a7a525edd",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C07",
+      "name": "Quentin Shaw",
+      "expression": "attentive",
+      "file": "portraits/c07-quentin-attentive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1028686,
+      "bytes": 1153844,
+      "sha256": "0bcab8b45d93a1ebc282e413a01940e987405bce323b88f926dafec0939e6e12",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C07",
+      "name": "Quentin Shaw",
+      "expression": "amused",
+      "file": "portraits/c07-quentin-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1030099,
+      "bytes": 1189320,
+      "sha256": "a2f0c4fef6a19ee46e14088f0576560185a6911f68965ea1c357f73b42e206f3",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C07",
+      "name": "Quentin Shaw",
+      "expression": "tense",
+      "file": "portraits/c07-quentin-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1026943,
+      "bytes": 1149843,
+      "sha256": "3199fcc12fa9040f5c5038f79a5ef289b8d02c6a851898913c920b835b7a71f6",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C07",
+      "name": "Quentin Shaw",
+      "expression": "hurt",
+      "file": "portraits/c07-quentin-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1028724,
+      "bytes": 1158741,
+      "sha256": "45ca02893a89ad34c0aae3d02b9c2ea697909b29ca213c4987aacd8cca61684b",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C07",
+      "name": "Quentin Shaw",
+      "expression": "warm",
+      "file": "portraits/c07-quentin-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1028409,
+      "bytes": 1173180,
+      "sha256": "c56813df5299c7d7b9c9e3961da18d8201bc4f2a8181ee2b108f219d1bd9993c",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C08",
+      "name": "Reuben Pike",
+      "expression": "neutral",
+      "file": "portraits/c08-reuben-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1071987,
+      "bytes": 1371271,
+      "sha256": "bcfe34174d057f3b1e9c35947181c63b0c805eefb4dd903568fe3c08473e30a6",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C08",
+      "name": "Reuben Pike",
+      "expression": "attentive",
+      "file": "portraits/c08-reuben-attentive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1074084,
+      "bytes": 1358127,
+      "sha256": "e9301c4f62ca8a1c451ee4eec53698637f2fda8a6e1632cf3e8d4773a3144497",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C08",
+      "name": "Reuben Pike",
+      "expression": "amused",
+      "file": "portraits/c08-reuben-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1079502,
+      "bytes": 1354180,
+      "sha256": "8ea99731d21c45ba70854841eba2b34efcf9c48a41bf5082b460f99cd4c0e09f",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C08",
+      "name": "Reuben Pike",
+      "expression": "tense",
+      "file": "portraits/c08-reuben-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1084770,
+      "bytes": 1345082,
+      "sha256": "8d009fd454e10e86ea89e709189eb3784c39c6e26aeda1a122f120d758c470b7",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C08",
+      "name": "Reuben Pike",
+      "expression": "hurt",
+      "file": "portraits/c08-reuben-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1081511,
+      "bytes": 1375298,
+      "sha256": "832bf7466b6b6f8d25755de460948fe2745a8dc394d574a773962b1ab7e8c507",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C08",
+      "name": "Reuben Pike",
+      "expression": "warm",
+      "file": "portraits/c08-reuben-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1077434,
+      "bytes": 1374632,
+      "sha256": "df6f342be260fd86f81e3bd15ee52e73aeab4a36d7c814d551af073eb4513927",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C09",
+      "name": "Will Avery",
+      "expression": "neutral",
+      "file": "portraits/c09-will-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1052955,
+      "bytes": 1243418,
+      "sha256": "4d4fb3513e9740de3d1ca50b2374a283ada183eacb66fdea811db1fab8c25d3b",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C09",
+      "name": "Will Avery",
+      "expression": "amused",
+      "file": "portraits/c09-will-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1062641,
+      "bytes": 1233893,
+      "sha256": "266ce1c5700110fe57d23c579562e155651bdf282b2a058fca6113c29daa5de3",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C10",
+      "name": "Martin Avery",
+      "expression": "neutral",
+      "file": "portraits/c10-martin-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1039888,
+      "bytes": 1494658,
+      "sha256": "d4b7938e6c301e14f03da670b5e9f85e2b0f08b9ebc2c7c0209796554f61551f",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C10",
+      "name": "Martin Avery",
+      "expression": "tense",
+      "file": "portraits/c10-martin-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1047288,
+      "bytes": 1384716,
+      "sha256": "fe5bde3e6089fe66db8617e5806ac5cfb73e14275f30d02d45bfb0719334aaab",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C11",
+      "name": "Peter Laird",
+      "expression": "neutral",
+      "file": "portraits/c11-peter-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1003634,
+      "bytes": 1138250,
+      "sha256": "022343db40cdd72dfd11a2721bd98b846ed3d5ceea1ba595ca711b560636b334",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C11",
+      "name": "Peter Laird",
+      "expression": "amused",
+      "file": "portraits/c11-peter-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1009999,
+      "bytes": 1149686,
+      "sha256": "985e8a563bf78ea8719c0cb6789b181a9a60b68ffd18599dd08bebbf17dee670",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C12",
+      "name": "Owen Price",
+      "expression": "neutral",
+      "file": "portraits/c12-owen-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1000398,
+      "bytes": 1159936,
+      "sha256": "6a0d2cc44c79f4784f7f2af8af46c587068030b5b2ff91e3a7b700df97de8199",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C13",
+      "name": "Nabil Haddad",
+      "expression": "neutral",
+      "file": "portraits/c13-nabil-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1068182,
+      "bytes": 1371311,
+      "sha256": "a6ba709d63a5153a62e348de8d6f278cd3856c9662e9e3378fd50cdee51db371",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C13",
+      "name": "Nabil Haddad",
+      "expression": "amused",
+      "file": "portraits/c13-nabil-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1074498,
+      "bytes": 1397446,
+      "sha256": "37ddc35d97080ac5396703532446c303374d4afcb64c8e6ceb2e4298c6887244",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C14",
+      "name": "Russell Dacre",
+      "expression": "neutral",
+      "file": "portraits/c14-russell-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1088812,
+      "bytes": 1593656,
+      "sha256": "8e941500e95e5c2ab3e4ff29d769a0115430ac306d6a2ef6e34c6eca6cecec97",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C15",
+      "name": "Benoît Marchand",
+      "expression": "neutral",
+      "file": "portraits/c15-benoit-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1077258,
+      "bytes": 1343742,
+      "sha256": "be3d9bd08fa7182613f0d95f25ddd19af7ae4b79af3c468680771ccc925a9266",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C15",
+      "name": "Benoît Marchand",
+      "expression": "warm",
+      "file": "portraits/c15-benoit-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1080767,
+      "bytes": 1322088,
+      "sha256": "f724f9841e176a7437fccd2180bfe095ff39dcd0b5f2e67648311e1daa40a888",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C16",
+      "name": "Gareth Moss",
+      "expression": "neutral",
+      "file": "portraits/c16-gareth-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 995033,
+      "bytes": 1206042,
+      "sha256": "2526f2babce2bdb358520376ef56b88b3a0009359e8c49a69cfcc20609f18888",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C17",
+      "name": "Victor Keene",
+      "expression": "neutral",
+      "file": "portraits/c17-victor-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1003758,
+      "bytes": 1285363,
+      "sha256": "66e9541e0c8e82b8f2cc5b13b7fdf8442ba7bafcb1ee53a09dc6f794655dfb55",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C17",
+      "name": "Victor Keene",
+      "expression": "tense",
+      "file": "portraits/c17-victor-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1009353,
+      "bytes": 1294518,
+      "sha256": "4973ed2f0b13056fa0b73168502a861c78091f14ca1284d08da7dca04cfd5d1e",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C18",
+      "name": "Patrick Orrell",
+      "expression": "neutral",
+      "file": "portraits/c18-orrell-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1025306,
+      "bytes": 1321534,
+      "sha256": "f797d35457d21cb83a22d490aad50d69d7f9067d35f5c618ce01925cbbd95e55",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C18",
+      "name": "Patrick Orrell",
+      "expression": "tense",
+      "file": "portraits/c18-orrell-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1027986,
+      "bytes": 1318997,
+      "sha256": "be76d552a9765e7afc77a45484ff881ead4c9dbabf27d2441869aeeef582fc79",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C19",
+      "name": "Simeon Rusk",
+      "expression": "neutral",
+      "file": "portraits/c19-simeon-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1001732,
+      "bytes": 1256040,
+      "sha256": "1fad2a8e2c648e187ec8885b11cf6b3424caa94cb77f51aadf69803a4e14048c",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C20",
+      "name": "Darius Chen",
+      "expression": "neutral",
+      "file": "portraits/c20-darius-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1050037,
+      "bytes": 1251676,
+      "sha256": "b1069a4580141fc9c3e2302ae227e4104ff1788cbe86b331e343392908ddb40b",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C20",
+      "name": "Darius Chen",
+      "expression": "amused",
+      "file": "portraits/c20-darius-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1054597,
+      "bytes": 1263591,
+      "sha256": "9cda358354dce9c66a5ea7c14f8dfa57dfc2c022aa7e316819d10b8782a7d768",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C21",
+      "name": "Emmett Hsu",
+      "expression": "neutral",
+      "file": "portraits/c21-emmett-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1074614,
+      "bytes": 1189313,
+      "sha256": "bb4ba5f3893525b7476089831c181692d4079f66ba36d507af543b68661e3859",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C22",
+      "name": "Florian Adebayo",
+      "expression": "neutral",
+      "file": "portraits/c22-florian-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1012550,
+      "bytes": 1147057,
+      "sha256": "df5c3273b9853ff746dcf9a85d661de19436b4507ee5e6b411dc03380ed2d031",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C23",
+      "name": "Kenji Sato",
+      "expression": "neutral",
+      "file": "portraits/c23-kenji-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1059112,
+      "bytes": 1537271,
+      "sha256": "f07e58e5dd47efe3ca57863b224f6fad225ad2bb366024dfe09d03be915b904f",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C24",
+      "name": "Malcolm Tait",
+      "expression": "neutral",
+      "file": "portraits/c24-malcolm-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1071680,
+      "bytes": 1614508,
+      "sha256": "7651bea326402c938eb72de5fda763f46c67a060b790310944225ac4a6cee49a",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C24",
+      "name": "Malcolm Tait",
+      "expression": "warm",
+      "file": "portraits/c24-malcolm-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1079027,
+      "bytes": 1607016,
+      "sha256": "c809b07b95ff596be25e5ffa1606306d3f90e022b5a8a9a63be4e630aadbacc0",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C25",
+      "name": "Ernesto Serrano",
+      "expression": "neutral",
+      "file": "portraits/c25-ernesto-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1096171,
+      "bytes": 1558211,
+      "sha256": "f1f029ea5b26253d16ea77c54c65773b8e85da66ab0c769209cf21a1364d0b76",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C25",
+      "name": "Ernesto Serrano",
+      "expression": "warm",
+      "file": "portraits/c25-ernesto-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1101309,
+      "bytes": 1564615,
+      "sha256": "a13fe8ae473e5ab98b3f4cd902b2b06759da5ae339269824906b3208843b4488",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C26",
+      "name": "Leandro Serrano",
+      "expression": "neutral",
+      "file": "portraits/c26-leandro-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1051896,
+      "bytes": 1281971,
+      "sha256": "eb54fd5efd12cdf781584bb864a671d3d549559c834fa947e9cd09cbf898371d",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C27",
+      "name": "Tomas Rivas",
+      "expression": "neutral",
+      "file": "portraits/c27-tomas-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1069400,
+      "bytes": 1146912,
+      "sha256": "c6cc7c67b47c230b1f25dbfeff6556a1ca1e0b9933551d02a6f6ec1312856d8e",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C28",
+      "name": "Pavel Kolar",
+      "expression": "neutral",
+      "file": "portraits/c28-pavel-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1058057,
+      "bytes": 1287417,
+      "sha256": "a1c15a536804a0c284ee0551e7174f1154d146aa768a154c1ce83aff7a7777cc",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C29",
+      "name": "Wesley Dent",
+      "expression": "neutral",
+      "file": "portraits/c29-wesley-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1060696,
+      "bytes": 1367323,
+      "sha256": "14f885c16eb259c0e8a8db79e91c8d9658b021e5291cfad7761cb490d0867f67",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C30",
+      "name": "Otis Lyle",
+      "expression": "neutral",
+      "file": "portraits/c30-otis-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1071355,
+      "bytes": 1393784,
+      "sha256": "fd821782456c4149e6d5c3d8e1f44d3fde216817c73a32cf3a64882b3fecbffd",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C30",
+      "name": "Otis Lyle",
+      "expression": "warm",
+      "file": "portraits/c30-otis-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1078180,
+      "bytes": 1386255,
+      "sha256": "1b9b9d224b45e17584b7d219995ba4d87ca1ef81e35084bcc63593063c082fc9",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C31",
+      "name": "Lucien Arnaud",
+      "expression": "neutral",
+      "file": "portraits/c31-lucien-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1057276,
+      "bytes": 1289571,
+      "sha256": "10d51c28e5c6738d49c6ef15381290e5d1c5f2eeec604681ea3aaa3ae4210cfd",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C31",
+      "name": "Lucien Arnaud",
+      "expression": "amused",
+      "file": "portraits/c31-lucien-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1060500,
+      "bytes": 1281495,
+      "sha256": "ae187004881f98c76a84683192150297d66e351deb7d569d797faec26a1278bf",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C32",
+      "name": "Gideon Shaw",
+      "expression": "neutral",
+      "file": "portraits/c32-gideon-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1026830,
+      "bytes": 1154098,
+      "sha256": "c20f42b0c7ace32dda81f3b6ba5b91ff970d32a615c8f8853d65b01b394810aa",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C32",
+      "name": "Gideon Shaw",
+      "expression": "tense",
+      "file": "portraits/c32-gideon-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1030909,
+      "bytes": 1160434,
+      "sha256": "a924f3a0ef644ae5ded9d42a276fbc93a7595a03dc5d184cb9dd0a880749c2ce",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C33",
+      "name": "Rafi Bensaïd",
+      "expression": "neutral",
+      "file": "portraits/c33-rafi-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1060727,
+      "bytes": 1324023,
+      "sha256": "e8eda5070c41bdea841c0f8a7109c6e9c6f91d97e4e46a80df0686d32ab56f5d",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C33",
+      "name": "Rafi Bensaïd",
+      "expression": "amused",
+      "file": "portraits/c33-rafi-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1069027,
+      "bytes": 1282684,
+      "sha256": "54f787c2dc3e96a19a1bbf8de5bb29394afa4b024d869b03e6d6061a58b2017c",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C34",
+      "name": "Sylvester Page",
+      "expression": "neutral",
+      "file": "portraits/c34-sylvester-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1066189,
+      "bytes": 1451524,
+      "sha256": "dd81e47a12bde05e6b5efd0010aa29c877c2212990e74f9ce5326ee96fa27183",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C35",
+      "name": "Milo Finch",
+      "expression": "neutral",
+      "file": "portraits/c35-milo-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1003068,
+      "bytes": 1286162,
+      "sha256": "8d5567221b97c44671b4a72c7bff5f2d3882d27866cf3f26247780420b613db3",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C36",
+      "name": "Abel Mercer",
+      "expression": "neutral",
+      "file": "portraits/c36-abel-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1024011,
+      "bytes": 1274838,
+      "sha256": "268347a08f8f90cebdf2e662806a83a78758791502383cc977ac4127effdcb63",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C37",
+      "name": "Chukwudi Okafor",
+      "expression": "neutral",
+      "file": "portraits/c37-chukwudi-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1044873,
+      "bytes": 1299649,
+      "sha256": "6b64bc94bd391066e381a83277dca0c21dee4eab736a8682218714124cbfe666",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C37",
+      "name": "Chukwudi Okafor",
+      "expression": "warm",
+      "file": "portraits/c37-chukwudi-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1053213,
+      "bytes": 1335633,
+      "sha256": "47b1c238c7d00c2ae2a0567bd3ee7470b08c38af4df48001f577e17688f8c004",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C38",
+      "name": "Isaac Okafor",
+      "expression": "neutral",
+      "file": "portraits/c38-isaac-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1080578,
+      "bytes": 1220521,
+      "sha256": "31becd70d9a0fdc5a0f1a4645c87b3a1ab4e15edf91478d28f5077c989b15a5b",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C39",
+      "name": "August Rell",
+      "expression": "neutral",
+      "file": "portraits/c39-august-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1066300,
+      "bytes": 1607311,
+      "sha256": "1e90f3b84843f521186f3deb4826ea86da40ddb634eef73e6180305067df81b9",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C40",
+      "name": "Caspar Neri",
+      "expression": "neutral",
+      "file": "portraits/c40-caspar-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1095646,
+      "bytes": 1366518,
+      "sha256": "929e13d931363bc566f1e18526a056d7a3977a72061c3cb890b8c32cd44a122b",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C41",
+      "name": "Basil Duret",
+      "expression": "neutral",
+      "file": "portraits/c41-basil-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1004055,
+      "bytes": 1425086,
+      "sha256": "38c08cf04f3d9db4ad2591c997175409d79a84d9acca8c7d77b90a34d607afde",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C42",
+      "name": "Ilyas Qureshi",
+      "expression": "neutral",
+      "file": "portraits/c42-ilyas-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1015097,
+      "bytes": 1204918,
+      "sha256": "693aeea7e3848ce7caa4c9199ba3b4732831e02bfaf2924f7a88fb1b7200ecad",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C43",
+      "name": "Jonah Peake",
+      "expression": "neutral",
+      "file": "portraits/c43-jonah-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1133645,
+      "bytes": 1646628,
+      "sha256": "fff5d933c62f2b05994efe80689526369d08fe2cccc561aba44d0c83548887b8",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C44",
+      "name": "Armand Sorrell",
+      "expression": "neutral",
+      "file": "portraits/c44-armand-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1074587,
+      "bytes": 1241146,
+      "sha256": "41602b65e807add1b0d093e8ec7d1d561c0c6296794301535c5b7e463917b3c0",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C44",
+      "name": "Armand Sorrell",
+      "expression": "hurt",
+      "file": "portraits/c44-armand-hurt.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1080966,
+      "bytes": 1292254,
+      "sha256": "9a321e6f448fe4f3d077d5c5747bb66ae91b4c26b5ae9db1592bfa72632ca530",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C45",
+      "name": "Severin Marr",
+      "expression": "neutral",
+      "file": "portraits/c45-severin-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1012855,
+      "bytes": 1317093,
+      "sha256": "579f8bc97594dce3c812275d60329bb86771cc32e984d89a86087a0e75cfb7b9",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C45",
+      "name": "Severin Marr",
+      "expression": "tense",
+      "file": "portraits/c45-severin-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1022270,
+      "bytes": 1276609,
+      "sha256": "5938add5b9fdd08a4ec2854c1171c8ffc870d7b1a5912f90835a018f9d853781",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C46",
+      "name": "Harlan Greaves",
+      "expression": "neutral",
+      "file": "portraits/c46-harlan-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1031389,
+      "bytes": 1333486,
+      "sha256": "9cc2e287e882646fc008408238b0c877b78d0a87c321d178f36f21dfa421698d",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C47",
+      "name": "Lucan Verre",
+      "expression": "neutral",
+      "file": "portraits/c47-lucan-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1085549,
+      "bytes": 1323337,
+      "sha256": "b9b1a03682a27ac48cec84f53439766ed8186ece37278492cd28394ebd583e18",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C48",
+      "name": "Percival Tern",
+      "expression": "neutral",
+      "file": "portraits/c48-percival-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1027787,
+      "bytes": 1467946,
+      "sha256": "3f57cbb06516f83a8f1951a749d8bc2144fe7d79aae702d9e6fb9eac8e3d8720",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C49",
+      "name": "Eamon Kerr",
+      "expression": "neutral",
+      "file": "portraits/c49-eamon-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1094787,
+      "bytes": 1314992,
+      "sha256": "8a8a5da0bf0f914aab0436933a0cfdbf3c1082e2641aa9a06b51f5380ed4f932",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C50",
+      "name": "Oswin Deller",
+      "expression": "neutral",
+      "file": "portraits/c50-oswin-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1060647,
+      "bytes": 1352219,
+      "sha256": "671a7cfb68e6e7a32fb13aab209b13b88b572d71e177d236a1fc54f6e8032f93",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C51",
+      "name": "Silas Fenwick",
+      "expression": "neutral",
+      "file": "portraits/c51-silas-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1053206,
+      "bytes": 1195621,
+      "sha256": "8933cdd1fcf1cede3e770996c9262d5b860a39d211fc97c96b464445fa150908",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C51",
+      "name": "Silas Fenwick",
+      "expression": "amused",
+      "file": "portraits/c51-silas-amused.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1062145,
+      "bytes": 1237626,
+      "sha256": "ca8702f5584b5ca7995e5557f54e821c2999164797cd201f62deeab81d7df58a",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C52",
+      "name": "Felix Brecht",
+      "expression": "neutral",
+      "file": "portraits/c52-felix-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1054057,
+      "bytes": 1383249,
+      "sha256": "a0426332ee2a7223fbd6d87c4f48648562008660c01dfbf1dae43655d2cad886",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C52",
+      "name": "Felix Brecht",
+      "expression": "tense",
+      "file": "portraits/c52-felix-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1062206,
+      "bytes": 1371401,
+      "sha256": "b927db007047d5502e56fe70b2689979040df74129d5c1c20a8866a447944b14",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C53",
+      "name": "Graham Bell",
+      "expression": "neutral",
+      "file": "portraits/c53-graham-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1044596,
+      "bytes": 1368608,
+      "sha256": "a5189f09956cd53ef7b62ca9be9fbe7e7907a7f2b49d562772e747cb66319439",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C54",
+      "name": "Desmond Aster",
+      "expression": "neutral",
+      "file": "portraits/c54-desmond-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1057742,
+      "bytes": 1118537,
+      "sha256": "d8bb63aacda079dadf11d6ec56ac8d8797a54a98ee70e0fa8887281bca69ef83",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C54",
+      "name": "Desmond Aster",
+      "expression": "tense",
+      "file": "portraits/c54-desmond-tense.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1064306,
+      "bytes": 1134055,
+      "sha256": "f380c53a887618a7010c5d0dba18c7068ce6c96be0ab77b5a2a8b382fdef0dfb",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C55",
+      "name": "Soren Venn",
+      "expression": "neutral",
+      "file": "portraits/c55-soren-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 974102,
+      "bytes": 1199540,
+      "sha256": "c3a50318881536f0f79f1fda34d64538d58961e17e132afc74aa658f9c5eb5c4",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C56",
+      "name": "Damian Holt",
+      "expression": "neutral",
+      "file": "portraits/c56-damian-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1032554,
+      "bytes": 1249592,
+      "sha256": "c5c5b4ad7bfb2803c42b611fe3d188788d9758241de3726b7aaea05657dafb4c",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C56",
+      "name": "Damian Holt",
+      "expression": "warm",
+      "file": "portraits/c56-damian-warm.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1035836,
+      "bytes": 1260564,
+      "sha256": "0dd6a82a5b4ca805e3fed9260a16b2b357ac1147c25a90bf604c0c1f9970f9e7",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C57",
+      "name": "Hugo Naranjo",
+      "expression": "neutral",
+      "file": "portraits/c57-hugo-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1071725,
+      "bytes": 1245680,
+      "sha256": "abddebe9546959e07f2af87e3320af555c7c5ef0485e2dd0d4fd2ee193f3c5d9",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C58",
+      "name": "Clive Merritt",
+      "expression": "neutral",
+      "file": "portraits/c58-clive-neutral.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1134694,
+      "bytes": 1434649,
+      "sha256": "bdacc7235e156b66d336823576f7eb1ed0e3be056c8d8f7a105dff65b786aec9",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C02",
+      "name": "Micah Serrano",
+      "expression": "moon",
+      "file": "portraits/c02-micah-moon.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1063969,
+      "bytes": 1322800,
+      "sha256": "80eefdacc104e0edff32e7b1e305b84030450a69b65bee495a193cf0bb07064f",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C04",
+      "name": "Dominic Bell",
+      "expression": "hungry",
+      "file": "portraits/c04-dominic-hungry.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1074057,
+      "bytes": 1423235,
+      "sha256": "b37e6c206f357948c0942b765ec9faeb5c0b6b83ae734514c919065e49d07e25",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "C07",
+      "name": "Quentin Shaw",
+      "expression": "returned",
+      "file": "portraits/c07-quentin-returned.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 1031235,
+      "bytes": 1181001,
+      "sha256": "4b118a740e4589c72a9b5a46c727cff3ab6939b836fe1bf6638dba4914f36a72",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "MC",
+      "name": "Player character",
+      "expression": "neutral",
+      "file": "portraits/mc-neutral-porcelain.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 994544,
+      "bytes": 1222724,
+      "sha256": "31e08b5336367b7b9d9fb818f7b55c3fc224acb9cc0aa2774945536247805155",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "MC",
+      "name": "Player character",
+      "expression": "neutral",
+      "file": "portraits/mc-neutral-fair.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 993247,
+      "bytes": 1222716,
+      "sha256": "069f509c7b66fb0ab470c72bfda1afba024505498cac4881fbba06856e4928f4",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "MC",
+      "name": "Player character",
+      "expression": "neutral",
+      "file": "portraits/mc-neutral-olive.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 993225,
+      "bytes": 1153733,
+      "sha256": "e97d107fb9b81cbea9f694a1103db8547539300300aadf728111021439984597",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "MC",
+      "name": "Player character",
+      "expression": "neutral",
+      "file": "portraits/mc-neutral-tan.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 999522,
+      "bytes": 1241842,
+      "sha256": "602036ca7f3eb2d5415eb10f1be026e08a29fa8b52a24c64a214ebe31794c019",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "MC",
+      "name": "Player character",
+      "expression": "neutral",
+      "file": "portraits/mc-neutral-brown.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 994923,
+      "bytes": 1180720,
+      "sha256": "4a0b6dda52f298f01bbc48bad049af28f874fa4a9e873280a8a786b06348bcad",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "character_id": "MC",
+      "name": "Player character",
+      "expression": "neutral",
+      "file": "portraits/mc-neutral-deep.png",
+      "width": 1122,
+      "height": 1402,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "partially_transparent_pixels": 996355,
+      "bytes": 1230411,
+      "sha256": "20d11fff6bba73a1ffd2b760bac088596c5735e0368341468d7de31ab615c3eb",
+      "delivery_stage": "generated_master",
+      "target_game_size": [
+        128,
+        160
+      ]
+    }
+  ]
+}

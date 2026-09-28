@@ -1,0 +1,14 @@
+{
+  "delivered_master_count": 128,
+  "required_portrait_count": 128,
+  "missing_portraits": [],
+  "selected_micah_reference": "portraits/c02-micah-neutral.png",
+  "instructions": [
+    "Micah uses the approved slimmer neutral face.",
+    "Use each character's own neutral file for expression edits.",
+    "Preserve actual identities, framing, clothing, palette and lighting.",
+    "Native 128x160 exports and actual UI review remain pending.",
+    "Narrative snapshots require the matching Claude background PNGs.",
+    "Player portraits use the six complete portrait fallback; never fix his face in a snapshot."
+  ]
+}

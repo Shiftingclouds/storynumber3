@@ -324,7 +324,8 @@ function main() {
         const a = (L.args || "").trim();
         if (L.cmd === "meet") met.add(a);
         if (L.cmd === "label") lastDate = "";
-        if (L.cmd === "present") present = new Set(a.split(/\s+/).filter(Boolean));
+        // a top-level *present sets the scene's people; one inside a branch (a companion who may have come) adds to them
+        if (L.cmd === "present") present = L.indent > 0 && present ? new Set([...present, ...a.split(/\s+/).filter(Boolean)]) : new Set(a.split(/\s+/).filter(Boolean));
         if (L.cmd === "sid") {
           present = null;
           cur = plan.get(a);
@@ -340,7 +341,8 @@ function main() {
         }
         if (L.cmd === "place") { const pid = a.split(/\s+/)[0]; if (pid !== cur.place) warnings.push(`${name}:${L.n}: ${cur.id} is planned at ${cur.place}, the script says ${pid}`); if (!cfg.places[pid]) errors.push(`${name}:${L.n}: unknown place ${pid}`); const vw = a.split(/\s+/)[1]; if (vw && !cfg.views.includes(vw)) errors.push(`${name}:${L.n}: unknown view ${vw}`); }
         if (L.cmd === "present") {
-          const planned = new Set((cur.cast || []).map((c) => cidToId[c]).filter(Boolean));
+          // cast: always there; maybe: may be there on some paths (a companion who came along)
+          const planned = new Set((cur.cast || []).concat(cur.maybe || []).map((c) => cidToId[c]).filter(Boolean));
           for (const w of a.split(/\s+/).filter(Boolean)) {
             if (!cfg.people[w]) errors.push(`${name}:${L.n}: unknown person ${w}`);
             else if (!planned.has(w) && w !== "mc") warnings.push(`${name}:${L.n}: ${w} is present in ${cur.id} but not in its planned cast`);

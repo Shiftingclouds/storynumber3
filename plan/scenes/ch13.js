@@ -14,7 +14,7 @@ module.exports = [
     next: "CH13.CROSS.01"
   },
   {
-    id: "CH13.CROSS.01", date: "2026-12-28", time: "09:00", place: "P15", cast: ["MC", "C06", "C46"], kind: "common",
+    id: "CH13.CROSS.01", date: "2026-12-28", time: "09:00", place: "P15", cast: ["MC", "C06", "C46"], maybe: ["C01", "C02", "C05", "C08"], kind: "common",
     purpose: "The Iron Footbridge's maintenance chamber on a white morning. Harlan Greaves keeps the crossing, sociable until anything touches a transaction. The threshold is a door in a brick wall that opens onto a different wind. Ansel steps through first, formal as a funeral. Whoever I asked is with us.",
     choices: [
       { id: "a", when: "harlan_aware", text: "Watch Harlan. He's more nervous than a keeper should be.", type: "investigative", set: { harlan_nervous: true, people: "+1" } },
@@ -23,7 +23,7 @@ module.exports = [
     next: "CH13.COURT.01"
   },
   {
-    id: "CH13.COURT.01", date: "2026-12-28", time: "11:00", place: "P55", cast: ["MC", "C06"], kind: "common",
+    id: "CH13.COURT.01", date: "2026-12-28", time: "11:00", place: "P55", cast: ["MC", "C06"], maybe: ["C01", "C02", "C05", "C08"], kind: "common",
     purpose: "Bracken Court at the Candle Fair: a market town of slate and timber, a candle in every window, stalls of hot cider and pastries Ansel explains in detail. People who are irritated by visitors and sell to them anyway. The knack is strange here: the weather of the Marches is older and slower, like reading a book in another alphabet.",
     set: { know_marches: true },
     choices: [
@@ -32,7 +32,7 @@ module.exports = [
     ]
   },
   {
-    id: "CH13.OFFICIAL.01", date: "2026-12-28", time: "18:00", place: "P55", cast: ["MC", "C06", "C45", "C47", "C50"], kind: "branch", when: "ch13_lodging = \"official\"",
+    id: "CH13.OFFICIAL.01", date: "2026-12-28", time: "18:00", place: "P55", cast: ["MC", "C06", "C45", "C47", "C50"], maybe: ["C01", "C02", "C05", "C08"], kind: "branch", when: "ch13_lodging = \"official\"",
     purpose: "Dinner at the envoy's house. Severin Marr offers choices framed so the one he wants sounds responsible. Cousin Lucan, playful in private, formal the second money is mentioned. A guest, Oswin Deller, a broker in a heavy coat, who describes exploitation as practicality and asks me polite questions about Calder property. Afterwards Severin grants me access to the crossing registry, as a courtesy that is also a leash.",
     set: { fr_severin: 1, fr_lucan: 1, oswin_met: true, registry_access: true },
     choices: [
@@ -43,7 +43,7 @@ module.exports = [
     next: "CH13.COURT.03"
   },
   {
-    id: "CH13.TRAVELERS.01", date: "2026-12-28", time: "18:00", place: "P57", cast: ["MC", "C06", "C47"], kind: "branch", when: "ch13_lodging = \"travelers\"",
+    id: "CH13.TRAVELERS.01", date: "2026-12-28", time: "18:00", place: "P57", cast: ["MC", "C06", "C47"], maybe: ["C01", "C02", "C05", "C08"], kind: "branch", when: "ch13_lodging = \"travelers\"",
     purpose: "The Travelers' House: crowded corridors, shared meals, house rules about boots. The landlady still has Eamon's bag: he sent it ahead with another courier in August and never came to claim it. His good shirt, a return ticket, a letter to a sister he never posted. And in September, she says, a man in a good coat came asking whether Eamon had arrived. Lucan eats here on Mondays because the food is better than at home.",
     set: { e06_c: true, fr_lucan: 1, eamon_bag: true },
     choices: [
@@ -54,7 +54,7 @@ module.exports = [
     next: "CH13.COURT.03"
   },
   {
-    id: "CH13.COURT.03", date: "2026-12-28", time: "22:30", place: "P58", cast: ["MC", "C06"], kind: "common",
+    id: "CH13.COURT.03", date: "2026-12-28", time: "22:30", place: "P58", cast: ["MC", "C06"], maybe: ["C01", "C02", "C05", "C08"], kind: "common",
     purpose: "The Toll Gardens at night: lanterns in the bare trees, the crossing office dark. Ansel walks me round twice before he says it: his father has been using him to carry his intentions since he was twelve, and every friend he's had has been a piece of family business. He's never told anyone that. He waits to see what I'll make it into.",
     choices: [
       { id: "a", when: "st_ansel >= 3", text: "Make it into nothing. It's his. Just say thank you for telling me.", type: "relational", set: { b_ansel_confidence: true, st_ansel: 4 } },

@@ -75,7 +75,7 @@ module.exports = [
     next: "CH11.EXHIBIT.04"
   },
   {
-    id: "CH11.EXHIBIT.04", date: "2026-11-19", time: "22:15", place: "P22", cast: ["MC", "C03"], kind: "common",
+    id: "CH11.EXHIBIT.04", date: "2026-11-19", time: "22:15", place: "P22", cast: ["MC", "C03", "C21"], kind: "common",
     purpose: "In the student room the heat of the gallery lights has made an old warded piece in the next case restless: glass rattling, a smell of hot metal, two donors noticing. Ellis can settle it, but he needs a few minutes with his back to the room, and he can't be seen doing it.",
     choices: [
       { id: "a", when: "(st_ellis >= 3) and not(b_ellis_danger)", text: "Hold the room. Talk loudly about ceramics until he's done.", type: "relational", set: { b_ellis_danger: true, st_ellis: 4, people: "+2" } },

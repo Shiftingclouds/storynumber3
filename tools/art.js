@@ -54,6 +54,12 @@ if (cmd === "turn") {
   const ids = (id || "switchyard_lane").split(",");
   const tiles = ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/places", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
   save(path.join(ROOT, "docs/art/wip", `place-${ids.length > 1 ? "sheet" : ids[0]}.png`), tiles.length > 1 ? sheet(tiles, 2, 3) : tiles[0], ids.length > 1 ? 2 : 3);
+} else if (cmd === "variant") {
+  // node tools/art.js variant iron_footbridge winter  -> art/places/iron-footbridge-winter.png (view id iron_footbridge_winter)
+  const flag = ex;
+  const c = NB.places.draw(id, { [flag]: true });
+  save(path.join(ROOT, "art/places", `${id.replace(/_/g, "-")}-${flag}.png`), c, 1);
+  save(path.join(ROOT, "docs/art/wip", `place-${id}-${flag}.png`), c, 3);
 } else if (cmd === "places") {
   const tiles = NB.places.ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/places", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
   save(path.join(ROOT, "docs/art", "places.png"), sheet(tiles, 3, 3), 1);

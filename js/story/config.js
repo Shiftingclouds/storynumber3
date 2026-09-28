@@ -43,13 +43,14 @@
     if (!p || !st.date) return "";
     var s = statusOn(p, st.date);
     if (s === "dead") return "dead on " + st.date;
-    if (s === "held") return "held at Stillwater on " + st.date;
+    // the donors can only be seen where they're held: Stillwater (P56) or Pump Nine (P16)
+    if (s === "held" && st.place !== "P56" && st.place !== "P16") return "held at Stillwater on " + st.date;
     var cal = PL.calendar, m = st.date.slice(5, 7);
     if (p.kind === "vampire" && st.time && st.place !== "P14") {
       var rise = cal.sunrise[m], set = cal.sunset[m];
       if (rise && set && st.time > rise && st.time < set) return "a vampire in daylight (" + st.time + ")";
     }
-    if (p.kind === "wolf" && st.time && st.time >= "20:00" && cal.fullMoons.indexOf(st.date) >= 0) return "a full-moon night";
+    if (p.kind === "wolf" && st.time && st.time >= "20:00" && cal.fullMoons.indexOf(st.date) >= 0 && (PL.allowMoon || []).indexOf(st.sid) < 0) return "a full-moon night";
     return "";
   }
 
@@ -167,7 +168,7 @@
     eyebrow: "Calder · the end of summer",
     subtitle: "The Unquiet City",
     motto: "Everyone in this city is holding a thread. I'm the one who can feel them.",
-    sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch10"],
+    sceneList: ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch10", "ch11", "ch12"],
     startVars: PL.startVars,
     clamp: PL.clamp,
     adjustSet: adjustSet,

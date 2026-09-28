@@ -823,6 +823,10 @@
    }
   ]
  },
+ "allowMoon": [
+  "CH12.GATHERING.02",
+  "CH12.GATHERING.03"
+ ],
  "people": {
   "mc": {
    "cid": "MC",
@@ -1782,10 +1786,12 @@
   "bracken_court",
   "calder_general",
   "double_shift",
+  "iron_footbridge_winter",
   "iron_footbridge",
   "lyles_bakery",
   "mercy_house",
   "neutral_table",
+  "northline_station_snow",
   "northline_station",
   "okafor_restoration",
   "orchard_house",

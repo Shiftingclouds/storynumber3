@@ -673,6 +673,7 @@
       case "sid":
         // *sid CH01.HOME.01 — marks the planned scene this passage plays (cross-checked against plan/)
         st.sids[args.trim()] = true;
+        st.sid = args.trim();
         if (this.opts.onSid) this.opts.onSid(args.trim());
         st.pc++;
         return null;

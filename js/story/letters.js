@@ -3,6 +3,16 @@
   "use strict";
   var NB = root.NB || (root.NB = {});
   NB.LETTERS = {
+    mum_03: {
+      kind: "email",
+      head: "From: Joanne Marsh · Subject: I'm so sorry, read this sitting down · received with four others, Saturday 8:14am",
+      html: "<p>I'm not coming home for Christmas. I'm so sorry, sweetheart. I've typed this four times and it doesn't get better.</p>" +
+        "<p>Dr Achebe's broken her wrist (ice, a dog, a sledge, don't ask) and there's nobody else for three hundred miles who can do what she does, and if I leave, the whole coast has a nurse who's never delivered a baby and a doctor with one arm. I can't. You know I can't. I'd never forgive myself and neither would the babies.</p>" +
+        "<p>I'll be home in the spring. April, the rota says. I've circled it on the calendar in red and I look at it every morning like a child.</p>" +
+        "<p>Make Martin do the proper stuffing, the one with the chestnuts, not the one from the packet he thinks I can't tell apart. I can tell. Make Will wear a paper hat. Wear one yourself. Send me a photo of all three of you in them and I'll put it on the wall of the clinic and tell everyone you're my bodyguards.</p>" +
+        "<p>You sound different in your last few. Not tired or sad. Something else. Busier? Braver? I can't tell from here. Whatever it is, I think it suits you. Tell me about it when I'm home. All of it. I'm your mother; I can take it.</p>",
+      sign: "Love you more than Christmas. Which is a LOT. Mum x"
+    },
     ellis_card: {
       kind: "card",
       head: "A postcard: an ink drawing of the arts buildings on University Hill · through the letterbox, Wednesday",

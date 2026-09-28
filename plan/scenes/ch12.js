@@ -35,7 +35,7 @@ module.exports = [
     next: "CH12.GATHERING.03"
   },
   {
-    id: "CH12.GATHERING.03", date: "2026-11-25", time: "03:00", place: "P53", cast: ["MC", "C02", "C25"], kind: "branch", when: "ch12_branch = \"gathering\"", allowMoon: true,
+    id: "CH12.GATHERING.03", date: "2026-11-25", time: "03:00", place: "P53", cast: ["MC", "C02", "C25", "C26"], kind: "branch", when: "ch12_branch = \"gathering\"", allowMoon: true,
     purpose: "The barn at three in the morning: wolves asleep in heaps, human-shaped again under blankets. Ernesto tells Micah to drive the van back at dawn, then open the yard. Micah hasn't slept in two days, and he says yes, because he always says yes.",
     choices: [
       { id: "a", when: "st_micah >= 3", text: "\"He's not driving. I'll do it, or Leandro will. He's done.\" Say it to Ernesto.", type: "relational", set: { b_micah_boundary: true, st_micah: 4, fr_ernesto: "-1", nerve: "+2" } },
@@ -104,7 +104,7 @@ module.exports = [
     next: "CH12.HOME.02"
   },
   {
-    id: "CH12.HOME.02", date: "2026-11-25", time: "23:30", place: "P23", cast: ["MC", "C08"], kind: "branch", when: "ch12_branch = \"home\"",
+    id: "CH12.HOME.02", date: "2026-11-25", time: "23:30", place: "P23", cast: ["MC", "C08", "C17"], kind: "branch", when: "ch12_branch = \"home\"",
     purpose: "Calder General's car park, level three, where I first sat with Quentin. Reuben at the end of a double shift that shouldn't have been his, because the response service he keeps asking for doesn't exist. He can't find his keys. He's not safe to drive and he knows it and he hates it.",
     choices: [
       { id: "a", when: "st_reuben >= 3", text: "Drive him home. Make toast. Don't make it a thing.", type: "relational", set: { b_reuben_needs: true, st_reuben: 4, s09: "fore" } },

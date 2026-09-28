@@ -41,10 +41,14 @@ for (const r of routes) for (const b of r.beats) if (!(b.flag in startVars)) sta
 // ...and they set the ceiling a relationship stage can climb to by small steps (see config.js adjustSet)
 const beats = Object.fromEntries(routes.map((r) => [r.lead, r.beats.map((b) => ({ flag: b.flag, stage: b.stage }))]));
 
+// scenes the plan allows on a full-moon night (the gathering: wolves are present as wolves)
+const allowMoon = [];
+for (const f of fs.readdirSync(path.join(ROOT, "plan/scenes")).filter((f) => /^ch\d\d\.js$/.test(f))) for (const sc of require(path.join(ROOT, "plan/scenes", f))) if (sc.allowMoon) allowMoon.push(sc.id);
+
 const views = fs.readdirSync(path.join(ROOT, "art/places")).filter((f) => f.endsWith(".png")).map((f) => f.replace(/\.png$/, "").replace(/-/g, "_"));
 
 const data = {
-  startVars, clamp, leads: LEADS, beats, people,
+  startVars, clamp, leads: LEADS, beats, allowMoon, people,
   places: Object.fromEntries(places.map((p) => [p.id, { name: p.name, district: districts[p.district] }])),
   views,
   evidence: Object.fromEntries(evidence.map((e) => [e.id, { title: e.name, text: e.establishes, essential: e.essential }])),

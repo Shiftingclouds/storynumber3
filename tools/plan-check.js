@@ -89,7 +89,7 @@ for (const s of scenes) {
   if (!s.date || !/^\d{4}-\d\d-\d\d$/.test(s.date)) err(`${w}: missing or bad date`);
   if (s.time && !/^\d\d:\d\d$/.test(s.time)) err(`${w}: bad time '${s.time}'`);
   if (!s.place) err(`${w}: no place`); else if (!placeIds.has(s.place)) err(`${w}: unknown place ${s.place}`);
-  for (const c of s.cast || []) if (!castById.has(c)) err(`${w}: unknown cast id ${c}`);
+  for (const c of (s.cast || []).concat(s.maybe || [])) if (!castById.has(c)) err(`${w}: unknown cast id ${c}`);
   if (!s.purpose) err(`${w}: no purpose`);
   if (s.when) checkExpr(s.when, w);
   if (s.assert) checkExpr(s.assert, w + " (assert)");
@@ -160,7 +160,7 @@ function statusOn(c, date) {
   return st;
 }
 for (const s of scenes) {
-  for (const id of s.cast || []) {
+  for (const id of (s.cast || []).concat(s.maybe || [])) {
     const c = castById.get(id);
     if (!c) continue;
     const st = statusOn(c, s.date);

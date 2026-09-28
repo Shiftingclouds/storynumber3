@@ -1,0 +1,21 @@
+{
+  "character_id": "MC",
+  "mode": "complete_portrait_presets",
+  "source": "Six complete neutral portrait fallback permitted in Claude's art request",
+  "expression": "neutral",
+  "hair": "short brown",
+  "eyes": "brown",
+  "facial_hair": "none",
+  "allowed_surfaces": ["look_creator", "journal"],
+  "show_fixed_player_face_in_snapshots": false,
+  "file_stage": "generated_master; native game export pending",
+  "delivery_authority": "manifest.json",
+  "options": [
+    {"id": "porcelain", "label": "Porcelain", "file": "portraits/mc-neutral-porcelain.png"},
+    {"id": "fair", "label": "Fair", "file": "portraits/mc-neutral-fair.png"},
+    {"id": "olive", "label": "Olive", "file": "portraits/mc-neutral-olive.png"},
+    {"id": "tan", "label": "Tan", "file": "portraits/mc-neutral-tan.png"},
+    {"id": "brown", "label": "Brown", "file": "portraits/mc-neutral-brown.png"},
+    {"id": "deep", "label": "Deep", "file": "portraits/mc-neutral-deep.png"}
+  ]
+}

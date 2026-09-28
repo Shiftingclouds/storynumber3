@@ -1,0 +1,653 @@
+{
+  "total_variants": 43,
+  "chatgpt_composites": 41,
+  "snapshots": [
+    {
+      "filename": "snap-01-lane.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "art/places/switchyard-lane.png",
+      "character_ids": [
+        "C07"
+      ],
+      "notes": "Quentin down; distant figure seen from behind. No visible faces, no graphic injury. Conceal culprit identity."
+    },
+    {
+      "filename": "snap-02-cafe.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Double Shift interior counter view",
+      "character_ids": [
+        "C07"
+      ],
+      "notes": "Quentin alive handing a coffee toward first-person viewpoint. No fixed protagonist face or identifiable skin tone."
+    },
+    {
+      "filename": "snap-03-evening-nolan.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Switchyard bar birthday background",
+      "character_ids": [
+        "C05"
+      ],
+      "notes": "Ordinary promised evening; preserve selected companion identity and scene cast."
+    },
+    {
+      "filename": "snap-03-evening-micah.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Serrano family table background",
+      "character_ids": [
+        "C02"
+      ],
+      "notes": "Ordinary promised evening; preserve selected companion identity and scene cast."
+    },
+    {
+      "filename": "snap-03-evening-ellis.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Okafor open studio background",
+      "character_ids": [
+        "C03"
+      ],
+      "notes": "Ordinary promised evening; preserve selected companion identity and scene cast."
+    },
+    {
+      "filename": "snap-04-exhibition.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Whitcomb winter exhibition background and brass-frame display case",
+      "character_ids": [],
+      "notes": "Authored exhibition crowd; foreground participants require scene casting, no new named characters."
+    },
+    {
+      "filename": "snap-05-crossing-adrian.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [
+        "C01"
+      ],
+      "notes": "Companion seen from behind, recognizable hair and clothing; protagonist remains the viewpoint."
+    },
+    {
+      "filename": "snap-05-crossing-micah.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [
+        "C02"
+      ],
+      "notes": "Companion seen from behind, recognizable hair and clothing; protagonist remains the viewpoint."
+    },
+    {
+      "filename": "snap-05-crossing-ellis.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [
+        "C03"
+      ],
+      "notes": "Companion seen from behind, recognizable hair and clothing; protagonist remains the viewpoint."
+    },
+    {
+      "filename": "snap-05-crossing-dominic.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [
+        "C04"
+      ],
+      "notes": "Companion seen from behind, recognizable hair and clothing; protagonist remains the viewpoint."
+    },
+    {
+      "filename": "snap-05-crossing-nolan.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [
+        "C05"
+      ],
+      "notes": "Companion seen from behind, recognizable hair and clothing; protagonist remains the viewpoint."
+    },
+    {
+      "filename": "snap-05-crossing-ansel.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [
+        "C06"
+      ],
+      "notes": "Companion seen from behind, recognizable hair and clothing; protagonist remains the viewpoint."
+    },
+    {
+      "filename": "snap-05-crossing-quentin.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [
+        "C07"
+      ],
+      "notes": "Companion seen from behind, recognizable hair and clothing; protagonist remains the viewpoint."
+    },
+    {
+      "filename": "snap-05-crossing-reuben.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [
+        "C08"
+      ],
+      "notes": "Companion seen from behind, recognizable hair and clothing; protagonist remains the viewpoint."
+    },
+    {
+      "filename": "snap-05-crossing-alone.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "Claude",
+      "status": "Claude environment work",
+      "background_needed": "Bracken Court Candle Fair arrival background",
+      "character_ids": [],
+      "notes": "Eight leads plus alone equals nine variants. No people added."
+    },
+    {
+      "filename": "snap-06-docks.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Stillwater high-window view into captive room",
+      "character_ids": [
+        "C49",
+        "C57",
+        "C58"
+      ],
+      "notes": "Three coerced donors in beds with light threads leaving them. Non-graphic; do not substitute patients."
+    },
+    {
+      "filename": "snap-07-together-adrian.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific private milestone location background",
+      "character_ids": [
+        "C01"
+      ],
+      "notes": "Adult, clothed, tender. First-person composition shows partner; protagonist can be implied by a clothed foreground arm, never given a fixed face."
+    },
+    {
+      "filename": "snap-07-together-micah.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific private milestone location background",
+      "character_ids": [
+        "C02"
+      ],
+      "notes": "Adult, clothed, tender. First-person composition shows partner; protagonist can be implied by a clothed foreground arm, never given a fixed face."
+    },
+    {
+      "filename": "snap-07-together-ellis.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific private milestone location background",
+      "character_ids": [
+        "C03"
+      ],
+      "notes": "Adult, clothed, tender. First-person composition shows partner; protagonist can be implied by a clothed foreground arm, never given a fixed face."
+    },
+    {
+      "filename": "snap-07-together-dominic.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific private milestone location background",
+      "character_ids": [
+        "C04"
+      ],
+      "notes": "Adult, clothed, tender. First-person composition shows partner; protagonist can be implied by a clothed foreground arm, never given a fixed face."
+    },
+    {
+      "filename": "snap-07-together-nolan.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific private milestone location background",
+      "character_ids": [
+        "C05"
+      ],
+      "notes": "Adult, clothed, tender. First-person composition shows partner; protagonist can be implied by a clothed foreground arm, never given a fixed face."
+    },
+    {
+      "filename": "snap-07-together-ansel.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific private milestone location background",
+      "character_ids": [
+        "C06"
+      ],
+      "notes": "Adult, clothed, tender. First-person composition shows partner; protagonist can be implied by a clothed foreground arm, never given a fixed face."
+    },
+    {
+      "filename": "snap-07-together-quentin.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific private milestone location background",
+      "character_ids": [
+        "C07"
+      ],
+      "notes": "Adult, clothed, tender. First-person composition shows partner; protagonist can be implied by a clothed foreground arm, never given a fixed face."
+    },
+    {
+      "filename": "snap-07-together-reuben.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific private milestone location background",
+      "character_ids": [
+        "C08"
+      ],
+      "notes": "Adult, clothed, tender. First-person composition shows partner; protagonist can be implied by a clothed foreground arm, never given a fixed face."
+    },
+    {
+      "filename": "snap-08-bridge.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Mercy House warden workroom planning-table background",
+      "character_ids": [],
+      "notes": "Coalition preparing rescue bridge; the authored branch must supply participating cast before composition."
+    },
+    {
+      "filename": "snap-09-role-pump.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Pump Nine assigned-post background",
+      "character_ids": [],
+      "notes": "First-person view of the chosen post. Branch companion assignments needed; no visible player face."
+    },
+    {
+      "filename": "snap-09-role-docks.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Stillwater Docks assigned-post background",
+      "character_ids": [],
+      "notes": "First-person view of the chosen post. Branch companion assignments needed; no visible player face."
+    },
+    {
+      "filename": "snap-09-role-crossing.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Iron Footbridge assigned-post background",
+      "character_ids": [],
+      "notes": "First-person view of the chosen post. Branch companion assignments needed; no visible player face."
+    },
+    {
+      "filename": "snap-10-aftermath-all.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Authored day-after recovery location background",
+      "character_ids": [
+        "C49",
+        "C57",
+        "C58",
+        "C07",
+        "C51",
+        "C52"
+      ],
+      "notes": "END_A/B/C/D: all patients and donors alive. Respect recovery needs."
+    },
+    {
+      "filename": "snap-10-aftermath-donors.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Authored day-after recovery location background",
+      "character_ids": [
+        "C49",
+        "C57",
+        "C58"
+      ],
+      "notes": "END_E: all three donors alive, patients dead; do not depict patients as living."
+    },
+    {
+      "filename": "snap-10-aftermath-quentin.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Authored day-after recovery location background",
+      "character_ids": [
+        "C49",
+        "C57",
+        "C58",
+        "C07"
+      ],
+      "notes": "END_F: only the named patient survives with the three donors. Exclude the other two patients."
+    },
+    {
+      "filename": "snap-10-aftermath-silas.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Authored day-after recovery location background",
+      "character_ids": [
+        "C49",
+        "C57",
+        "C58",
+        "C51"
+      ],
+      "notes": "END_F: only the named patient survives with the three donors. Exclude the other two patients."
+    },
+    {
+      "filename": "snap-10-aftermath-felix.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Authored day-after recovery location background",
+      "character_ids": [
+        "C49",
+        "C57",
+        "C58",
+        "C52"
+      ],
+      "notes": "END_F: only the named patient survives with the three donors. Exclude the other two patients."
+    },
+    {
+      "filename": "snap-11-parting.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Northline Station departure/reunion platform background",
+      "character_ids": [],
+      "notes": "Figure with bag; confirm the authored scene's departing or arriving person before assigning an identity."
+    },
+    {
+      "filename": "snap-12-epilogue-adrian-together.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific one-year-later epilogue background",
+      "character_ids": [
+        "C01"
+      ],
+      "notes": "Apply relationship and survival guards. Quentin version available only if Quentin survives; player stays unseen."
+    },
+    {
+      "filename": "snap-12-epilogue-micah-together.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific one-year-later epilogue background",
+      "character_ids": [
+        "C02"
+      ],
+      "notes": "Apply relationship and survival guards. Quentin version available only if Quentin survives; player stays unseen."
+    },
+    {
+      "filename": "snap-12-epilogue-ellis-together.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific one-year-later epilogue background",
+      "character_ids": [
+        "C03"
+      ],
+      "notes": "Apply relationship and survival guards. Quentin version available only if Quentin survives; player stays unseen."
+    },
+    {
+      "filename": "snap-12-epilogue-dominic-together.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific one-year-later epilogue background",
+      "character_ids": [
+        "C04"
+      ],
+      "notes": "Apply relationship and survival guards. Quentin version available only if Quentin survives; player stays unseen."
+    },
+    {
+      "filename": "snap-12-epilogue-nolan-together.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific one-year-later epilogue background",
+      "character_ids": [
+        "C05"
+      ],
+      "notes": "Apply relationship and survival guards. Quentin version available only if Quentin survives; player stays unseen."
+    },
+    {
+      "filename": "snap-12-epilogue-ansel-together.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific one-year-later epilogue background",
+      "character_ids": [
+        "C06"
+      ],
+      "notes": "Apply relationship and survival guards. Quentin version available only if Quentin survives; player stays unseen."
+    },
+    {
+      "filename": "snap-12-epilogue-quentin-together.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific one-year-later epilogue background",
+      "character_ids": [
+        "C07"
+      ],
+      "notes": "Apply relationship and survival guards. Quentin version available only if Quentin survives; player stays unseen."
+    },
+    {
+      "filename": "snap-12-epilogue-reuben-together.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "ChatGPT",
+      "status": "awaiting Claude background PNG",
+      "background_needed": "Route-specific one-year-later epilogue background",
+      "character_ids": [
+        "C08"
+      ],
+      "notes": "Apply relationship and survival guards. Quentin version available only if Quentin survives; player stays unseen."
+    },
+    {
+      "filename": "snap-12-epilogue-single.png",
+      "target_size": [
+        320,
+        180
+      ],
+      "transparent": false,
+      "owner": "Claude",
+      "status": "Claude environment work",
+      "background_needed": "Riverside Steps city view",
+      "character_ids": [],
+      "notes": "No people; Claude supplies this environment image."
+    }
+  ]
+}

@@ -350,6 +350,12 @@ Every variable a scene may read or set. Anything undeclared is rejected by the c
 | `plan_pair` | bool | false | Single-pair emergency bridge demonstrated |  |
 | `materials` | number | 0 | Required materials secured (0–3: anchor stones, ward thread, the old program's frame) |  |
 | `volunteers` | number | 0 | Informed adult volunteers committed (0–9) |  |
+| `conseq_n` | number | 0 | Epilogue: supporting consequences shown so far (CH24) |  |
+| `vol_mercy` | bool | false | Wardens from Mercy House volunteered (Emmett and a trainee) |  |
+| `vol_home` | bool | false | Latch Lane volunteered (Martin and Owen; Peter runs the rota) |  |
+| `vol_marches` | bool | false | A miller's son from the Verre household volunteered |  |
+| `vol_otis` | bool | false | Otis volunteered, for Silas |  |
+| `vol_grace` | bool | false | Grace, the Regent's day porter, volunteered |  |
 | `consent_q` | bool | false | Quentin's informed choice recorded |  |
 | `consent_s` | bool | false | Silas's informed choice recorded |  |
 | `consent_f` | bool | false | Felix's informed choice recorded |  |

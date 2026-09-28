@@ -704,4 +704,44 @@
     b.over(function (ctx) { O.glow(ctx, ctx.project([3, 6.8, 19.7]), 12, "#c8fff0", 0.4); });
     return b.scene({ cam: { p: [0.5, 1.6, 3], f: 150, cx: 160, cy: 118, yaw: 0.02, pitch: 0.2 }, ambient: "#4a48a0", bounce: "#10102a", fog: ["#4a3a8a", 110, 0.4], sky: SKY.night({ body: { d: [-0.5, 0.55, 1], r: 0.045, col: "#f4ecd2", glow: "#b08ad0" } }) });
   });
+
+  /* ---------------------------------------------------------------- P06 the Riverside Steps: dusk (default), night, dawn */
+  add("riverside_steps", function (opt) {
+    var b = new B();
+    var night = opt && opt.night, dawn = opt && opt.dawn, day = opt && opt.day;
+    // the river, wide and slow, and the far embankment
+    b.rect(1, 0, [-90, 90], [4, 140], M.water(night ? "#1e2a62" : dawn ? "#5a6aa8" : day ? "#4a7ab0" : "#3a3a86", 0.45), { noShadow: true });
+    var stone = M.brick(dawn ? "#b8a8b8" : "#9a8aa8", "#4a3a5a", { h: 0.3, w: 0.9, vary: 0.5 });
+    // ten broad steps going down into the water, and the side walls
+    var nosing = M.flat(dawn ? "#e8d8e0" : "#c8b8d0");
+    for (var i = 0; i < 10; i++) { var top = 3 - i * 0.3; b.box([-9, 0, -6 + i], [9, top, -5 + i], stone); b.box([-9, top - 0.06, -5.14 + i], [9, top + 0.01, -5 + i], nosing, { noShadow: true }); }
+    b.box([-11, 0, -8], [-9, 3.4, 5], function (h, sc) {
+      // the flood mark, cut into the wall: a line and a date
+      if (h.n[0] > 0.5 && Math.abs(h.p[1] - 1.9) < 0.05) return { albedo: c("#2a2230") };
+      return stone(h, sc);
+    });
+    b.box([9, 0, -8], [11, 3.4, 5], stone);
+    b.box([-40, 0, -14], [-11, 3.4, 4], M.flat("#4a3a6a"), { noShadow: true });
+    b.box([11, 0, -14], [40, 3.4, 4], M.flat("#4a3a6a"), { noShadow: true });
+    // railings and lamps along the top
+    var iron = M.flat("#2a2250");
+    [-10, 10].forEach(function (x) { b.box([x - 0.1, 3.4, -8], [x + 0.1, 4.4, 4.6], iron); b.cyl(x, 4.4, 0.08, 3.4, 6.2, iron); b.sph([x, 6.3, 4.4], 0.22, M.emit(night || !dawn ? "#fff2b8" : "#ffe8c8")); b.light([x, 6.1, 4.2], "#ffcf80", night ? 1.4 : 0.8, 5); });
+    // a bridge downstream, and the far bank with the city
+    b.box([-44, 5, 4], [-39, 5.6, 72], M.flat("#2a2262"));
+    [14, 28, 42, 56].forEach(function (z) { b.box([-43.4, 0, z - 1.2], [-39.6, 5, z + 1.2], M.brick("#6a4a7a", "#2a1a3a", { h: 0.3, w: 0.8 })); });
+    for (var bz = 6; bz < 72; bz += 6) b.light([-41.5, 6.4, bz], "#ffcf80", 0.5, 3);
+    b.box([-90, 0, 70], [90, 3, 78], M.flat(dawn ? "#6a5a9a" : day ? "#5a6a9a" : "#2a2262"), { noShadow: true });
+    skyline(b, -120, 120, 110, 6, day ? { min: 5, span: 16, dark: 1, cols: ["#7a8ab8", "#8a7aa8", "#6a7aa8"] } : { min: 5, span: 16, dark: night ? 0.55 : dawn ? 0.9 : 0.7 });
+    if (dawn) b.sun([0.5, 0.18, 1], "#ffd8a0", 0.8); else if (day) b.sun([-0.3, 0.8, 0.5], "#fff4d8", 1); else if (!night) b.sun([-0.4, 0.2, 1], "#ff9a6a", 0.6);
+    b.over(function (ctx) {
+      // lamp halos, their reflections on the water, and the flood mark's date
+      [-10, 10].forEach(function (x) {
+        var p = ctx.project([x, 6.3, 4.4]); if (p) O.glow(ctx, p, 8, "#ffcf80", night ? 0.45 : 0.25);
+        for (var z = 8; z < 22; z += 2) { var q = ctx.project([x * 0.9, 0.02, z]); if (q) ctx.set(q.x, q.y, c("#ffcf80")); }
+      });
+      var m = ctx.project([-8.95, 2.02, -3.5]); if (m) O.text(ctx, "2027", m.x, m.y - 6, "#2a2230");
+    });
+    var sky = night ? SKY.night({ body: { d: [0.4, 0.35, 1], r: 0.045, col: "#f4ecd2", glow: "#b08ad0" } }) : dawn ? SKY.dawn({}) : day ? SKY.day({}) : SKY.dusk({});
+    return b.scene({ cam: { p: [1.2, 5.6, -7.5], f: 150, cx: 160, cy: 70, yaw: -0.08, pitch: -0.17 }, ambient: night ? "#5a48a8" : dawn ? "#a8a0d8" : day ? "#b8c8e8" : "#8a5aa8", bounce: "#1a1030", fog: [night ? "#6a3f9a" : dawn ? "#d8b8c8" : day ? "#c8d8f0" : "#c86a8a", 150, 0.45], sky: sky, dither: day ? 0.035 : undefined });
+  });
 })(typeof window !== "undefined" ? window : globalThis);

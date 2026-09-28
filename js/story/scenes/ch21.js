@@ -493,7 +493,7 @@ Now the only question left is the one I've been not asking all winter. What we a
 *comment ---------------------------------------------------------------- CH21.DAWN.01
 *sid CH21.DAWN.01
 *date 2027-03-14 05:40
-*place P06
+*place P06 riverside_steps_dawn
 *mood dusk
 Dawn on the fourteenth of March.
 

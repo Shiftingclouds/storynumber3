@@ -2,7 +2,7 @@
 
 _Generated from `plan/` by `tools/plan-docs.js`. Author-facing: contains spoilers._
 
-262 scenes and 586 choices across 24 chapters. Every scene has a date, a place, who is there, what it's for, and where every choice goes. Checked by `tools/plan-check.js`.
+262 scenes and 584 choices across 24 chapters. Every scene has a date, a place, who is there, what it's for, and where every choice goes. Checked by `tools/plan-check.js`.
 
 
 ## CH01 — After the Last Set
@@ -471,7 +471,7 @@ _On entry:_ st_ellis = 2, b_ellis_meet = true, fr_chukwudi = 1, fr_isaac = 1, e0
 Next: CH05.RESTORE.02
 
 ### CH05.RESTORE.02 _(branch)_
-**Fri 4 Sept, 20:15** · Okafor Restoration · I, Ellis Okafor, Chukwudi Okafor
+**Fri 4 Sept, 20:15** · Okafor Restoration · I, Ellis Okafor, Chukwudi Okafor, Isaac Okafor
 
 _When:_ `ch05_route = "restore"`
 
@@ -500,7 +500,7 @@ Next: CH06.WEEKS.01
 _Ansel connects Eamon's absence to a specific journey. Term begins; the city moves into autumn._
 
 ### CH06.WEEKS.01
-**Mon 14 Sept, 08:00** · Latch Lane print shop and upstairs home · I, Martin Avery, Will Avery
+**Mon 14 Sept, 08:00** · Latch Lane print shop and upstairs home · I, Martin Avery, Will Avery, Nolan Voss
 
 Ten days go by the way days do. Will's final year starts; the buses up University Hill fill with first-years; the leaves think about turning. Quentin texts twice, about nothing. I keep reaching with the knack at things that don't need it: a coat on the bus, Martin's reading glasses. Mum's second batch of emails arrives: a polar bear at the dump, a man who walked in with an axe in his boot and asked for a plaster.
 
@@ -652,7 +652,7 @@ _On entry:_ hugo_met = true, fr_hugo = 1, fr_peter = 1, fr_owen +1, fr_milo = 1,
 Next: CH07.NOLAN.02
 
 ### CH07.NOLAN.02 _(branch)_
-**Fri 2 Oct, 23:00** · Laird's Flatshare · I, Nolan Voss, Dominic Bell, Milo Finch
+**Fri 2 Oct, 23:00** · Laird's Flatshare · I, Nolan Voss, Dominic Bell, Milo Finch, Owen Price, Peter Laird, Hugo Naranjo
 
 _When:_ `ch07_evening = "nolan"`
 
@@ -805,13 +805,13 @@ Next: CH08.NEWS.01
 _Silas's case proves repetition; Hugo's absence gives it a human face._
 
 ### CH08.NEWS.01
-**Thu 15 Oct, 06:30** · Lyle's Bakery · I, Otis Lyle, Silas Fenwick
+**Thu 15 Oct, 06:30** · Lyle's Bakery · I, Otis Lyle, Silas Fenwick, Reuben Pike, Ilyas Qureshi
 
 Delivering Otis Lyle's new price boards at dawn, because Martin printed them. Lyle's Bakery smells of butter and burnt sugar. Silas Fenwick, the apprentice, is at the ovens, and the knack goes off like a struck bell: a second rope, running out of him and away. Otis says Silas was off two days 'on some paid course' and came back wrong: quiet, cold, forgetting things he's done a thousand times.
 
 - **a.** Stay. Talk to Silas after the morning rush, with Otis there. _(structural)_ → ch08_way = "bakery" → **CH08.BAKERY.01**
 - **b.** Get him measured. Call Reuben: something on paper before anyone argues. _(structural)_ — if `st_reuben >= 2` → ch08_way = "hospital" → **CH08.HOSPITAL.01**
-- **c.** Get him measured. Call the hospital lab, and ask for Ilyas. _(structural)_ — if `st_reuben < 2` → ch08_way = "hospital" → **CH08.HOSPITAL.01**
+- **c.** Get him measured. Call the hospital lab. _(structural)_ — if `st_reuben < 2` → ch08_way = "hospital" → **CH08.HOSPITAL.01**
 
 ### CH08.BAKERY.01 _(branch)_
 **Thu 15 Oct, 15:00** · Lyle's Bakery · I, Otis Lyle, Silas Fenwick, Micah Serrano
@@ -820,7 +820,7 @@ _When:_ `ch08_way = "bakery"`
 
 After closing, the long table in the back. Micah is here too, fixing the proving cabinet he fixed last month, and pulls out a chair for me without looking up. Silas tells a false story (a flu, a bad weekend) to protect his job and his privacy, and the knack reads fear, not a lie. Otis found letters in the bin: a 'supervised paid trial', good money, a confidentiality clause.
 
-_On entry:_ b_micah_seat = true, fr_otis = 1, fr_silas = 1
+_On entry:_ b_micah_seat = true, st_micah = 2, fr_otis = 1, fr_silas = 1
 
 - **a.** Don't push. Tell Silas what happened to Quentin, and let him decide. _(relational)_ → fr_silas +1, e09 = true, e09_src = "silas", silas_trusts = true
 - **b.** Ask Otis for the letters, with Silas in the room. _(investigative)_ → e09 = true, e09_src = "otis", fr_silas -1
@@ -855,9 +855,9 @@ _On entry:_ repeated = true
 Next: CH08.HUGO.01
 
 ### CH08.HUGO.01
-**Sat 17 Oct, 11:00** · Night Bus Depot · I, Owen Price, Pavel Kolar, Peter Laird
+**Sat 17 Oct, 11:00** · Night Bus Depot · I, Owen Price, Pavel Kolar, Peter Laird, Gareth Moss
 
-Saturday at the depot. Hugo Naranjo hasn't been seen since he clocked off on Monday morning. He missed his interview for the permanent post, the thing he talked about all night. Owen's organising a search; Pavel keeps checking his phone; Peter covered his shift once and feels responsible. Hugo's jacket is still on its hook.
+Saturday at the depot. Hugo Naranjo hasn't been seen since he clocked off on Monday morning. He missed his interview for the permanent post, the thing he talked about all night. Owen's organising a search; Pavel keeps checking his phone; Peter feels responsible: Hugo was a Monday regular at Double Shift, and Peter noticed him not come in, the way he noticed Eamon. Hugo's jacket is still on its hook.
 
 _On entry:_ hugo_missing = true
 
@@ -1012,7 +1012,7 @@ _On entry:_ e08 = true, e08_src = "screen"
 Next: CH09.SCREEN.05
 
 ### CH09.SCREEN.05 _(branch)_
-**Sat 31 Oct, 11:00** · Okafor Restoration · I, Chukwudi Okafor, Ellis Okafor
+**Sat 31 Oct, 11:00** · Okafor Restoration · I, Chukwudi Okafor, Ellis Okafor, Isaac Okafor
 
 _When:_ `ch09_case = "screen"`
 
@@ -1116,7 +1116,7 @@ _On entry:_ fr_percival = 1
 Next: CH10.ORRELL.01
 
 ### CH10.ORRELL.01
-**Sun 8 Nov, 11:00** · Mercy House · I, Patrick Orrell
+**Sun 8 Nov, 11:00** · Mercy House · I, Patrick Orrell, Florian Adebayo
 
 Sunday. Commander Orrell knows I've seen the program, one way or another; Mercy House is not a place where secrets stay in one room. He listens without interrupting, then restates the part of my argument he considers relevant: he closed a dangerous program and kept the reasons quiet so the institution would survive long enough to do better. He doesn't know who is doing this now. I believe that, and the knack agrees, for what that's worth.
 
@@ -1228,7 +1228,7 @@ _On entry:_ e10 = true, e10_src = "caspar", frame_seen = true
 Next: CH11.EXHIBIT.04
 
 ### CH11.EXHIBIT.04
-**Thu 19 Nov, 22:15** · Whitcomb Museum · I, Ellis Okafor
+**Thu 19 Nov, 22:15** · Whitcomb Museum · I, Ellis Okafor, Emmett Hsu
 
 In the student room the heat of the gallery lights has made an old warded piece in the next case restless: glass rattling, a smell of hot metal, two donors noticing. Ellis can settle it, but he needs a few minutes with his back to the room, and he can't be seen doing it.
 
@@ -1301,7 +1301,7 @@ _Note:_ At the cliff edge, the knack catches something old: a young man's surpri
 Next: CH12.GATHERING.03
 
 ### CH12.GATHERING.03 _(branch)_
-**Wed 25 Nov, 03:00** · Greyhill Village · I, Micah Serrano, Ernesto Serrano
+**Wed 25 Nov, 03:00** · Greyhill Village · I, Micah Serrano, Ernesto Serrano, Leandro Serrano
 
 _When:_ `ch12_branch = "gathering"`
 
@@ -1392,7 +1392,7 @@ _On entry:_ s06 = "fore"
 Next: CH12.HOME.02
 
 ### CH12.HOME.02 _(branch)_
-**Wed 25 Nov, 23:30** · Calder General · I, Reuben Pike
+**Wed 25 Nov, 23:30** · Calder General · I, Reuben Pike, Victor Keene
 
 _When:_ `ch12_branch = "home"`
 
@@ -1627,7 +1627,7 @@ _On entry:_ still_lead = "threads", s14 = "resolved:boundary", fr_percival +1, k
 Next: CH14.QUIET.01
 
 ### CH14.QUIET.01
-**Thu 31 Dec, 15:00** · The Travelers' House · I, Ansel Marr
+**Thu 31 Dec, 15:00** · The Travelers' House · I, Ansel Marr, Lucan Verre
 
 The last day of the year, with nowhere to be. Snow on the lodging's roof, a stove, a card game nobody explains properly. Quiet days turn into the kind of closeness that only happens when nobody can leave. It's the person I came with who fills this afternoon.
 
@@ -1635,7 +1635,7 @@ The last day of the year, with nowhere to be. Snow on the lodging's roof, a stov
 - **b.** Micah gets a letter from home asking him back early. I tell him he's allowed to say no. _(relational)_ — if `(companion = "micah") and (st_micah >= 3)` → b_micah_boundary = true, st_micah = 4
 - **c.** Nolan rebuilds the lodging's broken music box with a pocketknife, and I hold the torch. _(relational)_ — if `(companion = "nolan") and (st_nolan >= 3)` → b_nolan_work = true, st_nolan = 4
 - **d.** Reuben sleeps for eleven hours and lets me bring him breakfast. _(relational)_ — if `(companion = "reuben") and (st_reuben >= 3)` → b_reuben_needs = true, st_reuben = 4
-- **e.** Ansel, by the stove, tells me the thing about his father he's never told anyone. _(relational)_ — if `(st_ansel >= 3) and not(b_ansel_confidence)` → b_ansel_confidence = true, st_ansel = 4
+- **e.** Ansel, by the stove, tells me the rest: the part about his father he didn't say in the Toll Gardens. _(relational)_ — if `(st_ansel >= 3) and not(b_ansel_confidence)` → b_ansel_confidence = true, st_ansel = 4
 - **f.** Everyone together, cards and cider. Nobody alone with anybody. _(expressive)_ → people +1
 
 Next: CH14.QUIET.02
@@ -1672,7 +1672,7 @@ Two hours on the local road, downriver, in a hired cart that smells of apples. S
 - **b.** Find someone who works inside. We have a name. _(structural)_ — if `(still_lead = "clerk") or (still_lead = "registry")` → ch15_way = "witness" → **CH15.WITNESS.01**
 
 ### CH15.OBSERVE.01 _(branch)_
-**Sat 2 Jan, 10:30** · Stillwater Docks · I, Ansel Marr
+**Sat 2 Jan, 10:30** · Stillwater Docks · I, Ansel Marr, Clive Merritt
 
 _When:_ `ch15_way = "observe"`
 
@@ -2031,7 +2031,7 @@ He takes a long time. Then he says yes to the bridge, for himself, not for his f
 Next: CH17.MICAH.03
 
 ### CH17.MICAH.03 _(route)_
-**Mon 25 Jan, 08:00** · Serrano Yard · I, Micah Serrano
+**Mon 25 Jan, 08:00** · Serrano Yard · I, Micah Serrano, Ernesto Serrano
 
 _When:_ `ch17_ask = "micah"`
 
@@ -2072,7 +2072,7 @@ He says yes to March and yes to the work, and then, for once, doesn't curate wha
 Next: CH17.ELLIS.03
 
 ### CH17.ELLIS.03 _(route)_
-**Mon 25 Jan, 09:00** · Okafor Restoration · I, Ellis Okafor
+**Mon 25 Jan, 09:00** · Okafor Restoration · I, Ellis Okafor, Chukwudi Okafor
 
 _When:_ `ch17_ask = "ellis"`
 
@@ -2154,7 +2154,7 @@ He says yes. He says he's been waiting for me to ask him for something that matt
 Next: CH17.NOLAN.03
 
 ### CH17.NOLAN.03 _(route)_
-**Mon 25 Jan, 10:00** · Laird's Flatshare · I, Nolan Voss
+**Mon 25 Jan, 10:00** · Laird's Flatshare · I, Nolan Voss, Peter Laird, Owen Price
 
 _When:_ `ch17_ask = "nolan"`
 
@@ -2229,7 +2229,6 @@ _When:_ `ch17_ask = "quentin"`
 
 He tells me what he wants from the rescue: to be free of Eamon's life, whatever it costs him, and to decide the rest himself. And then, because nothing needs investigating, he decides something else.
 
-- **a.** Let him decide, and say yes. _(relational)_ — if `(st_quentin >= 5) and (hurt_quentin < 2)` → st_quentin = 6, out_quentin = true
 - **b.** He reaches first. I meet him. _(relational)_ — if `(st_quentin = 4) and (b_quentin_acts and b_quentin_nothing) and (hurt_quentin < 2)` → st_quentin = 5, out_quentin = true, b_quentin_initiates = true
 - **c.** Tell him I'm his friend, whatever happens in March. He holds me to it. _(relational)_ → friends_ch17 = true
 
@@ -2270,7 +2269,6 @@ _When:_ `ch17_ask = "reuben"`
 
 He says yes to the rescue before I've finished. The second question takes him much longer, and when he answers it, it isn't as a medic.
 
-- **a.** Stay. There's no reason to, and I stay. _(relational)_ — if `(st_reuben >= 5) and (hurt_reuben < 2)` → st_reuben = 6, out_reuben = true
 - **b.** Tell him the reason's gone and I'm still here. _(relational)_ — if `(st_reuben = 4) and (b_reuben_needs) and (hurt_reuben < 2)` → st_reuben = 5, out_reuben = true, b_reuben_stay = true
 - **c.** Tell him he's the best person I know. He goes red to the ears. _(relational)_ → friends_ch17 = true
 
@@ -2623,7 +2621,7 @@ Where do I stand tonight?
 Next: CH20.LAST.01
 
 ### CH20.LAST.01
-**Sat 13 Mar, 18:10** · Riverside Steps · I
+**Sat 13 Mar, 18:20** · Riverside Steps · I
 
 Sunset over the river, the ice gone, the water high at the flood marks. An hour before we go. I spend it with someone, or alone.
 
@@ -2669,7 +2667,7 @@ Pump Nine's machinery hall: iron, damp, the linking apparatus under work lights,
 Next: CH21.PATIENT.02
 
 ### CH21.PATIENT.02 _(branch)_
-**Sun 14 Mar, 00:10** · Pump Nine · I, Damian Holt, Reuben Pike
+**Sun 14 Mar, 00:10** · Pump Nine · I, Damian Holt, Reuben Pike, Quentin Shaw, Silas Fenwick, Felix Brecht, Chukwudi Okafor, Ellis Okafor, Dominic Bell
 
 _When:_ `role = "patient"`
 

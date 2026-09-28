@@ -17,6 +17,10 @@
   "pump_nine": "art/places/pump-nine.png",
   "regent": "art/places/regent.png",
   "rell_company": "art/places/rell-company.png",
+  "riverside_steps_dawn": "art/places/riverside-steps-dawn.png",
+  "riverside_steps_day": "art/places/riverside-steps-day.png",
+  "riverside_steps_night": "art/places/riverside-steps-night.png",
+  "riverside_steps": "art/places/riverside-steps.png",
   "rusk_funeral": "art/places/rusk-funeral.png",
   "serrano_yard": "art/places/serrano-yard.png",
   "sorrell_house": "art/places/sorrell-house.png",
@@ -26,5 +30,7 @@
  },
  "cards": {},
  "portraits": {},
- "snapshots": {}
+ "snapshots": {
+  "epilogue-single": "art/snapshots/snap-12-epilogue-single.png"
+ }
 }; })(typeof window !== "undefined" ? window : globalThis);

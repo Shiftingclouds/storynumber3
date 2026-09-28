@@ -166,7 +166,7 @@ Across the room, Nolan's stopped restringing. He knows the system better than an
 *label nolan
 *sid CH02.NOLAN.01
 *date 2026-08-30 12:30
-*place P06
+*place P06 riverside_steps_day
 *present nolan
 *set st_nolan +1
 The Riverside Steps are a long flight of stone steps down to the water under the old bridge, where people eat their lunch, and buskers busk, and pigeons run a protection racket. Nolan's got two coffees from the stall at the top. He hands me one without asking what I want, because he knows.

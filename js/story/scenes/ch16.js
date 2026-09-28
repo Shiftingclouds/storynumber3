@@ -584,7 +584,7 @@ He doesn't ask me what I think. He lets me sit with the question with him, inste
 *label steps
 *sid CH16.HOME.02
 *date 2027-01-08 22:00
-*place P06
+*place P06 riverside_steps_night
 *present nolan
 The Riverside Steps at ten at night, frozen at the edges. The river black and fast. The Winter Lights still up along the embankment, a week past Christmas, half of them broken.
 *if nolan_applied

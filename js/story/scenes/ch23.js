@@ -368,7 +368,7 @@ He waits to see what I'll do with it.
 *label rel
 *sid CH23.REL.01
 *date 2027-04-24 22:30
-*place P06
+*place P06 riverside_steps_night
 *mood night
 The Riverside Steps, after the showcase. The water's low and quiet now, sliding past under the lamps, and the flood mark's still there on the stone, halfway up, where the river was six weeks ago.
 
@@ -424,7 +424,7 @@ There's one question left that belongs to me.
 *label rel2
 *sid CH23.REL.02
 *date 2027-04-24 22:45
-*place P06
+*place P06 riverside_steps_night
 *if final_rel = "adrian"
   *present adrian
   @adrian:attentive Adrian comes down the steps in his warden jacket and sits beside me, and takes his notebook out, and then, very deliberately, puts it away again.
@@ -566,7 +566,7 @@ Whatever we are, we say it out loud, the two of us. And we both get a say.
 *label future
 *sid CH23.FUTURE.01
 *date 2027-04-24 23:30
-*place P06
+*place P06 riverside_steps_night
 And me?
 
 The knack, and a year of learning what it's for.

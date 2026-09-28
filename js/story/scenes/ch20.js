@@ -111,7 +111,7 @@ Where I stand tonight decides what I see, and what I can do about it, and what I
 *comment ---------------------------------------------------------------- CH20.LAST.01
 *sid CH20.LAST.01
 *date 2027-03-13 18:20
-*place P06
+*place P06 riverside_steps
 *mood dusk
 The Riverside Steps, as the sun goes down.
 

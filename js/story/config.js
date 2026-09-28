@@ -121,7 +121,7 @@
     "epilogue-ansel": { title: "Ansel, a year on", bg: "print_shop" },
     "epilogue-quentin": { title: "Quentin, a year on", bg: "print_shop" },
     "epilogue-reuben": { title: "Reuben, a year on", bg: "print_shop" },
-    "epilogue-single": { title: "The city, a year on", bg: "iron_footbridge" }
+    "epilogue-single": { title: "The city, a year on", bg: "riverside_steps_night" }
   };
 
   /* ---------------- chapter art ---------------- */
@@ -138,8 +138,19 @@
 
   /* ---------------- endings ---------------- */
 
+  // what the ending screen says (the plan's "core" is a design note, not for players)
+  var endingText = {
+    A: "All six came home. Mercy House answered for what it did, in its own record, in front of the men it hurt.",
+    B: "All six came home, carried by neighbours. The evidence stayed with the people who carried them, in three copies, where no house could bury it.",
+    C: "All six lived, the long way round: weeks of weaning, care rotas, a tin on the counter for the volunteers' rent. Nobody was well for a long time. Everybody was alive.",
+    D: "All six lived, on Armand's money and Armand's terms. A compromise that worked, and that I'll carry for years.",
+    E: "Eamon, Hugo and Clive went home. Quentin, Silas and Felix had decided, at a diner table in February, that nobody would be kept in a bed for them. Three graves in a row, and three men who visit them.",
+    F_Q: "One bridge. Quentin lived. Silas and Felix didn't. The donors went home. He says their names every day.",
+    F_S: "One bridge. Silas lived. Quentin and Felix didn't. The donors went home. Otis keeps a chair.",
+    F_F: "One bridge. Felix lived. Quentin and Silas didn't. The donors went home, and the film has two names at the start, not the end."
+  };
   var endings = {};
-  Object.keys(PL.endings).forEach(function (k) { endings[k] = { title: PL.endings[k].title, desc: PL.endings[k].core, clue: "" }; });
+  Object.keys(PL.endings).forEach(function (k) { endings[k] = { title: PL.endings[k].title, desc: endingText[k] || PL.endings[k].core, clue: "" }; });
 
   var achievements = {
     first_pulse: { title: "Struck Bell", desc: "Felt the knack go off, and didn't look away." },

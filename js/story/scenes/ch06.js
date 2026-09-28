@@ -386,7 +386,7 @@ Ellis Okafor, the younger, is elegant and quick and so good at this that it's al
 *label end
 *sid CH06.END.01
 *date 2026-09-19 21:00
-*place P06
+*place P06 riverside_steps_night
 *present ansel
 *mood night
 Saturday night, the Riverside Steps, with Ansel and a paper tray of chips.

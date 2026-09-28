@@ -5,7 +5,7 @@ NB.scene("ch24", String.raw`
 *comment ---------------------------------------------------------------- CH24.ANCHOR.01
 *sid CH24.ANCHOR.01
 *date 2028-03-13 17:30
-*place P06
+*place P06 riverside_steps
 *mood day
 The thirteenth of March. A year.
 
@@ -56,7 +56,7 @@ I've been here an hour. I've been everywhere today.
 *comment ---------------------------------------------------------------- CH24.PATIENTS.01
 *sid CH24.PATIENTS.01
 *date 2028-03-13 18:00
-*place P06
+*place P06 riverside_steps
 *mood dusk
 The sun goes down over the far bank. I say their names, the way I've said them every day for a year. And I think about where each of them is.
 *if alive_quentin
@@ -367,7 +367,7 @@ Later, when the house is quiet, I think about everyone else. The whole city, the
 *comment ---------------------------------------------------------------- CH24.FINAL.01
 *sid CH24.FINAL.01
 *date 2028-03-13 22:00
-*place P06
+*place P06 riverside_steps_night
 *mood night
 The Riverside Steps, at ten, a year to the night.
 *if (final_shape = "together") or (final_shape = "distance")

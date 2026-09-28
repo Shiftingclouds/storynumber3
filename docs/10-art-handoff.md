@@ -64,7 +64,7 @@ These are full scenes, not transparent. Claude will send each snapshot's backgro
 2. `snap-02-cafe`: Quentin alive behind the Double Shift counter, handing over a coffee. It's from my point of view; my hand can show, with no skin detail.
 3. `snap-03-evening`: the promised evening. Three variants: `-nolan` (his birthday: the tiny balcony of his flat at 2 a.m., a camping chair and a kitchen chair, Nolan in a torn paper crown, the lit bus depot below), `-micah` (the Serrano family table: two tables pushed together, eleven odd chairs, far too much food), `-ellis` (the open studio: Ellis in a second-hand dark green suit among lit studios, plastic wine).
 4. `snap-04-exhibition`: the Whitcomb winter opening. A crowd, with the brass frame in its case.
-5. `snap-05-crossing`: the first view of Bracken Court at the Candle Fair. A companion from behind, in 8 variants (one per lead, plus `-alone`).
+5. `snap-05-crossing`: the first view of Bracken Court at the Candle Fair, a candle in every window. Seen from behind: Ansel beside me, plus whoever came. Five variants: `-ansel` (just the two of us), `-adrian`, `-micah`, `-nolan`, `-reuben` (Ansel and that man).
 6. `snap-06-docks`: through a high window, three men in beds with threads of light leaving them.
 7. `snap-07-together`: the relationship milestone, one per lead (8 files). Two men, private, clothed, tender, never explicit.
 8. `snap-08-bridge`: the coalition preparing the bridge. A table of people in a warden workroom.

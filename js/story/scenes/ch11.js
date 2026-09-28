@@ -64,6 +64,7 @@ At eight minutes past seven, the room goes quiet for a speech.
 @armand:sad Armand Sorrell is in his fifties: fine-featured and grey-eyed, silver hair, a coat that was made for him by someone who knew what they were doing. He speaks for four minutes without notes, about his son. Octavian. Who died ten years ago this March, at twenty. In whose memory the Sorrell Foundation funds restoration, and training, and healthcare, [i]so that fewer families lose what we lost[/i].
 
 The knack takes his grief like a weight on my chest. It's enormous. It fills the gallery to the glass roof. It's ten years old and it hasn't got any smaller; it's only got more careful, like a man carrying a full bowl across a room. The whole hall stands still while he speaks, and I don't think it's politeness. I think they can feel it too, a bit, without knowing what it is.
+*snapshot exhibition
 *meet august
 At his elbow the whole time is an older man, sixty-something, with long white hair combed straight back and rings on four fingers and a velvet waistcoat the colour of old wine. August Rell, of Rell & Company, the dealers on Market Crescent: a man who, Caspar tells me afterwards, has sold half the objects in this room to the other half of the people in it. He watches Armand the way you'd watch a kettle.
 *meet soren

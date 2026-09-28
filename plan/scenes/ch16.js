@@ -14,7 +14,7 @@ module.exports = [
     next: "CH16.FELIX.01"
   },
   {
-    id: "CH16.FELIX.01", date: "2027-01-04", time: "14:00", place: "P21", cast: ["MC", "C52", "C03"], kind: "common",
+    id: "CH16.FELIX.01", date: "2027-01-04", time: "14:00", place: "P21", cast: ["MC", "C52", "C03"], maybe: ["C35"], kind: "common",
     purpose: "Felix's room in Bellweather Court: blackout blinds, a laptop of footage. The knack in the doorway: a third rope, fresh and raw, running out of him toward the river and away, to the man I watched them carry into warehouse seven. Felix remembers going to film Pump Nine at night, a car, a kind voice. Then waking in his own bed, cold, with a text telling him he'd had a 'turn' and must stay quiet. Ellis sits on the floor holding his hand.",
     set: { fr_felix: "+1", felix_returned: true },
     choices: [

@@ -32,7 +32,7 @@ module.exports = [
     next: "CH18.STONES.01"
   },
   {
-    id: "CH18.STONES.01", date: "2027-02-05", time: "16:00", place: "P51", cast: ["MC", "C24", "C48"], kind: "common",
+    id: "CH18.STONES.01", date: "2027-02-05", time: "16:00", place: "P51", cast: ["MC", "C24", "C48"], maybe: ["C06"], kind: "common",
     purpose: "Material two: anchor stones from the Marches, which hold a link steady while it moves. Percival can bring them through the orchard crossing, if someone in Bracken Court releases them.",
     choices: [
       { id: "a", when: "ally_court", text: "The court releases them: the hearing's goodwill.", type: "investigative", set: { materials: "+1", mat_stones: true } },

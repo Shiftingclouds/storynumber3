@@ -3,6 +3,15 @@
   "use strict";
   var NB = root.NB || (root.NB = {});
   NB.LETTERS = {
+    ansel_01: {
+      kind: "letter",
+      head: "A letter on thick cream paper, sealed with green wax, from Bracken Court · the Saturday post",
+      html: "<p>The assembly will sit on the twelfth of February. I intend to speak. I have told my father so, formally, in the hall, with the clerk writing it down. He said nothing for a long time and then asked whether I had eaten. I think that was his way of saying he had heard me.</p>" +
+        "<p>I will speak for common access, and for Eamon, and for the three men in the beds, whose names I will say out loud in the Court, where they will be written down, and cannot afterwards be unwritten.</p>" +
+        "<p>I have not stopped thinking about the river. I have not stopped thinking about the Toll Gardens. I find I am not able to write the second sentence properly, so I have let the first stand for both.</p>" +
+        "<p>The vinegar here is still better. I say so only because I know it will annoy you.</p>",
+      sign: "A.<br><small>(Mr Tern sends his regards and a complaint about Mr Tait's roof, which I am to pass on. Consider it passed.)</small>"
+    },
     mum_03: {
       kind: "email",
       head: "From: Joanne Marsh · Subject: I'm so sorry, read this sitting down · received with four others, Saturday 8:14am",

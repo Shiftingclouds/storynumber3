@@ -44,14 +44,14 @@ module.exports = [
     next: "CH14.QUIET.01"
   },
   {
-    id: "CH14.QUIET.01", date: "2026-12-31", time: "15:00", place: "P57", cast: ["MC", "C06"], maybe: ["C01", "C02", "C05", "C08"], kind: "common",
+    id: "CH14.QUIET.01", date: "2026-12-31", time: "15:00", place: "P57", cast: ["MC", "C06", "C47"], maybe: ["C01", "C02", "C05", "C08"], kind: "common",
     purpose: "The last day of the year, with nowhere to be. Snow on the lodging's roof, a stove, a card game nobody explains properly. Quiet days turn into the kind of closeness that only happens when nobody can leave. It's the person I came with who fills this afternoon.",
     choices: [
       { id: "a", when: "(companion = \"adrian\") and (st_adrian >= 3)", text: "Adrian, off duty for the first time in the Marches, asks if I want to walk. He doesn't have a plan.", type: "relational", set: { b_adrian_offduty: true, st_adrian: 4 } },
       { id: "b", when: "(companion = \"micah\") and (st_micah >= 3)", text: "Micah gets a letter from home asking him back early. I tell him he's allowed to say no.", type: "relational", set: { b_micah_boundary: true, st_micah: 4 } },
       { id: "c", when: "(companion = \"nolan\") and (st_nolan >= 3)", text: "Nolan rebuilds the lodging's broken music box with a pocketknife, and I hold the torch.", type: "relational", set: { b_nolan_work: true, st_nolan: 4 } },
       { id: "d", when: "(companion = \"reuben\") and (st_reuben >= 3)", text: "Reuben sleeps for eleven hours and lets me bring him breakfast.", type: "relational", set: { b_reuben_needs: true, st_reuben: 4 } },
-      { id: "e", when: "(st_ansel >= 3) and not(b_ansel_confidence)", text: "Ansel, by the stove, tells me the thing about his father he's never told anyone.", type: "relational", set: { b_ansel_confidence: true, st_ansel: 4 } },
+      { id: "e", when: "(st_ansel >= 3) and not(b_ansel_confidence)", text: "Ansel, by the stove, tells me the rest: the part about his father he didn't say in the Toll Gardens.", type: "relational", set: { b_ansel_confidence: true, st_ansel: 4 } },
       { id: "f", text: "Everyone together, cards and cider. Nobody alone with anybody.", type: "expressive", set: { people: "+1" } }
     ],
     next: "CH14.QUIET.02"

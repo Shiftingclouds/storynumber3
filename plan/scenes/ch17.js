@@ -49,7 +49,7 @@ function route(lead, id, cast, place, dates, text) {
         { id: "c", text: text.friends, type: "relational", set: { ["friends_" + "ch17"]: true } }
       ],
       next: `CH17.${L}.03` },
-    { id: `CH17.${L}.03`, date: dates[3], time: dates[4], place, cast: ["MC", id], kind: "route", when: ask,
+    { id: `CH17.${L}.03`, date: dates[3], time: dates[4], place, cast: ["MC", id].concat(text.afterCast || []), kind: "route", when: ask,
       purpose: text.after,
       set: { volunteers: "+1" },
       choices: [
@@ -69,14 +69,14 @@ const routes = [].concat(
     together: "Close the distance. He's allowed to stop planning.", recog: "b_adrian_offduty and b_adrian_report", recognise: "Tell him the thing he keeps not saying is the thing I keep not saying.", recogSet: { b_adrian_want: true },
     friends: "Keep it where it is: the best partner I've had. He nods, relieved and not.",
     after: "Morning. Whatever the night was, the review is in three weeks, and Adrian has decided to tell the truth in it." }),
-  route("micah", "C02", [], "P07", ["2027-01-24", "19:00", "23:30", "2027-01-25", "08:00"], {
+  route("micah", "C02", [], "P07", ["2027-01-24", "19:00", "23:30", "2027-01-25", "08:00"], { afterCast: ["C25"],
     ask: "Serrano Yard's workshop, the stove going. I ask Micah whether he'd be one of the volunteers if we build a shared bridge: his body, his strength, for a stranger. He's the person least able to say no to anyone, so I tell him he can, and I'll still be here.",
     tellBoth: "Tell him everything: the knack, and me.", tellGift: "Tell him about the knack. Just that.", askOnly: "Just ask, and make the no easy.",
     answer: "He takes a long time. Then he says yes to the bridge, for himself, not for his family. Then he says the other thing, clumsily, not naming anything bigger than tonight.",
     together: "Say yes to tonight. And to the next one.", recog: "b_micah_wolf and b_micah_boundary", recognise: "Name the one specific thing I want, and let him name his.", recogSet: { b_micah_want: true },
     friends: "Keep it a friendship. He's relieved, and a bit sad, and he'll still be a volunteer.",
     after: "Morning in the yard. His apprenticeship started last week. Ernesto is learning to ask instead of assign, slowly." }),
-  route("ellis", "C03", ["C37"], "P20", ["2027-01-24", "18:00", "23:00", "2027-01-25", "09:00"], {
+  route("ellis", "C03", ["C37"], "P20", ["2027-01-24", "18:00", "23:00", "2027-01-25", "09:00"], { afterCast: ["C37"],
     ask: "The Okafors' workroom after hours. His placement interview went well; they want him in September. I ask him to stay until March and design a shared bridge with his father: the most important work either of them will ever do, and the thing most likely to keep him here.",
     tellBoth: "Tell him everything, and that he doesn't owe me staying.", tellGift: "Tell him what I see when I look at a bond. It's the tool he needs.", askOnly: "Just ask.",
     answer: "He says yes to March and yes to the work, and then, for once, doesn't curate what comes next.",
@@ -90,7 +90,7 @@ const routes = [].concat(
     together: "Tell him what I want is him, all of him, changed hours and all.", recog: "b_dominic_dawn and not(managed_dominic)", recognise: "Answer him, finally.", recogSet: { b_dominic_ask: true },
     friends: "Tell him I want him singing in April. It's true, and it's all I say.",
     after: "Before dawn, the shutters, and a conversation about the showcase that I don't decide for him." }),
-  route("nolan", "C05", [], "P28", ["2027-01-24", "20:00", "23:30", "2027-01-25", "10:00"], {
+  route("nolan", "C05", [], "P28", ["2027-01-24", "20:00", "23:30", "2027-01-25", "10:00"], { afterCast: ["C11", "C12"],
     ask: "Nolan's room at Laird's, the application sent. I ask him to run the radios and relays on the night, across a crossing into another world, and to know exactly what that means before he says yes.",
     tellBoth: "Tell him everything I haven't. All of it.", tellGift: "Tell him the parts about the knack he doesn't know yet.", askOnly: "Just ask.",
     answer: "He says yes. He says he's been waiting for me to ask him for something that mattered since we were sixteen. Then neither of us knows what to do with our hands.",

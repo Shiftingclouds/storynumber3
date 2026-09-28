@@ -49,6 +49,7 @@ And running out of him, out of the middle of his chest, is something I can't see
 I watched him die. I felt his heart stop under my hands, or I saw him fall, or I heard Nolan say [i]what was that[/i]. And he's making coffee.
 
 He hasn't seen me yet.
+*snapshot cafe
 *page_break
 *comment ---------------------------------------------------------------- CH03.ANSEL.01
 *sid CH03.ANSEL.01

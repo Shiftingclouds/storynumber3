@@ -138,6 +138,7 @@ Inside the pier there's a maintenance chamber: a small brick room full of old pi
   @nolan:scared Behind me, Nolan says "Okay, okay, okay," switches the recorder on, and follows.
 *elseif companion = "reuben"
   @reuben:warm Behind me, Reuben says nothing at all, but he puts a hand on my shoulder as he comes through, heavy and warm, just for a second, and follows.
+*achieve crossed
 *page_break
 *comment ---------------------------------------------------------------- CH13.COURT.01
 *sid CH13.COURT.01

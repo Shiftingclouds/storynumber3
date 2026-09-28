@@ -448,31 +448,48 @@ I can ask as many circles as I've earned. I'll know when it's enough.
     *goto vol_ask
   *hide_reuse *if (ally_mercy) #Mercy House: wardens who'll carry a link for someone they've never met.
     *set volunteers +2
+    *set vol_mercy true
     I ask at Mercy House, at the long steel table, on a Tuesday night: wardens who'll carry a link for someone they've never met.
 
     @emmett:tense Two stand up. One's a trainee I don't know. The other's Emmett Hsu, very pale, very determined. "Adrian asked me," he says. "Properly. This time." Adrian, at the end of the table, doesn't look up, but his ears go red.
     *goto vol_ask
   *hide_reuse *if ((fr_martin >= 2) or gift_martin or family_case) #Latch Lane: Martin, and Owen and Peter from the flatshare, if they'll hear it.
     *set volunteers +2
-    I ask at home. Martin, at the kitchen table. And then, because Martin asks if I've asked anyone else, Owen and Peter, at the flatshare, over too much toast.
+    *set vol_home true
+    *if ch17_ask = "family"
+      Martin's already in. He said so in January, in my bedroom doorway, with a mug of tea. So it's the flatshare I ask: Owen and Peter, over too much toast, with Martin sitting beside me for moral support and eating most of it.
+    *else
+      I ask at home first. Martin, at the kitchen table.
+      *if not(gift_martin) and not(family_case)
+        He doesn't know the half of it, so I tell him the half he needs. Not the knack, and not me. The case. Three men taken, and three more kept alive on the other end of them, and a way to bring all six home that needs strangers to carry the weight.
 
-    @martin:warm Martin says yes before I've finished. "I'm heavyset," he says. "I'm told that's useful. And I've never done anything brave in my life."
+      @martin:warm Martin says yes before I've finished. "I'm heavyset," he says. "I'm told that's useful. And I've never done anything brave in my life."
 
-    @owen:tense Owen says yes too, after a long, patient silence. "Hugo was on my rota," he says. "That's all. He was on my rota."
+      And then, because Martin asks if I've asked anyone else, Owen and Peter, at the flatshare, over too much toast.
+
+    I tell them what I can. That Hugo's alive. Roughly where. What it would cost to bring him home, and who'd be carrying it.
+
+    @owen:tense Owen says yes, after a long, patient silence. "Hugo was on my rota," he says. "That's all. He was on my rota."
 
     @peter:neutral Peter says he'll need to see the risk assessment. I give him the risk assessment. He reads it three times, and then says, very formally, that he'll run the tea urn and the rota and the sign-in sheet, and that there's a standard, and he'll keep it. Not a donor. But not nothing.
+    *if ch17_ask = "family"
+
+      Owen comes back the next morning with a second name from the depot: Dev, a driver who shared a cab with Hugo for three years and says he'd have come whether Owen asked him or not.
     *goto vol_ask
   *hide_reuse *if ((fr_lucan >= 1) or (fr_percival >= 1)) #The Marches: Lucan's household, Percival's orchard workers.
     *set volunteers +1
+    *set vol_marches true
     I send a letter to the Marches, through Percival and the orchard gate. The answer comes back in a week, in Lucan's handwriting, with a drawing of a horse: one of the Verre household will come, a miller's son, twenty, strong as an ox, who says Calder owes the Marches a favour and he'd like to be the one who collects it.
     *goto vol_ask
   *hide_reuse *if (fr_otis >= 1) #Lyle's Bakery: Otis, for Silas. He doesn't let me finish the sentence.
     *set volunteers +1
+    *set vol_otis true
     *set fr_otis +1
     @otis:angry I go to Lyle's Bakery at six in the morning and start to explain, and Otis doesn't let me finish the sentence. "Yes," he says. "For Silas. Whatever it is. Yes." He wipes his floury hands on his apron. "I've got forty years of getting up at four in me. I can carry a bit of someone for a night."
     *goto vol_ask
   *hide_reuse *if (fr_milo >= 1) #The Regent's human staff, through Milo.
     *set volunteers +1
+    *set vol_grace true
     @milo:tense I ask Milo, and Milo asks the Regent's human staff: the day porters, the cook, the woman who does the accounts. One of them says yes: a day porter called Grace, sixty, who's worked at the Regent for thirty years and says she's been carrying vampires up and down stairs her whole career and a stranger's heartbeat can't be heavier than Mrs Delacroix.
     *goto vol_ask
   #That's everyone I can honestly ask.
@@ -594,13 +611,13 @@ It isn't. Felix proved that, and it nearly killed him. We need to prove it again
 *mood night
 The Little Glass Arcade after closing: a covered passage off Market Crescent, glass roof, little shops, most of them shut, a locksmith's with a light on upstairs.
 
-Harlan Greaves lives in the room above the locksmith's. Eamon Kerr used to rent the room next door. Harlan told us that himself, in September, as if it didn't matter.
+The token from Eamon's locker, the brass one with a leaf inside a square, came from here. Chukwudi knew the die at a glance: the locksmith's in the Little Glass Arcade cuts them and stamps them, and sells blanks to anyone who asks nicely. The locksmith, asked nicely, told me who lives upstairs. Harlan Greaves. And in the room next door, till last August, a young courier who paid in cash and whistled on the stairs.
 
-@harlan:tense He opens the door and sees me and goes white.
+@harlan:tense Harlan opens the door and sees me and goes white.
 
-He carried people through a controlled crossing for money. I know it now; I've known it since the empty nights in the ledger, since his nervousness at the green door in December, since the threads running from Stillwater back towards Calder. The Iron Footbridge, at night, off the books, for a man in a good coat. He didn't know what for.
+He's been selling passage. Not through his own crossing, where there's a ledger and a fee and a keeper's name on every line, but through Northwood, which nobody's supposed to be able to sell: a token with a leaf on it, a night, a time, and a keeper with a lamp waiting at the old spur to see you over.{@harlan_aware| The blank nights in the footbridge ledger were the nights he wasn't at the footbridge.|}{@harlan_nervous| That's what he was frightened of in December, at the green door: who might read the ledger after us.|} {@good_coat|And somebody knew which bus Eamon would be on, and sat at the back of it with him, in a good coat.|And somebody knew which night Eamon would be crossing, and was waiting for him before he got there.}
 
-He knows now.
+He didn't know what for. He knows now.
 
 *choice
   *if eamon_letter_kept or eamon_bag
@@ -616,7 +633,7 @@ He knows now.
 
       @harlan:scared Harlan takes it. His hands are shaking. He reads the address on the front, the village in the north of the Marches, the big careful handwriting, and he sits down on the top stair of the arcade and puts his face in his hands.
 
-      @harlan:hurt "I carried him," he says. "The twenty-eighth. At night, through the footbridge, for a man in a good coat who paid in cash. I carried Eamon. I left the ledger blank." He looks up. "I'll tell you everything. The dates. The names. Who paid. And on the night, whatever night it is, the footbridge is yours. I'll open it myself."
+      @harlan:hurt "I sold him the crossing," he says. "The twenty-eighth. Northwood, half past one in the morning. I was waiting at the old spur with a lamp, and he never came, and I told myself he'd changed his mind." He looks up. "A man in a good coat paid me every month for the names. Who was crossing alone, and which night. I thought he was collecting debts. I didn't want to know." He holds the letter against his chest. "I'll tell you everything. The dates. The names. Who paid. And on the night, whatever night it is, the footbridge is yours. I'll open it myself."
   *if people >= 40
     #Talk to him plainly about what he can still do.
       *set e13 true
@@ -628,13 +645,13 @@ He knows now.
 
       "They're alive," I say. "The men you carried. Eamon, and two more. We can get them home. But we need the footbridge, on the night, and we need someone who'll open it and write it down honestly."
 
-      @harlan:hurt He looks at me for a long time. Then he sits down on the top stair and puts his face in his hands. "I carried him," he says. "Eamon. I left the ledger blank. I told myself I didn't know what for." He looks up. "I'll tell you everything. And the footbridge is yours."
+      @harlan:hurt He looks at me for a long time. Then he sits down on the top stair and puts his face in his hands. "I sold Eamon the crossing," he says. "And I sold the man in the good coat his name, and the night. I told myself I didn't know what for." He looks up. "I'll tell you everything. And the footbridge is yours."
   #Threaten to expose him.
     *set e13 true
     *set e13_src "threat"
     *set acc_cross true
     *set harlan_hostile true
-    "I know what you did," I say. "The blank nights in the ledger. The man in the good coat. Eamon. If the footbridge isn't open to us on the night, when we ask, I'll take it all to the Court and to Mercy House and to anyone who'll listen."
+    "I know what you did," I say. "The tokens. Northwood. The man in the good coat, and the names you sold him. Eamon. If the footbridge isn't open to us on the night, when we ask, I'll take it all to the Court and to Mercy House and to anyone who'll listen."
 
     @harlan:angry His face goes hard. "You'd ruin me."
 
@@ -723,10 +740,7 @@ To watch a link move from one person to six, the way it will on the night, and s
 The end of February. On the wall: what we can do, and what we can't.
 
 A method: {@plan_full|the distributed bridge, tested on two pocket watches and six more|no distributed bridge yet}{@plan_interim|, the interim bridge, heavy but proven|}{@plan_pair|, and the single pair, if everything else fails|}. Materials: {materials} of three. Volunteers: {volunteers}. The patients have each decided for themselves.{@acc_pump| A way into Pump Nine.|}{@acc_cross| A crossing we can use on the night.|}{@ally_mercy| Mercy House, behind us.|}{@ally_regent| The Regent, standing with us.|}{@ally_eastbank| Eastbank, at the long table.|}
-*if know_deadline
-  And a date. Underlined twice, in a neat, pleasant hand. The fourteenth of March. Dawn.
-*else
-  And a feeling I can't shake, that there's a date I don't know yet, and that it's close.
+{@know_deadline|And a date. Underlined twice, in a neat, pleasant hand. The fourteenth of March. Dawn.|And a feeling I can't shake, that there's a date I don't know yet, and that it's close.}
 The thaw's coming. You can smell it on the river: the ice going soft at the edges, the gutters starting to run in the afternoons. Three weeks. Maybe less.
 
 *journal [b]Chapter 18.[/b] February, and a coalition. Four ways to end it: a distributed bridge, an interim bridge, the single pair, or cutting the donors free. {@plan_full|We tested the distributed bridge on a dummy link, and it held.|}{@mat_frame| We have the old program's frame.|}{@mat_stones| Anchor stones from the Marches.|}{@mat_thread| Ward thread.|} {volunteers} volunteers. Quentin, Silas and Felix each decided for themselves.{@e16| In a desk drawer at Winton Court, Damian Holt's own notes: the patients' deaths planned to look like illness, and a date. 14/3. Dawn.|}

@@ -12,6 +12,14 @@
         "<p>The vinegar here is still better. I say so only because I know it will annoy you.</p>",
       sign: "A.<br><small>(Mr Tern sends his regards and a complaint about Mr Tait's roof, which I am to pass on. Consider it passed.)</small>"
     },
+    armand_card: {
+      kind: "card",
+      head: "A card: heavy cream, deckled at the edges, hand-addressed in fountain pen · brought up with the post, Wednesday",
+      html: "<p>Armand Sorrell would be grateful for an hour of your time on Saturday the sixth of March, at seven o'clock, at Sorrell House, Briar Heights.</p>" +
+        "<p>I understand that you have been asking questions on behalf of people I have wronged. I would like to answer some of them, and to ask one of my own.</p>" +
+        "<p>Please come alone. A car can be sent, if you would prefer. I suspect you will not.</p>",
+      sign: "A.S."
+    },
     mum_03: {
       kind: "email",
       head: "From: Joanne Marsh · Subject: I'm so sorry, read this sitting down · received with four others, Saturday 8:14am",

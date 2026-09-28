@@ -18,7 +18,7 @@ const VERBOSE = !!opt("verbose", false);
 const UNTIL = opt("until", null);
 const UNTILS = UNTIL ? String(UNTIL).split(",") : [];
 const FOCUS = !!opt("focus", false);
-const SKILLS = ["hands", "nerve", "charm", "wits", "lore"];
+const SKILLS = ["nerve", "craft", "people", "knack"];
 const MAX_PAGES = 6000;
 
 const NB = loadNB({ quiet: true });

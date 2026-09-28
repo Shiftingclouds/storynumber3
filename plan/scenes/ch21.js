@@ -27,7 +27,7 @@ module.exports = [
     next: "CH21.PATIENT.02"
   },
   {
-    id: "CH21.PATIENT.02", date: "2027-03-14", time: "00:10", place: "P16", cast: ["MC", "C56", "C08"], kind: "branch", when: "role = \"patient\"",
+    id: "CH21.PATIENT.02", date: "2027-03-14", time: "00:10", place: "P16", cast: ["MC", "C56", "C08", "C07", "C51", "C52", "C37", "C03", "C04"], maybe: ["C18", "C16"], kind: "branch", when: "role = \"patient\"",
     purpose: "Damian Holt walks in from the inspection passage in a good plain coat, and he's pleasant, and he asks excellent questions, and he's pleased to meet the sensitive at last. He explains everything coherently. He never once calls the donors by their names. Reuben says his name like it hurts.",
     choices: [
       { id: "a", when: "ally_mercy or told_gareth", text: "Keep him talking until Adrian or Gareth are through the doors.", type: "investigative", set: { damian_fate: "arrested" } },

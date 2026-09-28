@@ -30,7 +30,7 @@ module.exports = [
     next: "CH20.LAST.01"
   },
   {
-    id: "CH20.LAST.01", date: "2027-03-13", time: "18:10", place: "P06", cast: ["MC"], kind: "common",
+    id: "CH20.LAST.01", date: "2027-03-13", time: "18:20", place: "P06", cast: ["MC"], maybe: ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C10"], kind: "common",
     purpose: "Sunset over the river, the ice gone, the water high at the flood marks. An hour before we go. I spend it with someone, or alone.",
     choices: [
       { id: "a", when: "st_adrian >= 5", text: "Adrian.", type: "relational", set: { last_with: "adrian" } },

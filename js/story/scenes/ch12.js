@@ -614,7 +614,7 @@ The knack gives me the radiator-warmth of him, turned right down to nothing, lik
     @reuben:tired He nods, with his eyes still closed. "Yeah," he says. "Yeah. That's the procedure."
 
     *meet victor
-    @victor:tired {@ch04_first = "mercy"|Victor|Victor Keene, Adrian's older brother, whom I've never met,} comes, in the end, in a Mercy House car, with his braced arm and his charm, and folds Reuben into the passenger seat like a deckchair. "He does this," Victor says to me over the roof of the car. "He'll keep doing it until they give him the service he keeps asking for, or until it kills him. Whichever the paperwork gets to first." He isn't joking. I watch them drive away down the ramp.
+    @victor:tense {@ch04_first = "mercy"|Victor|Victor Keene, Adrian's older brother, whom I've never met,} comes, in the end, in a Mercy House car, with his braced arm and his charm, and folds Reuben into the passenger seat like a deckchair. "He does this," Victor says to me over the roof of the car. "He'll keep doing it until they give him the service he keeps asking for, or until it kills him. Whichever the paperwork gets to first." He isn't joking. I watch them drive away down the ramp.
 *comment ---------------------------------------------------------------- CH12.HOME.03
 *sid CH12.HOME.03
 *date 2026-11-26 21:00

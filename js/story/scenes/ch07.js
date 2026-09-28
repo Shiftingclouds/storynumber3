@@ -273,7 +273,7 @@ Not the awkward quiet. The good kind. The kind I used to watch from the lighting
 
     @dominic:tense His voice catches on the high line in the second chorus, and I feel him wobble, and then I feel him decide. He goes back for the line and gets it, and finishes the song, and the room stays quiet for a second after the last chord, the way rooms used to for him.
 
-    @peter:neutral Then everyone claps, too loudly, and Peter says "Encore," very formally, as though reading it off the track listing.
+    @peter:amused Then everyone claps, too loudly, and Peter says "Encore," very formally, as though reading it off the track listing.
 
     @dominic:shy Dominic ducks his head. "I'm out of practice," he says, to nobody. But he doesn't give the guitar back. He plays another one, quieter. And I stand in the kitchen doorway and watch the stillness in him loosen, just a little, like a knot somebody's been worrying at for a year.
 @milo:warm Later, when Dominic's gone, early, the way he has to, Milo finds me by the fridge. "He'll kill me for saying it," he says, "but that's the first time I've seen him look like himself since last summer." He turns the camera over in his hands and doesn't lift it. "Thanks for not making it weird."

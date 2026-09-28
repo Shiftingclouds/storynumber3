@@ -170,6 +170,7 @@
   "fr_caspar": 0,
   "fr_jonah": 0,
   "look_done": false,
+  "look_skin": 0,
   "ch01_saw": "",
   "hurt_mc": 0,
   "echo_lane": false,

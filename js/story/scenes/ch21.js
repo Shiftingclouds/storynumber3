@@ -59,7 +59,7 @@ The machinery hall is enormous. Iron columns, painted green once, going up into 
 
 @reuben:attentive Reuben goes to the drips. Chukwudi and Ellis set up the anchors, and the frame, and Chukwudi keeps up a low running commentary to himself in Igbo that Ellis says is mostly swearing.
 
-@dominic:guarded Dominic takes the doors, because it's dark, and because he can see in it, and because he moves faster than anyone. He stands by the big double doors at the end of the hall with his collar up and his hands in his pockets, watching the dark as if it's a room he knows.
+@dominic:hungry Dominic takes the doors, because it's dark, and because he can see in it, and because he moves faster than anyone. He stands by the big double doors at the end of the hall with his collar up and his hands in his pockets, watching the dark as if it's a room he knows, and not looking at the drips. His mouth is pressed shut. I can feel what it costs him, a tight, careful line held all the way down, and he doesn't let it show anywhere but there.
 
 And the ropes, to my eye, run out through the walls. Three of them, stretched thin as fishing line, out of three young men on three couches, through the brick, towards the river, towards the crossing, towards three beds in a warehouse in another country.
 *snapshot role-pump

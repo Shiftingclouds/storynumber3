@@ -26,6 +26,9 @@ It doesn't tell me what anyone's thinking. It doesn't tell me if they're lying. 
 
 I should say my name. Everyone here uses it.
 *input_text name My first name is:
+One last look through the fog in the glass: hair still wet, the face I've had all my life.
+*look
+*set look_done true
 *commit_stats
 *meet martin
 @martin:amused "{name}!" Martin's voice comes up the stairwell, over the press. "Are you in there, or have you gone down the plughole?"

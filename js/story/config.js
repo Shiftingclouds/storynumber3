@@ -218,7 +218,7 @@
     hints: {},
     hintFallback: hintFallback,
     trackChanges: ["nerve", "craft", "people", "knack"].concat(LEADS.map(function (l) { return "st_" + l; })),
-    lookKeys: [],
+    lookKeys: ["look_skin"],
     people: people,
     contacts: { mum: "Mum", unknown_no: "Unknown number" },
     clues: clues,

@@ -165,7 +165,7 @@ The big bench is pushed against the wall. There are six camp beds where it was, 
 
 @ellis:warm Ellis is drawing them. All six, asleep. "For the record," he says. "Somebody should draw it. Somebody should be able to prove it happened."
 
-@ernesto:neutral At noon, Ernesto came with soup for forty, which is the only amount he knows how to make. He's still here, at the door, with his arms folded, making sure nobody comes in who shouldn't. "Here is what we'll do," he says, to nobody, to everybody. "We'll take turns."
+@ernesto:warm At noon, Ernesto came with soup for forty, which is the only amount he knows how to make. He's still here, at the door, with his arms folded, making sure nobody comes in who shouldn't. "Here is what we'll do," he says, to nobody, to everybody. "We'll take turns."
 
 The evidence isn't here. It's in three places: with Gareth, in the Municipal Investigations safe; at Eastbank, in the association's strongbox under the long table; and at the Regent, in Lucien's vault, behind a door that's been locked since 1931. Three copies. Where no single house can lose it, or bury it, or bargain with it.
 *if damian_fate = "fled"

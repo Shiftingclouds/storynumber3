@@ -295,7 +295,7 @@ Morning in the yard, frost on the vans, breath in the air.
 
 His apprenticeship started last week: Halvorsen's, across the river, the full qualification. He goes at half eight. He's got a new lunchbox. Leandro bought it for him, as a joke, with a cartoon on it. He's taking it anyway.
 *meet ernesto
-@ernesto:attentive And Ernesto comes out into the yard in his coat, with a mug, and stands next to Micah by the van, and says: "The chapel job. Next Saturday. Would you be able to? If you're not too tired?" And waits.
+@ernesto:warm And Ernesto comes out into the yard in his coat, with a mug, and stands next to Micah by the van, and says: "The chapel job. Next Saturday. Would you be able to? If you're not too tired?" And waits.
 
 @micah:warm He asked. He didn't assign. It's the first time. Micah looks at his dad for a long moment, and then says, "Not this Saturday. The one after," and Ernesto nods, and says, "All right," and goes back in. Learning to ask instead of assign. Slowly.
 *if st_micah >= 6
@@ -645,7 +645,7 @@ He's sitting on the mattress. I'm on the desk chair. There's about three feet of
 *set volunteers +1
 Morning at Laird's.
 
-@peter:neutral Peter's in the kitchen in his lanyard, on a Monday, making coffee with a scale, and pretends not to notice anything at all. With enormous effort. He notices everything. He says "Morning" to me in the voice of a man reading a very neutral statement off a card.
+@peter:amused Peter's in the kitchen in his lanyard, on a Monday, making coffee with a scale, and pretends not to notice anything at all. With enormous effort. He notices everything. He says "Morning" to me in the voice of a man reading a very neutral statement off a card.
 
 @owen:amused Owen, off a night shift, in his union fleece, makes too much toast. Eight slices. He puts four in front of me and four in front of Nolan and says, "Big day," to nobody, about nothing, and goes to bed.
 *if st_nolan >= 6

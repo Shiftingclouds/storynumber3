@@ -65,8 +65,14 @@
     small: ["small", "neutral"]
   };
   function chain(mood) { return MOOD_CHAIN[mood] || [mood, "neutral"]; }
+  var MC_LOOKS = ["porcelain", "fair", "olive", "tan", "brown", "deep"];
   function portraitFile(id, mood, variant) {
     var f = files().portraits, c = chain(mood || "neutral");
+    // the player: one of six complete portraits, picked by look_skin (the look creator passes the look itself)
+    if (id === "mc") {
+      var n = variant && typeof variant === "object" ? Number(variant.look_skin) || 0 : 0;
+      return f["mc:neutral-" + MC_LOOKS[n % MC_LOOKS.length]] || null;
+    }
     if (variant) {
       for (var i = 0; i < c.length; i++) if (f[id + ":" + variant + "-" + c[i]]) return f[id + ":" + variant + "-" + c[i]];
       if (f[id + ":" + variant]) return f[id + ":" + variant];
@@ -92,7 +98,7 @@
     has: function (id, mood, variant) { return !!portraitFile(id, mood || "neutral", variant); },
     url: function (id, mood, variant) { return portraitFile(id, mood || "neutral", variant) || placeholder(id); },
     faceUrl: function (id, mood, variant) { var f = files().portraits; return (!variant && mood === "neutral" && f[id + ":small"]) || portraitFile(id, mood || "neutral", variant) || placeholder(id); },
-    lookOptions: {}, lookLabels: {}
+    lookOptions: { look_skin: MC_LOOKS.length }, lookLabels: { look_skin: ["Porcelain", "Fair", "Olive", "Tan", "Brown", "Deep"] }
   };
 
   /* ---------------------------------------------------------------- snapshots */

@@ -339,7 +339,7 @@ function main() {
           if (lastDate && d < lastDate) errors.push(`${name}:${L.n}: the date goes backwards (${lastDate} -> ${d})`);
           lastDate = d;
         }
-        if (L.cmd === "place") { const pid = a.split(/\s+/)[0]; if (pid !== cur.place) warnings.push(`${name}:${L.n}: ${cur.id} is planned at ${cur.place}, the script says ${pid}`); if (!cfg.places[pid]) errors.push(`${name}:${L.n}: unknown place ${pid}`); const vw = a.split(/\s+/)[1]; if (vw && !cfg.views.includes(vw)) errors.push(`${name}:${L.n}: unknown view ${vw}`); }
+        if (L.cmd === "place") { const pid = a.split(/\s+/)[0]; if (pid !== cur.place && !(cur.also || []).includes(pid)) warnings.push(`${name}:${L.n}: ${cur.id} is planned at ${cur.place}, the script says ${pid}`); if (!cfg.places[pid]) errors.push(`${name}:${L.n}: unknown place ${pid}`); const vw = a.split(/\s+/)[1]; if (vw && !cfg.views.includes(vw)) errors.push(`${name}:${L.n}: unknown view ${vw}`); }
         if (L.cmd === "present") {
           // cast: always there; maybe: may be there on some paths (a companion who came along)
           const planned = new Set((cur.cast || []).concat(cur.maybe || []).map((c) => cidToId[c]).filter(Boolean));

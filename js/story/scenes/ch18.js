@@ -100,6 +100,7 @@ The exhibition's closing. The Whitcomb's great gallery is half dismantled, crate
       *set e10 true
       *set e10_src "chukwudi"
       Nobody can prove where it came from. So I walk into Rell & Company, on Market Crescent, and ask August Rell himself what he wants for it.
+      *place P31 rell_company
 
       The shop's dark and velvet and full of clocks, all ticking at slightly different speeds. August sits behind a desk in his wine-coloured waistcoat with his rings, and listens to me with his whole attentive face, and names a price. It isn't money. It's a favour, to be named later. "Everyone owes me something eventually," he says, pleasantly. "It's only fair you should know what."
 
@@ -107,6 +108,8 @@ The exhibition's closing. The Whitcomb's great gallery is half dismantled, crate
 *comment ---------------------------------------------------------------- CH18.STONES.01
 *sid CH18.STONES.01
 *date 2027-02-05 16:00
+*place P25 northline_station_snow
+Northline, early afternoon, snow on the canopy and grey slush in the gaps between the platforms. The ridge train is two carriages and a heater that works on one side only. I sit on the warm side, with my forehead on the glass, and watch the city thin out into allotments and pylons and white fields.
 *place P51 orchard_house
 *present malcolm percival
 Material two: anchor stones from the Marches.
@@ -327,6 +330,8 @@ Three candidates. Adrian, in his re-elasticated jacket, very straight.
 @emmett:tense Emmett Hsu, in a borrowed jacket, looking like he'd rather be anywhere.
 *meet victor
 @victor:neutral And Victor Keene, in the back row, with his braced arm, here to watch his brother.
+
+@darius:amused Darius catches me looking and grins, sudden and lopsided, like we're both in trouble at school. "You're the sensitive," he says, low. "Adrian says you can tell when people are lying." The fingers stop drumming. "Don't tell me if I am. I'd rather not know." Then the panel clears its throat, and the grin goes back in its box.
 
 And a training report, in the file, that isn't true.
 
@@ -667,7 +672,7 @@ He didn't know what for. He knows now.
 *sid CH18.NOTES.01
 *date 2027-02-24 15:00
 *place P41
-*present russell
+*present russell sylvester
 *set e16 true
 *set e16_src "winton"
 *set know_deadline true
@@ -676,7 +681,12 @@ Winton Court. Russell's got news.
 
 @russell:guarded {@russell_logging|He's kept his log, the way I asked: a page in his boiler notebook, in pencil, every time the man used the service stairs. Eleven visits since November. Always the last Monday of the month, always four o'clock.|He's been watching the flat, since November, since the tenants' fight gave him every legal reason to.} And the tenants' fight has given him something else: a right to inspect every flat in the building for damp, with a day's written notice.
 
-He gave the notice for thirty-one yesterday. Nobody answered it. So today, at three, with his tool belt and his bad knee and me holding the torch, he lets himself in.
+He gave the notice for thirty-one yesterday. Nobody answered it. So today, at three, with his tool belt and his bad knee and me holding the torch, he lets himself in, and because the tenants' committee wants it done properly, there's a witness.
+*meet sylvester
+@sylvester:neutral The witness is Sylvester Page, from the Tenants' Advice Centre: tall, thin, a grey goatee, reading glasses on a cord, a good suit that's been to a lot of meetings. He reads the notice pinned to the door, checks the date against his diary, and signs the bottom of Russell's form. "Twenty-four hours, served in writing, for an inspection of the heating," he says. "Nobody answered. That's lawful entry, and I've seen it." He caps his pen. "Touch the radiators first, Russell. So it's true."
+*set fr_sylvester 1
+
+Russell touches the radiators first.
 
 It's a clinic. Or a set for one. A couch with a paper sheet. A cabinet of vials. A blood-pressure cuff. And a desk, with a drawer, and in the drawer, a folder.
 
@@ -693,6 +703,8 @@ And a date. On the last page. Underlined twice.
 The fourteenth of March. Three weeks.
 
 @russell:tense "What is it?" says Russell, from the door. "Son. What's that? You've gone white."
+
+@sylvester:neutral Sylvester doesn't ask. He looks at the folder in my hands, and at my face, and takes his glasses off and lets them hang on their cord. "I didn't see what's in the drawer," he says. "I saw a lad look at the heating." He writes the time on his form. "If anyone ever asks me, that's what I'll say, and it'll be true."
 
 I photograph every page. I put the folder back exactly where it was. I don't know what [i]consolidation[/i] means. I know it's three weeks away, and I know it's at dawn.
 

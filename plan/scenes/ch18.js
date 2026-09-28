@@ -21,7 +21,7 @@ module.exports = [
     next: "CH18.FRAME.01"
   },
   {
-    id: "CH18.FRAME.01", date: "2027-02-03", time: "11:00", place: "P22", cast: ["MC", "C40", "C41", "C22"], kind: "common",
+    id: "CH18.FRAME.01", date: "2027-02-03", time: "11:00", place: "P22", also: ["P31"], cast: ["MC", "C40", "C41", "C22"], maybe: ["C39"], kind: "common",
     purpose: "Material one: the old program's linking frame, the brass thing in case nine at the Whitcomb.",
     choices: [
       { id: "a", when: "e10", text: "Caspar and I show Basil the provenance is false; he returns the frame to the Okafors rather than be embarrassed.", type: "investigative", set: { materials: "+1", mat_frame: true, fr_caspar: "+1" } },
@@ -32,7 +32,7 @@ module.exports = [
     next: "CH18.STONES.01"
   },
   {
-    id: "CH18.STONES.01", date: "2027-02-05", time: "16:00", place: "P51", cast: ["MC", "C24", "C48"], maybe: ["C06"], kind: "common",
+    id: "CH18.STONES.01", date: "2027-02-05", time: "16:00", place: "P51", also: ["P25"], cast: ["MC", "C24", "C48"], maybe: ["C06"], kind: "common",
     purpose: "Material two: anchor stones from the Marches, which hold a link steady while it moves. Percival can bring them through the orchard crossing, if someone in Bracken Court releases them.",
     choices: [
       { id: "a", when: "ally_court", text: "The court releases them: the hearing's goodwill.", type: "investigative", set: { materials: "+1", mat_stones: true } },
@@ -164,8 +164,8 @@ module.exports = [
     next: "CH18.NOTES.01"
   },
   {
-    id: "CH18.NOTES.01", date: "2027-02-24", time: "15:00", place: "P41", cast: ["MC", "C14"], kind: "conditional", when: "russell_logging or winton_log",
-    purpose: "Winton Court: Russell's log of the physician's visits, and the rented flat itself, which the tenants' fight has given Russell every legal reason to inspect. In a desk drawer, Damian's own case notes: deliberate prolongation of the patients' dependence, the deaths planned to be 'predictable', and a date, underlined: 14/3, dawn, consolidation; transfer the night before.",
+    id: "CH18.NOTES.01", date: "2027-02-24", time: "15:00", place: "P41", cast: ["MC", "C14", "C34"], kind: "conditional", when: "russell_logging or winton_log",
+    purpose: "Winton Court: Russell's log of the physician's visits, and the rented flat itself, which the tenants' fight has given Russell every legal reason to inspect, with Sylvester Page from the Tenants' Advice Centre there to witness the notice. In a desk drawer, Damian's own case notes: deliberate prolongation of the patients' dependence, the deaths planned to be 'predictable', and a date, underlined: 14/3, dawn, consolidation; transfer the night before.",
     set: { e16: true, e16_src: "winton", know_deadline: true, s11: "fore" },
     gains: ["e16"],
     next: "CH18.KNACK.01"

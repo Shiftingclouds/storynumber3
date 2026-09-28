@@ -30,3 +30,5 @@ node tools/playtest.js --runs 3000 --unshown   # bots play to the end; reports e
 - `art/masters/`: ChatGPT's full-size originals (portraits, environments) and its notes and checklist
 - `art/portraits/`, `art/places/`: the game's exports, made from the masters by `python3 tools/import-art.py` (needs Pillow): portraits 256 × 320 (shown at 128 × 160), environments 640 × 360, 256-colour palettes, clean binary edges on portraits
 - `art/drawn/`: Claude's original procedural views (`node tools/art.js place <id>`), kept for reference; they no longer feed the game
+- `index.html`, `css/style.css`, `js/engine/ui.js`: the reading UI (ChatGPT's redesign, merged). Settings has colour palettes (Neon, Golden hour, Moonlight, Ember, River), the blurred scene backdrop, and full-screen arrivals (a new place fills the screen, then settles into the page)
+- Every portrait expression and every environment appears somewhere in the story; a plan scene can list secondary places with `also: [...]` when one branch steps somewhere else

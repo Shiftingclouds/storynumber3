@@ -76,6 +76,7 @@ for (const f of FRIENDS) def("fr_" + f, "number", 0, f + ": friendship 0–3");
 
 // ---------------------------------------------------------------- commitments and branches
 def("look_done", "bool", false, "Portrait chosen");
+def("look_skin", "number", 0, "My portrait: which of the six (porcelain, fair, olive, tan, brown, deep)");
 def("ch01_saw", "string", "", "How he met the murder", ["cover", "approach", "help"]);
 def("hurt_mc", "number", 0, "His own injuries (0–2)");
 def("echo_lane", "bool", false, "Read the echo in the rear lane (lilies, a calm voice counting, a clean van)");

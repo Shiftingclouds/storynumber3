@@ -245,7 +245,7 @@ The knack gives me Oswin like a warm, comfortable room with the windows painted 
     *set fr_severin +1
     "Thank you," I say. "Properly. I know what it costs you to give it."
 
-    @severin:surprised Severin looks at me for a long moment over his glass. The frozen lake, and something moving under it, slowly, surprised. "Does it cost me something?" he says.
+    @severin:tense Severin looks at me for a long moment over his glass. The frozen lake, and something moving under it, slowly, surprised. "Does it cost me something?" he says.
 
     "It costs you the chance to say no later."
 

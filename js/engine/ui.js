@@ -11,14 +11,15 @@
 
   var DEFAULT_SETTINGS = {
     theme: "night", size: 1.125, spacing: "normal", font: "serif", width: "normal", motion: "full",
-    steam: true, notices: true, showChanges: true, showHints: true,
+    steam: true, notices: true, showChanges: true, showHints: true, focusMode: false,
+    palette: "neon", backdrop: true, arrivals: true,
     narration: "varied", backend: "claude", voice: "faithful", tier: "quick", model: "claude-opus-5", ownWords: false
   };
 
   var ui = {
     story: null, rt: null, settings: null, meta: null, view: "title", journalTab: "people", journalPerson: null,
     narr: { ctl: null }, backends: { claude: false, api: true }, inArtifact: false, spoken: null, revealAll: false,
-    boardPick: []
+    boardPick: [], scrollPositions: {}, storyFocus: null, toastQueue: [], toastBusy: false, pageToken: 0
   };
 
   /* ---------------- DOM helpers ---------------- */
@@ -50,15 +51,23 @@
   function vars() { return ui.rt && ui.rt.state ? ui.rt.state.vars : {}; }
   function inGame() { return !!(ui.rt && ui.rt.page); }
 
+
   function pixImg(url, w, h, cls, alt) {
-    return el("img", { src: url, width: w, height: h, class: "px " + (cls || ""), alt: alt || "", draggable: "false" });
+    var attrs = { src: url, width: w, height: h, class: 'px ' + (cls || ''), alt: alt || '', draggable: 'false', decoding: 'async' };
+    if (/(^|\s)nb-card(\s|$)/.test(cls || '')) { attrs['data-pixel-width'] = NB.cards.W; attrs['data-pixel-height'] = NB.cards.H; }
+    return el('img', attrs);
   }
-  function variantOf(id) { var st = ui.rt && ui.rt.state; return st && st.variants ? st.variants[id] : undefined; }
+
+  function variantOf(id) {
+    var st = ui.rt && ui.rt.state;
+    if (id === "mc") return st ? { look_skin: st.vars.look_skin || 0 } : undefined;
+    return st && st.variants ? st.variants[id] : undefined;
+  }
   function portrait(id, mood, size, cls) {
     return pixImg(NB.portraits.url(id, mood || "neutral", variantOf(id)), size, Math.round(size * 1.25), "nb-portrait " + (cls || ""), personName(id) + " (portrait)");
   }
   function face(id, mood, size) {
-    return el("span", { class: "nb-face", style: "width:" + size + "px;height:" + size + "px;background-image:url(" + NB.portraits.faceUrl(id, mood || "neutral", variantOf(id)) + ")" });
+    return el("span", { class: "nb-face" + (size <= 40 ? " head" : ""), style: "width:" + size + "px;height:" + size + "px;background-image:url(" + NB.portraits.faceUrl(id, mood || "neutral", variantOf(id)) + ")" });
   }
   function icon(name, scale) {
     var c = NB.icons.draw(name);
@@ -74,18 +83,112 @@
     return (p && p.short) || personName(id);
   }
 
+
   function toast(title, body, faceId, iconName) {
-    var box = $("nb-toast");
+    ui.toastQueue.push({ title: title, body: body, faceId: faceId, iconName: iconName });
+    if (!ui.toastBusy) nextToast();
+  }
+  function nextToast() {
+    var item = ui.toastQueue.shift(), box = $('nb-toast');
+    if (!item || !box) { ui.toastBusy = false; return; }
+    ui.toastBusy = true;
     var kids = [];
-    if (faceId) kids.push(face(faceId, "neutral", 36));
-    else if (iconName) kids.push(icon(iconName, 3));
-    kids.push(el("div", { class: "tb" }, [el("b", { text: title }), body ? el("span", { text: body }) : null]));
-    var t = el("div", { class: "t", role: "status" }, kids);
-    box.appendChild(t);
-    // Keep the stack short: the oldest go first when a lot happens at once.
-    while (box.children.length > 4) box.removeChild(box.firstChild);
-    setTimeout(function () { t.classList.add("out"); }, 4600);
-    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 5200);
+    if (item.faceId) kids.push(face(item.faceId, 'neutral', 36));
+    else if (item.iconName) kids.push(icon(item.iconName, 2));
+    kids.push(el('div', { class: 'tb' }, [el('b', { text: item.title }), item.body ? el('span', { text: item.body }) : null]));
+    var t = el('div', { class: 't' }, kids), timer, dismissed = false;
+    function dismiss() { if (dismissed) return; dismissed = true; clearTimeout(timer); t.remove(); ui.toastBusy = false; nextToast(); }
+    t.appendChild(el('button', { class: 'nb-toast-close', type: 'button', 'aria-label': 'Dismiss notice', onclick: dismiss }, [mark('close')]));
+    t.addEventListener('mouseenter', function () { clearTimeout(timer); });
+    t.addEventListener('focusin', function () { clearTimeout(timer); });
+    function schedule() { clearTimeout(timer); timer = setTimeout(dismiss, 5200); }
+    t.addEventListener('mouseleave', schedule);
+    t.addEventListener('focusout', schedule);
+    box.appendChild(t); schedule();
+  }
+
+  /* Calder's interface vocabulary. All icons are local; no icon/font dependency. */
+  function mark(name) {
+    var paths = {
+      book: '<path d="M3 4h6a4 4 0 0 1 3 1.4A4 4 0 0 1 15 4h6v15h-6a4 4 0 0 0-3 1.4A4 4 0 0 0 9 19H3zM12 6v14"/>',
+      person: '<circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
+      save: '<path d="M6 3h12v18l-6-4-6 4z"/>',
+      menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
+      arrow: '<path d="M4 12h15M13 6l6 6-6 6"/>',
+      back: '<path d="M20 12H5M11 6l-6 6 6 6"/>',
+      close: '<path d="m6 6 12 12M6 18 18 6"/>',
+      check: '<path d="m5 12 4 4L19 6"/>',
+      lock: '<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>',
+      search: '<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',
+      pin: '<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/>',
+      settings: '<path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/>',
+      focus: '<path d="M9 3H3v6M15 3h6v6M3 15v6h6M21 15v6h-6"/>',
+      moon: '<path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/>',
+      compass: '<circle cx="12" cy="12" r="9"/><path d="m16 8-2 6-6 2 2-6z"/>',
+      letter: '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/>',
+      image: '<rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8" cy="8" r="1.5"/><path d="m3 18 6-6 4 4 3-3 5 5"/>'
+    };
+    return el('span', { class: 'nb-mark', 'aria-hidden': 'true', html: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+(paths[name] || paths.book)+'</svg>' });
+  }
+  function personTone(id) {
+    var h = 0;
+    for (var i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
+    return String(h % 6);
+  }
+  function quietMotion() {
+    return ui.settings.motion === 'reduced' || (root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+  function focusContent(view) {
+    var target = view.querySelector('h1, h2, [data-focus-heading]') || view;
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  }
+  // Art fills its frame by CSS (object-fit: cover at the frame's own 16:9); kept as a hook for callers.
+  function fitArt() {}
+  function updateReadingProgress() {
+    if (ui.view !== 'story') return;
+    var content = $('nb-reading-body');
+    if (!content) return;
+    var start = content.getBoundingClientRect().top + root.scrollY - 100;
+    var distance = Math.max(1, content.offsetHeight - root.innerHeight + 120);
+    var value = Math.max(0, Math.min(100, (root.scrollY - start) / distance * 100));
+    var progress = $('nb-page-progress');
+    if (progress) { progress.value = value; progress.setAttribute('aria-valuetext', Math.round(value) + '% of this page'); }
+  }
+  function toggleFocus() {
+    ui.settings.focusMode = !ui.settings.focusMode;
+    saveSettings(); applySettings();
+    if (inGame()) renderReadingRail(ui.rt.page);
+    requestAnimationFrame(function () { fitArt(); updateReadingProgress(); });
+  }
+  function renderReadingRail(page) {
+    var rail = $('nb-reading-rail');
+    if (!rail || !page || !ui.rt.state) return;
+    clear(rail);
+    var st = ui.rt.state, chapter = st.chapter || {};
+    rail.appendChild(el('div', { class: 'nb-rail-eyebrow', text: 'The unquiet city' }));
+    rail.appendChild(el('div', { class: 'nb-rail-chapter', text: nightLabel(st.vars.ch) || 'Your story' }));
+    if (chapter.title) rail.appendChild(el('h2', { class: 'nb-rail-title', text: chapter.title }));
+    if (st.date) rail.appendChild(el('p', { class: 'nb-rail-date', text: cfg().fmtDate(st.date) }));
+    rail.appendChild(el('div', { class: 'nb-rail-tools' }, [
+      el('button', { class: 'nb-text-btn', type: 'button', onclick: function () { show('settings'); } }, [mark('settings'), el('span', { text: 'Reading settings' })]),
+      el('button', { class: 'nb-text-btn', type: 'button', 'aria-pressed': String(!!ui.settings.focusMode), onclick: toggleFocus }, [mark('focus'), el('span', { text: ui.settings.focusMode ? 'Full interface' : 'Focus on the story' })])
+    ]));
+    var p = NB.text.toPlain(page.blocks.filter(function (b) { return b.k === 'p'; }).map(function (b) { return b.html; }).join(' '));
+    var words = p.trim() ? p.trim().split(/\s+/).length : 0;
+    if (words) rail.appendChild(el('p', { class: 'nb-reading-estimate', text: 'About ' + Math.max(1, Math.ceil(words / 220)) + ' min on this page' }));
+  }
+  function openSnapshot(id) {
+    var snapshot = cfg().snapshots[id], previous = doc.activeElement;
+    var dialog = el('dialog', { class: 'nb-lightbox', 'aria-label': snapshot.title });
+    var close = el('button', { class: 'nb-btn nb-close', type: 'button', 'aria-label': 'Close image', onclick: function () { dialog.close(); } }, [mark('close')]);
+    dialog.appendChild(close);
+    dialog.appendChild(el('figure', {}, [pixImg(NB.snapshots.url(id), NB.cards.W * 3, NB.cards.H * 3, 'nb-card', snapshot.title), el('figcaption', { text: snapshot.title })]));
+    dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', function () { dialog.remove(); if (previous && previous.isConnected) previous.focus(); });
+    doc.body.appendChild(dialog);
+    if (dialog.showModal) { dialog.showModal(); fitArt(dialog); close.focus(); }
+    else { dialog.remove(); } // Older embedded browsers still show the inline snapshot.
   }
 
   /* ---------------- settings & meta ---------------- */
@@ -103,6 +206,12 @@
     var s = ui.settings;
     if (s.theme === "auto") r.removeAttribute("data-nb-theme"); else r.setAttribute("data-nb-theme", s.theme);
     r.setAttribute("data-nb-font", s.font);
+    var lightAuto = s.theme === "auto" && root.matchMedia && root.matchMedia("(prefers-color-scheme: light)").matches;
+    if (s.theme === "day" || lightAuto) r.removeAttribute("data-nb-palette"); else r.setAttribute("data-nb-palette", s.palette);
+    r.setAttribute("data-nb-backdrop", s.backdrop ? "on" : "off");
+    r.setAttribute("data-nb-focus", s.focusMode ? "on" : "off");
+    var focusButton = $("nb-focus-exit");
+    if (focusButton) focusButton.hidden = !s.focusMode || ui.view !== "story";
     r.setAttribute("data-nb-width", s.width);
     r.setAttribute("data-nb-spacing", s.spacing);
     if (s.motion === "reduced") r.setAttribute("data-nb-motion", "reduced"); else r.removeAttribute("data-nb-motion");
@@ -239,7 +348,13 @@
   var VIEWS = ["title", "story", "stats", "journal", "saves", "settings", "gallery", "map", "about", "menu"];
 
   function show(name) {
+    var previousView = ui.view;
+    ui.scrollPositions[previousView] = root.scrollY || 0;
+    if (previousView === "story" && doc.activeElement) ui.storyFocus = doc.activeElement.id || null;
     ui.view = name;
+    if (name !== "story") dropArrival();
+    doc.documentElement.setAttribute("data-nb-view", name);
+    if ($("nb-focus-exit")) $("nb-focus-exit").hidden = !ui.settings.focusMode || name !== "story";
     VIEWS.forEach(function (v) { $("nb-view-" + v).hidden = v !== name; });
     var game = inGame();
     $("nb-bar-game").hidden = name === "title";
@@ -257,9 +372,13 @@
     if (name === "gallery") renderGallery();
     if (name === "map") renderMap();
     if (name === "menu") renderMenu();
+    if (name === "about") renderAbout();
     updateHUD();
     applyMood();
-    if (root.scrollTo) root.scrollTo(0, 0);
+    if (root.scrollTo) root.scrollTo(0, name === "story" ? (ui.scrollPositions.story || 0) : 0);
+    if (name === "story" && ui.storyFocus && $(ui.storyFocus)) $(ui.storyFocus).focus({ preventScroll: true });
+    else focusContent($("nb-view-" + name));
+    requestAnimationFrame(function () { fitArt(); updateReadingProgress(); });
   }
 
   function toggleView(name) {
@@ -267,11 +386,11 @@
     else show(name);
   }
 
+
   function backButton(label) {
     var game = inGame();
-    return el("div", { class: "nb-actions left" }, [
-      el("button", { class: "nb-btn primary", text: label || (game ? "Back to the story" : "Back to the title"),
-        onclick: function () { show(game ? "story" : "title"); } })
+    return el('div', { class: 'nb-actions left nb-back-row' }, [
+      el('button', { class: 'nb-text-btn', type: 'button', onclick: function () { show(game ? 'story' : 'title'); } }, [mark('back'), el('span', { text: label || (game ? 'Back to the story' : 'Back to the title') })])
     ]);
   }
 
@@ -285,18 +404,39 @@
     return "Chapter " + (NIGHT_WORDS[n] || n);
   }
 
+
+  // Story tags choose the moment; this function chooses its on-screen frame.
+  function placeBlock(id) {
+    var labels = cfg().placeLabels || {};
+    return el('figure', { class: 'nb-art nb-view', 'data-art-id': id }, [
+      el('div', { class: 'nb-location-image' }, [pixImg(NB.cards.url(id), NB.cards.W * 2, NB.cards.H * 2, 'nb-card', labels[id] || '')])
+    ]);
+  }
+  function sceneView(container, id) {
+    var opening = container.lastElementChild;
+    if (opening && opening.classList.contains('nb-dateline')) opening = opening.previousElementSibling;
+    if (opening && opening.classList.contains('nb-chapter')) {
+      // An adjacent place tag supplies the chapter's opening image, keeping a single hero.
+      var frame = opening.querySelector('.nb-chapter-art');
+      if (!frame) { frame = el('div', { class: 'nb-chapter-art' }); opening.insertBefore(frame, opening.firstChild); }
+      clear(frame);
+      frame.appendChild(pixImg(NB.cards.url(id), NB.cards.W * 2, NB.cards.H * 2, 'nb-card', (cfg().placeLabels || {})[id] || ''));
+      opening.classList.add('has-art'); opening.setAttribute('data-art-id', id);
+    } else container.appendChild(placeBlock(id));
+  }
+
   function chapterCard(b) {
-    var art = b.art ? (NB.cards.ids.indexOf(b.art) >= 0 ? b.art : NB.cards.ids.indexOf("ch" + ("0" + b.art).slice(-2)) >= 0 ? "ch" + ("0" + b.art).slice(-2) : null) : null;
+    var art = b.art ? (NB.cards.ids.indexOf(b.art) >= 0 ? b.art : NB.cards.ids.indexOf('ch' + ('0' + b.art).slice(-2)) >= 0 ? 'ch' + ('0' + b.art).slice(-2) : null) : null;
     var label = /^\d+$/.test(b.num) ? nightLabel(b.num) : b.num;
-    return el("div", { class: "nb-chapter" }, [
-      art ? pixImg(NB.cards.url(art), NB.cards.W * 2, NB.cards.H * 2, "nb-card", "") : null,
-      el("div", { class: "cap" }, [el("span", { class: "num", text: label }), el("span", { class: "title", text: b.title })])
+    return el('div', { class: 'nb-chapter' + (art ? ' has-art' : '') }, [
+      art ? el('div', { class: 'nb-chapter-art' }, [pixImg(NB.cards.url(art), NB.cards.W * 2, NB.cards.H * 2, 'nb-card', '')]) : null,
+      el('div', { class: 'cap' }, [el('span', { class: 'num', text: label }), el('h1', { class: 'title', text: b.title })])
     ]);
   }
 
   function meetCard(b) {
     var p = cfg().people[b.id];
-    return el("div", { class: "nb-meet" + (b.first ? " first" : "") }, [
+    return el("div", { class: "nb-meet" + (b.first ? " first" : ""), "data-person-tone": personTone(b.id) }, [
       portrait(b.id, "neutral", 128),
       el("div", { class: "who" }, [
         el("div", { class: "name", text: personName(b.id) }),
@@ -348,16 +488,20 @@
   /* A spoken line: the speaker's face beside it, in the expression the line was tagged with. The same face and
    * expression straight after itself shows nothing new; back again after a line or two of mine, it shows small, so
    * a conversation reads as a conversation. A new expression always gets the full portrait. */
+
   function spokenLine(html, who, mood, state) {
+    mood = mood || 'neutral';
     var same = state.who === who && state.mood === mood;
     var cont = same && !state.gap, again = same && state.gap > 0;
     state.who = who; state.mood = mood; state.gap = 0;
-    var row = el("div", { class: "nb-line" + (cont ? " cont" : again ? " again" : ""), "data-who": who, "data-mood": mood });
-    row.appendChild(cont ? el("div", { class: "nb-line-face empty" }) : el("div", { class: "nb-line-face" + (again ? " mini" : "") }, [
-      pixImg(NB.portraits.url(who, mood, variantOf(who)), NB.portraits.W, NB.portraits.H, "nb-portrait line", personName(who) + " (" + mood + ")"),
-      el("span", { class: "nb-line-name", text: personShort(who) })
+    var row = el('div', { class: 'nb-line' + (cont ? ' cont' : again ? ' again' : ''), 'data-who': who, 'data-mood': mood, 'data-person-tone': personTone(who) });
+    row.appendChild(cont ? el('div', { class: 'nb-line-face empty' }) : el('div', { class: 'nb-line-face' + (again ? ' mini' : '') }, [
+      pixImg(NB.portraits.url(who, mood, variantOf(who)), NB.portraits.W, NB.portraits.H, 'nb-portrait line', personName(who) + ' (' + mood + ')')
     ]));
-    row.appendChild(el("p", { html: html }));
+    row.appendChild(el('div', { class: 'nb-line-copy' }, [
+      !cont ? el('div', { class: 'nb-line-heading' }, [el('span', { class: 'nb-line-name', text: personShort(who) })]) : el('span', { class: 'visually-hidden', text: personShort(who) + ' continues: ' }),
+      el('p', { html: html })
+    ]));
     return row;
   }
 
@@ -376,7 +520,7 @@
       else if (b.k === "text") { (texts = texts || []).push(b); }
       else if (b.k === "art") container.appendChild(el("div", { class: "nb-art" }, [pixImg(NB.cards.url(b.id), NB.cards.W * 2, NB.cards.H * 2, "nb-card", "")]));
       else if (b.k === "date") container.appendChild(el("div", { class: "nb-dateline", text: cfg().fmtDate(b.date) }));
-      else if (b.k === "view") { if (!(container.lastChild && /nb-chapter/.test(container.lastChild.className || "") || (container.lastChild && /nb-dateline/.test(container.lastChild.className || "") && container.lastChild.previousSibling && /nb-chapter/.test(container.lastChild.previousSibling.className || "")))) container.appendChild(el("div", { class: "nb-art nb-view" }, [pixImg(NB.cards.url(b.id), NB.cards.W * 2, NB.cards.H * 2, "nb-card", "")])); }
+      else if (b.k === "view") sceneView(container, b.id);
       else if (b.k === "letter") container.appendChild(letterBlock(b.id));
       else if (b.k === "snapshot") container.appendChild(snapshotBlock(b.id));
       else if (b.k === "meter") container.appendChild(meterBlock(b));
@@ -417,13 +561,17 @@
       L.sign ? el("div", { class: "sign", html: L.sign }) : null
     ]);
   }
+
   function snapshotBlock(id) {
     var s = cfg().snapshots[id];
-    return el("figure", { class: "nb-snapshot" }, [pixImg(NB.snapshots.url(id), NB.cards.W * 2, NB.cards.H * 2, "nb-card", s.title), el("figcaption", { text: s.title })]);
+    return el('figure', { class: 'nb-snapshot' }, [
+      el('button', { class: 'nb-snapshot-open', type: 'button', 'aria-label': 'Enlarge: ' + s.title, onclick: function () { openSnapshot(id); } }, [pixImg(NB.snapshots.url(id), NB.cards.W * 2, NB.cards.H * 2, 'nb-card', s.title), el('span', { class: 'nb-snapshot-zoom', 'aria-hidden': 'true' }, [mark('focus')])]),
+      el('figcaption', {}, [el('span', { class: 'nb-caption-label', text: 'A kept moment' }), el('span', { text: s.title })])
+    ]);
   }
 
   function runEffect(name) {
-    if (ui.settings.motion === "reduced") { if (name === "thaw") toast("The Thaw", "Hushed lines in your journal have melted.", null, "flake_gone"); return; }
+    if (quietMotion()) { if (name === "thaw") toast("The Thaw", "Hushed lines in your journal have melted.", null, "flake_gone"); return; }
     var fx = el("div", { class: "nb-fx nb-fx-" + name, "aria-hidden": "true" });
     doc.body.appendChild(fx);
     setTimeout(function () { if (fx.parentNode) fx.parentNode.removeChild(fx); }, 4200);
@@ -460,13 +608,72 @@
     });
   }
 
+  /* The place art, used twice over. Behind the page: the current place, softened and dimmed, so the city is always
+   * there around the reading column. On arriving somewhere new: the place fills the screen first, then settles into
+   * its frame in the passage when the reader moves on. */
+  function pageArt(page, story) {
+    var ids = page.blocks.filter(function (b) { return b.k === 'view'; }).map(function (b) { return b.id; });
+    var firstView = -1, firstText = -1;
+    page.blocks.forEach(function (b, i) {
+      if (firstView < 0 && (b.k === 'view' || (b.k === 'chapter' && b.art))) firstView = i;
+      if (firstText < 0 && b.k === 'p') firstText = i;
+    });
+    var opening = firstView >= 0 && (firstText < 0 || firstView < firstText);
+    var frame = opening ? story.querySelector('.nb-chapter-art img, .nb-art img') : null;
+    return { last: ids.length ? ids[ids.length - 1] : null, openingFrame: frame };
+  }
+  function setBackdrop(id) {
+    var layer = $('nb-backdrop');
+    if (!layer || !id) return;
+    var url = NB.cards.url(id);
+    if (layer.getAttribute('data-id') === id) return;
+    layer.setAttribute('data-id', id);
+    layer.style.backgroundImage = 'url("' + url + '")';
+  }
+  function dropArrival() {
+    if (ui.dropArrival) { var f = ui.dropArrival; ui.dropArrival = null; f(); }
+    Array.prototype.forEach.call(doc.querySelectorAll('.nb-arrival'), function (n) { n.parentNode.removeChild(n); });
+    doc.documentElement.classList.remove('nb-arriving');
+  }
+  function arrive(frame) {
+    dropArrival();
+    var src = frame.getAttribute('src');
+    if (!src || ui.lastArrival === src) return;
+    ui.lastArrival = src;
+    var big = el('img', { class: 'nb-arrival-img', src: src, alt: '' });
+    var layer = el('button', { class: 'nb-arrival', type: 'button', 'aria-label': 'A new place. Continue to the story.' }, [big, el('span', { class: 'nb-arrival-hint' }, [el('span', { text: 'Continue' }), mark('arrow')])]);
+    doc.body.appendChild(layer);
+    doc.documentElement.classList.add('nb-arriving');
+    var done = false;
+    function settle() {
+      if (done) return; done = true;
+      doc.removeEventListener('keydown', key, true);
+      var r = frame.getBoundingClientRect();
+      var from = { left: '0px', top: '0px', width: root.innerWidth + 'px', height: root.innerHeight + 'px' };
+      var to = { left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px' };
+      layer.classList.add('settling');
+      var finish = function () { ui.dropArrival = null; if (layer.parentNode) layer.parentNode.removeChild(layer); doc.documentElement.classList.remove('nb-arriving'); var st = $('nb-story'); if (st) st.focus({ preventScroll: true }); };
+      if (big.animate) {
+        big.animate([from, to], { duration: 750, easing: 'cubic-bezier(.65,0,.25,1)', fill: 'forwards' });
+        layer.animate([{ backgroundColor: 'rgba(8,6,16,1)' }, { backgroundColor: 'rgba(8,6,16,0)' }], { duration: 750, easing: 'ease-in', fill: 'forwards' }).onfinish = finish;
+      } else finish();
+    }
+    function key(e) { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape' || e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); settle(); } }
+    layer.addEventListener('click', settle);
+    doc.addEventListener('keydown', key, true);
+    ui.dropArrival = function () { done = true; doc.removeEventListener('keydown', key, true); };
+    requestAnimationFrame(function () { layer.classList.add('shown'); layer.focus({ preventScroll: true }); });
+  }
+
   function renderPage(page, fresh) {
     if (ui.view !== "story") show("story");
+    ui.pageToken++;
+    renderReadingRail(page);
     var story = $("nb-story");
     var choices = $("nb-choices");
     clear(story);
     clear(choices);
-    if (ui.settings.motion !== "reduced") {
+    if (!quietMotion()) {
       story.classList.remove("nb-fade");
       void story.offsetWidth;
       story.classList.add("nb-fade");
@@ -506,7 +713,7 @@
     var notes = changeNotes(page.changes);
     if (notes) {
       var first = story.firstChild;
-      if (first && first.className === "nb-chapter") story.insertBefore(notes, first.nextSibling);
+      if (first && first.classList.contains("nb-chapter")) story.insertBefore(notes, first.nextSibling);
       else story.insertBefore(notes, first);
     }
     if (fresh) showNotices(page.notices);
@@ -514,6 +721,14 @@
     applyMood();
     if (root.scrollTo) root.scrollTo(0, 0);
     autosave();
+    if ($("nb-announcer")) $("nb-announcer").textContent = (ui.rt.state.chapter ? ui.rt.state.chapter.title + '. ' : '') + 'Page ready.';
+    var art = pageArt(page, story);
+    setBackdrop(art.last || (ui.rt.state && ui.rt.state.view));
+    requestAnimationFrame(function () {
+      fitArt(); updateReadingProgress();
+      if (page.kind !== 'input') story.focus({ preventScroll: true });
+      if (fresh && art.openingFrame && ui.settings.arrivals && !quietMotion()) arrive(art.openingFrame);
+    });
   }
 
   function hasProse(page) { return page.blocks.some(function (b) { return b.k === "p"; }); }
@@ -547,16 +762,17 @@
     ui.selectOption = null;
     if (page.kind === "choice") {
       var form = el("form", { class: "nb-choices", "aria-label": "Choices" });
-      var list = el("div", { class: "nb-choice-list", role: "radiogroup" });
-      var selected = -1;
-      var next = el("button", { class: "nb-btn primary", type: "submit", text: "Next", disabled: true });
+      var list = el("div", { class: "nb-choice-list", role: "radiogroup", "aria-label": "Choose what happens next" });
+      var selected = -1, submitted = false;
+      var next = el("button", { class: "nb-btn primary", type: "submit", id: "nb-next", disabled: true }, [el('span', { text: 'Continue' }), mark('arrow')]);
+      form.appendChild(el('div', { class: 'nb-decision-head' }, [el('span', { class: 'nb-eyebrow', text: 'A moment of choice' }), el('span', { class: 'nb-key-help', text: '1–9 to choose · Enter to continue' })]));
       page.choices.forEach(function (c, i) {
         var id = "nb-opt-" + i;
-        var input = el("input", { type: "radio", name: "nb-choice", id: id, value: String(i), disabled: !c.enabled });
+        var input = el("input", { type: "radio", name: "nb-choice", id: id, value: String(i), disabled: !c.enabled, "aria-describedby": !c.enabled && ui.settings.showHints && c.hint ? id + '-hint' : null });
         var txt = el("span", { class: "txt", html: c.html });
-        if (!c.enabled && ui.settings.showHints && c.hint) txt.appendChild(el("span", { class: "nb-hint", text: c.hint }));
+        if (!c.enabled && ui.settings.showHints && c.hint) txt.appendChild(el("span", { class: "nb-hint", id: id + "-hint", text: c.hint }));
         var row = el("label", { class: "nb-choice" + (c.enabled ? "" : " disabled") + (c.deja ? " deja" : "") + (c.who ? " has-face" : ""), for: id },
-          [input, c.who ? face(c.who, "neutral", 36) : null, txt]);
+          [input, el("span", { class: "nb-choice-number", "aria-hidden": "true", text: ("0" + (i + 1)).slice(-2) }), c.who ? face(c.who, "neutral", 36) : null, txt, mark(c.enabled ? "arrow" : "lock")]);
         input.addEventListener("change", function () {
           selected = i;
           Array.prototype.forEach.call(list.children, function (r) { r.classList.remove("selected"); });
@@ -567,7 +783,8 @@
         list.appendChild(row);
       });
       function submit() {
-        if (selected < 0) return;
+        if (selected < 0 || submitted) return;
+        submitted = true; next.disabled = true;
         var idx = selected;
         act(function () { return ui.rt.choose(idx); });
       }
@@ -585,7 +802,7 @@
       };
     } else if (page.kind === "page_break") {
       box.appendChild(el("div", { class: "nb-actions" }, [
-        el("button", { class: "nb-btn primary", type: "button", text: page.button || "Next", id: "nb-next",
+        el("button", { class: "nb-btn primary nb-continue", type: "button", text: (page.button || "Continue") + " →", id: "nb-next",
           onclick: function () { act(function () { return ui.rt.next(); }); } })
       ]));
       var w2 = wishRow(page);
@@ -593,11 +810,11 @@
     } else if (page.kind === "input") {
       var f = el("form", { class: "nb-choices" });
       if (page.prompt) f.appendChild(el("label", { for: "nb-input", html: page.prompt }));
-      var inp = el("input", { type: "text", id: "nb-input", maxlength: "24", autocomplete: "off", spellcheck: "false" });
-      f.appendChild(el("div", { class: "nb-input-row" }, [inp, el("button", { class: "nb-btn primary", type: "submit", text: "Next" })]));
+      var inp = el("input", { type: "text", id: "nb-input", maxlength: "24", autocomplete: "off", spellcheck: "false", "aria-label": page.prompt ? NB.text.toPlain(page.prompt) : "Your name" });
+      f.appendChild(el("div", { class: "nb-input-row" }, [inp, el("button", { class: "nb-btn primary", type: "submit", id: "nb-next", text: "Continue →" })]));
       f.addEventListener("submit", function (e) { e.preventDefault(); var val = inp.value; act(function () { return ui.rt.submit(val); }); });
       box.appendChild(f);
-      setTimeout(function () { inp.focus(); }, 30);
+      setTimeout(function () { inp.focus({ preventScroll: true }); }, 30);
     } else if (page.kind === "look") {
       box.appendChild(lookCreator());
     } else if (page.kind === "ending") {
@@ -615,7 +832,7 @@
     var preview = el("div", { class: "preview" });
     function draw() {
       clear(preview);
-      preview.appendChild(pixImg(NB.portraits.url("mc", "neutral", look), 192, 192, "nb-portrait big", "Your portrait"));
+      preview.appendChild(pixImg(NB.portraits.url("mc", "neutral", look), 256, 320, "nb-portrait big", "Your portrait"));
     }
     var rows = el("div", { class: "rows" });
     keys.forEach(function (k) {
@@ -624,7 +841,7 @@
       var val = el("span", { class: "val", text: labels[look[k]] });
       function step(d) { look[k] = (look[k] + d + n) % n; val.textContent = labels[look[k]]; draw(); }
       rows.appendChild(el("div", { class: "row" }, [
-        el("span", { class: "k", text: { look_skin: "Skin", look_hair: "Hair colour", look_style: "Hair", look_beard: "Face", look_eyes: "Eyes" }[k] }),
+        el("span", { class: "k", text: { look_skin: "Me", look_hair: "Hair colour", look_style: "Hair", look_beard: "Face", look_eyes: "Eyes" }[k] }),
         el("button", { class: "nb-btn arrow", type: "button", "aria-label": "Previous", text: "◀", onclick: function () { step(-1); } }),
         val,
         el("button", { class: "nb-btn arrow", type: "button", "aria-label": "Next", text: "▶", onclick: function () { step(1); } })
@@ -779,15 +996,23 @@
     if (ui.meta.finished > 0) menu.appendChild(el("button", { class: "nb-btn", text: "The story map", onclick: function () { show("map"); } }));
     menu.appendChild(el("button", { class: "nb-btn", text: "Settings", onclick: function () { show("settings"); } }));
     menu.appendChild(el("button", { class: "nb-btn", text: "How to play", onclick: function () { show("about"); } }));
-    v.appendChild(el("div", { class: "nb-title" }, [
-      el("div", { class: "art" }, [pixImg(NB.cards.url("title"), NB.cards.W * 2, NB.cards.H * 2, "nb-card", "The rear lane behind Switchyard at night, under a nearly full moon")]),
-      el("div", { class: "eyebrow", text: c.eyebrow }),
-      el("h1", { text: c.title }),
-      el("p", { class: "sub", text: c.subtitle }),
-      menu,
-      el("p", { class: "stats-line", text: "Endings found: " + found + " of " + total + " · Achievements: " +
-        Object.keys(ui.meta.achievements).filter(function (k) { return c.achievements[k]; }).length + " of " + Object.keys(c.achievements).length }),
-      el("p", { class: "motto", text: "“" + c.motto + "”" })
+
+    var heroImage = pixImg(NB.cards.url('title'), NB.cards.W * 4, NB.cards.H * 4, 'nb-card', 'The rear lane behind Switchyard at night');
+    heroImage.setAttribute('data-pixel-cover', '');
+    v.appendChild(el('div', { class: 'nb-title' }, [
+      el('div', { class: 'nb-title-art' }, [heroImage]),
+      el('div', { class: 'nb-title-content' }, [
+        el('div', { class: 'eyebrow' }, [el('span', { class: 'nb-title-dash', 'aria-hidden': 'true' }), el('span', { text: c.eyebrow || 'An interactive novel' })]),
+        el('h1', { text: c.title }),
+        el('p', { class: 'sub', text: c.subtitle }),
+        c.motto ? el('p', { class: 'motto', text: c.motto }) : null,
+        menu,
+        el('p', { class: 'nb-title-note', text: 'A branching novel. A city full of secrets.' })
+      ]),
+      el('div', { class: 'nb-title-footer' }, [
+        el('span', { text: 'Your choices leave a trace.' }),
+        el('div', { class: 'stats-line' }, [el('span', { text: found + ' / ' + total + ' endings' }), el('span', { text: Object.keys(ui.meta.achievements).filter(function (k) { return c.achievements[k]; }).length + ' / ' + Object.keys(c.achievements).length + ' achievements' })])
+      ])
     ]));
   }
 
@@ -908,14 +1133,24 @@
     if (tabs.every(function (t) { return t[0] !== ui.journalTab; })) ui.journalTab = "people";
     var panel = el("div", { class: "nb-panel journal" });
     panel.appendChild(backButton());
-    panel.appendChild(el("h2", { text: "Journal" }));
-    var bar = el("div", { class: "nb-tabs", role: "tablist" });
+    panel.appendChild(el('div', { class: 'nb-panel-heading' }, [el('div', {}, [el('span', { class: 'nb-eyebrow', text: 'The things I keep' }), el('h2', { text: 'My journal' })]), mark('book')]));
+    panel.appendChild(el('p', { class: 'lede', text: 'People, places, and the pieces that begin to fit.' }));
+    var bar = el("div", { class: "nb-tabs", role: "tablist", "aria-label": "Journal sections" });
     tabs.forEach(function (t) {
-      bar.appendChild(el("button", { class: "nb-btn tab", role: "tab", "aria-selected": String(ui.journalTab === t[0]), text: t[1],
-        onclick: function () { ui.journalTab = t[0]; ui.journalPerson = null; renderJournal(); } }));
+      bar.appendChild(el("button", { class: "nb-btn tab", role: "tab", id: "nb-tab-" + t[0], "aria-controls": "nb-journal-body", tabindex: ui.journalTab === t[0] ? "0" : "-1", "aria-selected": String(ui.journalTab === t[0]), text: t[1],
+        onclick: function () { ui.journalTab = t[0]; ui.journalPerson = null; renderJournal(); $('nb-tab-' + t[0]).focus(); } }));
+    });
+    bar.addEventListener('keydown', function (e) {
+      var index = tabs.findIndex(function (t) { return t[0] === ui.journalTab; }), next = index;
+      if (e.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabs.length - 1;
+      else return;
+      e.preventDefault(); ui.journalTab = tabs[next][0]; ui.journalPerson = null; renderJournal(); $('nb-tab-' + ui.journalTab).focus();
     });
     panel.appendChild(bar);
-    var body = el("div", { class: "nb-tabbody" });
+    var body = el("div", { class: "nb-tabbody", id: "nb-journal-body", role: "tabpanel", "aria-labelledby": "nb-tab-" + ui.journalTab, tabindex: "0" });
     if (ui.journalTab === "people") journalPeople(body);
     else if (ui.journalTab === "codex") journalCodex(body);
     else if (ui.journalTab === "clues") journalClues(body);
@@ -924,29 +1159,37 @@
     else journalSoFar(body);
     panel.appendChild(body);
     v.appendChild(panel);
+    requestAnimationFrame(function () { fitArt(v); });
   }
 
+
   function journalPeople(body) {
-    var st = ui.rt.state;
-    var v = st.vars;
-    var c = cfg();
+    var st = ui.rt.state, v = st.vars, c = cfg();
     if (ui.journalPerson) return journalPerson(body, ui.journalPerson);
-    var grid = el("div", { class: "nb-people" });
-    grid.appendChild(el("button", { class: "nb-person you", type: "button", onclick: function () { ui.journalPerson = "mc"; renderJournal(); } }, [
-      portrait("mc", "neutral", 96), el("span", { class: "nm", text: (v.name || "You") }), el("span", { class: "ep", text: "You" })
-    ]));
-    peopleOrder().forEach(function (id) {
-      if (!st.met[id]) return;
-      var p = c.people[id];
-      grid.appendChild(el("button", { class: "nb-person", type: "button", onclick: function () { ui.journalPerson = id; renderJournal(); } }, [
-        portrait(id, "neutral", 96),
-        el("span", { class: "nm", text: p.short || personName(id) }),
-        stageHearts(id, v), stageFlame(id, v),
-        (st.memories[id] || []).length ? el("span", { class: "mem", text: (st.memories[id] || []).length + " remembered" }) : null
+    var ids = ['mc'].concat(peopleOrder().filter(function (id) { return st.met[id]; }));
+    var count = el('span', { class: 'nb-collection-count', text: (ids.length - 1) + ' people met' });
+    var search = el('input', { type: 'search', class: 'nb-person-search', placeholder: 'Find someone…', 'aria-label': 'Search people in your journal' });
+    body.appendChild(el('div', { class: 'nb-collection-toolbar' }, [count, el('div', { class: 'nb-search' }, [mark('search'), search])]));
+    var grid = el('div', { class: 'nb-people' });
+    ids.forEach(function (id) {
+      var self = id === 'mc', p = c.people[id] || {};
+      var name = self ? (v.name || 'You') : personShort(id);
+      var memories = (st.memories[id] || []).length;
+      var stage = self ? 'My story' : v['st_' + id] !== undefined ? c.stages[v['st_' + id]] : ['Acquaintance', 'Friendly', 'Friends', 'Close friends'][v['fr_' + id]];
+      grid.appendChild(el('button', { class: 'nb-person' + (self ? ' you' : ''), type: 'button', 'data-person-tone': personTone(id), 'data-search': (name + ' ' + (p.epithet || '')).toLowerCase(), onclick: function () { ui.journalPerson = id; renderJournal(); focusContent($('nb-journal-body')); } }, [
+        el('span', { class: 'nb-person-portrait' }, [portrait(id, 'neutral', 128)]),
+        el('span', { class: 'nb-person-info' }, [el('span', { class: 'nm', text: name }), el('span', { class: 'ep', text: self ? 'The story is mine to tell.' : (p.epithet || '') }), !self ? stageHearts(id, v) : null, !self ? stageFlame(id, v) : null, el('span', { class: 'nb-stage-label', text: stage || 'In my journal' }), memories ? el('span', { class: 'mem', text: memories + (memories === 1 ? ' shared memory' : ' shared memories') }) : null]),
+        el('span', { class: 'nb-person-arrow', 'aria-hidden': 'true' }, [mark('arrow')])
       ]));
     });
-    body.appendChild(el("p", { class: "lede", text: "Hearts show how far we've come: met, friendly, friends, close, something more, together. A flame means we both know it." }));
-    body.appendChild(grid);
+    var empty = el('p', { class: 'nb-empty', hidden: true, role: 'status', text: 'No one by that name is in your journal yet.' });
+    search.addEventListener('input', function () {
+      var value = search.value.trim().toLowerCase(), shown = 0;
+      Array.prototype.forEach.call(grid.children, function (card) { card.hidden = card.getAttribute('data-search').indexOf(value) < 0; if (!card.hidden) shown++; });
+      empty.hidden = shown > 0;
+    });
+    body.appendChild(grid); body.appendChild(empty);
+    body.appendChild(el('p', { class: 'nb-collection-footnote', text: 'Hearts mark how far a relationship has come. A flame means we both know.' }));
   }
 
   function journalPerson(body, id) {
@@ -957,7 +1200,7 @@
     if (id === "mc") {
       var looks = NB.portraits.lookLabels;
       body.appendChild(el("div", { class: "nb-entry" }, [
-        portrait("mc", "neutral", 192, "big"),
+        portrait("mc", "neutral", 256, "big"),
         el("div", { class: "txt" }, [
           el("h3", { text: (v.name || "Theo") + " Marsh" }),
           el("div", { class: "epithet", text: "Nineteen, lighting crew at Switchyard, the room above the print shop" }),
@@ -970,8 +1213,8 @@
     var p = c.people[id];
     var memories = st.memories[id] || [];
     var favorKey = "favor_" + id;
-    body.appendChild(el("div", { class: "nb-entry" }, [
-      portrait(id, "neutral", 192, "big"),
+    body.appendChild(el("div", { class: "nb-entry", "data-person-tone": personTone(id) }, [
+      portrait(id, "neutral", 256, "big"),
       el("div", { class: "txt" }, [
         el("h3", { text: personName(id) }),
         el("div", { class: "epithet", text: p.epithet || "" }),
@@ -1006,12 +1249,13 @@
     st.clues.forEach(function (id) {
       var cl = c.clues[id];
       var picked = ui.boardPick.indexOf(id) >= 0;
-      grid.appendChild(el("button", { class: "nb-cluecard" + (picked ? " picked" : ""), type: "button", "aria-pressed": String(picked),
+      grid.appendChild(el("button", { class: "nb-cluecard" + (picked ? " picked" : ""), id: "nb-clue-" + id, type: "button", "aria-pressed": String(picked),
         onclick: function () {
           var i = ui.boardPick.indexOf(id);
           if (i >= 0) ui.boardPick.splice(i, 1);
           else { ui.boardPick.push(id); if (ui.boardPick.length > 2) ui.boardPick.shift(); }
           renderJournal();
+          $("nb-clue-" + id).focus({ preventScroll: true });
         } }, [icon("clue", 2), el("b", { text: cl.title }), el("span", { text: cl.text })]));
     });
     body.appendChild(grid);
@@ -1101,7 +1345,9 @@
   function journalSoFar(body) {
     var items = cfg().recap(vars(), ui.rt.state);
     if (!items.length) body.appendChild(el("p", { text: "It's only just begun." }));
-    items.forEach(function (h) { body.appendChild(el("p", { html: h })); });
+    var timeline = el('div', { class: 'nb-recap-timeline' });
+    items.forEach(function (h, i) { timeline.appendChild(el('div', { class: 'nb-recap-event' }, [el('span', { class: 'nb-recap-index', text: ('0' + (i + 1)).slice(-2), 'aria-hidden': 'true' }), el('p', { html: h })])); });
+    body.appendChild(timeline);
   }
 
   /* ---------------- ending, gallery, map ---------------- */
@@ -1266,7 +1512,7 @@
     panel.appendChild(list);
     var cps = S.read("checkpoints", null);
     if (cps && cps.list && Object.keys(cps.list).length) {
-      panel.appendChild(el("h3", { text: "Start of each night (this playthrough)" }));
+      panel.appendChild(el("h3", { text: "Chapter bookmarks · this playthrough" }));
       var cl = el("div", { class: "nb-slots" });
       Object.keys(cps.list).sort().forEach(function (k) {
         var cp = cps.list[k];
@@ -1288,7 +1534,7 @@
       io.appendChild(el("button", { class: "nb-btn", text: "Export current game", onclick: function () {
         var s = ui.rt.snapshot(); s.savedAt = Date.now();
         var blob = new Blob([JSON.stringify(s)], { type: "application/json" });
-        var a = el("a", { href: URL.createObjectURL(blob), download: "nuit-blanche-save.json" });
+        var a = el("a", { href: URL.createObjectURL(blob), download: "calder-save.json" });
         doc.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
       } }));
     }
@@ -1300,7 +1546,7 @@
       reader.onload = function () {
         try {
           var snap = JSON.parse(reader.result);
-          if (!snap || !snap.state || !snap.state.vars) throw new Error("Not a Nuit Blanche save file.");
+          if (!snap || !snap.state || !snap.state.vars) throw new Error("Not a Calder save file.");
           loadSnapshot(snap, false);
         } catch (e) { toast("Import failed", e.message); }
       };
@@ -1322,21 +1568,35 @@
     });
     return box;
   }
+
   function setting(label, help, control) {
-    return el("div", { class: "nb-setting" }, [el("div", { class: "lab" }, [label, help ? el("small", { text: help }) : null]), el("div", {}, [control])]);
+    var id = 'nb-setting-' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (control.tagName === 'INPUT' || control.tagName === 'SELECT') control.setAttribute('aria-labelledby', id);
+    return el('div', { class: 'nb-setting' }, [el('div', { class: 'lab' }, [el('span', { id: id, text: label }), help ? el('small', { text: help }) : null]), el('div', { class: 'nb-setting-control' }, [control])]);
   }
 
   function renderSettings() {
     var v = $("nb-view-settings");
     clear(v);
     var s = ui.settings;
-    function set(k, val) { s[k] = val; saveSettings(); applySettings(); renderSettings(); }
+    function set(k, val) {
+      var current = doc.activeElement, group = current && current.closest('[role=group]'), groupLabel = group && group.getAttribute('aria-label'), buttonText = current && current.textContent, id = current && current.id;
+      s[k] = val; saveSettings(); applySettings(); renderSettings();
+      if (id && $(id)) $(id).focus({ preventScroll: true });
+      else if (groupLabel) $('nb-view-settings').querySelectorAll('[role=group]').forEach(function (g) { if (g.getAttribute('aria-label') === groupLabel) g.querySelectorAll('button').forEach(function (b) { if (b.textContent === buttonText) b.focus({ preventScroll: true }); }); });
+    }
     var panel = el("div", { class: "nb-panel" });
     panel.appendChild(backButton());
     panel.appendChild(el("h2", { text: "Settings" }));
 
+    panel.appendChild(el('p', { class: 'lede', text: 'Make room for the way you like to read.' }));
+    panel.appendChild(el('div', { class: 'nb-type-preview' }, [el('span', { class: 'nb-eyebrow', text: 'Reading preview' }), el('p', { text: 'The city goes quiet for a moment. Somewhere beyond the windows, a train crosses the river.' })]));
     panel.appendChild(el("h3", { text: "Reading" }));
+    panel.appendChild(setting('Focus mode', 'Hide the chapter rail while reading.', seg('Focus mode', [[false, 'Full interface'], [true, 'Focus']], s.focusMode, function (x) { set('focusMode', x); })));
     panel.appendChild(setting("Theme", "Auto follows your system.", seg("Theme", [["night", "Night"], ["day", "Day"], ["auto", "Auto"]], s.theme, function (x) { set("theme", x); })));
+    panel.appendChild(setting("Colours", "The night palette. Day keeps its own paper colours.", seg("Colours", [["neon", "Neon"], ["golden", "Golden hour"], ["moonlight", "Moonlight"], ["ember", "Ember"], ["river", "River"]], s.palette, function (x) { set("palette", x); })));
+    panel.appendChild(setting("Scene backdrop", "The current place, softly behind the page.", seg("Scene backdrop", [[true, "On"], [false, "Off"]], s.backdrop, function (x) { set("backdrop", x); })));
+    panel.appendChild(setting("Arriving somewhere", "A new place fills the screen, then settles into the page.", seg("Arrivals", [[true, "Full screen"], [false, "In the page"]], s.arrivals, function (x) { set("arrivals", x); })));
     panel.appendChild(setting("Text size", Math.round(s.size * 16) + "px", seg("Text size", [["-", "A−"], ["=", "Reset"], ["+", "A+"]], null, function (x) {
       var n = x === "=" ? DEFAULT_SETTINGS.size : Math.max(0.875, Math.min(1.75, s.size + (x === "+" ? 0.0625 : -0.0625)));
       set("size", Math.round(n * 1000) / 1000);
@@ -1352,8 +1612,8 @@
     panel.appendChild(setting("Stat changes", "Show which stats a choice moved.", seg("Stat changes", [[true, "Show"], [false, "Hide"]], s.showChanges, function (x) { set("showChanges", x); })));
     panel.appendChild(setting("Requirement hints", "Say why a greyed-out option is locked.", seg("Hints", [[true, "Show"], [false, "Hide"]], s.showHints, function (x) { set("showHints", x); })));
 
-    panel.appendChild(el("h3", { text: "Claude (optional)" }));
-    panel.appendChild(el("p", { class: "lede", text: "Everything in the game works offline. With Claude connected, you can also have pages retold in a new voice, say things in your own words, and ask Fleurette anything." }));
+    panel.appendChild(el("h3", { text: "Narration & voice" }));
+    panel.appendChild(el("p", { class: "lede", text: "The written novel works offline. Connect Claude to retell a page in a different voice or use your own words for supported dialogue choices. The story and its choices stay fixed." }));
     panel.appendChild(setting("Narration", null, seg("Narration", [["classic", "Classic"], ["varied", "Varied"], ["living", "Living (Claude)"]], s.narration, function (x) { set("narration", x); })));
     panel.appendChild(el("div", { class: "nb-note-box", text: {
       classic: "The text exactly as written, every time.",
@@ -1426,7 +1686,7 @@
       el("div", { class: "nb-slots" }, [
         game ? el("button", { class: "nb-btn", text: "Back to the story", onclick: function () { show("story"); } }) : null,
         el("button", { class: "nb-btn", text: "Settings", onclick: function () { show("settings"); } }),
-        el("button", { class: "nb-btn", text: "Saves & the start of each night", onclick: function () { show("saves"); } }),
+        el("button", { class: "nb-btn", text: "Saves & chapter bookmarks", onclick: function () { show("saves"); } }),
         el("button", { class: "nb-btn", text: "Endings & achievements", onclick: function () { show("gallery"); } }),
         ui.meta.finished > 0 ? el("button", { class: "nb-btn", text: "The story map", onclick: function () { show("map"); } }) : null,
         el("button", { class: "nb-btn", text: "How to play", onclick: function () { show("about"); } }),
@@ -1445,46 +1705,54 @@
 
   /* ---------------- boot ---------------- */
 
+
   function buildShell(mount) {
-    var bar = el("header", { class: "nb-bar" }, [
-      el("div", { class: "nb-bar-inner" }, [
-        el("div", { class: "nb-brand" }, [el("span", { class: "t", text: cfg().title }), el("span", { class: "nb-hud", id: "nb-hud", hidden: true })]),
-        el("nav", { id: "nb-bar-game", class: "nb-seg", hidden: true, "aria-label": "Game" }, [
-          el("button", { class: "nb-btn", id: "nb-btn-stats", type: "button", text: "Stats", onclick: function () { toggleView("stats"); } }),
-          el("button", { class: "nb-btn", id: "nb-btn-journal", type: "button", text: "Journal", onclick: function () { toggleView("journal"); } }),
-          el("button", { class: "nb-btn", id: "nb-btn-saves", type: "button", text: "Saves", onclick: function () { toggleView("saves"); } }),
-          el("button", { class: "nb-btn", id: "nb-btn-menu", type: "button", text: "Menu", onclick: function () { toggleView("menu"); } })
+    var bar = el('header', { class: 'nb-bar' }, [
+      el('div', { class: 'nb-bar-inner' }, [
+        el('button', { class: 'nb-brand', type: 'button', 'aria-label': 'Calder title screen', onclick: function () { show('title'); } }, [el('span', { class: 'nb-sigil', 'aria-hidden': 'true' }), el('span', { class: 't', text: cfg().title })]),
+        el('span', { class: 'nb-hud', id: 'nb-hud', hidden: true }),
+        el('span', { class: 'nb-cover-label', text: 'An interactive novel' }),
+        el('nav', { id: 'nb-bar-game', class: 'nb-seg', hidden: true, 'aria-label': 'Game' }, [
+          el('button', { class: 'nb-btn', id: 'nb-btn-stats', type: 'button', onclick: function () { toggleView('stats'); } }, [mark('person'), el('span', { text: 'Stats' })]),
+          el('button', { class: 'nb-btn', id: 'nb-btn-journal', type: 'button', onclick: function () { toggleView('journal'); } }, [mark('book'), el('span', { text: 'Journal' })]),
+          el('button', { class: 'nb-btn', id: 'nb-btn-saves', type: 'button', onclick: function () { toggleView('saves'); } }, [mark('save'), el('span', { text: 'Saves' })]),
+          el('button', { class: 'nb-btn', id: 'nb-btn-menu', type: 'button', onclick: function () { toggleView('menu'); } }, [mark('menu'), el('span', { text: 'Menu' })])
         ])
+      ]),
+      el('progress', { id: 'nb-page-progress', class: 'nb-page-progress', max: '100', value: '0', 'aria-label': 'Reading progress on this page' })
+    ]);
+    var main = el('main', { class: 'nb-main', id: 'nb-main', tabindex: '-1' }, [
+      el('section', { class: 'nb-view', id: 'nb-view-title', 'aria-label': 'Title' }),
+      el('section', { class: 'nb-view', id: 'nb-view-story', 'aria-label': 'Story', hidden: true }, [
+        el('div', { class: 'nb-reading-layout' }, [el('aside', { class: 'nb-reading-rail', id: 'nb-reading-rail', 'aria-label': 'Current chapter' }), el('div', { class: 'nb-reading-body', id: 'nb-reading-body' }, [
+          el('article', { class: 'nb-story', id: 'nb-story', tabindex: '-1', 'aria-label': 'Story passage' }),
+          el('div', { id: 'nb-choices' }),
+          el('div', { class: 'nb-page-end', 'aria-hidden': 'true' }, [el('span', { class: 'nb-sigil' })])
+        ])])
       ])
     ]);
-    var main = el("main", { class: "nb-main", id: "nb-main" }, [
-      el("section", { class: "nb-view", id: "nb-view-title" }),
-      el("section", { class: "nb-view", id: "nb-view-story", hidden: true }, [
-        el("div", { class: "nb-story", id: "nb-story", "aria-live": "polite" }),
-        el("div", { id: "nb-choices" })
-      ]),
-      el("section", { class: "nb-view", id: "nb-view-stats", hidden: true }),
-      el("section", { class: "nb-view", id: "nb-view-journal", hidden: true }),
-      el("section", { class: "nb-view", id: "nb-view-saves", hidden: true }),
-      el("section", { class: "nb-view", id: "nb-view-settings", hidden: true }),
-      el("section", { class: "nb-view", id: "nb-view-gallery", hidden: true }),
-      el("section", { class: "nb-view", id: "nb-view-map", hidden: true }),
-      el("section", { class: "nb-view", id: "nb-view-about", hidden: true }),
-      el("section", { class: "nb-view", id: "nb-view-menu", hidden: true })
-    ]);
-    mount.appendChild(bar);
-    mount.appendChild(main);
-    mount.appendChild(el("div", { class: "nb-toast", id: "nb-toast", "aria-live": "polite" }));
+    VIEWS.filter(function (name) { return name !== 'title' && name !== 'story'; }).forEach(function (name) { main.appendChild(el('section', { class: 'nb-view', id: 'nb-view-' + name, 'aria-label': name, hidden: true })); });
+    mount.appendChild(el('div', { class: 'nb-backdrop', id: 'nb-backdrop', 'aria-hidden': 'true' }));
+    mount.appendChild(el('a', { class: 'nb-skip', href: '#nb-main', text: 'Skip to content' }));
+    mount.appendChild(bar); mount.appendChild(main);
+    mount.appendChild(el('button', { class: 'nb-btn nb-focus-exit', id: 'nb-focus-exit', type: 'button', hidden: true, onclick: toggleFocus }, [mark('focus'), el('span', { text: 'Exit focus mode' })]));
+    mount.appendChild(el('div', { class: 'nb-toast', id: 'nb-toast', 'aria-live': 'polite', 'aria-atomic': 'true' }));
+    mount.appendChild(el('div', { class: 'visually-hidden', id: 'nb-announcer', role: 'status' }));
+    var queued = false;
+    root.addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(function () { updateReadingProgress(); queued = false; }); } }, { passive: true });
+    root.addEventListener('resize', function () { fitArt(); updateReadingProgress(); });
+    mount.addEventListener('load', function (e) { if (e.target.tagName === 'IMG') fitArt(e.target.parentElement); }, true);
   }
 
+
   function keyboard(e) {
-    if (ui.view !== "story") return;
+    if (ui.view !== 'story' || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || doc.querySelector('dialog[open]')) return;
     var t = e.target;
-    if (t && (t.tagName === "TEXTAREA" || (t.tagName === "INPUT" && t.type === "text"))) return;
+    if (t && (t.isContentEditable || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || (t.tagName === 'INPUT' && t.type !== 'radio'))) return;
     if (/^[1-9]$/.test(e.key) && ui.selectOption) { ui.selectOption(Number(e.key) - 1); e.preventDefault(); }
-    else if (e.key === "Enter") {
-      var btn = $("nb-next");
-      if (btn && doc.activeElement !== btn) { btn.click(); e.preventDefault(); }
+    else if (e.key === 'Enter' && !(t && t.closest('button, a, summary'))) {
+      var btn = $('nb-next');
+      if (btn && !btn.disabled) { btn.click(); e.preventDefault(); }
     }
   }
 

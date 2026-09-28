@@ -104,7 +104,7 @@ He takes a card from inside his coat and holds it out between two fingers. It's 
 *present quentin peter
 I put the box of menus down on the end of the counter.
 
-And Quentin looks up from the machine, and sees me.
+@quentin:returned And Quentin looks up from the machine, and sees me.
 
 For one second, his face does something I'll think about for weeks. It's not surprise. It's recognition, and then fear, pure and cold, and then, fast over the top of both, a sort of shutter coming down, bright and practical and blank. The knack gives me all three in the time it takes to blink, like three different songs through one wall.
 

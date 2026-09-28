@@ -169,7 +169,7 @@ function main() {
         case "portrait": {
           const [id, mood] = a.split(/\s+/);
           person(id, where);
-          const moods = ["neutral", "smile", "smirk", "angry", "sad", "hushed", "wolf", "true", "fire", "hungry"];
+          const moods = ["neutral", "attentive", "amused", "tense", "hurt", "warm", "moon", "hungry", "returned", "small"];
           if (mood && !moods.includes(mood)) errors.push(`${where}: unknown mood '${mood}'`);
           break;
         }
@@ -203,11 +203,11 @@ function main() {
           const m = /\[(\w+)\]\s*$/.exec(a);
           const num = a.split(/\s+/)[0];
           const art = m ? m[1] : num;
-          if (!cfg.cards.includes(art)) warnings.push(`${where}: chapter has no card '${art}'`);
+          if (!cfg.cards.includes(art) && !cfg.cards.includes("ch" + ("0" + art).slice(-2))) warnings.push(`${where}: chapter has no card '${art}'`);
           break;
         }
         case "mood":
-          if (!["snow", "carnival", "bells", "wolves", "oxblood", "eve", "white"].includes(a)) errors.push(`${where}: unknown mood '${a}'`);
+          if (!["dusk", "night", "neon", "winter", "thaw", "day"].includes(a)) errors.push(`${where}: unknown mood '${a}'`);
           break;
         case "meter":
         case "pips": {

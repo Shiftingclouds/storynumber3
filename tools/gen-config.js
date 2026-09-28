@@ -35,6 +35,10 @@ for (const [k, d] of Object.entries(vars)) {
   else if (k === "strain") clamp[k] = [0, 3];
 }
 
+// route beats (plan/routes.js) are flags too
+const { routes } = P("routes.js");
+for (const r of routes) for (const b of r.beats) if (!(b.flag in startVars)) startVars[b.flag] = false;
+
 const views = fs.readdirSync(path.join(ROOT, "art/places")).filter((f) => f.endsWith(".png")).map((f) => f.replace(/\.png$/, "").replace(/-/g, "_"));
 
 const data = {

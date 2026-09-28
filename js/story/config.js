@@ -64,7 +64,7 @@
 
   /* ---------------- letters & snapshots (filled in as chapters are written) ---------------- */
 
-  var letters = {};
+  var letters = NB.LETTERS || {};
   var snapshots = {
     lane: { title: "The rear lane", bg: "switchyard_lane" },
     cafe: { title: "Double Shift", bg: "double_shift" },
@@ -80,7 +80,7 @@
   var cardAliases = {
     title: "switchyard_lane",
     ch01: "switchyard_lane", ch02: "print_shop", ch03: "double_shift", ch04: "mercy_house", ch05: "okafor_restoration", ch06: "northline_station",
-    ch07: "serrano_yard", ch08: "lyles_bakery", ch09: "calder_general", ch10: "mercy_house", ch11: "university", ch12: "regent",
+    ch07: "serrano_yard", ch08: "lyles_bakery", ch09: "northline_station", ch10: "mercy_house", ch11: "university", ch12: "regent",
     ch13: "bracken_court", ch14: "iron_footbridge", ch15: "stillwater_docks", ch16: "rusk_funeral", ch17: "iron_footbridge", ch18: "okafor_restoration",
     ch19: "sorrell_house", ch20: "neutral_table", ch21: "pump_nine", ch22: "mercy_house", ch23: "orchard_house", ch24: "iron_footbridge",
     end_A: "mercy_house", end_B: "serrano_yard", end_C: "okafor_restoration", end_D: "sorrell_house", end_E: "rusk_funeral",
@@ -137,7 +137,7 @@
     if ((m = /^(nerve|craft|people|knack)\s*>=\s*(\d+)$/.exec(e))) return "Requires " + ({ nerve: "Nerve", craft: "Craft", people: "People", knack: "the knack" }[m[1]]) + " " + m[2];
     return "";
   }
-  function recap(v, st) { return (st.recap || []).slice(); }
+  function recap(v, st) { return (st.journal || []).slice(); }
 
   var statNames = { nerve: "Nerve", craft: "Craft", people: "People", knack: "The knack", strain: "Strain" };
   LEADS.forEach(function (l) { statNames["st_" + l] = people[l].short; });
@@ -148,7 +148,7 @@
     eyebrow: "Calder · the end of summer",
     subtitle: "The Unquiet City",
     motto: "Everyone in this city is holding a thread. I'm the one who can feel them.",
-    sceneList: ["ch01"],
+    sceneList: ["ch01", "ch02"],
     startVars: PL.startVars,
     clamp: PL.clamp,
     opposed: {},

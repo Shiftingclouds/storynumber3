@@ -193,6 +193,7 @@
     var blocks = [];
     var para = [];
     var paraIndent = -1;
+    var paraWho = null, paraMood = null;
     var page = null;
     var self = this;
     st.turn++;
@@ -201,10 +202,13 @@
 
     function flush() {
       if (para.length) {
-        blocks.push({ k: "p", html: para.join(" ") });
+        var pb = { k: "p", html: para.join(" ") };
+        if (paraWho) { pb.who = paraWho; pb.mood = paraMood; }
+        blocks.push(pb);
         para = [];
       }
       paraIndent = -1;
+      paraWho = null; paraMood = null;
     }
 
     var steps = 0;
@@ -231,10 +235,17 @@
         case "text":
           // Text at a different indentation (entering or leaving a block), or after an
           // *if / *elseif / *else boundary, starts a new paragraph.
-          if (para.length && (L.indent !== paraIndent || this.boundary)) flush();
+          // A spoken line starts "@who:mood " (mood optional): the speaker's portrait, in that expression,
+          // stands beside the paragraph. A tag always starts a new paragraph.
+          var tag = /^@([a-z]+)(?::([a-z_]+))?\s+/.exec(L.raw);
+          if (para.length && (L.indent !== paraIndent || this.boundary || tag)) flush();
           this.boundary = false;
           if (!para.length) paraIndent = L.indent;
-          para.push(this.render(L.raw, st.pc));
+          if (tag) {
+            if (tag[1] !== "mc") this.person(tag[1]);
+            paraWho = tag[1]; paraMood = tag[2] || "neutral";
+          }
+          para.push(this.render(tag ? L.raw.slice(tag[0].length) : L.raw, st.pc));
           st.pc++;
           break;
         case "option":
@@ -646,6 +657,16 @@
         flush();
         if (st.album.indexOf(snid) < 0) { st.album.push(snid); this.notices.push({ kind: "snapshot", id: snid }); }
         blocks.push({ k: "snapshot", id: snid });
+        st.pc++;
+        return null;
+      }
+      case "variant": {
+        // *variant quentin returned — which drawn variant of a person to show from now on ("none" clears)
+        m = /^(\w+)\s+(\w+)$/.exec(args.trim());
+        if (!m) throw RuntimeError(this, "Bad *variant: " + args);
+        this.person(m[1]);
+        if (!st.variants) st.variants = {};
+        if (m[2] === "none") delete st.variants[m[1]]; else st.variants[m[1]] = m[2];
         st.pc++;
         return null;
       }

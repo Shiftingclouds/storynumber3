@@ -4,7 +4,7 @@
 "use strict";
 module.exports = [
   {
-    id: "CH06.WEEKS.01", date: "2026-09-14", time: "08:00", place: "P02", cast: ["MC", "C10", "C09"], kind: "common",
+    id: "CH06.WEEKS.01", date: "2026-09-14", time: "08:00", place: "P02", cast: ["MC", "C10", "C09", "C05"], kind: "common",
     purpose: "Ten days go by the way days do. Will's final year starts; the buses up University Hill fill with first-years; the leaves think about turning. Quentin texts twice, about nothing. I keep reaching with the knack at things that don't need it: a coat on the bus, Martin's reading glasses. Mum's second batch of emails arrives: a polar bear at the dump, a man who walked in with an axe in his boot and asked for a plaster.",
     letter: "Joanne: 'You sound tired in your last one. Tired or sad? I can't tell from here. Tell Martin I said to feed you and to stop printing things for free.'",
     choices: [

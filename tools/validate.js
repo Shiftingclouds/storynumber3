@@ -291,14 +291,28 @@ function main() {
     for (const [id, p] of Object.entries(cfg.people)) cidToId[p.cid] = id;
     const seen = new Set();
     const met = new Set();
+    const MOODS = new Set(NB.portraits.moods);
+    let tagged = 0, untaggedQuotes = 0;
     for (const [name, sc] of Object.entries(story.scenes)) {
-      let cur = null, lastDate = "";
+      let cur = null, lastDate = "", present = null;
       for (const L of sc.lines) {
+        if (L.kind === "text") {
+          const t = /^@([a-z]+)(?::([a-z_]+))?\s+/.exec(L.raw);
+          if (t) {
+            tagged++;
+            if (!cfg.people[t[1]]) errors.push(`${name}:${L.n}: @${t[1]} is not a person`);
+            else if (t[2] && !MOODS.has(t[2])) errors.push(`${name}:${L.n}: @${t[1]}:${t[2]} is not a known expression (${[...MOODS].join(", ")})`);
+            else if (t[1] !== "mc" && present && !present.has(t[1])) errors.push(`${name}:${L.n}: @${t[1]} speaks but isn't *present in this scene`);
+          } else if (/^["“]/.test(L.raw) || /[.,!?]["”]\s+(he|she|they)\s+(says|asks|said)/.test(L.raw)) untaggedQuotes++;
+          continue;
+        }
         if (L.kind !== "cmd") continue;
         const a = (L.args || "").trim();
         if (L.cmd === "meet") met.add(a);
         if (L.cmd === "label") lastDate = "";
+        if (L.cmd === "present") present = new Set(a.split(/\s+/).filter(Boolean));
         if (L.cmd === "sid") {
+          present = null;
           cur = plan.get(a);
           if (!cur) { errors.push(`${name}:${L.n}: *sid ${a} is not a planned scene`); continue; }
           seen.add(a);
@@ -330,6 +344,7 @@ function main() {
       const due = [...plan.values()].some((sc) => written.has(sc.id.slice(0, 4)) && (sc.cast || []).includes(cid));
       if (!due || m[1] === "mc") warnings.splice(i, 1);
     }
+    console.log(`spoken lines tagged: ${tagged}; lines that open with a quote but have no speaker tag: ${untaggedQuotes}`);
     console.log(`plan coverage: ${seen.size} of ${[...plan.keys()].filter((k) => written.has(k.slice(0, 4))).length} planned scenes in written chapters`);
   }
 

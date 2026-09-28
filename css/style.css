@@ -430,3 +430,16 @@ a { color: var(--accent); }
 .nb-snapshot figcaption { font-family: var(--font-pixel); font-size: .75rem; color: var(--ink-soft); margin-top: .35rem; text-align: center; }
 .nb-album { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
 #nb-hud .date { font-family: var(--font-ui); font-size: .85rem; color: var(--ink-soft); }
+
+/* spoken lines: the speaker's portrait beside what they say */
+.nb-line { display: grid; grid-template-columns: 128px 1fr; gap: 1rem; align-items: start; margin: 0 0 1.1em; }
+.nb-line > p { margin: 0; padding-top: .35rem; }
+.nb-line-face { display: flex; flex-direction: column; align-items: center; gap: .25rem; }
+.nb-line-face .nb-portrait.line { width: 128px; height: 160px; }
+.nb-line-face.empty { min-height: 1px; }
+.nb-line.cont { margin-top: -.3em; }
+.nb-line-name { font-family: var(--font-pixel); font-size: .68rem; letter-spacing: .06em; color: var(--accent); text-transform: uppercase; }
+@media (max-width: 560px) {
+  .nb-line { grid-template-columns: 64px 1fr; gap: .7rem; }
+  .nb-line-face .nb-portrait.line { width: 64px; height: 80px; }
+}

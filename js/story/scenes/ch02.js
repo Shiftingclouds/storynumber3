@@ -16,25 +16,25 @@ Martin's in the kitchen at the back of the shop in his dressing gown, making toa
 
 The knack gives me his worry as a low grey pressure, like weather coming in off the sea. Not anger. He's never once been angry with me. Just grey, and heavy, and waiting.
 
-"You look like you've seen a ghost," he says.
+@martin:tense "You look like you've seen a ghost," he says.
 *if hurt_mc > 0
-  And then he sees my shoulder, where the T-shirt's pulled, and his whole face changes. "{name}. What happened to you?"
+  @martin:scared And then he sees my shoulder, where the T-shirt's pulled, and his whole face changes. "{name}. What happened to you?"
 
 *choice
   #Something true and small. "I saw a fight after the show. I'm okay. I promise I'm okay."
     *set fr_martin +1
     He looks at me for a long time over the tops of his glasses. The grey pressure doesn't lift, but it shifts, like something settling to wait.
 
-    "Was anybody hurt?"
+    @martin:tense "Was anybody hurt?"
 
     I think about Quentin's hand going out to the wall. "Yeah," I say. "Somebody was."
 
-    He nods slowly. He doesn't ask anything else. He puts a piece of toast on a plate and pushes it across the table to me, which in Martin is roughly equivalent to a hug, and says, "You tell me. When you want to. Not before."
+    @martin:warm He nods slowly. He doesn't ask anything else. He puts a piece of toast on a plate and pushes it across the table to me, which in Martin is roughly equivalent to a hug, and says, "You tell me. When you want to. Not before."
   #Nothing. "Long night." And a smile that doesn't fit.
     *set fr_martin -1
     "Long night," I say.
 
-    He knows it's a lie. I can feel him know it: a small cold drop in the grey. He lets me have it anyway, which is worse than if he'd pushed. "Right," he says. "Well. There's toast."
+    @martin:hurt He knows it's a lie. I can feel him know it: a small cold drop in the grey. He lets me have it anyway, which is worse than if he'd pushed. "Right," he says. "Well. There's toast."
 
     He goes back to the shop and doesn't turn the radio on, which he always does on a Sunday.
 *if fr_will >= 2
@@ -57,13 +57,13 @@ Will sees me through the fence. He doesn't wave. He does a thing with his chin t
 
 He plays badly in the first half. Nerves, and the pitch is heavy, and he keeps trying to do everything himself. The knack gives me the whole touchline in one lump, forty families' worth of hope and dread, but under it I can feel Will's own wire, the bright hum of him, and it's tangled.
 
-The coach is a young guy in a tracksuit, twenty-two at most, with a clipboard and a whistle and a voice that could strip paint. Tomas, one of the parents calls him. He shouts the least fair things in the most useful way. "Avery! You're not the whole team! Nobody wants to watch you dribble into a wall!" And at half-time he takes Will aside and says something quiet I can't hear, and whatever it is, Will comes out for the second half and passes the ball.
+@tomas:angry The coach is a young guy in a tracksuit, twenty-two at most, with a clipboard and a whistle and a voice that could strip paint. Tomas, one of the parents calls him. He shouts the least fair things in the most useful way. "Avery! You're not the whole team! Nobody wants to watch you dribble into a wall!" And at half-time he takes Will aside and says something quiet I can't hear, and whatever it is, Will comes out for the second half and passes the ball.
 
 Second half, he's good. Really good. I don't know anything about football but I know about watching a room, and there's a moment when Will takes the ball on the wing and doesn't look up, doesn't need to, and I see it before he does: the space opening between two defenders like a door, a lane of wet green straight to the box. Will sees it a half-second later. He goes through it.
 
 He doesn't score. He lays it off for someone who does. The scout with the umbrella writes something down.
 
-When it's over he walks past me to the car and takes one of the coffees without saying anything, and drinks all of it, cold, in one go, and then says, "That was rank," meaning the coffee, and gets in the car. The wire in him is humming clean.
+@will:amused When it's over he walks past me to the car and takes one of the coffees without saying anything, and drinks all of it, cold, in one go, and then says, "That was rank," meaning the coffee, and gets in the car. The wire in him is humming clean.
 *page_break
 
 *comment ---------------------------------------------------------------- CH02.ACCOUNT.01
@@ -140,7 +140,7 @@ Switchyard on a Sunday afternoon is a different building: the doors shut, the ba
 
 I tell Desmond. He's shaken, genuinely: the knack gives it to me straight, a lurch of horror, real and ugly. Then, a moment later, rising up underneath it like damp through wallpaper, the thing he's actually thinking about: the licence review. A death behind the venue. A police report. In the spring, when the lease is up.
 
-"God," he says. "God, that's awful. Awful. Look, the camera... I'll keep the footage. Of course I'll keep it. I'll pull it off the box today. Tomorrow at the latest." He means every word.
+@desmond:scared "God," he says. "God, that's awful. Awful. Look, the camera... I'll keep the footage. Of course I'll keep it. I'll pull it off the box today. Tomorrow at the latest." He means every word.
 
 Across the room, Nolan's stopped restringing. He knows the system better than anyone in the building. He's looking at the office door, and then at me, and his face is saying something very quietly that the knack tells me in a word: [i]no[/i].
 
@@ -152,7 +152,7 @@ Across the room, Nolan's stopped restringing. He knows the system better than an
       *set st_nolan +1
       When Desmond goes to put the kettle on, I look at Nolan. He's already moving. He's in the office before Desmond's got the tap running, and I hear the drawer where the recorder lives slide open, and a small click, and then he's back at the mic stand as if he'd never left, with something in his back pocket.
 
-      Later, outside, he gives me the memory stick without a word, and I give him the kind of look I don't have a word for, and he says "don't", and I don't.
+      @nolan:shy Later, outside, he gives me the memory stick without a word, and I give him the kind of look I don't have a word for, and he says "don't", and I don't.
   #Trust Desmond with it. He's never actually let us down on anything that mattered.
     *set fr_desmond +1
     "Thanks, Des," I say, and he squeezes my shoulder, and I feel him mean it.
@@ -175,26 +175,26 @@ We sit on the fourth step from the bottom. The river's high and brown from the r
 
 I tell him. All of it, or all of the parts that sound like things. The lane, the man, the fall, the van. He listens the way he always listens, turning the lid of his cup round and round in his fingers, never interrupting. When I get to the van with the lily he goes very still.
 
-"I believe you," he says, before I've even finished.
+@nolan:attentive "I believe you," he says, before I've even finished.
 
 And that's somehow worse. I'd been ready for him not to. I'd had the argument all planned.
 
-"So what do we do?" he says.
+@nolan:tense "So what do we do?" he says.
 
 "I don't know. Go to the police?"
 
-"And say what?" He's not being unkind. He's thinking. "No body. No missing person. No reason to look. They'll write it down and it'll vanish." He turns the lid. "We should look first. Ourselves. Before anybody official makes it disappear."
+@nolan:attentive "And say what?" He's not being unkind. He's thinking. "No body. No missing person. No reason to look. They'll write it down and it'll vanish." He turns the lid. "We should look first. Ourselves. Before anybody official makes it disappear."
 
 *choice
   *if not(e02)
     #"Can you still get into the camera system?"
       *set e02 true
       *set e02_src "nolan"
-      He looks at me sideways. "It's Switchyard's recorder. It's got a password that's Desmond's birthday." He's already standing up. "It keeps a week. Then it records over itself. Come on."
+      @nolan:amused He looks at me sideways. "It's Switchyard's recorder. It's got a password that's Desmond's birthday." He's already standing up. "It keeps a week. Then it records over itself. Come on."
 
       Forty minutes later I'm holding a memory stick with the lane on it, from above, black and white and grainy: me with the cases, the orange light, a figure by the bins, another figure coming down the lane. A van backing in. You can't see a face. You can see the sequence.
 
-      "That's him," Nolan says, very quietly, pointing at the figure by the bins, who's falling. "That's the lad from the bar."
+      @nolan:scared "That's him," Nolan says, very quietly, pointing at the figure by the bins, who's falling. "That's the lad from the bar."
   #"There's something else. When he died, I felt it." Tell him about the knack.
     *set gift_nolan true
     *set st_nolan +1
@@ -204,15 +204,15 @@ And that's somehow worse. I'd been ready for him not to. I'd had the argument al
 
     Nolan doesn't say anything for a long time. He turns the lid of his cup. The river goes past.
 
-    Then he says, "Is that why you always know when I'm in a mood?"
+    @nolan:attentive Then he says, "Is that why you always know when I'm in a mood?"
 
     "Yeah."
 
-    "I thought I was just really obvious."
+    @nolan:amused "I thought I was just really obvious."
 
     "You are really obvious."
 
-    He laughs, a short, surprised laugh, and then stops, and looks at me, and says, "Okay." Just that. [i]Okay.[/i] And puts his shoulder against mine, on the step, and leaves it there.
+    @nolan:warm He laughs, a short, surprised laugh, and then stops, and looks at me, and says, "Okay." Just that. [i]Okay.[/i] And puts his shoulder against mine, on the step, and leaves it there.
 
     I can't feel what he thinks about me. I never can. But I can feel him, the radio-in-the-next-room warmth, and it doesn't go cold. That's all I get. It's enough.
   #Keep the knack to myself. It's the only part that sounds insane.
@@ -292,8 +292,8 @@ Evening above the shop. Martin's made a stew out of whatever was in the fridge, 
 *if s13 = "fore"
   Will tells the story of the trial three times over dinner, and each time he's better in the second half and the scout writes more things down. He doesn't mention I was there. When he goes to bed he knocks on my door frame with one knuckle, twice, which is a thing he used to do when he was eleven and couldn't sleep, and goes.
 *else
-  Will's back from his trial by two buses and says it went "fine" and that he "might hear something" and goes up to his room. Later I hear him on the phone to a friend going over every single pass in detail, and the wire in him is so tangled I can feel it through the ceiling. I should have been there. I know I should have been there.
-Martin's quiet at dinner. Towards the end, apropos of nothing, he says: "The Fairweathers want the order on account again. Third time. I said yes." He looks at his stew. "You can't say no to people like that. They've been coming since before your mum was born." And then he talks about the weather.
+  @will:guarded Will's back from his trial by two buses and says it went "fine" and that he "might hear something" and goes up to his room. Later I hear him on the phone to a friend going over every single pass in detail, and the wire in him is so tangled I can feel it through the ceiling. I should have been there. I know I should have been there.
+@martin:tense Martin's quiet at dinner. Towards the end, apropos of nothing, he says: "The Fairweathers want the order on account again. Third time. I said yes." He looks at his stew. "You can't say no to people like that. They've been coming since before your mum was born." And then he talks about the weather.
 
 The red-striped envelope's gone from the counter. I don't know where he's put it. I know it hasn't gone away.
 

@@ -50,7 +50,7 @@ module.exports = [
     next: "CH05.RESTORE.02"
   },
   {
-    id: "CH05.RESTORE.02", date: "2026-09-04", time: "20:15", place: "P20", cast: ["MC", "C03", "C37"], kind: "branch", when: "ch05_route = \"restore\"",
+    id: "CH05.RESTORE.02", date: "2026-09-04", time: "20:15", place: "P20", cast: ["MC", "C03", "C37", "C38"], kind: "branch", when: "ch05_route = \"restore\"",
     purpose: "The family kitchen upstairs, much less elegant: Ellis irritable about the washing-up, arguing ridiculously with Isaac about a toaster. Chukwudi shows me the shop's error book: every mistake the family has made, written down honestly, including one of his own from years ago. 'A record should preserve what went wrong.' (Seeds E08 and E10.)",
     set: { error_book: true, fr_chukwudi: "+1" },
     choices: [

@@ -53,12 +53,12 @@
   function pixImg(url, w, h, cls, alt) {
     return el("img", { src: url, width: w, height: h, class: "px " + (cls || ""), alt: alt || "", draggable: "false" });
   }
+  function variantOf(id) { var st = ui.rt && ui.rt.state; return st && st.variants ? st.variants[id] : undefined; }
   function portrait(id, mood, size, cls) {
-    var v = vars();
-    return pixImg(NB.portraits.url(id, mood || "neutral", v), size, Math.round(size * 1.25), "nb-portrait " + (cls || ""), personName(id) + " (portrait)");
+    return pixImg(NB.portraits.url(id, mood || "neutral", variantOf(id)), size, Math.round(size * 1.25), "nb-portrait " + (cls || ""), personName(id) + " (portrait)");
   }
   function face(id, mood, size) {
-    return el("span", { class: "nb-face", style: "width:" + size + "px;height:" + size + "px;background-image:url(" + NB.portraits.faceUrl(id, mood || "neutral", vars()) + ")" });
+    return el("span", { class: "nb-face", style: "width:" + size + "px;height:" + size + "px;background-image:url(" + NB.portraits.faceUrl(id, mood || "neutral", variantOf(id)) + ")" });
   }
   function icon(name, scale) {
     var c = NB.icons.draw(name);
@@ -343,8 +343,23 @@
     return row;
   }
 
+  /** A spoken line: the speaker's portrait in the line's expression beside the paragraph. A run of lines from the same
+   * speaker in the same expression shows the portrait once; a change of expression shows it again. */
+  function spokenLine(html, who, mood, state) {
+    var same = state.who === who && state.mood === mood;
+    state.who = who; state.mood = mood;
+    var row = el("div", { class: "nb-line" + (same ? " cont" : ""), "data-who": who, "data-mood": mood });
+    row.appendChild(same ? el("div", { class: "nb-line-face empty" }) : el("div", { class: "nb-line-face" }, [
+      pixImg(NB.portraits.url(who, mood, variantOf(who)), NB.portraits.W, NB.portraits.H, "nb-portrait line", personName(who) + " (" + mood + ")"),
+      el("span", { class: "nb-line-name", text: personShort(who) })
+    ]));
+    row.appendChild(el("p", { html: html }));
+    return row;
+  }
+
   function renderBlocks(container, blocks, retold) {
     var usedRetold = false;
+    var speaking = { who: null, mood: null };
     var pendingPortrait = null;
     var texts = null;
     function flushTexts() { if (texts) { container.appendChild(phone(texts)); texts = null; } }
@@ -366,9 +381,12 @@
         if (retold) {
           if (!usedRetold) {
             usedRetold = true;
-            retold.forEach(function (item) { container.appendChild(item.h ? el("h3", { html: item.h }) : el("p", { html: item })); });
+            retold.forEach(function (item) { container.appendChild(item.h ? el("h3", { html: item.h }) : item.who ? spokenLine(item.html, item.who, item.mood, speaking) : el("p", { html: item })); });
           }
           pendingPortrait = null;
+        } else if (b.who && b.who !== "mc" && cfg().people[b.who]) {
+          pendingPortrait = null;
+          container.appendChild(spokenLine(b.html, b.who, b.mood, speaking));
         } else if (pendingPortrait) {
           container.appendChild(el("div", { class: "nb-with-portrait" }, [
             portrait(pendingPortrait.id, pendingPortrait.mood, 128, "float"),
@@ -376,6 +394,7 @@
           ]));
           pendingPortrait = null;
         } else {
+          speaking.who = null; speaking.mood = null;
           container.appendChild(el("p", { html: b.html }));
         }
       } else if (b.k === "h") { if (!retold) container.appendChild(el("h3", { html: b.html })); }
@@ -656,7 +675,7 @@
   function passageFor(page) {
     var parts = [];
     page.blocks.forEach(function (b) {
-      if (b.k === "p") parts.push(NB.text.toPlain(b.html));
+      if (b.k === "p") parts.push((b.who && b.who !== "mc" ? "⟦" + b.who + ":" + b.mood + "⟧ " : "") + NB.text.toPlain(b.html));
       else if (b.k === "h") parts.push("§§ " + NB.text.toPlain(b.html));
     });
     return parts.join("\n\n");
@@ -664,7 +683,9 @@
   function retoldParagraphs(text) {
     return NB.narrator.toParagraphs(text).map(function (p) {
       var m = /^§§\s*(.*)$/.exec(p);
-      return m ? { h: m[1] } : p;
+      if (m) return { h: m[1] };
+      var t = /^⟦([a-z]+):([a-z_]+)⟧\s*/.exec(p);
+      return t ? { who: t[1], mood: t[2], html: p.slice(t[0].length) } : p;
     });
   }
   function narratorSettings(fresh) {
@@ -678,13 +699,14 @@
     var ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
     ui.narr.ctl = ctl;
     var facts = cfg().narratorFacts(vars());
-    var passage = passageFor(page) + "\n\n(Lines beginning with §§ are section headings: copy them unchanged on their own line.)";
+    var passage = passageFor(page) + "\n\n(Lines beginning with §§ are section headings: copy them unchanged on their own line. A paragraph beginning with a marker like ⟦quentin:amused⟧ is that person's spoken line: begin the matching paragraph of your retelling with the same marker, unchanged, and keep that person's words in it.)";
     var started = false;
     NB.narrator.retell(passage, facts, narratorSettings(page.fresh), function (text) {
       if (ctl && ctl.signal.aborted) return;
       if (!started) { started = true; note.children[1].textContent = "The narrator is speaking…"; }
       clear(prose);
-      retoldParagraphs(text).forEach(function (item) { prose.appendChild(item.h ? el("h3", { html: item.h }) : el("p", { html: item })); });
+      var sp = { who: null, mood: null };
+      retoldParagraphs(text).forEach(function (item) { prose.appendChild(item.h ? el("h3", { html: item.h }) : item.who ? spokenLine(item.html, item.who, item.mood, sp) : el("p", { html: item })); });
     }, ctl ? ctl.signal : undefined).then(function (text) {
       if (ctl && ctl.signal.aborted) return;
       ui.narr.ctl = null;

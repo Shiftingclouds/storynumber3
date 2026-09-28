@@ -49,7 +49,7 @@ The one holding the lamp turns round.
 
 He's about my age. Compact, square-shouldered, in a dark jacket with a high collar zipped to the chin and a small brass pin on it. Short brown curls, olive skin, straight brows, the left one a touch higher than the right, as if he's permanently about to be sceptical. He looks at me the way a teacher looks at a student who's walked into the wrong exam.
 
-"This is a closed scene," he says. It's a voice that expects to be obeyed and is used to it. "You need to leave."
+@adrian:guarded "This is a closed scene," he says. It's a voice that expects to be obeyed and is used to it. "You need to leave."
 
 The knack gives me him: very orderly, very controlled, everything in its box, and all of it running hot underneath, like an engine at idle. Professional. And somewhere in the back of the engine, a small, careful worry he'd die before admitting.
 *meet reuben
@@ -58,11 +58,11 @@ The other man stands up from where he's been crouching by the wall. He's bigger.
 
 With him the knack goes quiet and warm, like a room with the heating on low. Calm. So calm I actually feel myself breathe out.
 
-"You were here," the big one says. Not a question. "Saturday."
+@reuben:attentive "You were here," the big one says. Not a question. "Saturday."
 
 "How do you know that?"
 
-"Because you came back," he says, gently. "People who were here come back."
+@reuben:warm "Because you came back," he says, gently. "People who were here come back."
 
 *choice
   #Tell them exactly what I saw. All of it, except the part I felt.
@@ -71,11 +71,11 @@ With him the knack goes quiet and warm, like a room with the heating on low. Cal
 
     The one with the lamp writes it in a notebook in small, square handwriting. The big one listens with his head a little on one side.
 
-    "That's a very clear account," he says, when I've finished. "Thank you."
+    @reuben:warm "That's a very clear account," he says, when I've finished. "Thank you."
 
     "You're not going to tell me I imagined it."
 
-    "No," he says. "Whatever did this burned through that wall like a match through paper." He nods at the silver stain on the bricks. "You didn't imagine anything."
+    @reuben:neutral "No," he says. "Whatever did this burned through that wall like a match through paper." He nods at the silver stain on the bricks. "You didn't imagine anything."
   #Tell them what I saw, and that I felt him die. And felt something catch him.
     *set gift_mercy true
     *set gift_adrian true
@@ -87,30 +87,30 @@ With him the knack goes quiet and warm, like a room with the heating on low. Cal
 
     The one with the lamp has stopped writing. The big one's looking at me in a new way, not doubtful, but very focused, the way you'd look at a patient who's just described a symptom you've only read about in books.
 
-    "You felt it," he says. "Not saw. [i]Felt.[/i]"
+    @reuben:surprised "You felt it," he says. "Not saw. [i]Felt.[/i]"
 
     "Yeah."
 
-    "Has that happened before? Feeling things?"
+    @reuben:attentive "Has that happened before? Feeling things?"
 
     "All my life."
 
     The one with the lamp and the big one exchange a look that the knack can't give me, because it's between them, not about me, but I feel both of them go very alert, very quiet, like animals that have heard something in the grass.
 
-    "Right," says the one with the lamp, eventually, in a tone that suggests I've just made his night considerably more complicated. "Right. You're coming with us."
+    @adrian:tense "Right," says the one with the lamp, eventually, in a tone that suggests I've just made his night considerably more complicated. "Right. You're coming with us."
   #Say I dropped an earring here on Saturday. Watch the one with the lamp not believe me.
     *set hurt_adrian 1
     "I lost an earring," I say. "Saturday. After the show."
 
     The one with the lamp looks at my ears. I haven't got any holes in them. He looks back at my face, and the orderly engine in him runs a little hotter, and the knack gives me something sharp and cold: he's offended. Not by the lie. By how bad it is.
 
-    "An earring," he says.
+    @adrian:angry "An earring," he says.
 
     "It was a nice earring."
 
-    "Of course it was." He writes something in a notebook. I have a horrible feeling it's my description. The big one hides a smile behind his hand, very badly.
+    @adrian:angry "Of course it was." He writes something in a notebook. I have a horrible feeling it's my description. The big one hides a smile behind his hand, very badly.
 
-    "Come on," the big one says. "Earring or no earring. You look like you haven't eaten since Saturday. There's toast."
+    @reuben:amused "Come on," the big one says. "Earring or no earring. You look like you haven't eaten since Saturday. There's toast."
   *if cuff_button
     #Show them the brass button I tore off his sleeve.
       *set button_shown true
@@ -118,11 +118,11 @@ With him the knack goes quiet and warm, like a room with the heating on low. Cal
 
       The one with the lamp goes white. Actually white, under the olive, like someone's pulled a plug. The knack gives it to me like a door slamming: shock, and then, fast behind it, suspicion, turned in two directions at once. At the button. And at me.
 
-      He takes it from my hand without asking and turns it over in the lamplight. "Where did you get this?"
+      @adrian:scared He takes it from my hand without asking and turns it over in the lamplight. "Where did you get this?"
 
       "Off his sleeve. The man. I pulled it off."
 
-      "This is ours," he says, very quietly, and the big one goes still. "This is Mercy House issue. The old pattern. We haven't used these in years."
+      @adrian:tense "This is ours," he says, very quietly, and the big one goes still. "This is Mercy House issue. The old pattern. We haven't used these in years."
 
       He puts it in his own pocket. I don't say anything. I don't think he'd give it back if I did.
 *page_break
@@ -145,11 +145,11 @@ They sit me at the table and the big one makes toast. His name's Reuben. The one
 *meet victor
 At the other end of the table there's an older man with Adrian's curls and Adrian's face grown longer and more tired, and a brace on his left forearm, who's clearly been holding court to three younger wardens with a story that's getting better every time he tells it. When he sees Adrian come in with me, he stops mid-sentence and grins.
 
-"Adie's brought home a stray," he says. "Victor Keene. The better-looking brother." He looks me over, charming as anything, and the knack gives me him like a stage with the lights on: bright, warm, performing, and somewhere behind the scenery a room with the lights off that nobody's allowed into.
+@victor:amused "Adie's brought home a stray," he says. "Victor Keene. The better-looking brother." He looks me over, charming as anything, and the knack gives me him like a stage with the lights on: bright, warm, performing, and somewhere behind the scenery a room with the lights off that nobody's allowed into.
 
-"He's a witness," says Adrian, through his teeth.
+@adrian:angry "He's a witness," says Adrian, through his teeth.
 
-"They're always a witness," says Victor, delightedly.
+@victor:laugh "They're always a witness," says Victor, delightedly.
 *meet orrell
 A man passes through the kitchen: fifties, grey crew cut, a heavy brow, a stillness about him like the stillness of a deep pond. Everyone at the table sits up a little. He takes an apple from the bowl, listens for about a minute to Adrian explaining me in a low voice, says nothing whatsoever, and leaves. Commander Orrell, Reuben says afterwards, as if that explains it. The knack couldn't give me anything from him at all. It was like listening at a wall.
 
@@ -163,11 +163,11 @@ There are other people in Calder. Not other people: [i]more[/i] people. People w
 
 And there are the wardens. Mercy House. Not police. Not quite anything. The people who keep it all from going wrong, who clean up when it does, and who make sure the rest of the city goes on not noticing.
 
-"We keep the peace," says Adrian. "Between everyone. That's the job."
+@adrian:neutral "We keep the peace," says Adrian. "Between everyone. That's the job."
 
 "So what happened to Quentin?"
 
-"That's what we're trying to find out." He puts his hands flat on the table. "And the first thing we need to do is make sure no one else gets hurt. Which means you go home, and we have your statement on file, and if we need you, we'll call you." He says it kindly enough. The knack says he means it. The knack also says he's already, in his head, put me in a car home and a folder in a drawer.
+@adrian:attentive "That's what we're trying to find out." He puts his hands flat on the table. "And the first thing we need to do is make sure no one else gets hurt. Which means you go home, and we have your statement on file, and if we need you, we'll call you." He says it kindly enough. The knack says he means it. The knack also says he's already, in his head, put me in a car home and a folder in a drawer.
 
 *choice
   #Disagree with him, to his face, and give my reasons. Calmly. Honestly.
@@ -182,22 +182,22 @@ And there are the wardens. Mercy House. Not police. Not quite anything. The peop
 
     Adrian looks at me for a long moment. The engine in him runs hot, and then, weirdly, it settles, like something that's been waiting to be argued with and is relieved to be.
 
-    "That," he says finally, "is actually a reasonable point." He sounds as though it pains him. Victor laughs out loud.
+    @adrian:surprised "That," he says finally, "is actually a reasonable point." He sounds as though it pains him. Victor laughs out loud.
 
-    "I like him," says Victor. "Keep him."
+    @victor:laugh "I like him," says Victor. "Keep him."
 
-    "He's not a dog, Vic."
+    @adrian:shy "He's not a dog, Vic."
 
-    "He's a better arguer than you, Adie." And Adrian's ears go red.
+    @victor:amused "He's a better arguer than you, Adie." And Adrian's ears go red.
   #Let him handle it. He clearly knows what he's doing.
     *set st_adrian 2
     "Okay," I say. "You know what you're doing. I don't."
 
-    Something in him eases, the tight engine throttling back. "Thank you," he says, and it sounds like he means that too. "Honestly. Most people argue."
+    @adrian:warm Something in him eases, the tight engine throttling back. "Thank you," he says, and it sounds like he means that too. "Honestly. Most people argue."
 
     "You get a lot of people?"
 
-    "Not like this." He looks at me across the table, and for a second the professional shutter isn't quite down. "Not like this."
+    @adrian:warm "Not like this." He looks at me across the table, and for a second the professional shutter isn't quite down. "Not like this."
   #Ask Reuben what he actually thinks happened to Quentin.
     *set st_reuben +1
     *set people +2
@@ -207,7 +207,7 @@ And there are the wardens. Mercy House. Not police. Not quite anything. The peop
 
     Reuben looks at Adrian, as if asking permission. Adrian doesn't give it, but doesn't stop him either.
 
-    "I think," Reuben says slowly, "that somebody brought him back. And I think it cost something. And I don't think whoever paid is the one who chose to." He rubs his eyes. "I've seen a lot of things come back wrong. This doesn't feel like any of them."
+    @reuben:sad "I think," Reuben says slowly, "that somebody brought him back. And I think it cost something. And I don't think whoever paid is the one who chose to." He rubs his eyes. "I've seen a lot of things come back wrong. This doesn't feel like any of them."
 
     The knack gives me him: calm on top and deep, deep down, a sort of grief, old and quiet, like water under a floor.
 *page_break
@@ -232,7 +232,7 @@ We're met in the lobby by a man who looks about thirty-six and is, Reuben tells 
 *portrait gideon neutral
 Quentin's brother is waiting in the projection room. He's Quentin made harder: the same strong brows, the same deep warm-brown skin, but his hair cropped close, his face all edges, a long dark coat he doesn't take off. He stands when we come in, and doesn't sit back down.
 
-"You were in the lane," he says to me, not to the wardens. "You saw it. Tell me."
+@gideon:tense "You were in the lane," he says to me, not to the wardens. "You saw it. Tell me."
 
 It's an order. Everything he says sounds like one. And the knack gives me what's under it, and it's guilt. Thick and black and coiled, like smoke in a closed room. Guilt so heavy it's hard to breathe near him.
 *meet dominic
@@ -243,7 +243,7 @@ Dominic Bell. Big, soft-cheeked, thick dark hair falling in his eyes. He used to
 
 He's a vampire. It's obvious, now I know what I'm looking for: the stillness, the pallor under the warmth, the way the light from the projector seems to slide off him. He looks up and sees me looking, and does a small, rueful smile, like someone caught out in a lie that wasn't really his fault.
 
-"The popcorn machine in the lobby," he says to the room at large, into a silence you could have cut with a knife, "is older than Lucien. And it still works better than any of us." Reuben laughs. Even Adrian's mouth twitches. The room lets its breath out.
+@dominic:amused "The popcorn machine in the lobby," he says to the room at large, into a silence you could have cut with a knife, "is older than Lucien. And it still works better than any of us." Reuben laughs. Even Adrian's mouth twitches. The room lets its breath out.
 
 *choice
   #"You stopped playing. We all wondered." Talk to Dominic like it's a year ago.
@@ -255,11 +255,11 @@ He's a vampire. It's obvious, now I know what I'm looking for: the stillness, th
 
     He looks at me in surprise, as though he'd expected anything but that. Then he laughs, low and rough, the laugh from the stage.
 
-    "Signed," he says. "God. I wish." He turns his hands over in his lap, looks at them. "Last August. I got turned, sort of by accident, and I didn't... I couldn't face going back. Not like this. Standing in the lights." He shrugs. "Stupid."
+    @dominic:sad "Signed," he says. "God. I wish." He turns his hands over in his lap, looks at them. "Last August. I got turned, sort of by accident, and I didn't... I couldn't face going back. Not like this. Standing in the lights." He shrugs. "Stupid."
 
     "It's not stupid."
 
-    "It's a bit stupid." But the knack gives him to me, and under the vampire stillness there's something that's just a lonely twenty-two-year-old who misses the sound of a room going quiet for him. It warms, a little, while we talk. Not much. Enough.
+    @dominic:amused "It's a bit stupid." But the knack gives him to me, and under the vampire stillness there's something that's just a lonely twenty-two-year-old who misses the sound of a room going quiet for him. It warms, a little, while we talk. Not much. Enough.
   #Watch Gideon. The knack says he's guilty of something.
     *set suspect_gideon true
     I don't sit down. I stand by the projector and watch Quentin's brother answer Adrian's questions in short, hard sentences, like somebody giving directions.
@@ -267,11 +267,11 @@ He's a vampire. It's obvious, now I know what I'm looking for: the stillness, th
     The guilt comes off him in waves. Every time Quentin's name comes up it gets thicker. He's done something. I'm sure of it. I've never felt guilt that heavy from anyone, not even from Martin looking at the red-striped envelope.
 
     He looks up and catches me watching, and for a second his face shows nothing at all, a wall, and then he looks away.
-Gideon's account is short. His brother died, and then came home in a car from a clinic nobody's heard of, and he's alive, but not the way vampires are alive. "I would know," Gideon says, flatly. "I know what it is. That isn't it."
+@gideon:guarded Gideon's account is short. His brother died, and then came home in a car from a clinic nobody's heard of, and he's alive, but not the way vampires are alive. "I would know," Gideon says, flatly. "I know what it is. That isn't it."
 
-Adrian writes it down. Reuben looks at Gideon with more sympathy than his partner, and says, "Can we see him? Your brother? Together, somewhere neutral?"
+@reuben:warm Adrian writes it down. Reuben looks at Gideon with more sympathy than his partner, and says, "Can we see him? Your brother? Together, somewhere neutral?"
 
-Gideon's jaw works. "Thursday," he says. "The diner on Truss Road. He won't come here." And then, like an order: "Don't hurt him."
+@gideon:tense Gideon's jaw works. "Thursday," he says. "The diner on Truss Road. He won't come here." And then, like an order: "Don't hurt him."
 *goto diner
 
 *comment ---------------------------------------------------------------- CH04.REGENT.01
@@ -289,7 +289,7 @@ When I open the shop door, there's a man on the step.
 
 He's Quentin made harder. The same strong brows, the same deep warm-brown skin, but his hair cropped close and his face all edges, and a long dark coat that doesn't move in the wind. He looks at me without blinking. He doesn't blink at all, the whole time.
 
-"You were in the lane," he says. "Come with me."
+@gideon:guarded "You were in the lane," he says. "Come with me."
 
 It's not a request. And the knack gives me what's under it, and it's guilt. Black and thick and coiled, like smoke in a shut room. So much guilt I take a step back.
 *meet dominic
@@ -298,7 +298,7 @@ Behind him on the pavement there's somebody else, with his hands in the pockets 
 
 Dominic Bell. He used to play Switchyard. Him and a guitar, every few weeks, and a voice that made the bar go quiet. Then last summer he stopped, and nobody knew why.
 
-He sees me recognise him and does a small, rueful smile. "He means please," he says.
+@dominic:amused He sees me recognise him and does a small, rueful smile. "He means please," he says.
 
 *choice
   #Go with them.
@@ -312,9 +312,9 @@ He sees me recognise him and does a small, rueful smile. "He means please," he s
     *set people +1
     "Say it here," I say. "On the step. Where my uncle can hear me shout."
 
-    Quentin's brother looks at me for a long moment, and then, unexpectedly, something in the edges of his face gives, very slightly. "Fair," he says. It's exactly what Quentin said, in exactly the same voice, and it knocks the breath out of me.
+    @gideon:surprised Quentin's brother looks at me for a long moment, and then, unexpectedly, something in the edges of his face gives, very slightly. "Fair," he says. It's exactly what Quentin said, in exactly the same voice, and it knocks the breath out of me.
 
-    Dominic sits down on the step beside me with his hands in his sleeves. "This is going to take a while," he says. "And there's a bit where you'll want to sit down anyway." And they tell me, there, on the step: the short version, which takes an hour. Then Dominic says, "Come and see. It'll make more sense if you see it," and by then I'd follow them anywhere.
+    @dominic:warm Dominic sits down on the step beside me with his hands in his sleeves. "This is going to take a while," he says. "And there's a bit where you'll want to sit down anyway." And they tell me, there, on the step: the short version, which takes an hour. Then Dominic says, "Come and see. It'll make more sense if you see it," and by then I'd follow them anywhere.
 *page_break
 *comment ---------------------------------------------------------------- CH04.REGENT.02
 *sid CH04.REGENT.02
@@ -336,7 +336,7 @@ Vampires. That's who.
 
 In the auditorium a film's running for nobody: black and white, somebody in a hat, the sound turned right down. In the lobby, a young man in blue nurse's scrubs is sitting on the stairs eating a bowl of cereal with a parka on over the top.
 *meet rafi
-"Rafi," he says, with his mouth full, and waves the spoon. "Night shift at the General in an hour. Don't mind me. Is this the witness? He looks terrified. Hi, witness. Have a Coco Pop."
+@rafi:amused "Rafi," he says, with his mouth full, and waves the spoon. "Night shift at the General in an hour. Don't mind me. Is this the witness? He looks terrified. Hi, witness. Have a Coco Pop."
 *meet lucien
 And then a man comes down the stairs who looks about thirty-six and has the stillness of a very old tree, dark-eyed, silver in his dark hair, a cardigan from the seventies. Lucien Arnaud. He shakes my hand with great courtesy and his hand is cool and dry, and the knack gives me almost nothing at all. A deep, deep pond. He sits me in the old projection room with the projector ticking and explains it to me, while Gideon stands at the window and Dominic sits in a broken armchair, the way you'd explain the rules of a house to a new lodger.
 
@@ -346,7 +346,7 @@ It's a lot. I sit there with my hands round a mug of tea Rafi's brought me and l
 
 And then Gideon turns from the window and says the real thing.
 
-"My brother came back wrong. It isn't this." He gestures, a small, flat movement, at himself, at Dominic, at Lucien, at the building. "I know what this is. I'd know. That isn't it."
+@gideon:tense "My brother came back wrong. It isn't this." He gestures, a small, flat movement, at himself, at Dominic, at Lucien, at the building. "I know what this is. I'd know. That isn't it."
 
 *choice
   #"You stopped playing. We all wondered." Talk to Dominic like it's a year ago.
@@ -358,11 +358,11 @@ And then Gideon turns from the window and says the real thing.
 
     He looks at me in surprise, as though he'd been ready for anything but that. Then he laughs, low and rough, the laugh from the stage.
 
-    "Signed," he says. "God. I wish." He turns his hands over in his lap and looks at them. "Last August. I got turned. Sort of by accident. And I couldn't face going back. Not like this. Standing in the lights."
+    @dominic:sad "Signed," he says. "God. I wish." He turns his hands over in his lap and looks at them. "Last August. I got turned. Sort of by accident. And I couldn't face going back. Not like this. Standing in the lights."
 
     "People would have come."
 
-    "People would have [i]stared[/i]." But the knack gives him to me, and under the stillness there's someone who misses a room going quiet for him so much it aches. It warms a little while we talk. Not much. Enough.
+    @dominic:sad "People would have [i]stared[/i]." But the knack gives him to me, and under the stillness there's someone who misses a room going quiet for him so much it aches. It warms a little while we talk. Not much. Enough.
   #Tell Dominic about the knack. He's the only person here who looks as out of place as I do.
     *set gift_dominic true
     *set st_dominic +1
@@ -372,11 +372,11 @@ And then Gideon turns from the window and says the real thing.
 
     He looks at me for a long time with his dark eyes, not blinking, the way they don't.
 
-    "Huh," he says, finally. "What do I feel like?"
+    @dominic:attentive "Huh," he says, finally. "What do I feel like?"
 
     "Lonely," I say, before I can stop it.
 
-    He laughs, a short, surprised laugh, like I've caught him in something. "Yeah," he says. "That tracks." And then he says, very quietly, "Don't tell Lucien. About the feeling thing. Not yet. People here get funny about things they can't do themselves."
+    @dominic:laugh He laughs, a short, surprised laugh, like I've caught him in something. "Yeah," he says. "That tracks." And then he says, very quietly, "Don't tell Lucien. About the feeling thing. Not yet. People here get funny about things they can't do themselves."
   #Press Gideon. The knack says he's guilty.
     *set suspect_gideon true
     *set fr_gideon -1
@@ -384,13 +384,13 @@ And then Gideon turns from the window and says the real thing.
 
     He turns round. His face is a wall. The guilt coming off him is so thick I can taste it, like burnt sugar.
 
-    "What did you say?" he says, very softly.
+    @gideon:angry "What did you say?" he says, very softly.
 
     "I can tell. I can just tell. You feel like you did something."
 
-    Dominic says "{name}" in a warning tone. Lucien, in the doorway, goes very still.
+    @dominic:tense Dominic says "{name}" in a warning tone. Lucien, in the doorway, goes very still.
 
-    Gideon looks at me for a long, long moment. "Everything I've done since I turned," he says, "has been something to feel guilty about. That's not a clue. That's a life." He turns back to the window. The room's colder for the rest of the night, and it's my fault.
+    @gideon:hurt Gideon looks at me for a long, long moment. "Everything I've done since I turned," he says, "has been something to feel guilty about. That's not a clue. That's a life." He turns back to the window. The room's colder for the rest of the night, and it's my fault.
 *page_break
 *comment ---------------------------------------------------------------- CH04.REGENT.03
 *sid CH04.REGENT.03
@@ -415,7 +415,7 @@ With him the knack goes quiet and warm, like a room with the heating on low.
 
 Mercy House's working theory, Adrian explains to the room, is a turning gone wrong: somebody tried to make Quentin a vampire and botched it. It fits most of the facts. Gideon says, flatly, that it doesn't. Lucien says nothing, courteously. Reuben says he'd like to take Quentin's pulse before he believes anything.
 
-Then Adrian turns to me with his notebook open. "I'll need your statement. On the record. Properly." And then, in the same tone, as if it follows naturally: "After which it would be best for everyone if you went home and let us handle this."
+@adrian:neutral Then Adrian turns to me with his notebook open. "I'll need your statement. On the record. Properly." And then, in the same tone, as if it follows naturally: "After which it would be best for everyone if you went home and let us handle this."
 
 *choice
   #Disagree with him, to his face, and give my reasons.
@@ -430,16 +430,16 @@ Then Adrian turns to me with his notebook open. "I'll need your statement. On th
 
     Adrian looks at me for a long moment. The engine runs hot. Then, weirdly, it settles, like something that's been waiting to be argued with and is relieved.
 
-    "That," he says finally, "is actually a reasonable point." He sounds as though it's costing him. Reuben looks at the ceiling and doesn't quite smile.
+    @adrian:surprised "That," he says finally, "is actually a reasonable point." He sounds as though it's costing him. Reuben looks at the ceiling and doesn't quite smile.
   #Give the statement his way. He's not wrong that I'm out of my depth.
     *set st_adrian 2
     I give him the statement, his way: times, distances, the van, the lily. He asks good questions. He writes in small square handwriting and reads it back to me word for word.
 
-    "Thank you," he says when it's done, and seems to mean it. "Most people argue."
+    @adrian:warm "Thank you," he says when it's done, and seems to mean it. "Most people argue."
 
     "I'm out of my depth."
 
-    "You are," he says. And then, after a moment, less like a warden: "So's everyone, with this one."
+    @adrian:warm "You are," he says. And then, after a moment, less like a warden: "So's everyone, with this one."
   #Tell Reuben what I felt when Quentin died.
     *set gift_reuben true
     *set gift_mercy true
@@ -450,11 +450,11 @@ Then Adrian turns to me with his notebook open. "I'll need your statement. On th
 
     Reuben goes very still. He looks at me the way you'd look at a patient describing a symptom you've only ever read about.
 
-    "Has that happened before? Feeling things?"
+    @reuben:attentive "Has that happened before? Feeling things?"
 
     "All my life."
 
-    He nods slowly, and doesn't say anything else for a while. Then: "Don't tell Adrian yet," he says. "He'll want to write it down. Let me think about it first." And there's something in the warmth of him now, a sort of care, careful, like someone carrying something that might spill.
+    @reuben:warm He nods slowly, and doesn't say anything else for a while. Then: "Don't tell Adrian yet," he says. "He'll want to write it down. Let me think about it first." And there's something in the warmth of him now, a sort of care, careful, like someone carrying something that might spill.
 *goto diner
 
 *comment ---------------------------------------------------------------- CH04.DINER.01
@@ -466,7 +466,7 @@ Then Adrian turns to me with his notebook open. "I'll need your statement. On th
 *mood neon
 The Truss Road Diner is open all night and belongs to the neighbourhood, which is why, Reuben says, it's neutral: not the wardens', not the Regent's, not anyone's. Bus drivers, nurses coming off shift, two lads from the depot arguing about football over a shared plate of chips. A jukebox that only plays songs from before I was born. And a big corner booth at the back, which tonight has in it: two wardens, two vampires, a nineteen-year-old lighting tech, and, at twenty past ten, a dead man, who comes in off his shift at Double Shift and sits with his back to the wall.
 
-Quentin looks at all of us and says, "Wow. It's like a really weird wedding."
+@quentin:amused Quentin looks at all of us and says, "Wow. It's like a really weird wedding."
 
 Nobody laughs except Dominic.
 
@@ -474,9 +474,9 @@ Up close, under the diner's bad strip lights, he looks worse than he did on Tues
 
 Reuben takes his pulse. He does it very gently, at the wrist, with two fingers, and his face does nothing at all, which is how I know it's bad.
 
-"Well?" says Gideon.
+@gideon:tense "Well?" says Gideon.
 
-"It's there," says Reuben. "It's regular. It's too slow. And it's not quite his."
+@reuben:tense "It's there," says Reuben. "It's regular. It's too slow. And it's not quite his."
 
 And then everyone puts their explanation on the table, like cards.
 
@@ -488,7 +488,7 @@ Vital signs that aren't a vampire's and aren't a living man's, says Reuben, rubb
 
 The only physical thing any of us has is on Quentin's key ring: the little tin charm, scorched on one side. He puts the keys on the table and we all look at them.
 
-"We need to know what's holding him up," says Reuben. "And what that is." He nods at the charm. "There are two places in this city that could tell us. The lab at the General, where I can run him properly. Or the Okafors, on the Hill, who know about things like that." He means the charm.
+@reuben:attentive "We need to know what's holding him up," says Reuben. "And what that is." He nods at the charm. "There are two places in this city that could tell us. The lab at the General, where I can run him properly. Or the Okafors, on the Hill, who know about things like that." He means the charm.
 
 Everyone looks at Quentin, at his cold hands round the cup. He's looking at the charm.
 
@@ -501,12 +501,12 @@ Everyone looks at Quentin, at his cold hands round the cup. He's looking at the 
 
     "I felt it. In the lane. There's something outside him. A line running out of him, to somewhere else. Something's holding him up from the other end." I look at Quentin. "I'm sorry. I know how that sounds."
 
-    Quentin looks at me for a long moment. "No," he says quietly. "That's how it feels." And he puts a hand flat against his chest, over his heart, as if he's feeling for the rope himself.
+    @quentin:sad Quentin looks at me for a long moment. "No," he says quietly. "That's how it feels." And he puts a hand flat against his chest, over his heart, as if he's feeling for the rope himself.
   #"I don't know. I just know it isn't what anyone's said."
     *set theory "unknown"
     "I don't know what it is," I say. "I just know it isn't any of those. Not exactly."
 
-    Adrian frowns. Gideon looks at me like I've said something useful by accident. Reuben nods slowly. "That's honest," he says. "That's more honest than the rest of us."
+    @reuben:warm Adrian frowns. Gideon looks at me like I've said something useful by accident. Reuben nods slowly. "That's honest," he says. "That's more honest than the rest of us."
   #Ask Quentin what he wants to happen, before anyone decides for him.
     *set b_quentin_consent true
     *set st_quentin +1
@@ -516,11 +516,11 @@ Everyone looks at Quentin, at his cold hands round the cup. He's looking at the 
 
     He looks surprised. Then, slowly, he looks something else, and the knack gives it to me: relief, so sharp it's nearly pain. Nobody's asked him. For five days everyone's been deciding what he is, and nobody's asked.
 
-    "I want to know what it is," he says. "And I want to be the one who says yes or no to whatever you do about it. That's it. That's what I want."
+    @quentin:attentive "I want to know what it is," he says. "And I want to be the one who says yes or no to whatever you do about it. That's it. That's what I want."
 
     Gideon starts to say something. Quentin looks at him, and he stops.
 
-    "Okay," says Reuben. "Then that's how we do it."
+    @reuben:warm "Okay," says Reuben. "Then that's how we do it."
 It's half eleven when we come out onto Truss Road. The buses have gone quiet. The moon's waning now, a few days past full, a bitten coin over the rooftops.
 
 Quentin walks off with his brother, not quite together, a careful distance between them, like two people who haven't learned how to walk side by side again. Dominic lifts a hand to me and follows. Adrian and Reuben get into an old car with a Mercy House sticker on the back window.

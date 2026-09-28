@@ -41,9 +41,38 @@
   var PW = 128, PH = 160;
   var TONES = ["#5e3f9e", "#285a64", "#9a3a32", "#4a7af0", "#1a9e8e", "#b04a8a", "#e07a30", "#62a8a0"];
   function hashStr(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); }
-  function portraitFile(id, mood) {
-    var f = files().portraits;
-    return f[id + ":" + mood] || f[id + ":neutral"] || null;
+  /* Expressions. Scenes tag lines with a rich set of moods; each falls back through near neighbours to the six
+   * baseline expressions, then neutral, so a line always finds the closest face that was actually drawn. Names
+   * ChatGPT may have used for the same faces are accepted as synonyms. */
+  var MOOD_CHAIN = {
+    neutral: ["neutral", "default", "calm", "idle"],
+    attentive: ["attentive", "curious", "interested", "listening", "focused", "thinking", "neutral"],
+    amused: ["amused", "happy", "smile", "smiling", "laugh", "laughing", "grin", "neutral"],
+    laugh: ["laugh", "laughing", "amused", "happy", "smile", "neutral"],
+    warm: ["warm", "soft", "fond", "tender", "gentle", "smile", "amused", "neutral"],
+    shy: ["shy", "embarrassed", "blush", "blushing", "flustered", "warm", "soft", "neutral"],
+    tense: ["tense", "worried", "anxious", "nervous", "serious", "neutral"],
+    scared: ["scared", "afraid", "frightened", "shocked", "tense", "worried", "neutral"],
+    angry: ["angry", "annoyed", "irritated", "frustrated", "tense", "serious", "neutral"],
+    hurt: ["hurt", "sad", "upset", "pained", "tense", "neutral"],
+    sad: ["sad", "hurt", "upset", "neutral"],
+    guarded: ["guarded", "wary", "cold", "serious", "tense", "neutral"],
+    surprised: ["surprised", "shocked", "startled", "attentive", "neutral"],
+    tired: ["tired", "exhausted", "weary", "sad", "neutral"],
+    moon: ["moon", "wolf", "tense", "neutral"],
+    hungry: ["hungry", "tense", "neutral"],
+    returned: ["returned", "neutral"],
+    small: ["small", "neutral"]
+  };
+  function chain(mood) { return MOOD_CHAIN[mood] || [mood, "neutral"]; }
+  function portraitFile(id, mood, variant) {
+    var f = files().portraits, c = chain(mood || "neutral");
+    if (variant) {
+      for (var i = 0; i < c.length; i++) if (f[id + ":" + variant + "-" + c[i]]) return f[id + ":" + variant + "-" + c[i]];
+      if (f[id + ":" + variant]) return f[id + ":" + variant];
+    }
+    for (var j = 0; j < c.length; j++) if (f[id + ":" + c[j]]) return f[id + ":" + c[j]];
+    return null;
   }
   function placeholder(id) {
     var key = "ph:" + id;
@@ -59,9 +88,10 @@
   }
   NB.portraits = {
     W: PW, H: PH,
-    has: function (id, mood) { return !!portraitFile(id, mood || "neutral"); },
-    url: function (id, mood) { return portraitFile(id, mood || "neutral") || placeholder(id); },
-    faceUrl: function (id, mood) { var f = files().portraits; return f[id + ":small"] || portraitFile(id, mood || "neutral") || placeholder(id); },
+    moods: Object.keys(MOOD_CHAIN),
+    has: function (id, mood, variant) { return !!portraitFile(id, mood || "neutral", variant); },
+    url: function (id, mood, variant) { return portraitFile(id, mood || "neutral", variant) || placeholder(id); },
+    faceUrl: function (id, mood, variant) { var f = files().portraits; return (!variant && mood === "neutral" && f[id + ":small"]) || portraitFile(id, mood || "neutral", variant) || placeholder(id); },
     lookOptions: {}, lookLabels: {}
   };
 

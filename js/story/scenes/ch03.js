@@ -12,7 +12,7 @@ Tuesday. The first of September, which in Calder means the light's gone a shade 
 
 Martin's at the counter at ten past seven with a box of freshly printed menus and his car keys in his hand, looking at them as though they've personally let him down. The van's making the noise again. The bus to Northline takes forty minutes.
 
-"These are for a café in Northline," he says. "New menus. They were due Friday. I told them Tuesday. I thought I'd..."
+@martin:tense "These are for a café in Northline," he says. "New menus. They were due Friday. I told them Tuesday. I thought I'd..."
 
 I read the label on the box upside down.
 
@@ -24,7 +24,7 @@ Peter's lanyard. Quentin's T-shirt. [i]Come in, I'll do you a coffee.[/i]
 
 He looks at me. The grey pressure of him, from Sunday, hasn't lifted. But he lets go of the box.
 
-"Straight there," he says. "And eat something."
+@martin:warm "Straight there," he says. "And eat something."
 
 *page_break
 *comment ---------------------------------------------------------------- CH03.CAFE.01
@@ -59,25 +59,25 @@ I don't know how long I stand there. Long enough for Peter, at the till, to noti
 *portrait ansel neutral
 He's young, twenty or twenty-one, and he's dressed as if for a different century: a dark coat buttoned to a formal white collar, not a tie exactly, something older, stiff and neat. Smooth dark hair parted with a ruler. Pale, fine-boned, a long straight nose. He stands very straight, the way you'd stand if someone had once told you that posture was a moral issue and you'd agreed.
 
-"Forgive me," he's saying to Peter, with a courtesy so complete it's almost frightening. "A regular of yours. Eamon Kerr. A courier. He comes in every Friday morning, before the eight-fifteen, for a bacon roll and a tea with three sugars. He didn't come this Friday."
+@ansel:tense "Forgive me," he's saying to Peter, with a courtesy so complete it's almost frightening. "A regular of yours. Eamon Kerr. A courier. He comes in every Friday morning, before the eight-fifteen, for a bacon roll and a tea with three sugars. He didn't come this Friday."
 
-Peter shrugs. "Loads of people don't come in on a Friday."
+@peter:neutral Peter shrugs. "Loads of people don't come in on a Friday."
 
-"Eamon Kerr comes in on a Friday." It isn't said sharply. It's said the way you'd say [i]the sun comes up[/i]. "He has done for four years."
+@ansel:guarded "Eamon Kerr comes in on a Friday." It isn't said sharply. It's said the way you'd say [i]the sun comes up[/i]. "He has done for four years."
 
 The knack gives me this young man and it's strange: very cool, very controlled, like cold water in a glass, and under the glass, deep down, something moving, an anxiety kept so tightly it's become a kind of posture. He's worried sick. He'd die before he let it show.
 
-He turns, and sees me standing there with my box, and inclines his head, a small, formal, perfectly calibrated bow. "Forgive me. Do you know him? Eamon Kerr?"
+@ansel:attentive He turns, and sees me standing there with my box, and inclines his head, a small, formal, perfectly calibrated bow. "Forgive me. Do you know him? Eamon Kerr?"
 
 "No," I say. "Sorry."
 
 He takes a card from inside his coat and holds it out between two fingers. It's heavy cream card, and there's nothing on it but a name, printed in black: ANSEL MARR. No number. No address.
 
-"If you should hear anything," he says. Then, to Peter, in a slightly different tone, as though an entirely separate matter of equal gravity has arisen: "And those are not almond croissants. Those are croissants with an almond [i]on[/i] them."
+@ansel:guarded "If you should hear anything," he says. Then, to Peter, in a slightly different tone, as though an entirely separate matter of equal gravity has arisen: "And those are not almond croissants. Those are croissants with an almond [i]on[/i] them."
 
-"They're almond croissants," says Peter.
+@peter:neutral "They're almond croissants," says Peter.
 
-"They are an insult to the almond."
+@ansel:angry "They are an insult to the almond."
 
 *choice
   #Take the card. "Why would a courier go missing?"
@@ -87,7 +87,7 @@ He takes a card from inside his coat and holds it out between two fingers. It's 
 
     He looks at me properly, then. His eyes are grey and very steady, and for a second the cold water in the glass goes very still, as if he's deciding something.
 
-    "Eamon has not been sick in four years," he says. "He does not take holidays. He carries things between... between parties who need a reliable pair of hands. On Thursday night he set out to make a delivery. He did not arrive." He pauses. "You're kind to ask. Most people wouldn't." Another small bow. "Thank you."
+    @ansel:tense "Eamon has not been sick in four years," he says. "He does not take holidays. He carries things between... between parties who need a reliable pair of hands. On Thursday night he set out to make a delivery. He did not arrive." He pauses. "You're kind to ask. Most people wouldn't." Another small bow. "Thank you."
 
     And he goes, out into the morning, very straight, without buying anything.
   #Take the card, and say nothing.
@@ -136,15 +136,15 @@ I go to the counter. There's a gap in the queue. I stand in it.
 
 "Hi," I say. "I brought your menus."
 
-"Cheers," says Quentin, brightly, to a point just over my left shoulder. "Just leave them there. Peter'll sort them. Anything else?"
+@quentin:guarded "Cheers," says Quentin, brightly, to a point just over my left shoulder. "Just leave them there. Peter'll sort them. Anything else?"
 
 "You were in the lane," I say, quietly. "Saturday night. Behind Switchyard. I was there."
 
 His hands stop on the steam wand. The fear comes off him like cold water tipped down my back.
 
-"Don't know what you mean, mate," he says, loud and cheerful and practical, for Peter, for the queue. "Must be thinking of someone else. Flat white? On the house. For the menus." His voice is doing a perfect job. His hands aren't. He's holding the milk jug too tight.
+@quentin:scared "Don't know what you mean, mate," he says, loud and cheerful and practical, for Peter, for the queue. "Must be thinking of someone else. Flat white? On the house. For the menus." His voice is doing a perfect job. His hands aren't. He's holding the milk jug too tight.
 
-And then, quietly, so quietly I nearly miss it, as he puts the cup down in front of me: "You were there."
+@quentin:scared And then, quietly, so quietly I nearly miss it, as he puts the cup down in front of me: "You were there."
 
 Not a question. His eyes flick to mine and away, and for a second the shutter's gone, and he looks about twelve.
 
@@ -169,21 +169,21 @@ Three dots. Three dots. Then: [i]what[/i]. Then: [i]WHAT[/i]. Then: [i]20 mins[/
 
 He gets there in eighteen, with his hair flat on one side from the pillow and his jacket on over his pyjama top, and he takes one look at me in the window and one look at Quentin at the machine and goes very pale under the freckles. Then he walks up to the counter as if nothing's wrong and orders the most complicated drink on the board: an iced oat-milk honey-lavender something with an extra shot and a pump of cinnamon, which takes about four minutes and a great deal of fuss, and keeps Quentin right there at the machine in front of us.
 
-"Haven't seen you here before," Nolan says, friendly. "You been away?"
+@nolan:amused "Haven't seen you here before," Nolan says, friendly. "You been away?"
 
-Quentin doesn't look at me. "Off sick," he says. "Bad flu. Back today."
+@quentin:guarded Quentin doesn't look at me. "Off sick," he says. "Bad flu. Back today."
 
-"Rough. Did you go to the doctor?"
+@nolan:attentive "Rough. Did you go to the doctor?"
 
-"Private place." Quentin shrugs, steaming the milk. "Very good. Very quiet. They said I was lucky." He smiles at the milk like it's told a joke. "Lucky me."
+@quentin:sad "Private place." Quentin shrugs, steaming the milk. "Very good. Very quiet. They said I was lucky." He smiles at the milk like it's told a joke. "Lucky me."
 
-"They sent a car for him," says Peter, at the till, who can't not contribute. "A private car. Very nice. I didn't know our health plan did that."
+@peter:neutral "They sent a car for him," says Peter, at the till, who can't not contribute. "A private car. Very nice. I didn't know our health plan did that."
 
-"It doesn't," says Quentin, and then shuts his mouth.
+@quentin:tense "It doesn't," says Quentin, and then shuts his mouth.
 
-Nolan pays and tips and takes his drink and sits down opposite me in the window, and says, very quietly, "A private clinic that sends a car," and I nod, and underneath the table his knee is going like Will's.
+@nolan:tense Nolan pays and tips and takes his drink and sits down opposite me in the window, and says, very quietly, "A private clinic that sends a car," and I nod, and underneath the table his knee is going like Will's.
 
-Quentin brings us two waters we didn't ask for. As he puts them down he looks at me, finally, for one second, and says under his breath, "What are you two doing?" and there's fear in it, but also something that feels to the knack like being ganged up on, like the walls closing in. Then he writes something on a napkin and puts it under Nolan's glass, and goes.
+@quentin:hurt Quentin brings us two waters we didn't ask for. As he puts them down he looks at me, finally, for one second, and says under his breath, "What are you two doing?" and there's fear in it, but also something that feels to the knack like being ganged up on, like the walls closing in. Then he writes something on a napkin and puts it under Nolan's glass, and goes.
 
 It's a phone number.
 *goto night
@@ -204,27 +204,27 @@ Six hours. Four coffees. A toastie I don't taste. I text Martin that I'm running
 
 At two o'clock his shift ends. He comes out of the back in a hoodie with his bag on one shoulder and walks straight past my table and out of the door, and I follow him, and he lets me. At the bus stop outside Northline Station, under the big clock, with the trains going over, he stops and turns round.
 
-"You're not going to go away," he says.
+@quentin:tired "You're not going to go away," he says.
 
 "No."
 
 He sits down on the bus-stop bench as if his legs have gone. After a moment, I sit down beside him.
 
-"I remember it," he says. He's looking straight ahead at the traffic. "The lane. The man. The thing on my keys getting hot. I remember... going. It was like someone switched me off at the wall. And then I woke up in a clean room with a drip in my arm and a nice man telling me I'd had a turn and I was very lucky and I should keep quiet about it for my own safety." He laughs, a small, horrible laugh. "For my own safety."
+@quentin:scared "I remember it," he says. He's looking straight ahead at the traffic. "The lane. The man. The thing on my keys getting hot. I remember... going. It was like someone switched me off at the wall. And then I woke up in a clean room with a drip in my arm and a nice man telling me I'd had a turn and I was very lucky and I should keep quiet about it for my own safety." He laughs, a small, horrible laugh. "For my own safety."
 
 "Who was he? The nice man?"
 
-"Don't know. Didn't give a name. They sent a car to bring me home." He takes his keys out of his hoodie pocket and turns them over and holds them out to me, the little tin charm in his palm. It's scorched down one side, black and bubbled, like it's been held in a flame. "I've only had it a few weeks. I thought it was tat. A freebie." He turns it with his thumb. "Funny sort of freebie."
+@quentin:sad "Don't know. Didn't give a name. They sent a car to bring me home." He takes his keys out of his hoodie pocket and turns them over and holds them out to me, the little tin charm in his palm. It's scorched down one side, black and bubbled, like it's been held in a flame. "I've only had it a few weeks. I thought it was tat. A freebie." He turns it with his thumb. "Funny sort of freebie."
 
 "Can I take a photo of it?"
 
 He looks at me for a long time. Then he holds it still in his palm while I do. His hand's cold. Very cold, for September.
 
-"What are you?" he says. "Why does it matter to you?"
+@quentin:attentive "What are you?" he says. "Why does it matter to you?"
 
 "Because I watched you die," I say. "And you made me a coffee."
 
-He looks at me for a long moment, and then, for the first time all day, he laughs properly. "Yeah," he says. "Fair." He takes my phone out of my hand and puts his number in it. "In case," he says. And then his bus comes, and he gets on it without looking back.
+@quentin:laugh He looks at me for a long moment, and then, for the first time all day, he laughs properly. "Yeah," he says. "Fair." He takes my phone out of my hand and puts his number in it. "In case," he says. And then his bus comes, and he gets on it without looking back.
 *goto night
 
 *comment ---------------------------------------------------------------- CH03.NIGHT.01

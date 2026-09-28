@@ -71,7 +71,7 @@ module.exports = [
 
   // ------------------------------------------------------------ Orrell
   {
-    id: "CH10.ORRELL.01", date: "2026-11-08", time: "11:00", place: "P01", cast: ["MC", "C18"], kind: "common",
+    id: "CH10.ORRELL.01", date: "2026-11-08", time: "11:00", place: "P01", cast: ["MC", "C18", "C22"], kind: "common",
     purpose: "Sunday. Commander Orrell knows I've seen the program, one way or another; Mercy House is not a place where secrets stay in one room. He listens without interrupting, then restates the part of my argument he considers relevant: he closed a dangerous program and kept the reasons quiet so the institution would survive long enough to do better. He doesn't know who is doing this now. I believe that, and the knack agrees, for what that's worth.",
     choices: [
       { id: "a", text: "Confront him: the concealment is why someone could pick this up again.", type: "structural", set: { orrell_known: "confront", nerve: "+3" } },

@@ -711,7 +711,7 @@ My phone buzzes in my pocket while I'm eating it.
 *else
   It's Reuben. Chukwudi must have rung him.
 
-  [i]Chukwudi says you asked about the program. Seven years ago. I was sixteen, a cadet. I remember it. I remember the man who ran it.[/i]
+  [i]Chukwudi says you asked about the program. Seven years ago. I was sixteen, a cadet. I remember it closing. The whole house went quiet for a year. Nobody would say why.[/i]
 
   And then, a minute later: [i]Nobody at Mercy House will talk about it. There's a man up on the ridge who will. Malcolm Tait. He was there when it failed. I'm driving up to see him next Saturday. You could come.[/i]
 I look at it for a long time, under the street lamp, with the kids going past in their capes.

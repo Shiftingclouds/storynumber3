@@ -27,6 +27,6 @@ node tools/playtest.js --runs 3000 --unshown   # bots play to the end; reports e
 - `plan/`: the storyboard as checkable data; `docs/02-…09-` are generated from it (`node tools/plan-docs.js`)
 - `docs/01-story.md`: start here for the story; `docs/00-decisions.md` for what changed from the source bible
 - `docs/10-art-handoff.md`: the character art spec (portraits, expressions, snapshots) for the art partner
-- `art/places/`: environment views (drawn by `node tools/art.js place <id>`); `art/portraits/` and `art/snapshots/` take the character art as it arrives
-
-Character portraits and snapshots with people are still to come; until they arrive, the game shows a framed placeholder.
+- `art/masters/`: ChatGPT's full-size originals (portraits, environments) and its notes and checklist
+- `art/portraits/`, `art/places/`: the game's exports, made from the masters by `python3 tools/import-art.py` (needs Pillow): portraits 256 × 320 (shown at 128 × 160), environments 640 × 360, 256-colour palettes, clean binary edges on portraits
+- `art/drawn/`: Claude's original procedural views (`node tools/art.js place <id>`), kept for reference; they no longer feed the game

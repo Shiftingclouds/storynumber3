@@ -3,6 +3,7 @@
 //   node tools/art.js pilot            the three-face pilot (neutral + one expression each) and the lane
 //   node tools/art.js turn <id>        construction views of one head (front, three-quarter, profile)
 //   node tools/art.js face <id> [ex]   one portrait, native and ×4
+// Views go to art/drawn/ (Claude's originals). The game's art/places/ now holds ChatGPT's paintings, exported by tools/import-art.py.
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -52,16 +53,16 @@ if (cmd === "turn") {
   save(path.join(ROOT, "docs/art/wip", `${id}-${exs.join("-")}.png`), tiles.length > 1 ? sheet(tiles, tiles.length, 2) : tiles[0], exs.length > 2 ? 2 : 3);
 } else if (cmd === "place") {
   const ids = (id || "switchyard_lane").split(",");
-  const tiles = ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/places", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
+  const tiles = ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/drawn", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
   save(path.join(ROOT, "docs/art/wip", `place-${ids.length > 1 ? "sheet" : ids[0]}.png`), tiles.length > 1 ? sheet(tiles, 2, 3) : tiles[0], ids.length > 1 ? 2 : 3);
 } else if (cmd === "variant") {
   // node tools/art.js variant iron_footbridge winter  -> art/places/iron-footbridge-winter.png (view id iron_footbridge_winter)
   const flag = ex;
   const c = NB.places.draw(id, { [flag]: true });
-  save(path.join(ROOT, "art/places", `${id.replace(/_/g, "-")}-${flag}.png`), c, 1);
+  save(path.join(ROOT, "art/drawn", `${id.replace(/_/g, "-")}-${flag}.png`), c, 1);
   save(path.join(ROOT, "docs/art/wip", `place-${id}-${flag}.png`), c, 3);
 } else if (cmd === "places") {
-  const tiles = NB.places.ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/places", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
+  const tiles = NB.places.ids.map((i) => { const c = NB.places.draw(i); save(path.join(ROOT, "art/drawn", `${i.replace(/_/g, "-")}.png`), c, 1); return c; });
   save(path.join(ROOT, "docs/art", "places.png"), sheet(tiles, 3, 3), 1);
 } else if (cmd === "icon") {
   // the app icon: a moon over the Iron Footbridge's truss, and the river under it. 32 × 32, drawn by hand.
@@ -99,7 +100,7 @@ if (cmd === "turn") {
   save(path.join(ROOT, "docs/art", "pilot-portraits.png"), sheet(tiles, 6, 4), 3);
   if (NB.places) {
     const lane = NB.places.draw("switchyard_lane");
-    save(path.join(ROOT, "art/places", "switchyard-lane.png"), lane, 1);
+    save(path.join(ROOT, "art/drawn", "switchyard-lane.png"), lane, 1);
     save(path.join(ROOT, "docs/art", "pilot-lane.png"), lane, 3);
   }
 }

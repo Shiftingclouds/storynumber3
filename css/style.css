@@ -419,8 +419,8 @@ a { color: var(--accent); }
 .nb-dateline { font-family: var(--font-pixel); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 1.6rem 0 .4rem; display: flex; align-items: center; gap: .6rem; }
 .nb-dateline::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
 .nb-view { margin: .8rem 0 1.2rem; }
-.nb-portrait { image-rendering: pixelated; }
-.nb-face { background-size: 100% auto; background-position: center 18%; background-repeat: no-repeat; image-rendering: pixelated; }
+img.px.nb-portrait, .nb-portrait { image-rendering: auto; } /* portraits are 2x illustrations (256 x 320 shown at 128 x 160): scale smoothly */
+.nb-face { background-size: 100% auto; background-position: center 18%; background-repeat: no-repeat; image-rendering: auto; }
 .nb-letter { background: #f6efdc; color: #2a2230; font-family: var(--font-body); border-radius: 3px; padding: 1.2rem 1.4rem; margin: 1.2rem 0; box-shadow: var(--shadow); transform: rotate(-.3deg); }
 .nb-letter.email { background: var(--surface-2); color: var(--ink); transform: none; font-family: var(--font-ui); border-left: 3px solid var(--accent); }
 .nb-letter.card { background: #fbf6ea; border: 1px solid #d8c8a0; font-family: var(--font-display); font-size: 1.15em; }
